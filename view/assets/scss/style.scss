@@ -4,7 +4,12 @@
 @import "../css/Inter.css";
 
 $primary: #1b1919;
+$miniature-size: 150px;
 .btn-primary {
   background-color: $primary;
   border: $primary;
+}
+.miniature {
+  height: $miniature-size;
+  width: $miniature-size;
 }
