@@ -2,6 +2,7 @@
 @import "../css/cartFull.css";
 @import "../css/cart.css";
 @import "../css/Inter.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css";
 .btn-primary {
   background-color: #1b1919;
   border: #1b1919;
