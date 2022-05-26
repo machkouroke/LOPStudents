@@ -1,0 +1,15 @@
+@import "../bootstrap/css/bootstrap.min.css";
+@import "../css/cartFull.css";
+@import "../css/cart.css";
+@import "../css/Inter.css";
+.btn-primary {
+  background-color: #1b1919;
+  border: #1b1919;
+}
+
+.miniature {
+  height: 150px;
+  width: 150px;
+}
+
+/*# sourceMappingURL=style.css.map */
