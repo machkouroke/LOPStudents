@@ -16,7 +16,7 @@
 						href="menu.php" style="width: 100%;">
 					<span class="bs-icon-sm bs-icon-circle bs-icon-primary shadow d-flex justify-content-center align-items-center me-2 bs-icon">
 
-						<?php include("img/lop.svg")?>
+						<?php include("assets/img/lop.svg")?>
 					</span>
 					<span>LOPStudents</span>
 				</a>

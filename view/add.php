@@ -85,7 +85,7 @@
             </div>
             <div class="col" style="text-align: center;">
                 <img data-aos="fade-down" data-aos-once="true"
-                     src="img/friend.png"
+                     src="assets/img/friend.png"
                      style="width: 90%;height: 100%;padding: 37px;" alt="">
             </div>
         </div>

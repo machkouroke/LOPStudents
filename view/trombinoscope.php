@@ -12,42 +12,42 @@
 		<div class="row row-cols-2 row-cols-md-3 mx-auto" style="max-width: 700px;">
 			<div class="col mb-4">
 				<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
-				                              src="img/team/avatar2.png">
+				                              src="assets/img/team/avatar2.png">
 					<h5 class="fw-bold mb-0"><strong>Aganon Déodat</strong></h5>
 					<p class="text-muted mb-2">IID1</p>
 				</div>
 			</div>
 			<div class="col mb-4">
 				<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
-				                              src="img/team/avatar2.png">
+				                              src="assets/img/team/avatar2.png">
 					<h5 class="fw-bold mb-0"><strong>Oke Machkour</strong></h5>
 					<p class="text-muted mb-2">IID1</p>
 				</div>
 			</div>
 			<div class="col mb-4">
 				<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
-				                              src="img/team/avatar2.png">
+				                              src="assets/img/team/avatar2.png">
 					<h5 class="fw-bold mb-0"><strong>Candy Aho</strong></h5>
 					<p class="text-muted mb-2">IID1</p>
 				</div>
 			</div>
 			<div class="col mb-4">
 				<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover" width="150" height="150"
-				                              src="img/team/avatar2.png">
+				                              src="assets/img/team/avatar2.png">
 					<h5 class="fw-bold mb-0"><strong>Anis Ben Bacar</strong></h5>
 					<p class="text-muted mb-2">GPEE1</p>
 				</div>
 			</div>
 			<div class="col mb-4">
 				<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
-				                              src="img/team/avatar2.png">
+				                              src="assets/img/team/avatar2.png">
 					<h5 class="fw-bold mb-0"><strong>Sangho Aminata</strong></h5>
 					<p class="text-muted mb-2">IID1</p>
 				</div>
 			</div>
 			<div class="col mb-4">
 				<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
-				                              src="img/team/avatar2.png">
+				                              src="assets/img/team/avatar2.png">
 					<h5 class="fw-bold mb-0"><strong>Mikael Pezongo</strong></h5>
 					<p class="text-muted mb-2">IRIC1</p>
 				</div>

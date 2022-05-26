@@ -9,7 +9,7 @@
 
 						<div class="ref-cart" style="display: block;">
 							<h1 class="ref-heading text-center">Liste des étudiants</h1>
-							<div class="d-flex flex-row justify-content-between align-items-center">
+							<div class="d-flex flex-row justify-content-around align-items-center">
 								<div class="row bg-primary-gradient rounded p-3">
 
 									<div class="col-12">
@@ -32,9 +32,7 @@
 									</div>
 
 								</div>
-								<div>
 
-								</div>
 								<p><a href="#" class="btn btn-primary">Envoyer un mail</a></p>
 							</div>
 							<div class="ref-th my-5">
@@ -50,7 +48,7 @@
 								<div class="ref-student">
 									<div class="ref-student-col">
 										<div class="ref-student-wrapper"><img class="ref-student-photo"
-										                                      src="img/imane.jpg"
+										                                      src="assets/img/imane.jpg"
 										                                      alt="Bailee Jast"/>
 											<div class="ref-student-data">
 												<div class="ref-student-info">
@@ -87,7 +85,7 @@
 								<div class="ref-student">
 									<div class="ref-student-col">
 										<div class="ref-student-wrapper"><img class="ref-student-photo"
-										                                      src="img/imane.jpg"
+										                                      src="assets/img/imane.jpg"
 										                                      alt="Bailee Jast"/>
 											<div class="ref-student-data">
 												<div class="ref-student-info">
