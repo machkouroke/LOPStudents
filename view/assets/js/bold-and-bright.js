@@ -72,9 +72,9 @@
 
     function update() {
 
-      for (var i = 0; i < visible.length; i++) {
-        var node = visible[i].node;
-        var speed = visible[i].speed;
+      for (const element of visible) {
+        var node = element.node;
+        var speed = element.speed;
 
         node.style.transform = 'translate3d(0, ' + (-window.scrollY * speed) + 'px, 0)';
       }
