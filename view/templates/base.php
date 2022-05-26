@@ -13,7 +13,7 @@
 		     id="mainNav">
 			<div class="container">
 				<a class="navbar-brand text-center d-flex align-items-center "
-						href="/" style="width: 100%;">
+						href="menu.php" style="width: 100%;">
 					<span class="bs-icon-sm bs-icon-circle bs-icon-primary shadow d-flex justify-content-center align-items-center me-2 bs-icon">
 
 						<?php include("img/lop.svg")?>
@@ -60,9 +60,11 @@
 		</footer>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-		<script src="https://cdn.reflowhq.com/v1/toolkit.min.js"></script>
-		<script src="assets/js/bs-init.js?h=9a9f8acb1d759d183570dd7c693aabee"></script>
-		<script src="assets/js/bold-and-bright.js?h=914b066f52f5e2b2583e4d1558c90518"></script>
+<!--		<script src="https://cdn.reflowhq.com/v1/toolkit.min.js"></script>-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+		<script src="assets/js/bs-init.js"></script>
+
+		<script src="assets/js/bold-and-bright.js"></script>
 	</body>
 
 </html>
