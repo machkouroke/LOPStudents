@@ -7,13 +7,16 @@
 			<div class="reflow-product d-flex align-items-center py-5">
 				<div class="ref-media">
 					<div class="ref-preview"><img class="ref-image active" src="img/imane.jpg"
-					                              data-reflow-preview-type="image" alt=""/></div>
+					                              alt=""/></div>
 				</div>
 
 				<div class="ref-product-data d-flex flex-column justify-content-between">
 
 					<table class="table">
-
+						<tr>
+							<th scope="row">Fillière</th>
+							<td>IID1</td>
+						</tr>
 						<tr>
 							<th scope="row">Nom d'utilisateur</th>
 							<td>imanesidiki@gmail.com</td>
@@ -40,7 +43,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+
 </section>
 <?php $content = ob_get_clean(); ?>
 
