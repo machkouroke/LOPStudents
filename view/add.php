@@ -1,11 +1,11 @@
-<?php $title = "Liste étudiant"; ?>
+<?php $title = "Ajouter " .$_GET["title"]; ?>
 <?php ob_start(); ?>
 <section class="py-5 mt-5">
     <div class="container py-5">
         <div class="row mb-4 mb-lg-5">
             <div class="col-md-8 col-xl-6 text-center mx-auto">
 
-                <h2 class="fw-bold">Veuillez saisir les informations de l'étudiant</h2>
+                <h2 class="fw-bold">Veuillez saisir les informations <?= $_GET["title"]?></h2>
             </div>
         </div>
         <div class="row d-flex justify-content-start justify-content-lg-start align-items-lg-center">
