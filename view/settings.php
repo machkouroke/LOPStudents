@@ -5,7 +5,7 @@
         <div>
             <h1 class="ref-name text-center fw-bold">Imane Sidiki</h1>
             <form class="row d-flex align-items-center" action="settings.php" method="post">
-                <div class="col-7 reflow-product d-flex align-items-center py-5">
+                <div class="col-md-7 col-12 reflow-product d-flex align-items-center py-5">
                     <div class="ref-media">
                         <div class="ref-preview"><img class="ref-image active" src="img/imane.jpg"
                                                       alt=""/></div>
@@ -16,7 +16,7 @@
 
                     </div>
                 </div>
-                <div class="col-5 row">
+                <div class="col-md-5 col-12 row">
                     <div class="col-12">
                         <label class="p-2">
                             Num d'utilisateur

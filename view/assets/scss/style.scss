@@ -3,6 +3,8 @@
 @import "../css/cart.css";
 @import "../css/Inter.css";
 
-.list-header {
-
+$primary: #1b1919;
+.btn-primary {
+  background-color: $primary;
+  border: $primary;
 }
