@@ -13,4 +13,20 @@
   width: 150px;
 }
 
+.switch {
+  height: 40px;
+  width: 40px;
+}
+
+#moreOption {
+  transition: opacity 1s ease-out;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+#moreOption.show {
+  opacity: 1;
+  height: auto;
+}
+
 /*# sourceMappingURL=style.css.map */

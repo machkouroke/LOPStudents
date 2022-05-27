@@ -10,8 +10,7 @@
 		</div>
 		<div class="row mx-auto" style="/*max-width: 700px;*/">
 			<div class="col">
-				<div data-reflow-type="product-list" data-reflow-layout="cards" data-reflow-order="date_desc"
-				     data-reflow-product-link="/product.html?product={id}">
+				<div>
 					<div class="reflow-product-list ref-cards">
 						<div class="ref-products align-items-center">
 							<a class="ref-product" href="add.php?title=de l'étudiant">

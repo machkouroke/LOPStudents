@@ -65,6 +65,7 @@
 		<script src="assets/js/bs-init.js"></script>
 
 		<script src="assets/js/bold-and-bright.js"></script>
+		<script src="assets/js/toggle.js"></script>
 	</body>
 
 </html>
