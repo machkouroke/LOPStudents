@@ -4,9 +4,10 @@
 	<div class="container py-5">
 
 		<?php
-			$switchPage = "listing.php";
-			$switchIcon = "list.png";
-			require('templates/listingHeader.php')
+			$switchPage = VIEW_URL . "listing.php";
+			$switchIcon = IMG_URL . "list.png";
+
+			require(BASE_DIR . 'view\templates\listingHeader.php')
 		?>
 		<div class="py-2 row row-cols-2 row-cols-md-3 mx-auto" style="max-width: 700px;">
 
@@ -57,4 +58,4 @@
 </section>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('templates/base.php'); ?>
+<?php require(BASE_DIR . 'view\templates\base.php'); ?>

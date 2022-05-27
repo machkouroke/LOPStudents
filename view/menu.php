@@ -13,14 +13,14 @@
 				<div>
 					<div class="reflow-product-list ref-cards">
 						<div class="ref-products align-items-center">
-							<a class="ref-product" href="add.php?title=de l'étudiant">
-								<img class="ref-image" src="assets/img/menu/add.png" alt=""/>
+							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addStudent">
+								<img class="ref-image" src="<?= IMG_URL ?>menu/add.png" alt=""/>
 								<div class="ref-product-data">
 									<h5 class="ref-name text-center w-100">Ajouter un étudiants</h5>
 								</div>
 							</a>
-							<a class="ref-product" href="add.php?title=du proffesseur">
-								<img class="ref-image" src="assets/img/menu/addTeacher.png"
+							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addTeacher">
+								<img class="ref-image" src="<?= IMG_URL ?>menu/addTeacher.png"
 								     alt=""/>
 								<div class="ref-product-data">
 									<div class="ref-product-data">
@@ -28,8 +28,8 @@
 									</div>
 								</div>
 							</a>
-							<a class="ref-product" href="listing.php">
-								<img class="ref-image" src="assets/img/menu/listStudent.png"
+							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=listingStudents">
+								<img class="ref-image" src="<?= IMG_URL ?>menu/listStudent.png"
 								     alt=""/>
 								<div class="ref-product-data">
 									<div class="ref-product-data">
@@ -37,8 +37,8 @@
 									</div>
 								</div>
 							</a>
-							<a class="ref-product" href="listing.php">
-								<img class="ref-image" src="assets/img/menu/listTeacher.png"
+							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=listingTeachers">
+								<img class="ref-image" src="<?= IMG_URL ?>menu/listTeacher.png"
 								     alt=""/>
 								<div class="ref-product-data">
 									<div class="ref-product-data">
@@ -46,8 +46,8 @@
 									</div>
 								</div>
 							</a>
-							<a class="ref-product" href="settings.php">
-								<img class="ref-image" src="assets/img/menu/settings.png"
+							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=settings">
+								<img class="ref-image" src="<?= IMG_URL ?>menu/settings.png"
 								     alt=""/>
 								<div class="ref-product-data">
 									<div class="ref-product-data">
@@ -56,12 +56,12 @@
 								</div>
 							</a>
 
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 </section>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('templates/base.php'); ?>
+<?php require(BASE_DIR . 'view\templates\base.php'); ?>

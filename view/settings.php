@@ -7,7 +7,7 @@
             <form class="row d-flex align-items-center" action="settings.php" method="post">
                 <div class="col-md-7 col-12 reflow-product d-flex align-items-center py-5">
                     <div class="ref-media">
-                        <div class="ref-preview"><img class="ref-image active" src="assets/img/imane.jpg"
+                        <div class="ref-preview"><img class="ref-image active" src="<?= IMG_URL ?>imane.jpg"
                                                       alt=""/></div>
                     </div>
 
@@ -48,4 +48,4 @@
 </section>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('templates/base.php'); ?>
+<?php require(BASE_DIR . 'view\templates\base.php'); ?>

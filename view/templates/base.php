@@ -1,11 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<title><?= $title ?></title>
-		<link rel="stylesheet" href="assets/css/style.css" type="text/css"
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+		<link rel="stylesheet" href="<?= CSS_URL ?>style.css" type="text/css"
 	</head>
 
 	<body>
@@ -13,10 +15,10 @@
 		     id="mainNav">
 			<div class="container">
 				<a class="navbar-brand text-center d-flex align-items-center "
-						href="menu.php" style="width: 100%;">
+						href="<?= BASE_URL ?>index.php" style="width: 100%;">
 					<span class="bs-icon-sm bs-icon-circle bs-icon-primary shadow d-flex justify-content-center align-items-center me-2 bs-icon">
 
-						<?php include("assets/img/lop.svg")?>
+						<?php include($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR ."view\assets\img\lop.svg")?>
 					</span>
 					<span>LOPStudents</span>
 				</a>
@@ -62,10 +64,11 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!--		<script src="https://cdn.reflowhq.com/v1/toolkit.min.js"></script>-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-		<script src="assets/js/bs-init.js"></script>
+		<script src="<?= JS_URL ?>bs-init.js"></script>
 
-		<script src="assets/js/bold-and-bright.js"></script>
-		<script src="assets/js/toggle.js"></script>
+		<script src="<?= JS_URL ?>bold-and-bright.js"></script>
+		<script src="<?= JS_URL ?>toggle.js"></script>
+		<script src="<?= JS_URL ?>captcha.js"></script>
 	</body>
 
 </html>

@@ -1,17 +1,17 @@
-<?php $title = "Ajouter " . $_GET["title"]; ?>
+<?php $title = "Ajouter un " . $title; ?>
 <?php ob_start(); ?>
 <section class="py-5 mt-5">
 	<div class="container py-5">
 		<div class="row mb-4 mb-lg-5">
 			<div class="col-md-8 col-xl-6 text-center mx-auto">
 
-				<h2 class="fw-bold">Veuillez saisir les informations <?= $_GET["title"] ?></h2>
+				<h2 class="fw-bold">Veuillez saisir ses informations</h2>
 			</div>
 		</div>
 		<div class="row d-flex justify-content-start justify-content-lg-start align-items-lg-center">
 			<div class="col-md-6 col-xl-6">
 				<div>
-					<form id="register" class="p-3 p-xl-4" data-aos="fade-up" method="post"
+					<form id="register" class="p-3 m-5 p-xl-4" data-aos="fade-up" method="post"
 					      enctype="multipart/form-data">
 						<div class="row">
 							<div class="col mb-3">
@@ -78,13 +78,19 @@
 							</label>
 							<input class="form-control" type="text" name="studyField" id="studyField">
 						</div>
-						<div class="mb-3 w-50 bg-primary-gradient rounded p-3 text-center">
-							<label for="studyField" class="form-label fw-bold ">Captcha
+						<div class="mb-3 w-100 bg-primary text-white  rounded p-3 text-center d-flex flex-column align-items-center">
+							<label for="studyField" class="form-label fw-bold ">Veuillez saisir le texte pour confirmer
+							                                                    que vous n'êtes pas un robot
 							</label>
-							<input class="form-control" type="text" name="captcha" id="studyField">
-							<div class="text-center p-4">
-								<i class="fas fa-redo refresh-captcha"></i>
-								<img class="captcha-image w-100" src="assets/captcha.php" alt=""/>
+							<input class="form-control m-2" type="text" name="captcha" id="studyField">
+							<div class="text-center p-4 d-flex align-items-center ">
+								<div id="refreshCaptcha" class="mx-2 bg-primary rounded d-flex align-items-center">
+									<a>
+										<img style="width: 40px; height: 40px" src="<?= IMG_URL ?>refresh.png" alt="">
+									</a>
+								</div>
+								<div><img id="captcha-image" class=" w-100 rounded" src="<?= ASSETS_URL ?>captcha.php"
+								          alt=""/></div>
 							</div>
 						</div>
 
@@ -104,7 +110,7 @@
 				<div style="width: 90%;height: 100%; ">
 					<img class="rounded ref-image img-responsive w-100 h-100"
 					     data-aos="fade-down" data-aos-once="true"
-					     src="assets/img/menu/add.png"
+					     src="<?= IMG_URL ?>menu/add.png"
 					     alt="">
 				</div>
 
@@ -114,4 +120,4 @@
 </section>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('templates/base.php'); ?>
+<?php require(BASE_DIR . 'view\templates\base.php'); ?>
