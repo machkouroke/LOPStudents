@@ -1,8 +1,8 @@
 <?php
-
+    error_reporting(E_ALL);
     session_start();
 
-    $permitted_chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+    $permitted_chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789';
     function generate_string($input, $strength = 10): string
     {
         $input_length = strlen($input);
@@ -49,12 +49,11 @@
     $captcha_string = generate_string($permitted_chars, $string_length);
 
     $_SESSION['captcha_text'] = $captcha_string;
-    putenv('GDFONTPATH=' . dirname(__FILE__) . '/fonts');
-    for ($i = 0; $i < $string_length; $i++) {
-        $letter_space = 170 / $string_length;
-        $initial = 15;
 
-        imagettftext($image, 24, rand(-15, 15), $initial + $i * $letter_space, rand(25, 45), $textcolors[rand(0, 1)], $fonts[array_rand($fonts)], $captcha_string[$i]);
+    for ($i = 0; $i < $string_length; $i++) {
+        $letter_space = intval( 170 / $string_length);
+        $initial = 15;
+        imagettftext($image, 24, rand(-15, 15), $initial + $i * $letter_space , rand(25, 45), $textcolors[rand(0, 1)], $fonts[array_rand($fonts)], $captcha_string[$i]);
     }
 
     header('Content-type: image/png');
