@@ -16,7 +16,7 @@
 						href="menu.php" style="width: 100%;">
 					<span class="bs-icon-sm bs-icon-circle bs-icon-primary shadow d-flex justify-content-center align-items-center me-2 bs-icon">
 
-						<?php include("img/lop.svg")?>
+						<?php include("assets/img/lop.svg")?>
 					</span>
 					<span>LOPStudents</span>
 				</a>
@@ -65,6 +65,7 @@
 		<script src="assets/js/bs-init.js"></script>
 
 		<script src="assets/js/bold-and-bright.js"></script>
+		<script src="assets/js/toggle.js"></script>
 	</body>
 
 </html>

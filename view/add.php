@@ -51,16 +51,25 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="country" class="form-label">Pays</label>
-                                <input class="form-control" type="text" name="country" id="country">
+	                            <select id="country" name="country" class="form-select"  required>
+		                            <option value="Bénin" selected>Bénin</option>
+		                            <option value="Maroc" selected>Maroc</option>
+	                            </select>
                             </div>
 
                             <div class="col mb-3">
                                 <label for="city" class="form-label">Ville</label>
-                                <input class="form-control" type="text" name="city" id="city">
+	                            <select id="city" name="numBloc" class="form-select"  required>
+		                            <option value="Cotonou" selected>Cotonou</option>
+		                            <option value="Casablanca" selected>Casablanca</option>
+	                            </select>
                             </div>
                             <div class="col mb-3">
                                 <label for="postale" class="form-label">Code Postale</label>
-                                <input class="form-control" type="text" name="postale" id="postale">
+	                            <select id="postale" name="postale" class="form-select"  required>
+		                            <option value="25000" selected></option>
+		                            <option value="30000" selected>Casablanca</option>
+	                            </select>
                             </div>
                         </div>
 
@@ -68,8 +77,17 @@
                             <label for="studyField" class="form-label">Fillières
                             </label>
                             <input class="form-control" type="text" name="studyField" id="studyField">
-
                         </div>
+	                    <div class="mb-3">
+		                    <label for="studyField" class="form-label">Captchat
+		                    </label>
+		                    <input class="form-control" type="text" name="captcha" id="studyField">
+		                    <div class="text-center">
+			                    <i class="fas fa-redo refresh-captcha"></i>
+			                    <img class="captcha-image" src="assets/captcha.php" alt=""/>
+
+		                    </div>
+	                    </div>
 
                         <div class="col">
                             <button id="submit" class="btn btn-primary shadow d-block w-100" type="submit">
@@ -83,10 +101,14 @@
                     </form>
                 </div>
             </div>
-            <div class="col" style="text-align: center;">
-                <img data-aos="fade-down" data-aos-once="true"
-                     src="img/friend.png"
-                     style="width: 90%;height: 100%;padding: 37px;" alt="">
+            <div class="col ref-product " style="text-align: center;">
+	            <div  style="width: 90%;height: 100%; ">
+		            <img class="rounded ref-image img-responsive w-100 h-100"
+		                 data-aos="fade-down" data-aos-once="true"
+		                 src="assets/img/menu/add.png"
+		                  alt="">
+	            </div>
+
             </div>
         </div>
     </div>

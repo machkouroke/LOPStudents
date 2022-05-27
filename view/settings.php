@@ -7,7 +7,7 @@
             <form class="row d-flex align-items-center" action="settings.php" method="post">
                 <div class="col-md-7 col-12 reflow-product d-flex align-items-center py-5">
                     <div class="ref-media">
-                        <div class="ref-preview"><img class="ref-image active" src="img/imane.jpg"
+                        <div class="ref-preview"><img class="ref-image active" src="assets/img/imane.jpg"
                                                       alt=""/></div>
                     </div>
 

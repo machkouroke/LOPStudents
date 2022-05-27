@@ -13,3 +13,28 @@ $miniature-size: 150px;
   height: $miniature-size;
   width: $miniature-size;
 }
+.switch {
+  height: 40px;
+  width: 40px;
+}
+#moreOption {
+  transition: opacity 0.8s ease-out;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  &.show {
+    opacity: 1;
+    height: auto;
+  }
+  .ref-product {
+    position: relative;
+  }
+  .box-form {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+      z-index: 9;
+
+  }
+}
+
