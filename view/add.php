@@ -78,13 +78,18 @@
 							</label>
 							<input class="form-control" type="text" name="studyField" id="studyField">
 						</div>
-						<div class="mb-3 w-50 bg-primary-gradient rounded p-3 text-center">
-							<label for="studyField" class="form-label fw-bold ">Captcha
+						<div class="mb-3 w-100 bg-primary text-white  rounded p-3 text-center d-flex flex-column align-items-center">
+							<label for="studyField" class="form-label fw-bold ">Veuillez saisir le texte pour confirmer
+							                                                    que vous n'êtes pas un robot
 							</label>
-							<input class="form-control" type="text" name="captcha" id="studyField">
-							<div class="text-center p-4">
-								<i class="fas fa-redo refresh-captcha"></i>
-								<img class="captcha-image w-100" src="assets/captcha.php" alt=""/>
+							<input class="form-control m-2" type="text" name="captcha" id="studyField">
+							<div class="text-center p-4 d-flex align-items-center ">
+								<div id="refreshCaptcha"  class="mx-2 bg-primary rounded d-flex align-items-center">
+									<a>
+										<img style="width: 40px; height: 40px" src="assets/img/refresh.png" alt="">
+									</a>
+								</div>
+								<div><img id="captcha-image" class=" w-100 rounded" src="assets/captcha.php" alt=""/></div>
 							</div>
 						</div>
 

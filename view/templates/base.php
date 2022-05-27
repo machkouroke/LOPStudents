@@ -5,6 +5,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<title><?= $title ?></title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		<link rel="stylesheet" href="assets/css/style.css" type="text/css"
 	</head>
 
@@ -66,6 +67,7 @@
 
 		<script src="assets/js/bold-and-bright.js"></script>
 		<script src="assets/js/toggle.js"></script>
+		<script src="assets/js/captcha.js"></script>
 	</body>
 
 </html>

@@ -13,13 +13,13 @@
 	<div class="reflow-product-list ref-cards">
 		<div class="m-3 ref-products align-items-cente justify-content-around">
 			<div class="ref-product" href="add.php?title=de l'étudiant">
-				<div class="active">
+				<div class="front">
 					<img class="ref-image" src="assets/img/listingMenu/city.png" alt=""/>
 					<div class="ref-product-data">
 						<h5 class="ref-name text-center w-100">Sélectionner les étudiants par ville</h5>
 					</div>
 				</div>
-				<div class="box-form d-flex justify-content-center align-items-center">
+				<div class="back  d-flex justify-content-center align-items-center">
 					<label class="form-label ">
 						<input type="text" class="form-control">
 						<button class="btn btn-primary w-100 my-3" type="submit">
@@ -29,13 +29,13 @@
 				</div>
 			</div>
 			<div class="ref-product " href="add.php?title=de l'étudiant">
-				<div class="box active">
+				<div class="front">
 					<img class="ref-image" src="assets/img/listingMenu/year.png" alt=""/>
 					<div class="ref-product-data">
 						<h5 class="ref-name text-center w-100">Sélectionner les étudiants par âge</h5>
 					</div>
 				</div>
-				<div class="box inactive box-form d-flex justify-content-center align-items-center">
+				<div class=" back d-flex justify-content-center align-items-center">
 					<label class="form-label ">
 						<input type="text" class="form-control">
 						<button class="btn btn-primary w-100 my-3" type="submit">
@@ -45,13 +45,13 @@
 				</div>
 			</div>
 			<div class="ref-product " href="add.php?title=de l'étudiant">
-				<div class="active">
+				<div class="front">
 					<img class="ref-image" src="assets/img/listingMenu/faculty.png" alt=""/>
 					<div class="ref-product-data">
 						<h5 class="ref-name text-center w-100">Sélectionner les étudiants par filière</h5>
 					</div>
 				</div>
-				<div class="box-form d-flex justify-content-center align-items-center">
+				<div class="back  d-flex justify-content-center align-items-center">
 					<label class="form-label ">
 						<input type="text" class="form-control">
 						<button class="btn btn-primary w-100 my-3" type="submit">
