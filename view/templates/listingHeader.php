@@ -12,24 +12,54 @@
 <div id="moreOption" data-aos="fade-down" class="row bg-primary-gradient rounded p-3">
 	<div class="reflow-product-list ref-cards">
 		<div class="m-3 ref-products align-items-cente justify-content-around">
-			<a class="ref-product " href="add.php?title=de l'étudiant">
-				<img class="ref-image" src="assets/img/listingMenu/city.png" alt=""/>
-				<div class="ref-product-data">
-					<h5 class="ref-name text-center w-100">Sélectionner les étudiants par villeFaculty</h5>
+			<div class="ref-product" href="add.php?title=de l'étudiant">
+				<div class="active">
+					<img class="ref-image" src="assets/img/listingMenu/city.png" alt=""/>
+					<div class="ref-product-data">
+						<h5 class="ref-name text-center w-100">Sélectionner les étudiants par ville</h5>
+					</div>
 				</div>
-			</a>
-			<a class="ref-product " href="add.php?title=de l'étudiant">
-				<img class="ref-image" src="assets/img/listingMenu/year.png" alt=""/>
-				<div class="ref-product-data">
-					<h5 class="ref-name text-center w-100">Sélectionner les étudiants par âge</h5>
+				<div class="box-form d-flex justify-content-center align-items-center">
+					<label class="form-label ">
+						<input type="text" class="form-control">
+						<button class="btn btn-primary w-100 my-3" type="submit">
+							Filtrer
+						</button>
+					</label>
 				</div>
-			</a>
-			<a class="ref-product " href="add.php?title=de l'étudiant">
-				<img class="ref-image" src="assets/img/listingMenu/faculty.png" alt=""/>
-				<div class="ref-product-data">
-					<h5 class="ref-name text-center w-100">Sélectionner les étudiants par filière</h5>
+			</div>
+			<div class="ref-product " href="add.php?title=de l'étudiant">
+				<div class="box active">
+					<img class="ref-image" src="assets/img/listingMenu/year.png" alt=""/>
+					<div class="ref-product-data">
+						<h5 class="ref-name text-center w-100">Sélectionner les étudiants par âge</h5>
+					</div>
 				</div>
-			</a>
+				<div class="box inactive box-form d-flex justify-content-center align-items-center">
+					<label class="form-label ">
+						<input type="text" class="form-control">
+						<button class="btn btn-primary w-100 my-3" type="submit">
+							Filtrer
+						</button>
+					</label>
+				</div>
+			</div>
+			<div class="ref-product " href="add.php?title=de l'étudiant">
+				<div class="active">
+					<img class="ref-image" src="assets/img/listingMenu/faculty.png" alt=""/>
+					<div class="ref-product-data">
+						<h5 class="ref-name text-center w-100">Sélectionner les étudiants par filière</h5>
+					</div>
+				</div>
+				<div class="box-form d-flex justify-content-center align-items-center">
+					<label class="form-label ">
+						<input type="text" class="form-control">
+						<button class="btn btn-primary w-100 my-3" type="submit">
+							Filtrer
+						</button>
+					</label>
+				</div>
+			</div>
 
 
 		</div>
