@@ -14,13 +14,13 @@
 					<div class="reflow-product-list ref-cards">
 						<div class="ref-products align-items-center">
 							<a class="ref-product" href="add.php?title=de l'étudiant">
-								<img class="ref-image" src="assets/img/add.png" alt=""/>
+								<img class="ref-image" src="assets/img/menu/add.png" alt=""/>
 								<div class="ref-product-data">
 									<h5 class="ref-name text-center w-100">Ajouter un étudiants</h5>
 								</div>
 							</a>
 							<a class="ref-product" href="add.php?title=du proffesseur">
-								<img class="ref-image" src="assets/img/addTeacher.png"
+								<img class="ref-image" src="assets/img/menu/addTeacher.png"
 								     alt=""/>
 								<div class="ref-product-data">
 									<div class="ref-product-data">
@@ -29,7 +29,7 @@
 								</div>
 							</a>
 							<a class="ref-product" href="listing.php">
-								<img class="ref-image" src="assets/img/listStudent.png"
+								<img class="ref-image" src="assets/img/menu/listStudent.png"
 								     alt=""/>
 								<div class="ref-product-data">
 									<div class="ref-product-data">
@@ -38,7 +38,7 @@
 								</div>
 							</a>
 							<a class="ref-product" href="listing.php">
-								<img class="ref-image" src="assets/img/listTeacher.png"
+								<img class="ref-image" src="assets/img/menu/listTeacher.png"
 								     alt=""/>
 								<div class="ref-product-data">
 									<div class="ref-product-data">
@@ -47,7 +47,7 @@
 								</div>
 							</a>
 							<a class="ref-product" href="settings.php">
-								<img class="ref-image" src="assets/img/settings.png"
+								<img class="ref-image" src="assets/img/menu/settings.png"
 								     alt=""/>
 								<div class="ref-product-data">
 									<div class="ref-product-data">
