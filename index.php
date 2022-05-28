@@ -1,5 +1,5 @@
 <?php
-    require($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .'controller\controller.php');
+    require($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .'controller' . DIRECTORY_SEPARATOR. 'controller.php');
     if(isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'addStudent':
