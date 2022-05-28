@@ -84,12 +84,14 @@
 							</label>
 							<input class="form-control m-2" type="text" name="captcha" id="studyField">
 							<div class="text-center p-4 d-flex align-items-center ">
-								<div id="refreshCaptcha" class="mx-2 bg-primary rounded d-flex align-items-center">
+								<div onclick="document.getElementById('captcha-image').src='<?= ASSETS_URL ?>captcha.php?'
+										+ Date.now()" id="refreshCaptcha" class="mx-2 bg-primary rounded d-flex align-items-center">
 									<a>
 										<img style="width: 40px; height: 40px" src="<?= IMG_URL ?>refresh.png" alt="">
 									</a>
 								</div>
-								<div><img id="captcha-image" class=" w-100 rounded" src="<?= ASSETS_URL ?>captcha.php"
+								<div><img id="captcha-image"
+								          class=" w-100 rounded" src="<?= ASSETS_URL ?>captcha.php"
 								          alt=""/></div>
 							</div>
 						</div>

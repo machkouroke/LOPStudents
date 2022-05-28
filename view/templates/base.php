@@ -68,7 +68,6 @@
 
 		<script src="<?= JS_URL ?>bold-and-bright.js"></script>
 		<script src="<?= JS_URL ?>toggle.js"></script>
-		<script src="<?= JS_URL ?>captcha.js"></script>
 		<script src="<?= JS_URL ?>listingFlip.js"></script>
 	</body>
 
