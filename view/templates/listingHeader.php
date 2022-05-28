@@ -5,13 +5,13 @@
 		<button id="moreButton" class="btn btn-primary">Plus d'option</button>
 	</p>
 
-	<p><a href="<?= $switchPage ?>"><img src="<?= $switchIcon ?>" alt="" class="switch"></a>
+	<p><a id="switchIcon"><img src="<?= $switchIcon ?>" alt="" class="switch"></a>
 	</p>
 	<p><a href="#" class="btn btn-primary">Envoyer un mail</a></p>
 </div>
 <div id="moreOption" data-aos="fade-down" class="row bg-primary-gradient rounded p-3">
 	<div class="reflow-product-list ref-cards">
-		<div class="m-3 ref-products align-items-cente justify-content-around">
+		<div class="m-3 ref-products align-items-center justify-content-around">
 			<div class="ref-product" href="add.php?title=de l'étudiant">
 				<div class="front">
 					<img class="ref-image" src="<?= IMG_URL ?>listingMenu/city.png" alt=""/>
