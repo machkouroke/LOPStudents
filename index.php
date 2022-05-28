@@ -3,25 +3,25 @@
     if(isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'addStudent':
-                addStudent();
+                $addStudent();
                 break;
             case 'addTeacher':
-                addTeacher();
+                $addTeacher();
                 break;
             case 'listingStudents':
-                listingStudents();
+                $listingStudents();
                 break;
             case 'listingTeachers':
-                listingTeachers();
+                $listingTeachers();
                 break;
             case 'settings':
-                settings();
+                $settings();
                 break;
             default:
-                menu();
+                $menu();
         }
 
 
     } else {
-        menu();
+        $menu();
     }

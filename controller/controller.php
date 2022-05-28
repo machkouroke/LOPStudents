@@ -1,26 +1,26 @@
 <?php
     require($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .'controller\constant.php');
 
-    function menu() {
+    $menu = function () {
         require($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .'view\menu.php');
-    }
-    function addStudent() {
+    };
+    $addStudent = function () {
         $title = 'Ajouter un étudiants';
         require($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .'view\add.php');
-    }
-    function addTeacher() {
+    };
+    $addTeacher =  function () {
         $title = 'Ajouter un proffesseur';
         require($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .'view\add.php');
-    }
-    function listingStudents() {
+    };
+    $listingStudents =  function () {
         $title = 'Liste des étudiants';
         require($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .'view\listing.php');
-    }
-    function listingTeachers() {
+    };
+    $listingTeachers =  function () {
         $title = 'Liste des proffesseur';
         require($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .'view\listing.php');
-    }
-    function settings() {
+    };
+    $settings = function () {
         $title = 'Liste des proffesseur';
         require($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .'view\settings.php');
-    }
+    };
