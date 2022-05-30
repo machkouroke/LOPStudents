@@ -1,9 +1,14 @@
 <?php
-    error_reporting(E_ALL);
-    session_start();
 
+    session_start();
     $permitted_chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789';
-    function generate_string($input, $strength = 10): string
+
+    /**
+     * @param String $input Chaine contenant l'ensemble des caractères permis
+     * @param int $strength Longueur de la chaine de captcha à réaliser
+     * @return string Chaine de captcha aléatoire généré
+     */
+    function generate_string(string $input, int $strength = 10): string
     {
         $input_length = strlen($input);
         $random_string = '';
@@ -15,16 +20,20 @@
         return $random_string;
     }
 
-    $image = imagecreatetruecolor(200, 50);
 
+    /**
+     * Création de l'image
+     */
+    $image = imagecreatetruecolor(200, 50);
     imageantialias($image, true);
 
+    /**
+     * Génération des couleurs
+     */
     $colors = [];
-
     $red = rand(125, 175);
     $green = rand(125, 175);
     $blue = rand(125, 175);
-
     for ($i = 0; $i < 5; $i++) {
         $colors[] = imagecolorallocate($image, $red - 20 * $i, $green - 20 * $i, $blue - 20 * $i);
     }
@@ -51,9 +60,9 @@
     $_SESSION['captcha_text'] = $captcha_string;
 
     for ($i = 0; $i < $string_length; $i++) {
-        $letter_space = intval( 170 / $string_length);
+        $letter_space = intval(170 / $string_length);
         $initial = 15;
-        imagettftext($image, 24, rand(-15, 15), $initial + $i * $letter_space , rand(25, 45), $textcolors[rand(0, 1)], $fonts[array_rand($fonts)], $captcha_string[$i]);
+        imagettftext($image, 24, rand(-15, 15), $initial + $i * $letter_space, rand(25, 45), $textcolors[rand(0, 1)], $fonts[array_rand($fonts)], $captcha_string[$i]);
     }
 
     header('Content-type: image/png');

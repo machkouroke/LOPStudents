@@ -15,11 +15,16 @@
                 $listingStudents();
                 break;
             case 'listingTeachers':
-                loginRequired( $listingTeachers);
-
+                loginRequired($listingTeachers);
                 break;
             case 'settings':
                 loginRequired($settings);
+                break;
+            case 'login':
+                login();
+                break;
+            case 'logout':
+                logout();
                 break;
             default:
                 $menu();
@@ -28,4 +33,3 @@
     } else {
         loginRequired($menu);
     }
-    session_destroy();
