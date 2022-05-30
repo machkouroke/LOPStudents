@@ -29,4 +29,4 @@
 </section>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('templates/base.php'); ?>
+<?php require(BASE_DIR . 'view\templates\base.php'); ?>

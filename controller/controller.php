@@ -3,6 +3,16 @@
     require($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .'controller\constant.php');
 
 
+    /**
+     * @param Closure $action action à autoriser uniquement aux utilisateur connecté
+     */
+    function loginRequired(Closure $action) {
+        if (isset($_SESSION['User'])) {
+            $action();
+        } else {
+            $action();
+        }
+    }
     $menu = function () {
         require($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .'view\menu.php');
     };

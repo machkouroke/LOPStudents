@@ -52,24 +52,19 @@
 							<div class="col mb-3">
 								<label for="country" class="form-label">Pays</label>
 								<select id="country" name="country" class="form-select" required>
-									<option value="Bénin" selected>Bénin</option>
-									<option value="Maroc" selected>Maroc</option>
+
 								</select>
 							</div>
 
 							<div class="col mb-3">
 								<label for="city" class="form-label">Ville</label>
 								<select id="city" name="numBloc" class="form-select" required>
-									<option value="Cotonou" selected>Cotonou</option>
-									<option value="Casablanca" selected>Casablanca</option>
+
 								</select>
 							</div>
 							<div class="col mb-3">
 								<label for="postale" class="form-label">Code Postale</label>
-								<select id="postale" name="postale" class="form-select" required>
-									<option value="25000" selected></option>
-									<option value="30000" selected>Casablanca</option>
-								</select>
+								<input type="number" class="form-control" id="postale" name="postale" maxlength="5">
 							</div>
 						</div>
 
@@ -120,6 +115,7 @@
 		</div>
 	</div>
 </section>
+<script src="<?= JS_URL ?>villeSelect.js"></script>
 <?php $content = ob_get_clean(); ?>
 
 <?php require(BASE_DIR . 'view\templates\base.php'); ?>
