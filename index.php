@@ -8,11 +8,10 @@
                 break;
             case 'addTeacher':
                 loginRequired($addTeacher);
-                $addTeacher();
                 break;
             case 'listingStudents':
                 loginRequired($listingStudents);
-                $listingStudents();
+
                 break;
             case 'listingTeachers':
                 loginRequired($listingTeachers);
