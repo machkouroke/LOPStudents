@@ -5,7 +5,7 @@ abstract class Model
 {
     public static $connexion;
     public static $dns = 'mysql:host=localhost;dbname=projetweb';
-    public static $username = 'root';
+    public static string $username = 'root';
     public static $password = 'momo';
 
     public static function getConnexion(){

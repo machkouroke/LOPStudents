@@ -30,7 +30,8 @@ class Etudiant  extends Model {
         return $res->fetch();
     }
     //calcul de l'age
-    public static function getAge($birthDate){
+    public static function getAge($birthDate): string
+    {
         $today = date("Y-m-d");
         $age = date_diff(date_create($today),date_create($birthDate));
         return $age->format('%y');

@@ -11,9 +11,9 @@
 	</head>
 
 	<body>
-		<nav class="navbar navbar-light navbar-expand-md fixed-top text-start d-flex d-xl-flex justify-content-center align-items-xl-center navbar-shrink py-3"
+		<nav class="navbar navbar-light navbar-expand-md fixed-top text-start d-flex d-xl-flex justify-content-around align-items-xl-center navbar-shrink py-3"
 		     id="mainNav">
-			<div class="container">
+			<div class="container d-flex d-xl-flex justify-content-around ">
 				<a class="navbar-brand text-center d-flex align-items-center "
 						href="<?= BASE_URL ?>index.php" style="width: 100%;">
 					<span class="bs-icon-sm bs-icon-circle bs-icon-primary shadow d-flex justify-content-center align-items-center me-2 bs-icon">
