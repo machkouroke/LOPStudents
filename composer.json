@@ -1,0 +1,6 @@
+{
+  "require": {
+    "phpunit/phpunit": "^9",
+    "shivammathur/countrycity": "master-dev"
+  }
+}

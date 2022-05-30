@@ -23,8 +23,11 @@
 										<div class="ref-cv-col">CV</div>
 										<div class="ref-action-col text-end">Actions</div>
 									</div>
-									<div class="ref-cart-table">
-										<div class="ref-student">
+									<div  class="checkboxes ref-cart-table">
+
+										<input name="imane" type="checkbox" id="imane"  />
+										<label for="imane" class="ref-student box-checkbox">
+
 											<div class="ref-student-col">
 												<div class="ref-student-wrapper"><img class="ref-student-photo"
 												                                      src="<?= IMG_URL ?>imane.jpg"
@@ -57,7 +60,43 @@
 												<p><a href="" class="">Supprimer</a></p>
 
 											</div>
-										</div>
+										</label>
+										<input name="imane2" type="checkbox" id="imane2"  />
+										<label for="imane2" class="ref-student box-checkbox">
+
+											<div class="ref-student-col">
+												<div class="ref-student-wrapper"><img class="ref-student-photo"
+												                                      src="<?= IMG_URL ?>imane.jpg"
+												                                      alt="Bailee Jast"/>
+													<div class="ref-student-data">
+														<div class="ref-student-info">
+															<div class="ref-student-name">Imane Sidiki</div>
+															<div class="ref-student-category">IID1</div>
+															<div class="ref-student-variants"></div>
+															<div class="ref-student-personalization-holder"></div>
+														</div>
+														<div class="ref-student-price"></div>
+													</div>
+												</div>
+
+											</div>
+											<div class="ref-username-col">
+												sidikiimane
+											</div>
+											<div class="ref-email-col">
+												imanesidiki@gmail.com
+											</div>
+											<div class="ref-adress-col">
+												<b>Firdaws, Khouribga 25000</b>
+											</div>
+											<div class="ref-tel-col">+2126388646641</div>
+											<div class="d-flex flex-column  ref-cv-col"><a href="">Télécharger le CV</a></div>
+											<div class="d-flex flex-column text-end ref-action-col">
+												<p><a href="" class="">Modifier</a></p>
+												<p><a href="" class="">Supprimer</a></p>
+
+											</div>
+										</label>
 									</div>
 								</div>
 
@@ -68,22 +107,22 @@
 				</div>
 			</div>
 			<div class="grid">
-				<div class="py-2 row row-cols-2 row-cols-md-3 mx-auto" style="max-width: 700px;">
+				<div class="checkboxes py-2 row row-cols-2 row-cols-md-3 mx-auto" style="max-width: 700px;">
 
-					<div class="col mb-4">
+					<label for="imane" class="col mb-4 box-checkbox">
 						<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
 						                              src="<?= IMG_URL ?>team/avatar2.png">
 							<h5 class="fw-bold mb-0"><strong>Aganon Déodat</strong></h5>
 							<p class="text-muted mb-2">IID1</p>
 						</div>
-					</div>
-					<div class="col mb-4">
+					</label>
+					<label for="imane2" class="col mb-4 box-checkbox">
 						<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
 						                              src="<?= IMG_URL ?>team/avatar2.png">
 							<h5 class="fw-bold mb-0"><strong>Oke Machkour</strong></h5>
 							<p class="text-muted mb-2">IID1</p>
 						</div>
-					</div>
+					</label>
 					<div class="col mb-4">
 						<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
 						                              src="<?= IMG_URL ?>team/avatar2.png">
@@ -118,7 +157,7 @@
 
 	</div>
 </section>
-
+<script src="<?= JS_URL ?>divCheckable.js"></script>
 <?php $content = ob_get_clean(); ?>
 
 <?php require(BASE_DIR . 'view\templates\base.php'); ?>

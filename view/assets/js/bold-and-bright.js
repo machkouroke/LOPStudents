@@ -49,14 +49,14 @@
 
       visible.length = 0;
 
-      for (var i = 0; i < parallaxItems.length; i++) {
-        var rect = parallaxItems[i].getBoundingClientRect();
-        var speed = parseFloat(parallaxItems[i].getAttribute('data-bss-parallax-speed'), 10) || defaultSpeed;
+      for (const element of parallaxItems) {
+        var rect = element.getBoundingClientRect();
+        var speed = parseFloat(element.getAttribute('data-bss-parallax-speed'), 10) || defaultSpeed;
 
         if (rect.bottom > 0 && rect.top < window.innerHeight) {
           visible.push({
             speed: speed,
-            node: parallaxItems[i]
+            node: element
           });
         }
 
