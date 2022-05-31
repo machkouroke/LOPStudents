@@ -1,11 +1,5 @@
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 CREATE DATABASE IF NOT EXISTS `STUDENTS`;
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 USE `STUDENTS`;
 
@@ -53,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `etudiants`(
     constraint fk1_etudiant foreign key (login) references users(login),
     constraint fk2_etudiant foreign key (filiere,niveau) references classe(filiere, niveau),
     constraint fk3_etudiant foreign key (pays) references pays(nom_fr_fr)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=242;
+) ;
 
 #la table professeur
 CREATE TABLE IF NOT EXISTS `professeur`(
@@ -325,6 +319,4 @@ INSERT INTO `pays` (`id`, `code`, `alpha2`, `alpha3`, `nom_en_gb`, `nom_fr_fr`) 
         (240, 891, 'CS', 'SCG', 'Serbia and Montenegro', 'Serbie-et-Monténégro'),
         (241, 894, 'ZM', 'ZMB', 'Zambia', 'Zambie');
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
