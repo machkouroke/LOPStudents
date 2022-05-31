@@ -4,14 +4,23 @@
 
 
     /**
-     * @param Closure $action action à autoriser uniquement aux utilisateur connecté
+     * @param Closure $action action à autoriser uniquement à l'utilisateur connecté
      */
     function loginRequired(Closure $action) {
         if (isset($_SESSION['User'])) {
             $action();
         } else {
-            $action();
+            require($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .'view\login.php');
         }
+    }
+    function login() {
+        $_SESSION['User'] = 'machkour';
+        header("Location:index.php");
+    }
+    function logout() {
+        unset($_SESSION['User']);
+        session_destroy();
+        header("Location:index.php");
     }
     $menu = function () {
         require($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .'view\menu.php');

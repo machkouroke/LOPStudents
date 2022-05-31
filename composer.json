@@ -2,6 +2,7 @@
   "require": {
     "phpunit/phpunit": "^9",
     "shivammathur/countrycity": "master-dev",
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "ext-gd": "*"
   }
 }
