@@ -27,11 +27,13 @@
     };
     $addStudent = function () {
         $title = 'Ajouter un étudiants';
-        require($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .'view\add.php');
+        $type = 'etd';
+        require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\addStudents.php');
     };
     $addTeacher =  function () {
         $title = 'Ajouter un proffesseur';
-        require($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .'view\add.php');
+        $type = 'pr';
+        require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\addTeachers.php');
     };
     $listingStudents =  function () {
         $title = 'Liste des étudiants';

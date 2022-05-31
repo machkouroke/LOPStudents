@@ -14,7 +14,7 @@
 					<div class="reflow-product-list ref-cards">
 						<div class="ref-products align-items-center">
 							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addStudent">
-								<img class="ref-image" src="<?= IMG_URL ?>menu/add.png" alt=""/>
+								<img class="ref-image" src="<?= IMG_URL ?>menu/addStudent.png" alt=""/>
 								<div class="ref-product-data">
 									<h5 class="ref-name text-center w-100">Ajouter un étudiants</h5>
 								</div>

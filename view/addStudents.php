@@ -1,4 +1,4 @@
-<?php $title = "Ajouter un " . $title; ?>
+<?php  $title = "Ajouter un " . $title; ?>
 <?php ob_start(); ?>
 <section class="py-5 mt-5">
 	<div class="container py-5">
@@ -73,23 +73,7 @@
 							</label>
 							<input class="form-control" type="text" name="studyField" id="studyField">
 						</div>
-						<div class="mb-3 w-100 bg-primary text-white  rounded p-3 text-center d-flex flex-column align-items-center">
-							<label for="studyField" class="form-label fw-bold ">Veuillez saisir le texte pour confirmer
-							                                                    que vous n'êtes pas un robot
-							</label>
-							<input class="form-control m-2" type="text" name="captcha" id="studyField">
-							<div class="text-center p-4 d-flex align-items-center ">
-								<div onclick="document.getElementById('captcha-image').src='<?= ASSETS_URL ?>captcha.php?'
-										+ Date.now()" id="refreshCaptcha" class="mx-2 bg-primary rounded d-flex align-items-center">
-									<a>
-										<img style="width: 40px; height: 40px" src="<?= IMG_URL ?>refresh.png" alt="">
-									</a>
-								</div>
-								<div><img id="captcha-image"
-								          class=" w-100 rounded" src="<?= ASSETS_URL ?>captcha.php"
-								          alt=""/></div>
-							</div>
-						</div>
+
 
 						<div class="col">
 							<button id="submit" class="btn btn-primary shadow d-block w-100" type="submit">
@@ -104,14 +88,32 @@
 				</div>
 			</div>
 			<div class="col ref-product " style="text-align: center;">
+				<div style="width: 90%;height: 100%; " class="mb-3 bg-primary text-white  rounded p-3 text-center d-flex flex-column align-items-center">
+					<label for="studyField" class="form-label fw-bold ">Veuillez saisir le texte pour confirmer
+					                                                    que vous n'êtes pas un robot
+					</label>
+					<input form="register" class="form-control m-2" type="text" name="captcha" id="studyField">
+					<div class="text-center p-4 d-flex align-items-center ">
+						<div onclick="document.getElementById('captcha-image').src='<?= ASSETS_URL ?>captcha.php?'
+								+ Date.now()" id="refreshCaptcha"
+						     class="mx-2 bg-primary rounded d-flex align-items-center">
+							<a>
+								<img style="width: 40px; height: 40px" src="<?= IMG_URL ?>refresh.png" alt="">
+							</a>
+						</div>
+						<div><img id="captcha-image"
+						          class=" w-100 rounded" src="<?= ASSETS_URL ?>captcha.php"
+						          alt=""/></div>
+					</div>
+
+				</div>
+
 				<div style="width: 90%;height: 100%; ">
 					<img class="rounded ref-image img-responsive w-100 h-100"
 					     data-aos="fade-down" data-aos-once="true"
-					     src="<?= IMG_URL ?>menu/add.png"
+					     src="<?= IMG_URL ?>menu/addStudent.png"
 					     alt="">
 				</div>
-
-			</div>
 		</div>
 	</div>
 </section>
