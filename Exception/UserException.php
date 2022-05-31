@@ -1,7 +1,9 @@
 <?php
 
-class UserException extends Exception{
-    public function __construct(string $message = "")
+    use JetBrains\PhpStorm\Pure;
+
+    class UserException extends Exception{
+    #[Pure] public function __construct(string $message = "")
     {
         parent::__construct($message);
     }

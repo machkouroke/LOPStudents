@@ -1,26 +1,28 @@
 <?php
-    require ($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR .'model\beans\Factory.php');
-    require ($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR .'Exception\UserException.php');
+    require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'model\beans\Factory.php');
+    require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'Exception\UserException.php');
 
-    function authenticate(string $login, string $password) {
-        $con = (new Factory('root','momo'))->get_connexion();
-        try{
-            $result = $con->query("SELECT * FROM users where login='".$login."'");
+    /**
+     * @throws UserException Jeté quand les informations sont incorrects
+     */
+    function authenticate(string $login, string $password)
+    {
+        $con = (new Factory('root', 'momo'))->get_connexion();
+        try {
+            $result = $con->query("SELECT * FROM users where login='" . $login . "'");
             $user = $result->fetch(PDO::FETCH_ASSOC);
-            if(!empty($user)){
-                if($user['password'] == $password) {
-                    echo 'Bienvenue';
+            if (!empty($user)) {
+                if ($user['password'] == $password) {
                     return true;
-                }
-                else{
+                } else {
                     throw new UserException("Mot de passe incorrect");
                 }
-            }else{
-                echo throw new UserException("Utilisateur introuvable");
+            } else {
+                throw new UserException("Utilisateur introuvable");
             }
-        }catch (PDOException $e){
-            echo $e->getMessage();
+        } catch (PDOException $e) {
+            throw new UserException("Utilisateur introuvable");
         }
     }
-?>
+
 
