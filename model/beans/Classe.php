@@ -1,13 +1,14 @@
 <?php
-require_once ('Model.php');
-class Classe extends Model
-{
-    public $filiere,$niveau;
+    require_once('Model.php');
 
-    public function __construct($filiere,$niveau)
+    class Classe extends Model
     {
-        $this->filiere = $filiere;
-        $this->niveau = $niveau;
-    }
+        public $filiere, $niveau;
 
-}
+        public function __construct($filiere, $niveau)
+        {
+            $this->filiere = $filiere;
+            $this->niveau = $niveau;
+        }
+
+    }

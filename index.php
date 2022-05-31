@@ -1,27 +1,31 @@
 <?php
-    require($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .'controller' . DIRECTORY_SEPARATOR. 'controller.php');
-    if(isset($_GET['action'])) {
+    session_start();
+    require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'controller.php');
+    if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'addStudent':
-                addStudent();
+                loginRequired($addStudent);
                 break;
             case 'addTeacher':
-                addTeacher();
+                loginRequired($addTeacher);
+                $addTeacher();
                 break;
             case 'listingStudents':
-                listingStudents();
+                loginRequired($listingStudents);
+                $listingStudents();
                 break;
             case 'listingTeachers':
-                listingTeachers();
+                loginRequired( $listingTeachers);
+
                 break;
             case 'settings':
-                settings();
+                loginRequired($settings);
                 break;
             default:
-                menu();
+                $menu();
         }
 
-
     } else {
-        menu();
+        loginRequired($menu);
     }
+    session_destroy();

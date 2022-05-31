@@ -11909,4 +11909,11 @@ footer ul li a {
   backface-visibility: hidden;
 }
 
+.checkboxes input[type=checkbox] {
+  display: none;
+}
+.checkboxes input[type=checkbox] .box-checkbox {
+  display: block;
+}
+
 /*# sourceMappingURL=style.css.map */

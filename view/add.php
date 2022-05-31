@@ -52,24 +52,19 @@
 							<div class="col mb-3">
 								<label for="country" class="form-label">Pays</label>
 								<select id="country" name="country" class="form-select" required>
-									<option value="Bénin" selected>Bénin</option>
-									<option value="Maroc" selected>Maroc</option>
+
 								</select>
 							</div>
 
 							<div class="col mb-3">
 								<label for="city" class="form-label">Ville</label>
 								<select id="city" name="numBloc" class="form-select" required>
-									<option value="Cotonou" selected>Cotonou</option>
-									<option value="Casablanca" selected>Casablanca</option>
+
 								</select>
 							</div>
 							<div class="col mb-3">
 								<label for="postale" class="form-label">Code Postale</label>
-								<select id="postale" name="postale" class="form-select" required>
-									<option value="25000" selected></option>
-									<option value="30000" selected>Casablanca</option>
-								</select>
+								<input type="number" class="form-control" id="postale" name="postale" maxlength="5">
 							</div>
 						</div>
 
@@ -84,12 +79,14 @@
 							</label>
 							<input class="form-control m-2" type="text" name="captcha" id="studyField">
 							<div class="text-center p-4 d-flex align-items-center ">
-								<div id="refreshCaptcha" class="mx-2 bg-primary rounded d-flex align-items-center">
+								<div onclick="document.getElementById('captcha-image').src='<?= ASSETS_URL ?>captcha.php?'
+										+ Date.now()" id="refreshCaptcha" class="mx-2 bg-primary rounded d-flex align-items-center">
 									<a>
 										<img style="width: 40px; height: 40px" src="<?= IMG_URL ?>refresh.png" alt="">
 									</a>
 								</div>
-								<div><img id="captcha-image" class=" w-100 rounded" src="<?= ASSETS_URL ?>captcha.php"
+								<div><img id="captcha-image"
+								          class=" w-100 rounded" src="<?= ASSETS_URL ?>captcha.php"
 								          alt=""/></div>
 							</div>
 						</div>
@@ -118,6 +115,7 @@
 		</div>
 	</div>
 </section>
+<script src="<?= JS_URL ?>villeSelect.js"></script>
 <?php $content = ob_get_clean(); ?>
 
 <?php require(BASE_DIR . 'view\templates\base.php'); ?>

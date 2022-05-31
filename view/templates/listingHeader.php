@@ -9,7 +9,7 @@
 	</p>
 	<p><a href="#" class="btn btn-primary">Envoyer un mail</a></p>
 </div>
-<div id="moreOption" data-aos="fade-down" class="row bg-primary-gradient rounded p-3">
+<div id="moreOption" data-aos="fade-down" class="row rounded p-3">
 	<div class="reflow-product-list ref-cards">
 		<div class="m-3 ref-products align-items-center justify-content-around">
 			<div class="ref-product" href="add.php?title=de l'étudiant">

@@ -1,5 +1,6 @@
 <?php
 
+
 require_once ('user.php');
 class Etudiant  extends user {
     public string $date_nais,$pays,$tel,$cv,$photo,$filiere;
@@ -102,4 +103,5 @@ $fac = new Factory();
 $etu4 = new Etudiant('KOUHOSSOUNON','Vianney','2003-01-23','Benin','0629614725','C://cv/m','C://photo/m','IID',1,'momo123','momo@#',$fac);
 $etu4->add();
 //var_dump(Etudiant::getByClasse('GPEE',1));
-?>
+
+
