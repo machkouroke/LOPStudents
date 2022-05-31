@@ -16,7 +16,8 @@ abstract class user  {
     public static function getAll(Factory $factory){
         $conn = $factory->get_connexion();
         $sql = "SELECT * FROM users";
-        $res = $conn->query($sql);
+        $res = $conn->prepare($sql);
+        $res->execute();
         return $res->fetchAll();
     }
 
