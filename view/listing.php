@@ -25,7 +25,7 @@
 									</div>
 									<div  class="checkboxes ref-cart-table">
 
-										<input name="imane" type="checkbox" id="imane"  />
+										<input name="user[]" value="imane" type="checkbox" id="imane"  />
 										<label for="imane" class="ref-student box-checkbox">
 
 											<div class="ref-student-col">
@@ -61,7 +61,7 @@
 
 											</div>
 										</label>
-										<input name="imane2" type="checkbox" id="imane2"  />
+										<input name="user[]" value="imane2" type="checkbox" id="imane2"  />
 										<label for="imane2" class="ref-student box-checkbox">
 
 											<div class="ref-student-col">

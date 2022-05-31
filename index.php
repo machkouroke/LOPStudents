@@ -1,10 +1,18 @@
 <?php
-    session_start();
+
+    /**
+     * Permet d'inclure le fichier juste à l'appel du namespace
+     */
+    spl_autoload_register(static function(string $path) {
+        $path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . $path . '.php';
+        require_once ($path);
+    });
     require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller\constant.php');
-    require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'AuthenticationController.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'AuthenticationController.php');
     require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'MenuController.php');
     require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'TeacherController.php');
-
+    session_start();
+    $factory = new Factory('root', 'claudine');
     if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'addStudent':
@@ -14,7 +22,7 @@
                 if ($_GET['step'] == 1) {
                     loginRequired($addTeacher);
                 } else if ($_GET['step'] == 2) {
-                    loginRequired($addFaculty);
+                    controller\TeacherController\TeacherController::addFaculty();
                 }
 
                 break;
@@ -28,7 +36,7 @@
                 loginRequired($settings);
                 break;
             case 'login':
-                login();
+                login($factory);
                 break;
             case 'logout':
                 logout();

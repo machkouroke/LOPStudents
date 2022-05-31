@@ -1,8 +1,6 @@
 <?php
 
 
-
-
     $menu = function () {
         require($_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .'view\menu.php');
     };

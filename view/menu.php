@@ -4,7 +4,7 @@
 	<div class="container py-5">
 		<div class="row mb-4 mb-lg-5">
 			<div class="col-md-8 col-xl-6 text-center mx-auto">
-				<h2 class="fw-bold">Bienvenue sur LOPStudents</h2>
+				<h2 class="fw-bold">Bienvenue <?=$_SESSION['User']->getPrenom() ?></h2>
 				<p class="text-muted w-lg-50">Veuillez selectionner une opération</p>
 			</div>
 		</div>

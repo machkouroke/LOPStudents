@@ -13,10 +13,11 @@
         }
     }
 
-    function login()
+    function login(Factory $factory)
     {
+        echo 'authenticate';
         try {
-            $_SESSION['User'] = authenticate($_POST['username'], $_POST['password']);
+            $_SESSION['User'] = authenticate($_POST['username'], $_POST['password'], $factory);
             header("Location:index.php");
         } catch (DataBaseException|UserException $e) {
             $error = $e->getMessage();

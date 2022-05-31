@@ -26,13 +26,12 @@
 						} ?>
 
 					<form action="contacts.php" class="p-3 p-xl-4" method="post">
-						<div class="mb-3"><label class="form-label" for="destinataire">Destinataire</label><input
+						<div class="mb-3"><label class="form-label" for="destinataire">Destinataires</label><input
 									class="form-control" type="email"
-									id="destinataire" name="destinataire">
+									id="destinataire" name="destinataire" value="<?= $selectedUser ?>">
 						</div>
 						<div class="mb-3"><label class="form-label" for="object">Object</label>
-							<input class="form-control" type="text" id="object" name="object"
-							></div>
+							<input class="form-control" type="text" id="object" name="object" ></div>
 						<div class="mb-3"><label class="form-label" for="message">Message</label><textarea
 									class="form-control" id="message"
 									name="message" rows="6"
