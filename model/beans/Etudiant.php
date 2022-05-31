@@ -22,7 +22,7 @@
         }
 
         //methode pour recuperer tous les etudiants de la base de donnees
-        public static function getAll(Factory $factory)
+        public static function getAll(Factory $factory): bool|array
         {
             $con = $factory->get_connexion();
             $sql = 'SELECT * FROM etudiants NATURAL JOIN users';

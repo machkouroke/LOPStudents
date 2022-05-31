@@ -1,7 +1,7 @@
 let listPage = document.getElementById("listPage");
 let switchIcon = document.getElementById("switchIcon");
 switchIcon.addEventListener('click', () => {
-    console.log(window.getComputedStyle(listPage).transform);
+
     if (!listPage.classList.contains('flipBack') && !listPage.classList.contains('flipFront')) {
         listPage.classList.add('flipBack')
     }
