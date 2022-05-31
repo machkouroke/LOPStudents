@@ -19,7 +19,7 @@
 									<h5 class="ref-name text-center w-100">Ajouter un étudiants</h5>
 								</div>
 							</a>
-							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addTeacher">
+							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addTeacher&step=1">
 								<img class="ref-image" src="<?= IMG_URL ?>menu/addTeacher.png"
 								     alt=""/>
 								<div class="ref-product-data">

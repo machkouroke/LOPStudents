@@ -3,16 +3,18 @@
 		<div class="row mb-4 mb-lg-5">
 			<div class="col-md-8 col-xl-6 text-center mx-auto">
 
-				<h2 class="fw-bold">Veuillez saisir ses informations</h2>
+				<h2 class="fw-bold"><?= $instructions ?></h2>
 			</div>
 		</div>
 		<div class="row d-flex justify-content-start justify-content-lg-start align-items-lg-center">
-			<div class="col-md-6 col-xl-6">
-				<div>
+			<div class="col">
+				<div >
 					<?= $form ?>
 				</div>
 			</div>
-			<div class="col  " style="text-align: center;">
+			<?php if ($_GET['step'] == 1): ?>
+			<div class="col-md-6 col-xl-6" style="text-align: center;">
+
 				<div style="width: 90%;height: 100%; "
 				     class="mb-3 bg-primary text-white  rounded p-3 text-center d-flex flex-column align-items-center">
 					<label for="studyField" class="form-label fw-bold ">Veuillez saisir le texte pour confirmer
@@ -34,6 +36,7 @@
 
 				</div>
 
+
 				<div style="width: 90%;height: 100%; ">
 					<img class="rounded ref-image img-responsive w-100 h-100"
 					     data-aos="fade-down" data-aos-once="true"
@@ -41,6 +44,7 @@
 					     alt="">
 				</div>
 			</div>
+			<?php endif;?>
 		</div>
 
 	</div>

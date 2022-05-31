@@ -1,6 +1,6 @@
-<?php $title = "Liste étudiant"; ?>
-<?php ob_start(); ?>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require('templates/base.php'); ?>
+<?php
+    $addFaculty = function() {
+        $title = 'Ajouter un proffesseur';
+        $type = 'pr';
+        require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\addFaculty.php');
+    };
