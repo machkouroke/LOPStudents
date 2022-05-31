@@ -22,3 +22,4 @@ abstract class Model
             echo "ERREUR : " . $e->getMessage();
         }
     }
+}
