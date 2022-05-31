@@ -1,5 +1,7 @@
 <?php
     namespace controller\TeacherController;
+    use controller\AuthenticationController;
+
     require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'AuthenticationController.php');
 
     Class TeacherController {
@@ -11,6 +13,6 @@
                 $type = 'pr';
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\addFaculty.php');
             };
-            loginRequired($addFaculty);
+            AuthenticationController::loginRequired($addFaculty);
         }
     }

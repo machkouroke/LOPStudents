@@ -7,44 +7,45 @@
         $path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . $path . '.php';
         require_once ($path);
     });
-    require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller\constant.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'AuthenticationController.php');
-    require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'MenuController.php');
-    require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'TeacherController.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller\constant.php');
+    use controller\AuthenticationController;
+    use controller\MenuController;
+    use controller\TeacherController\TeacherController;
+    use model\beans\Factory;
     session_start();
     $factory = new Factory('root', 'claudine');
     if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'addStudent':
-                loginRequired($addStudent);
+                MenuController::addStudent();
                 break;
             case 'addTeacher':
                 if ($_GET['step'] == 1) {
-                    loginRequired($addTeacher);
+                    MenuController::addTeacher();
                 } else if ($_GET['step'] == 2) {
-                    controller\TeacherController\TeacherController::addFaculty();
+                    TeacherController::addFaculty();
                 }
 
                 break;
             case 'listingStudents':
-                loginRequired($listingStudents);
+                MenuController::listingStudents();
                 break;
             case 'listingTeachers':
-                loginRequired($listingTeachers);
+                MenuController::listingTeachers();
                 break;
             case 'settings':
-                loginRequired($settings);
+                MenuController::settings();
                 break;
             case 'login':
-                login($factory);
+                AuthenticationController::login($factory);
                 break;
             case 'logout':
-                logout();
+                AuthenticationController::logout();
                 break;
             default:
-                $menu();
+                MenuController::menu();
         }
 
     } else {
-        loginRequired($menu);
+        MenuController::menu();
     }

@@ -1,13 +1,16 @@
 <?php
+
     namespace controller\StudentController;
-    Class StudentController {
+    class StudentController
+    {
         public \Closure $sendMessage;
 
-        function __construct() {
-            $this->sendMessage = function() {
+        function __construct()
+        {
+            $this->sendMessage = function () {
                 $title = 'Envoyer un message';
                 $selectedUser = [];
-                foreach($_POST['user'] as $user) {
+                foreach ($_POST['user'] as $user) {
                     $selectedUser[] = $user;
                 }
                 $selectedUser = implode(';', $selectedUser);

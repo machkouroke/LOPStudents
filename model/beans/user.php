@@ -1,4 +1,5 @@
 <?php
+    namespace model\beans;
     require_once('Factory.php');
 
     class user
@@ -48,8 +49,5 @@
         {
             return $this->fonction;
         }
-
-
-
 
     }

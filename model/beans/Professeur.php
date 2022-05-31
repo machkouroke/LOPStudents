@@ -1,4 +1,5 @@
 <?php
+    namespace model\beans;
     require_once('Model.php');
 
     class Professeur extends Model
