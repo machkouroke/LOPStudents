@@ -1,6 +1,6 @@
 <?php
-    require ('beans/Factory.php');
-    require ('../Exception/UserException.php');
+    require ($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR .'model\beans\Factory.php');
+    require ($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR .'Exception\UserException.php');
 
     function authenticate(string $login, string $password) {
         $con = (new Factory('root','momo'))->get_connexion();

@@ -1,6 +1,7 @@
 <?php
+    require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'model\Authentification.php');
     /**
-     * @param Closure $action action à autoriser uniquement à l'utilisateur connecté
+     * @param Closure $action Action à autoriser uniquement à l'utilisateur connecté
      */
     function loginRequired(Closure $action) {
         if (isset($_SESSION['User'])) {

@@ -31,7 +31,8 @@
 						</div>
 						<div><img id="captcha-image"
 						          class=" w-100 rounded" src="<?= ASSETS_URL ?>captcha.php"
-						          alt=""/></div>
+						          alt=""/>
+						</div>
 					</div>
 
 				</div>
