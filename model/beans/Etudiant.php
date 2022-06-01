@@ -39,12 +39,12 @@
         }
 
         //reherche de l'etudiant selon l'id
-        public static function getById($id, Factory $factory)
+        public static function getByCne($cne, Factory $factory)
         {
             $con = $factory->get_connexion();
-            $sql = "SELECT * FROM etudiants NATURAL JOIN users WHERE id='" . $id . "'";
+            $sql = "SELECT * FROM etudiants NATURAL JOIN users WHERE cne='" . $cne . "'";
             $res = $con->query($sql);
-            return $res->fetch();
+            return $res->fetch(PDO::FETCH_ASSOC);
         }
 
         //recherche selon l'age
@@ -142,6 +142,15 @@
             $con = $this->factory->get_connexion();
             $sql = "select name,surname,email from users NATURAL join etudiants 
                     where faculty='".$this->faculty."' and facultyYear='".$this->facultyYear."' and cne<>'".$this->cne."'";
+            $res = $con->query($sql);
+            return $res->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function getProfs(): bool|array
+        {
+            $con = $this->factory->get_connexion();
+            $sql = "select * from professeur natural join users where matricule in (select matricule from module 
+                                where faculty='$this->faculty' and facultyYear='$this->facultyYear')";
             $res = $con->query($sql);
             return $res->fetchAll(PDO::FETCH_ASSOC);
         }
