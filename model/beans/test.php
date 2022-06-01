@@ -2,13 +2,17 @@
 
 use model\beans\Etudiant;
 use model\beans\Factory;
+use model\beans\Professeur;
 
 require_once ('Factory.php');
     require_once ('Etudiant.php');
-
-    $data = ['login'=>'ted','cne'=>'ENSA18002','cv'=>'C://teddy/te','photo'=>'C:ghjnk/te','email'=>'teddy@gmail.com',
-        'birthDate'=>'1998-03-01','faculty'=>'IID','facultyYear'=>2,
-        'name'=>'GUIDIBI','surname'=>'Teddy Sedjro','password'=>'ted@$','city'=>'Cotonou','zipCode'=>299,'country'=>'Benin'];
-    $etu = new Etudiant(new Factory('root','momo'), ...$data);
-    var_dump($etu->getFriends());
+    require_once ('Professeur.php');
+    require_once ('Module.php');
+    $fac = new Factory('root','momo');
+    $dataP = Professeur::getByMatricule('G342',$fac);
+    $prof= new Professeur($fac, ...$dataP);
+    $prof->changePassword('gazde');
+//    $data = ['faculty'=>'IID','facultyYear'=>1,'matricule'=>'g345','name'=>'JEE'];
+//    $mod = new \model\beans\Module(new Factory('root','momo'), ...$data);
+//    $mod->delete();
     //header("Location:user.php");

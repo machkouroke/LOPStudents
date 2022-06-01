@@ -66,10 +66,10 @@
         }
 
         //recherche selon la ville
-        public static function getByPays($pays, Factory $factory)
+        public static function getByCountry($country, Factory $factory)
         {
             $con = $factory->get_connexion();
-            $sql = "SELECT * FROM etudiants natural join users WHERE pays='" . $pays . "'";
+            $sql = "SELECT * FROM etudiants natural join users WHERE pays='" . $country . "'";
             $res = $con->query($sql);
             return $res->fetchAll();
         }
@@ -137,7 +137,8 @@
 
         }
 
-        public function getFriends(){
+        public function getFriends(): bool|array
+        {
             $con = $this->factory->get_connexion();
             $sql = "select name,surname,email from users NATURAL join etudiants 
                     where faculty='".$this->faculty."' and facultyYear='".$this->facultyYear."' and cne<>'".$this->cne."'";
@@ -145,13 +146,15 @@
             return $res->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function getUserTable(){
+        public function getUserTable(): array
+        {
             return [$this->login, $this->name,
                 $this->surname, $this->password, $this->city,
                 $this->zipCode, $this->country, $this->getRole()];
         }
 
-        public function getStudentTable(){
+        public function getStudentTable(): array
+        {
             return [$this->cne,$this->cv, $this->photo, $this->email,$this->birthDate,
                 $this->faculty, $this->facultyYear, $this->login];
         }

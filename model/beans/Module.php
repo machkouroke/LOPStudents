@@ -1,16 +1,45 @@
 <?php
     namespace model\beans;
-    require_once('Model.php');
+    require_once ('Factory.php');
 
-    class Module extends Model
+    class Module
     {
-        public $filiere, $niveau, $matP, $nom;
+        public string $faculty, $facultyYear, $matricule, $name;
+        public Factory $factory;
 
-        public function __construct($filiere, $niveau, $matP, $nom)
+        public function __construct($factory, ...$data)
         {
-            $this->filiere = $filiere;
-            $this->niveau = $niveau;
-            $this->matP = $matP;
-            $this->nom = $nom;
+            $this->factory = $factory;
+            $this->faculty = $data['faculty'];
+            $this->facultyYear = $data['facultyYear'];
+            $this->matricule = $data['matricule'];
+            $this->name = $data['name'];
+        }
+
+        public function add(){
+            try{
+                $con = $this->factory->get_connexion();
+                $sql = 'insert into module values (?,?,?,?)';
+                $statement = $con->prepare($sql);
+                $statement->execute([$this->faculty,$this->facultyYear,$this->matricule,$this->name]);
+            }catch (\PDOException $e) {echo $e->getMessage();}
+        }
+
+        public function update(): void
+        {
+            try{
+                $con = $this->factory->get_connexion();
+                $sql = 'update module set name=? where faculty=? and facultyYear=? and matricule=?';
+                $statement = $con->prepare($sql);
+                $statement->execute([$this->name,$this->faculty,$this->facultyYear,$this->matricule]);
+            }catch (\PDOException $e) {echo $e->getMessage();}
+        }
+
+        public function delete(): void
+        {
+            $con = $this->factory->get_connexion();
+            $sql = 'delete from module where faculty=? and facultyYear=? and matricule=?';
+            $statement = $con->prepare($sql);
+            $statement->execute([$this->faculty,$this->facultyYear,$this->matricule]);
         }
     }
