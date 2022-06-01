@@ -4,7 +4,7 @@
 	<div class="container py-5">
 		<div class="row mb-4 mb-lg-5">
 			<div class="col-md-8 col-xl-6 text-center mx-auto">
-				<h2 class="fw-bold">Bienvenue <?=$_SESSION['User']->getPrenom() ?></h2>
+				<h2 class="fw-bold">Bienvenue <?=$_SESSION['User']->getSurname() ?></h2>
 				<p class="text-muted w-lg-50">Veuillez selectionner une opération</p>
 			</div>
 		</div>
@@ -13,7 +13,7 @@
 				<div>
 					<div class="reflow-product-list ref-cards">
 						<div class="ref-products align-items-center">
-							<?php if ($_SESSION['User']->getFonction() == 'admin') : ?>
+							<?php if ($_SESSION['User']->getFunction() == 'admin') : ?>
 							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addStudent">
 								<img class="ref-image" src="<?= IMG_URL ?>menu/addStudent.png" alt=""/>
 								<div class="ref-product-data">
@@ -30,7 +30,7 @@
 								</div>
 							</a>
 							<?php endif ?>
-							<?php if ($_SESSION['User']->getFonction() == 'admin' || $_SESSION['User']->getFonction() == 'teacher') : ?>
+							<?php if ($_SESSION['User']->getFunction() == 'admin' || $_SESSION['User']->getFunction() == 'teacher') : ?>
 							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=listingStudents">
 								<img class="ref-image" src="<?= IMG_URL ?>menu/listStudent.png"
 								     alt=""/>
