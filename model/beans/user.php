@@ -20,7 +20,7 @@
             $this->city = $data['city'];
             $this->zipCode = (int)$data['zipCode'];
             $this->country = $data['country'];
-            $this->function = $data['function'];
+            $this->role = $data['role'];
 
         }
 
@@ -53,9 +53,9 @@
         /**
          * @return mixed|string
          */
-        public function getFunction(): mixed
+        public function getRole(): mixed
         {
-            return $this->function;
+            return $this->role;
         }
 
     }
