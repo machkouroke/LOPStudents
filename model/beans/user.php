@@ -1,15 +1,19 @@
 <?php
 require_once ('Factory.php');
 abstract class user  {
-    public string $login,$nom,$prenom,$pwd,$fonction;
+    public string $login,$nom,$prenom,$pwd,$fonction,$ville,$pays;
+    public int $codepostal;
     protected Factory $factory;
 
-    public function __construct($login,$nom,$prenom,$pwd,$fonction,$factory){
+    public function __construct($login,$nom,$prenom,$pwd,$ville,$codepostal,$pays,$fonction,$factory){
         $this->login = $login;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->pwd = $pwd;
         $this->fonction = $fonction;
+        $this->ville = $ville;
+        $this->codepostal = $codepostal;
+        $this->pays = $pays;
         $this->factory = $factory;
     }
 

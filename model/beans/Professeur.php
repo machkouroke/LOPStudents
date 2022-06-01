@@ -1,21 +1,25 @@
 <?php
-    require_once('Model.php');
+    require_once('user.php');
 
-    class Professeur extends Model
+    class Professeur extends user
     {
-        public $mat, $nom, $prenom, $email, $pwd, $photo, $cv, $ville, $code_postal, $tel;
+        public string $mat,  $ville, $code_postal, $tel;
 
-        public function __construct($mat, $nom, $prenom, $email, $pwd, $photo, $cv, $ville, $code_postal, $tel)
+        public function __construct($mat, $nom, $prenom, $login, $pwd, $ville, $code_postal, $tel, $factory)
         {
+            parent::__construct($login,$nom,$prenom,$pwd,"professeur",$factory);
             $this->mat = $mat;
-            $this->nom = $nom;
-            $this->prenom = $prenom;
-            $this->email = $email;
-            $this->pwd = $pwd;
             $this->code_postal = $code_postal;
-            $this->tel = $tel;
-            $this->cv = $cv;
-            $this->photo = $photo;
             $this->ville = $ville;
+        }
+
+        public function update()
+        {
+            // TODO: Implement update() method.
+        }
+
+        public function delete()
+        {
+            // TODO: Implement delete() method.
         }
     }

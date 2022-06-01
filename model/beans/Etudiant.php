@@ -1,24 +1,20 @@
 <?php
-
-
     require_once('user.php');
+    require_once ('Classe.php');
 
     class Etudiant extends user
     {
-        public string $date_nais, $pays, $tel, $cv, $photo, $filiere;
-        public int $niveau;
+        public string $date_nais, $pays, $cv, $photo;
+        public Classe $classe;
 
 
-        public function __construct($nom, $prenom, $date_nais, $pays, $tel, $cv, $photo, $filiere, $niveau, $login, $pwd, $factory)
+        public function __construct($nom, $prenom, $date_nais,$ville,$codepostal, $pays, $cv, $photo, $classe, $login, $pwd, $factory)
         {
-            parent::__construct($login, $nom, $prenom, $pwd, 'etudiant', $factory);
-            $this->pays = $pays;
+            parent::__construct($login, $nom, $prenom, $pwd, $ville,$codepostal,$pays,'etudiant', $factory);
             $this->date_nais = $date_nais;
-            $this->tel = $tel;
             $this->cv = $cv;
             $this->photo = $photo;
-            $this->filiere = $filiere;
-            $this->niveau = $niveau;
+            $this->classe = $classe;
         }
 
         //methode pour recuperer tous les etudiants de la base de donnees
@@ -73,14 +69,17 @@
 
                 $con = $this->factory->get_connexion();
                 $userInfo = [$this->login, $this->nom,
-                    $this->prenom, $this->pwd, $this->fonction];
-                $studentInfo = [$this->cv, $this->photo, $this->date_nais, $this->tel,
-                    $this->pays, $this->filiere, $this->niveau, $this->login];
+                    $this->prenom, $this->pwd,$this->ville,
+                    $this->codepostal,$this->pays ,$this->fonction];
 
-                $addUser = 'insert into users values (?,?,?,?,?)';
+                $studentInfo = [$this->cv, $this->photo, $this->date_nais,
+                     $this->classe->getFiliere(), $this->classe->getNiveau(), $this->login];
+
+                $addUser = 'insert into users values (?,?,?,?,?,?,?,?)';
                 $addStudent = "INSERT INTO etudiants (cv,photo,date_nais,
-                       telephone,pays,filiere,niveau,login) VALUES 
-                            (?,?,?,?,?,?,?, ?)";
+                       filiere,niveau,login) VALUES 
+                            (?,?,?,?,?,?)";
+
                 $statementUser = $con->prepare($addUser);
                 $statementUser->execute($userInfo);
                 $statementStudent = $con->prepare($addStudent);

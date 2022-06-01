@@ -2,8 +2,12 @@
     require ('beans/Factory.php');
     require ('../Exception/UserException.php');
 
-    function authenticate(string $login, string $password) {
+    function authenticate() {
         $con = (new Factory('root','momo'))->get_connexion();
+
+            $login = $_POST['email'];
+            $password = $_POST['password'];
+
         try{
             $result = $con->query("SELECT * FROM users where login='".$login."'");
             $user = $result->fetch(PDO::FETCH_ASSOC);
