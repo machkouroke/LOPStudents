@@ -86,4 +86,20 @@
     }
   }
 }
+.ref-email-col, .ref-adress-col, .ref-tel-col {
+  overflow-wrap: break-word;
+}
 
+.ref-student {
+
+  @media (max-width: 768px) {
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+
+    .ref-student-photo {
+      border-radius: 10px;
+    }
+
+  }
+}

@@ -159,7 +159,7 @@
     justify-content: space-between
 }
 
-@media (min-width: 768px) {
+@media (min-width: 990px) {
     .reflow-shopping-cart .ref-cart .ref-cart-table .ref-student-data .ref-student-quantity {
         display: block;
 
@@ -170,7 +170,7 @@
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
     .reflow-shopping-cart .ref-cart .ref-cart-table .ref-student {
         flex-direction: row;
         border: none
@@ -190,7 +190,6 @@
         display: table-cell;
         width: 15%;
         text-align: center;
-
     }
 
 

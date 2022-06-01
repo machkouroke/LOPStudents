@@ -1,5 +1,5 @@
 <h1 class="py-5 ref-heading text-center fw-bold"><?= $title ?> </h1>
-<div class="d-flex flex-row justify-content-between align-items-center">
+<div class="d-flex flex-column  flex-md-row justify-content-between align-items-center">
 
 	<p>
 		<button id="moreButton" class="btn btn-primary">Plus d'option</button>

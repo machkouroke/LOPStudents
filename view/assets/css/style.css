@@ -11916,4 +11916,19 @@ footer ul li a {
   display: block;
 }
 
+.ref-email-col, .ref-adress-col, .ref-tel-col {
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .ref-student {
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+  }
+  .ref-student .ref-student-photo {
+    border-radius: 10px;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
