@@ -4,7 +4,7 @@
 	<div class="container py-5">
 		<div class="row mb-4 mb-lg-5">
 			<div class="col-md-8 col-xl-6 text-center mx-auto">
-				<h2 class="fw-bold">Bienvenue <?=$_SESSION['User']->getSurname() ?></h2>
+				<h2 class="fw-bold">Bienvenue <?= $_SESSION['User']->getSurname() ?></h2>
 				<p class="text-muted w-lg-50">Veuillez selectionner une opération</p>
 			</div>
 		</div>
@@ -13,30 +13,30 @@
 				<div>
 					<div class="reflow-product-list ref-cards">
 						<div class="ref-products align-items-center">
-							<?php if ($_SESSION['User']->getRole() == 'admin') : ?>
-							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addStudent">
-								<img class="ref-image" src="<?= IMG_URL ?>menu/addStudent.png" alt=""/>
-								<div class="ref-product-data">
-									<h5 class="ref-name text-center w-100">Ajouter un étudiants</h5>
-								</div>
-							</a>
-							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addTeacher&step=1">
-								<img class="ref-image" src="<?= IMG_URL ?>menu/addTeacher.png"
-								     alt=""/>
-								<div class="ref-product-data">
+							<?php if (ADMIN_ONLY) : ?>
+								<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addStudent">
+									<img class="ref-image" src="<?= IMG_URL ?>menu/addStudent.png" alt=""/>
 									<div class="ref-product-data">
-										<h5 class="ref-name text-center w-100">Ajouter un proffesseur</h5>
+										<h5 class="ref-name text-center w-100">Ajouter un étudiants</h5>
 									</div>
-								</div>
-							</a>
+								</a>
+								<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addTeacher&step=1">
+									<img class="ref-image" src="<?= IMG_URL ?>menu/addTeacher.png"
+									     alt=""/>
+									<div class="ref-product-data">
+										<div class="ref-product-data">
+											<h5 class="ref-name text-center w-100">Ajouter un proffesseur</h5>
+										</div>
+									</div>
+								</a>
 							<?php endif ?>
-							<?php if ($_SESSION['User']->getRole() == 'admin' || $_SESSION['User']->getRole() == 'teacher') : ?>
+
 							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=listingStudents">
 								<img class="ref-image" src="<?= IMG_URL ?>menu/listStudent.png"
 								     alt=""/>
 								<div class="ref-product-data">
 									<div class="ref-product-data">
-										<h5 class="ref-name text-center w-100">Listing des Étudiants</h5>
+										<h5 class="ref-name text-center w-100"><?= LIST_OF_STUDENTS ?></h5>
 									</div>
 								</div>
 							</a>
@@ -45,20 +45,22 @@
 								     alt=""/>
 								<div class="ref-product-data">
 									<div class="ref-product-data">
-										<h5 class="ref-name text-center w-100">Voir Ma page</h5>
+										<h5 class="ref-name text-center w-100">Voir ma page</h5>
 									</div>
 								</div>
 							</a>
-							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=listingTeachers">
-								<img class="ref-image" src="<?= IMG_URL ?>menu/listTeacher.png"
-								     alt=""/>
-								<div class="ref-product-data">
+							<?php if (ADMIN_STUDENT) : ?>
+								<a class="ref-product" href="<?= BASE_URL ?>index.php?action=listingTeachers">
+									<img class="ref-image" src="<?= IMG_URL ?>menu/listTeacher.png"
+									     alt=""/>
 									<div class="ref-product-data">
-										<h5 class="ref-name text-center w-100">Listing des Proffesseur</h5>
+										<div class="ref-product-data">
+											<h5 class="ref-name text-center w-100"><?= LIST_OF_TEACHERS ?></h5>
+										</div>
 									</div>
-								</div>
-							</a>
+								</a>
 							<?php endif ?>
+
 							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=settings">
 								<img class="ref-image" src="<?= IMG_URL ?>menu/settings.png"
 								     alt=""/>

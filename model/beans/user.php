@@ -35,6 +35,46 @@
         }
 
         /**
+         * @return String
+         */
+        public function getLogin(): string
+        {
+            return $this->login;
+        }
+
+        /**
+         * @return String
+         */
+        public function getPassword(): string
+        {
+            return $this->password;
+        }
+
+        /**
+         * @return String
+         */
+        public function getCity(): string
+        {
+            return $this->city;
+        }
+
+        /**
+         * @return String
+         */
+        public function getCountry(): string
+        {
+            return $this->country;
+        }
+
+        /**
+         * @return int
+         */
+        public function getZipCode(): int
+        {
+            return $this->zipCode;
+        }
+
+        /**
          * @return string
          */
         public function getName(): string
