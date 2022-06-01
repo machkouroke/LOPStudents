@@ -25,9 +25,10 @@ CREATE TABLE IF NOT EXISTS `classe`(
 
 # la table etudiant
 CREATE TABLE IF NOT EXISTS `etudiants`(
-    `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT primary key ,
+    `cne` varchar(10)  primary key ,
     `cv` varchar(30),
     `photo` varchar(30),
+    `email` varchar(40),
     `birthDate` date,
     `faculty` varchar(5),
     `facultyYear` int,
@@ -39,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `etudiants`(
 #la table professeur
 CREATE TABLE IF NOT EXISTS `professeur`(
     `matricule` varchar(10) primary key ,
+    `email` varchar(40),
     `login` varchar(10),
     constraint fk1_prof foreign key (login) references users(login)
 );
