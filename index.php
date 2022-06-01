@@ -1,42 +1,61 @@
 <?php
-    session_start();
-    require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller\constant.php');
-    require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'AuthenticationController.php');
-    require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'MenuController.php');
-    require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'TeacherController.php');
 
+    /**
+     * Permet d'inclure le fichier juste à l'appel du namespace
+     */
+    spl_autoload_register(static function (string $path) {
+        $path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . $path . '.php';
+        require_once($path);
+    });
+    require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller\constant.php');
+
+    use controller\AdminController;
+    use controller\AuthenticationController;
+    use controller\MenuController;
+    use controller\StudentController;
+    use controller\TeacherController\TeacherController;
+    use model\beans\Factory;
+
+    session_start();
+    $factory = new Factory('root', 'claudine');
     if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'addStudent':
-                loginRequired($addStudent);
+                MenuController::addStudent();
                 break;
             case 'addTeacher':
                 if ($_GET['step'] == 1) {
-                    loginRequired($addTeacher);
+                    MenuController::addTeacher();
                 } else if ($_GET['step'] == 2) {
-                    loginRequired($addFaculty);
+                    TeacherController::addFaculty();
                 }
 
                 break;
             case 'listingStudents':
-                loginRequired($listingStudents);
+                MenuController::listingStudents();
                 break;
             case 'listingTeachers':
-                loginRequired($listingTeachers);
+                MenuController::listingTeachers();
                 break;
             case 'settings':
-                loginRequired($settings);
+                MenuController::settings();
+                break;
+            case 'sendMessage':
+                StudentController::sendMessage();
+                break;
+            case 'transferMessage':
+                AdminController::transferMessage();
                 break;
             case 'login':
-                login();
+                AuthenticationController::login($factory);
                 break;
             case 'logout':
-                logout();
+                AuthenticationController::logout();
                 break;
             default:
-                $menu();
+                MenuController::menu();
         }
 
     } else {
-        loginRequired($menu);
+        MenuController::menu();
     }

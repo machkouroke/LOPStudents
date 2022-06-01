@@ -7,6 +7,11 @@
 			require(BASE_DIR . 'view\templates\listingHeader.php')
 		?>
 		<div id="listPage">
+			<?php if (isset($_GET['sucess'])): ?>
+				<div class="alert alert-success" role="alert">
+					<?= $_GET['sucess'] ?>
+				</div>
+			<?php endif ?>
 			<div class="list">
 				<div class="row mx-auto" style="/*max-width: 700px;*/">
 					<div class="col">
@@ -25,7 +30,7 @@
 									</div>
 									<div  class="checkboxes ref-cart-table">
 
-										<input name="imane" type="checkbox" id="imane"  />
+										<input form="MessageSender" name="user[]" value="imane" type="checkbox" id="imane"  />
 										<label for="imane" class="ref-student box-checkbox">
 
 											<div class="ref-student-col">
@@ -61,7 +66,7 @@
 
 											</div>
 										</label>
-										<input name="imane2" type="checkbox" id="imane2"  />
+										<input form="MessageSender" name="user[]" value="imane2" type="checkbox" id="imane2"  />
 										<label for="imane2" class="ref-student box-checkbox">
 
 											<div class="ref-student-col">

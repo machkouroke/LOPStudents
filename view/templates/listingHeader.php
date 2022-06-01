@@ -1,13 +1,16 @@
-<h1 class="py-5 ref-heading text-center fw-bold">Liste des étudiants </h1>
+<h1 class="py-5 ref-heading text-center fw-bold"><?= $title ?> </h1>
 <div class="d-flex flex-row justify-content-between align-items-center">
 
 	<p>
 		<button id="moreButton" class="btn btn-primary">Plus d'option</button>
 	</p>
 
-	<p><a id="switchIcon"><img src="<?= $switchIcon ?>" alt="" class="switch"></a>
+	<p>
+		<a id="switchIcon"><img src="<?= $switchIcon ?>" alt="" class="switch"></a>
 	</p>
-	<p><a href="#" class="btn btn-primary">Envoyer un mail</a></p>
+	<p><input form="MessageSender" type="submit" class="btn btn-primary" value="Envoyer un mail"/> </p>
+	<form id="MessageSender" method="post" action="<?= BASE_URL ?>index.php?action=sendMessage" class="d-none">
+	</form>
 </div>
 <div id="moreOption" data-aos="fade-down" class="row rounded p-3">
 	<div class="reflow-product-list ref-cards">

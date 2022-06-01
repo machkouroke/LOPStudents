@@ -1,9 +1,9 @@
 <?php
-
     namespace Exception;
     use JetBrains\PhpStorm\Pure;
 
-    class UserException extends \Exception
+
+    class DataBaseException extends \Exception
     {
         #[Pure] public function __construct(string $message = "")
         {

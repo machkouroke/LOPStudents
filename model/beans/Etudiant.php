@@ -1,7 +1,8 @@
 <?php
 
-
-    require_once('user.php');
+    namespace model\beans;
+    use model\beans\Factory;
+    use PDOException;
 
     class Etudiant extends user
     {
@@ -11,7 +12,7 @@
 
         public function __construct($nom, $prenom, $date_nais, $pays, $tel, $cv, $photo, $filiere, $niveau, $login, $pwd, $factory)
         {
-            parent::__construct($login, $nom, $prenom, $pwd, 'etudiant', $factory);
+            parent::__construct($login, $nom, $prenom, $pwd, 'étudiant', $factory);
             $this->pays = $pays;
             $this->date_nais = $date_nais;
             $this->tel = $tel;
