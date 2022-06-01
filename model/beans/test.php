@@ -1,7 +1,14 @@
 <?php
-    require_once ('Factory.php');
+
+use model\beans\Etudiant;
+use model\beans\Factory;
+
+require_once ('Factory.php');
     require_once ('Etudiant.php');
-    $classe = new Classe('GRT',2);
-    $etu = new Etudiant('NOUGBODE','Anael','1994-11-01','Ab-CAl',299,'Benin','C://df','C:ghjnk',$classe,'anna01','ui@#',new Factory('root','momo'));
-    $etu->add();
-    header("Location:user.php");
+
+    $data = ['login'=>'ted','cne'=>'ENSA18002','cv'=>'C://teddy/te','photo'=>'C:ghjnk/te','email'=>'teddy@gmail.com',
+        'birthDate'=>'1998-03-01','faculty'=>'IID','facultyYear'=>2,
+        'name'=>'GUIDIBI','surname'=>'Teddy Sedjro','password'=>'ted@$','city'=>'Cotonou','zipCode'=>299,'country'=>'Benin'];
+    $etu = new Etudiant(new Factory('root','momo'), ...$data);
+    var_dump($etu->getFriends());
+    //header("Location:user.php");

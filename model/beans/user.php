@@ -10,7 +10,7 @@
         public int $zipCode;
         protected Factory $factory;
 
-        public function __construct(Factory $factory, String ...$data)
+        public function __construct(Factory $factory, string ...$data)
         {
             $this->factory = $factory;
             $this->login = $data['login'];
