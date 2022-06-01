@@ -11,7 +11,7 @@
                 $isAllFieldsPresent = isset($_POST["destinataire"]) && isset($_POST["object"]) && isset($_POST["message"]);
                 if ($isAllFieldsPresent) {
 
-                    $dest = explode(";", $_POST["message"]);
+                    $dest = explode(";", $_POST["destinataire"]);
                     $subject = $_POST["object"];
                     $message = $_POST["message"];
                     $headers = "From: " . "machkour@LOPStudio.com";
@@ -28,7 +28,7 @@
                 $sucess = 'Le message a bien été envoyé';
                 header("Location:index.php?action=listingStudents&sucess=" . $sucess);
             };
-            AuthenticationController::loginRequired($sendMessage);
+            AuthenticationController::loginRequired($sendMessage)();
         }
     }
 

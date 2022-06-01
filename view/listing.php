@@ -35,17 +35,15 @@
 										<label for="imane" class="ref-student box-checkbox">
 
 											<div class="ref-student-col">
-												<div class="ref-student-wrapper"><img class="ref-student-photo"
-												                                      src="<?= IMG_URL ?>imane.jpg"
-												                                      alt="Bailee Jast"/>
+												<div class="ref-student-wrapper flex-xxl-row flex-column">
+													<img class="ref-student-photo" src="<?= IMG_URL ?>imane.jpg"
+													     alt="Imane"/>
 													<div class="ref-student-data">
 														<div class="ref-student-info">
 															<div class="ref-student-name">Imane Sidiki</div>
 															<div class="ref-student-category">IID1</div>
-															<div class="ref-student-variants"></div>
 															<div class="ref-student-personalization-holder"></div>
 														</div>
-														<div class="ref-student-price"></div>
 													</div>
 												</div>
 
@@ -60,12 +58,12 @@
 												<b>Firdaws, Khouribga 25000</b>
 											</div>
 											<div class="ref-tel-col">+2126388646641</div>
-											<div class="d-flex flex-column  ref-cv-col"><a href="">Télécharger le CV</a>
+											<div class="d-flex flex-column  ref-cv-col"><a href="">
+													Télécharger le CV</a>
 											</div>
-											<div class="d-flex flex-column text-end ref-action-col">
+											<div class="d-flex flex-column text-center ref-action-col">
 												<p><a href="" class="">Modifier</a></p>
 												<p><a href="" class="">Supprimer</a></p>
-
 											</div>
 										</label>
 										<input form="MessageSender" name="user[]" value="imane2" type="checkbox"
@@ -73,14 +71,13 @@
 										<label for="imane2" class="ref-student box-checkbox">
 
 											<div class="ref-student-col">
-												<div class="ref-student-wrapper"><img class="ref-student-photo"
+												<div class="ref-student-wrapper flex-xxl-row flex-column"><img class="ref-student-photo"
 												                                      src="<?= IMG_URL ?>imane.jpg"
 												                                      alt="Bailee Jast"/>
 													<div class="ref-student-data">
 														<div class="ref-student-info">
 															<div class="ref-student-name">Imane Sidiki</div>
 															<div class="ref-student-category">IID1</div>
-															<div class="ref-student-variants"></div>
 															<div class="ref-student-personalization-holder"></div>
 														</div>
 														<div class="ref-student-price"></div>
@@ -91,7 +88,7 @@
 											<div class="ref-username-col">
 												sidikiimane
 											</div>
-											<div class="ref-email-col">
+											<div class="ref-email-col ">
 												imanesidiki@gmail.com
 											</div>
 											<div class="ref-adress-col">
@@ -100,7 +97,7 @@
 											<div class="ref-tel-col">+2126388646641</div>
 											<div class="d-flex flex-column  ref-cv-col"><a href="">Télécharger le CV</a>
 											</div>
-											<div class="d-flex flex-column text-end ref-action-col">
+											<div class="d-flex flex-column text-center ref-action-col">
 												<p><a href="" class="">Modifier</a></p>
 												<p><a href="" class="">Supprimer</a></p>
 
@@ -167,6 +164,7 @@
 
 	</div>
 </section>
+
 <script src="<?= JS_URL ?>divCheckable.js"></script>
 <?php $content = ob_get_clean(); ?>
 
