@@ -6,6 +6,7 @@
     use model\beans\user;
     use PDOException;
 
+
 class Authentification {
     /**
      * @throws UserException Jeté quand les informations sont incorrects
@@ -24,6 +25,7 @@ class Authentification {
                         $user['nom'],
                         $user['prenom'], $user['password'], $user['fonction'], $factory);
                 } else {
+
                     throw new UserException("Mot de passe incorrect");
                 }
             } else {
