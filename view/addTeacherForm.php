@@ -4,7 +4,7 @@
 ?>
 <?php ob_start(); ?>
 <?php ob_start(); ?>
-<form id="register" action="<?= BASE_URL ?>index.php?action=addTeacher&step=2" class="p-3 m-5 p-xl-4" data-aos="fade-up"
+<form id="register" action="<?= BASE_URL ?>index.php?action=addTeacher&step=2" class="shadow rounded p-4 m-5 p-xl-4" data-aos="fade-up"
       method="post"
       enctype="multipart/form-data">
 
@@ -70,7 +70,7 @@
 			<input type="number" class="form-control" id="postale" name="postale" maxlength="5">
 		</div>
 	</div>
-
+	<?php require_once(BASE_DIR.'\view\templates\captchaBlock.php') ?>
 
 	<div class="col">
 		<button id="submit" class="btn btn-primary shadow d-block w-100" type="submit">
