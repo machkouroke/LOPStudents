@@ -13,7 +13,7 @@
 				<div>
 					<div class="reflow-product-list ref-cards">
 						<div class="ref-products align-items-center">
-							<?php if ($_SESSION['User']->getFunction() == 'admin') : ?>
+							<?php if ($_SESSION['User']->getRole() == 'admin') : ?>
 							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addStudent">
 								<img class="ref-image" src="<?= IMG_URL ?>menu/addStudent.png" alt=""/>
 								<div class="ref-product-data">
@@ -30,7 +30,7 @@
 								</div>
 							</a>
 							<?php endif ?>
-							<?php if ($_SESSION['User']->getFunction() == 'admin' || $_SESSION['User']->getFunction() == 'teacher') : ?>
+							<?php if ($_SESSION['User']->getRole() == 'admin' || $_SESSION['User']->getRole() == 'teacher') : ?>
 							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=listingStudents">
 								<img class="ref-image" src="<?= IMG_URL ?>menu/listStudent.png"
 								     alt=""/>
