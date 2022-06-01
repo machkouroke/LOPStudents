@@ -6,7 +6,7 @@
 
     class user
     {
-        public string $login, $name, $surname, $password, $function, $city, $country;
+        public string $login, $name, $surname, $password, $role, $city, $country;
         public int $zipCode;
         protected Factory $factory;
 
