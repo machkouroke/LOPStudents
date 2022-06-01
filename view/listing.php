@@ -7,6 +7,11 @@
 			require(BASE_DIR . 'view\templates\listingHeader.php')
 		?>
 		<div id="listPage">
+			<?php if (isset($_GET['sucess'])): ?>
+				<div class="alert alert-success" role="alert">
+					<?= $_GET['sucess'] ?>
+				</div>
+			<?php endif ?>
 			<div class="list">
 				<div class="row mx-auto" style="/*max-width: 700px;*/">
 					<div class="col">

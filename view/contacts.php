@@ -10,28 +10,25 @@
 		<div class="row d-flex justify-content-center">
 			<div class="col-md-6 col-xl-6">
 				<div>
-					<?php
-						if (isset($_POST["object"])) {
-							$to = $_POST["destinataire"];
-							$subject = $_POST["object"];
-							$message = $_POST["message"];
-							$headers = "From: " . "machkour@LOPStudio.com";
-							if (mail($to, $subject, $message, $headers)): ?>
-								<div class="success">
-									Message envoyé
-								</div><?php else: ?>
-								<div class="error">
-									Une erreur est survenue
-								</div><?php endif;
-						} ?>
 
-					<form action="contacts.php" class="p-3 p-xl-4" method="post">
+
+					<form action="index.php?action=transferMessage" class="p-3 p-xl-4" method="post">
+						<?php if (isset($_GET['error'])): ?>
+							<div class="alert alert-danger" role="alert">
+								<?= $_GET['error'] ?>
+							</div>
+						<?php endif ?>
+						<?php if (isset($_GET['sucess'])): ?>
+							<div class="alert alert-success" role="alert">
+								<?= $_GET['sucess'] ?>
+							</div>
+						<?php endif ?>
 						<div class="mb-3"><label class="form-label" for="destinataire">Destinataires</label><input
 									class="form-control" type="email"
 									id="destinataire" name="destinataire" value="<?= $selectedUser ?>">
 						</div>
 						<div class="mb-3"><label class="form-label" for="object">Object</label>
-							<input class="form-control" type="text" id="object" name="object" ></div>
+							<input class="form-control" type="text" id="object" name="object"></div>
 						<div class="mb-3"><label class="form-label" for="message">Message</label><textarea
 									class="form-control" id="message"
 									name="message" rows="6"
