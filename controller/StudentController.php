@@ -2,8 +2,6 @@
 
     namespace controller;
 
-    use controller\AuthenticationController;
-
     class StudentController
     {
 
@@ -19,6 +17,13 @@
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\contacts.php');
             };
             AuthenticationController::loginRequired($sendMessage);
+        }
+        public static function userPage() {
+            $title = $_SESSION['User']->getSurname();
+            $userPage = function() {
+                require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\userPage.php');
+            };
+            AuthenticationController::loginRequired($userPage);
         }
     }
 

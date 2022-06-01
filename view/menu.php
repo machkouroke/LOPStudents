@@ -40,6 +40,15 @@
 									</div>
 								</div>
 							</a>
+							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=userPage">
+								<img class="ref-image" src="<?= IMG_URL ?>menu/userPage.png"
+								     alt=""/>
+								<div class="ref-product-data">
+									<div class="ref-product-data">
+										<h5 class="ref-name text-center w-100">Voir Ma page</h5>
+									</div>
+								</div>
+							</a>
 							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=listingTeachers">
 								<img class="ref-image" src="<?= IMG_URL ?>menu/listTeacher.png"
 								     alt=""/>

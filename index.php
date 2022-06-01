@@ -46,6 +46,9 @@
             case 'transferMessage':
                 AdminController::transferMessage();
                 break;
+            case 'userPage':
+                StudentController::userPage();
+                break;
             case 'login':
                 AuthenticationController::login($factory);
                 break;

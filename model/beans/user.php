@@ -51,9 +51,9 @@
         }
 
         /**
-         * @return mixed|string
+         * @return string
          */
-        public function getRole(): mixed
+        public function getRole(): string
         {
             return $this->role;
         }
