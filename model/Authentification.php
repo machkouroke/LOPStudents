@@ -19,11 +19,11 @@ class Authentification {
         try {
             $result = $con->query("SELECT * FROM users where login='" . $login . "'");
             $user = $result->fetch(\PDO::FETCH_ASSOC);
+            print($password);
+            print_r($user);
             if (!empty($user)) {
                 if ($user['password'] == $password) {
-                    return new user($user['login'],
-                        $user['nom'],
-                        $user['prenom'], $user['password'], $user['fonction'], $factory);
+                    return new user($factory, ...$user);
                 } else {
 
                     throw new UserException("Mot de passe incorrect");

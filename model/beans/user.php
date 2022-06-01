@@ -6,21 +6,22 @@
 
     class user
     {
-        public string $login, $nom, $prenom, $pwd, $fonction, $ville, $pays;
-        public int $codepostal;
+        public string $login, $name, $surname, $password, $function, $city, $country;
+        public int $zipCode;
         protected Factory $factory;
 
-        public function __construct($login, $nom, $prenom, $pwd, $ville, $codepostal, $pays, $fonction, $factory)
+        public function __construct(Factory $factory, object ...$data)
         {
-            $this->login = $login;
-            $this->nom = $nom;
-            $this->prenom = $prenom;
-            $this->pwd = $pwd;
-            $this->fonction = $fonction;
-            $this->ville = $ville;
-            $this->codepostal = $codepostal;
-            $this->pays = $pays;
             $this->factory = $factory;
+            $this->login = $data['login'];
+            $this->name = $data['name'];
+            $this->surname = $data['surname'];
+            $this->password = $data['password'];
+            $this->city = $data['city'];
+            $this->zipCode = (int)$data['zipCode'];
+            $this->country = $data['country'];
+            $this->function = $data['function'];
+
         }
 
 
@@ -36,25 +37,25 @@
         /**
          * @return string
          */
-        public function getNom(): string
+        public function getName(): string
         {
-            return $this->nom;
+            return $this->name;
         }
 
         /**
          * @return string
          */
-        public function getPrenom(): string
+        public function getSurname(): string
         {
-            return $this->prenom;
+            return $this->surname;
         }
 
         /**
          * @return mixed|string
          */
-        public function getFonction(): mixed
+        public function getFunction(): mixed
         {
-            return $this->fonction;
+            return $this->function;
         }
 
     }
