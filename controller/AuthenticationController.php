@@ -24,8 +24,9 @@
 
         public static function login(Factory $factory)
         {
-            echo 'authenticate';
+
             try {
+                echo 'authenticate';
                 $_SESSION['User'] = Authentification::authenticate($_POST['username'], $_POST['password'], $factory);
                 header("Location:index.php");
             } catch (DataBaseException|UserException $e) {

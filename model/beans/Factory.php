@@ -12,7 +12,7 @@
 
         public function __construct($username, $password)
         {
-            $this->dns = 'mysql:host=localhost;dbname=students';
+            $this->dns = 'mysql:host=localhost;dbname=lopstudents';
             $this->username = $username;
             $this->password = $password;
             try {
