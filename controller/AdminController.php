@@ -1,7 +1,6 @@
 <?php
 
     namespace controller;
-    use controller\AuthenticationController;
 
     class AdminController
     {
