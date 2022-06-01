@@ -1,5 +1,7 @@
 <?php
     namespace model\beans;
+    use PDOException;
+
     require_once ('Factory.php');
 
     class Module
@@ -16,13 +18,14 @@
             $this->name = $data['name'];
         }
 
-        public function add(){
+        public function add(): void
+        {
             try{
                 $con = $this->factory->get_connexion();
-                $sql = 'insert into module values (?,?,?,?)';
-                $statement = $con->prepare($sql);
-                $statement->execute([$this->faculty,$this->facultyYear,$this->matricule,$this->name]);
-            }catch (\PDOException $e) {echo $e->getMessage();}
+                $sql = "insert into module values ('$this->faculty','$this->facultyYear','$this->matricule','$this->name')";
+                $statement = $con->exec($sql);
+//                $statement->execute([$this->faculty,$this->facultyYear,$this->matricule,$this->name]);
+            }catch (PDOException $e) {echo $e->getMessage();}
         }
 
         public function update(): void
