@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `users`(
     `city` varchar(20),
     `zipCode` int,
     `country` varchar(20),
-    `function` varchar(15)
+    `role` varchar(15)
 ) ;
 
 #la table classe
