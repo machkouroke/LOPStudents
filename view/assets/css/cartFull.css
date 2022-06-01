@@ -229,7 +229,8 @@
 
 @media (min-width: 576px) {
     .reflow-shopping-cart .ref-cart .ref-cart-table .ref-product-data .ref-product-quantity {
-        display: block
+        display: block;
+
     }
 
     .reflow-shopping-cart .ref-cart .ref-cart-table .ref-product-total {

@@ -4,24 +4,24 @@
 	<div class="container py-5">
 		<div class="row mb-4 mb-lg-5">
 			<div class="col-md-8 col-xl-6 text-center mx-auto">
-				<h2 class="fw-bold">Bienvenue sur LOPStudents</h2>
+				<h2 class="fw-bold">Bienvenue <?=$_SESSION['User']->getPrenom() ?></h2>
 				<p class="text-muted w-lg-50">Veuillez selectionner une opération</p>
 			</div>
 		</div>
 		<div class="row mx-auto" style="/*max-width: 700px;*/">
 			<div class="col">
-				<div data-reflow-type="product-list" data-reflow-layout="cards" data-reflow-order="date_desc"
-				     data-reflow-product-link="/product.html?product={id}">
+				<div>
 					<div class="reflow-product-list ref-cards">
 						<div class="ref-products align-items-center">
-							<a class="ref-product" href="">
-								<img class="ref-image" src="img/add.png" alt=""/>
+							<?php if ($_SESSION['User']->getFonction() == 'admin') : ?>
+							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addStudent">
+								<img class="ref-image" src="<?= IMG_URL ?>menu/addStudent.png" alt=""/>
 								<div class="ref-product-data">
 									<h5 class="ref-name text-center w-100">Ajouter un étudiants</h5>
 								</div>
 							</a>
-							<a class="ref-product" href="">
-								<img class="ref-image" src="img/addTeacher.png"
+							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addTeacher&step=1">
+								<img class="ref-image" src="<?= IMG_URL ?>menu/addTeacher.png"
 								     alt=""/>
 								<div class="ref-product-data">
 									<div class="ref-product-data">
@@ -29,8 +29,10 @@
 									</div>
 								</div>
 							</a>
-							<a class="ref-product" href="">
-								<img class="ref-image" src="img/listStudent.png"
+							<?php endif ?>
+							<?php if ($_SESSION['User']->getFonction() == 'admin' || $_SESSION['User']->getFonction() == 'teacher') : ?>
+							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=listingStudents">
+								<img class="ref-image" src="<?= IMG_URL ?>menu/listStudent.png"
 								     alt=""/>
 								<div class="ref-product-data">
 									<div class="ref-product-data">
@@ -38,8 +40,8 @@
 									</div>
 								</div>
 							</a>
-							<a class="ref-product" href="">
-								<img class="ref-image" src="img/listTeacher.png"
+							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=listingTeachers">
+								<img class="ref-image" src="<?= IMG_URL ?>menu/listTeacher.png"
 								     alt=""/>
 								<div class="ref-product-data">
 									<div class="ref-product-data">
@@ -47,8 +49,9 @@
 									</div>
 								</div>
 							</a>
-							<a class="ref-product" href="">
-								<img class="ref-image" src="img/settings.png"
+							<?php endif ?>
+							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=settings">
+								<img class="ref-image" src="<?= IMG_URL ?>menu/settings.png"
 								     alt=""/>
 								<div class="ref-product-data">
 									<div class="ref-product-data">
@@ -57,12 +60,12 @@
 								</div>
 							</a>
 
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 </section>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('templates/base.php'); ?>
+<?php require(BASE_DIR . 'view\templates\base.php'); ?>

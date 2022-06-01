@@ -1,31 +1,35 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<title><?= $title ?></title>
-		<link rel="stylesheet" href="assets/css/style.css" type="text/css"
+		<link rel="stylesheet"
+		      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
+		<link rel="stylesheet" href="<?= CSS_URL ?>style.css" type="text/css"
 	</head>
 
 	<body>
 		<nav class="navbar navbar-light navbar-expand-md fixed-top text-start d-flex d-xl-flex justify-content-center align-items-xl-center navbar-shrink py-3"
 		     id="mainNav">
-			<div class="container">
-				<a class="navbar-brand text-center d-flex align-items-center "
-						href="/" style="width: 100%;">
+			<div class="container d-flex d-xl-flex justify-content-center ">
+				<a class="navbar-brand text-center d-flex <?= !isset($_SESSION['User']) ? 'justify-content-center' : '' ?>"
+				   href="<?= BASE_URL ?>index.php" style="width: 100%;">
 					<span class="bs-icon-sm bs-icon-circle bs-icon-primary shadow d-flex justify-content-center align-items-center me-2 bs-icon">
 
-						<?php include("img/lop.svg")?>
+						<?php include($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "view\assets\img\lop.svg") ?>
 					</span>
 					<span>LOPStudents</span>
 				</a>
-
+				<?php if (isset($_SESSION['User'])): ?>
 				<div class="collapse navbar-collapse" id="navcol-1">
 					<ul class="navbar-nav mx-auto">
-						<li class="nav-item"><a href="" class="btn btn-primary">Déconnexion</a></li>
+						<li class="nav-item"><a href="<?= BASE_URL ?>index.php?action=logout" class="btn btn-primary">Déconnexion</a></li>
 					</ul>
 				</div>
+				<?php endif ?>
 			</div>
 		</nav>
 
@@ -60,9 +64,13 @@
 		</footer>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-		<script src="https://cdn.reflowhq.com/v1/toolkit.min.js"></script>
-		<script src="assets/js/bs-init.js?h=9a9f8acb1d759d183570dd7c693aabee"></script>
-		<script src="assets/js/bold-and-bright.js?h=914b066f52f5e2b2583e4d1558c90518"></script>
+		<!--		<script src="https://cdn.reflowhq.com/v1/toolkit.min.js"></script>-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+		<script src="<?= JS_URL ?>bs-init.js"></script>
+
+		<script src="<?= JS_URL ?>bold-and-bright.js"></script>
+		<script src="<?= JS_URL ?>toggle.js"></script>
+		<script src="<?= JS_URL ?>listingFlip.js"></script>
 	</body>
 
 </html>

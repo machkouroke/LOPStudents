@@ -6,7 +6,7 @@
 			<h1 class="ref-name text-center fw-bold">Imane Sidiki</h1>
 			<div class="reflow-product d-flex align-items-center py-5">
 				<div class="ref-media">
-					<div class="ref-preview"><img class="ref-image active" src="img/imane.jpg"
+					<div class="ref-preview"><img class="ref-image active" src="assets/img/imane.jpg"
 					                              alt=""/></div>
 				</div>
 

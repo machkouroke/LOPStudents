@@ -159,9 +159,10 @@
     justify-content: space-between
 }
 
-@media (min-width: 576px) {
+@media (min-width: 768px) {
     .reflow-shopping-cart .ref-cart .ref-cart-table .ref-student-data .ref-student-quantity {
-        display: block
+        display: block;
+
     }
 
     .reflow-shopping-cart .ref-cart .ref-cart-table .ref-student-total {
@@ -169,7 +170,7 @@
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     .reflow-shopping-cart .ref-cart .ref-cart-table .ref-student {
         flex-direction: row;
         border: none
@@ -214,7 +215,7 @@
 
     .reflow-shopping-cart .ref-cart .ref-cart-table .ref-student-controls {
         min-width: 35%;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         align-items: start;
         border: none
     }
