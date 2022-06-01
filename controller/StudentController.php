@@ -1,13 +1,15 @@
 <?php
 
-    namespace controller\StudentController;
+    namespace controller;
+
+    use controller\AuthenticationController;
+
     class StudentController
     {
-        public \Closure $sendMessage;
 
-        function __construct()
+        public static function sendMessage()
         {
-            $this->sendMessage = function () {
+            $sendMessage = function () {
                 $title = 'Envoyer un message';
                 $selectedUser = [];
                 foreach ($_POST['user'] as $user) {
@@ -16,6 +18,7 @@
                 $selectedUser = implode(';', $selectedUser);
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\contacts.php');
             };
+            AuthenticationController::loginRequired($sendMessage);
         }
     }
 

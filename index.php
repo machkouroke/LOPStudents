@@ -10,6 +10,7 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller\constant.php');
     use controller\AuthenticationController;
     use controller\MenuController;
+    use controller\StudentController;
     use controller\TeacherController\TeacherController;
     use model\beans\Factory;
     session_start();
@@ -35,6 +36,9 @@
                 break;
             case 'settings':
                 MenuController::settings();
+                break;
+            case 'sendMessage':
+                StudentController::sendMessage();
                 break;
             case 'login':
                 AuthenticationController::login($factory);
