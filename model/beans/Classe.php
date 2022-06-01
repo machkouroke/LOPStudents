@@ -2,35 +2,35 @@
     namespace model\beans;
 
 
-    class Classe extends Model
+    class Classe
     {
-        public $filiere, $niveau;
+        public $faculty, $facultyYear;
 
         /**
          * @param $filiere
          * @param $niveau
          */
-        public function __construct($filiere, $niveau)
+        public function __construct($faculty, $facultyYear)
         {
-            $this->filiere = $filiere;
-            $this->niveau = $niveau;
+            $this->faculty = $faculty;
+            $this->facultyYear = $facultyYear;
         }
 
 
         /**
          * @return mixed
          */
-        public function getFiliere()
+        public function getFaculty()
         {
-            return $this->filiere;
+            return $this->faculty;
         }
 
         /**
          * @return mixed
          */
-        public function getNiveau()
+        public function getFacultyYear()
         {
-            return $this->niveau;
+            return $this->facultyYear;
         }
 
 

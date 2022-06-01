@@ -1,6 +1,8 @@
 <?php
 
     namespace model\beans;
+    use PDOException;
+
     require_once('Factory.php');
 
 
@@ -10,7 +12,7 @@
         public int $zipCode;
         protected Factory $factory;
 
-        public function __construct(Factory $factory, String ...$data)
+        public function __construct(Factory $factory, string ...$data)
         {
             $this->factory = $factory;
             $this->login = $data['login'];
@@ -32,6 +34,16 @@
             $res = $conn->prepare($sql);
             $res->execute();
             return $res->fetchAll();
+        }
+
+        public function changePassword(string $newPassword): void
+        {
+            try{
+                $con = $this->factory->get_connexion();
+                $sql = 'update users set password=? where login=?';
+                $statement = $con->prepare($sql);
+                $statement->execute([$newPassword,$this->login]);
+            }catch (PDOException $e){echo $e->getMessage();}
         }
 
         /**
