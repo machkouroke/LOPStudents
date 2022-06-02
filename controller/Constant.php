@@ -30,12 +30,18 @@
     /**
      * Constante de role
      */
+    enum Role: String
+    {
+        case Admin = 'admin';
+        case Teacher = 'teacher';
+        case Student = 'student';
+    }
     if (isset($_SESSION['User'])) {
-        define("ADMIN_ONLY", $_SESSION['User']->getRole() === 'admin');
-        define("STUDENT_ONLY", $_SESSION['User']->getRole() === 'student');
-        define("TEACHER_ONLY", $_SESSION['User']->getRole() === 'teacher');
-        define("ADMIN_STUDENT", $_SESSION['User']->getRole() == 'admin' || $_SESSION['User']->getRole() == 'student');
-        define("ADMIN_TEACHER", $_SESSION['User']->getRole() == 'admin' || $_SESSION['User']->getRole() == 'teacher');
+        define("ADMIN_ONLY", $_SESSION['User']->getRole() === Role::Admin);
+        define("STUDENT_ONLY", $_SESSION['User']->getRole() === Role::Student);
+        define("TEACHER_ONLY", $_SESSION['User']->getRole() === Role::Teacher);
+        define("ADMIN_STUDENT", $_SESSION['User']->getRole() == Role::Admin || $_SESSION['User']->getRole() == Role::Student);
+        define("ADMIN_TEACHER", $_SESSION['User']->getRole() == Role::Admin || $_SESSION['User']->getRole() == Role::Teacher);
         if (ADMIN_ONLY) {
             define("LIST_OF_STUDENTS", 'Liste des étudiants');
             define("LIST_OF_TEACHERS", 'Liste des proffesseur');

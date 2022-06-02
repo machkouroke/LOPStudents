@@ -25,7 +25,7 @@
 
                 if (!empty($user)) {
                     if ($user['password'] == $password) {
-                        return new User($factory, ...$user);
+                        return new User(...$user);
                     } else {
 
                         throw new UserException("Mot de passe incorrect");

@@ -220,19 +220,10 @@
             return $res->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        /**
-         * Renvoie toutes les informations de l'étudiant actuel (En tant qu'Utilisateur)
-         * @return array Informations de l'étudiant actuel
-         */
-        #[Pure] public function getUserTable(): array
-        {
-            return [$this->login, $this->name,
-                $this->surname, $this->password, $this->city,
-                $this->zipCode, $this->country, $this->getRole()];
-        }
+
 
         /**
-         * Renvoie toutes les informations de l'étudiant actuel (En tant qu'Etudiant)
+         * Renvoie toutes les informations de l'étudiant actuel (En tant qu'Étudiant)
          * @return array Informations de l'étudiant actuel
          */
         public function getStudentTable(): array
