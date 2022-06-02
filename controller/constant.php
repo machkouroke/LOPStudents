@@ -3,6 +3,9 @@
 
     use model\beans\Factory;
 
+    /**
+     * Constante de répertoire
+     */
     const BASE_URL = "/LOPStudents/";
     const CSS_URL = BASE_URL . "/view/assets/css/";
     const IMG_URL = BASE_URL . "/view/assets/img/";
@@ -11,8 +14,14 @@
     const ASSETS_URL = BASE_URL . "/view/assets/";
     const INDEX_LOCATION = "Location:index.php";
     const FACTORY = new Factory('root', 'claudine');
-
     define("BASE_DIR", $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR);
+    const MEDIA_DIR = BASE_DIR . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR;
+    const CV_DIR = MEDIA_DIR . 'cv' . DIRECTORY_SEPARATOR;
+    const PIC_DIR = MEDIA_DIR . 'picture' . DIRECTORY_SEPARATOR;
+
+    /**
+     * Constante de role
+     */
     if (isset($_SESSION['User'])) {
         define("ADMIN_ONLY", $_SESSION['User']->getRole() === 'admin');
         define("STUDENT_ONLY", $_SESSION['User']->getRole() === 'student');
