@@ -6,15 +6,22 @@
     use Exception\UserException;
     use PDO;
     use PDOException;
+    use Role;
 
 
+    /**
+     * @author Morel Kouhossounon
+     * Représente un proffesseur
+     */
     class Professeur extends User
     {
         public string $matricule, $email;
 
         public function __construct($factory, ...$data)
         {
-            $userTab = array('login' => $data['login'], 'name' => $data['name'], 'surname' => $data['surname'], 'password' => $data['password'], 'city' => $data['city'], 'zipCode' => $data['zipCode'], 'country' => $data['country'], 'role' => 'teacher');
+            $userTab = array('login' => $data['login'], 'name' => $data['name'], 'surname' => $data['surname'],
+                'password' => $data['password'], 'city' => $data['city'], 'zipCode' => $data['zipCode'],
+                'country' => $data['country'], 'role' => Role::Teacher);
             parent::__construct($factory, ...$userTab);
             $this->matricule = $data['matricule'];
             $this->email = $data['email'];

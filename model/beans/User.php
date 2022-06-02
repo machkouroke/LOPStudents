@@ -7,13 +7,17 @@
     use Role;
 
 
+    /**
+     * @author Morel Kouhossounon
+     * Modèle utilisateur de base
+     */
     class User
     {
         public string $login, $name, $surname, $password,  $city, $country;
         public int $zipCode;
         public Role $role;
 
-        public function __construct(string ...$data)
+        public function __construct(...$data)
         {
             $this->login = $data['login'];
             $this->name = $data['name'];
@@ -22,7 +26,7 @@
             $this->city = $data['city'];
             $this->zipCode = (int)$data['zipCode'];
             $this->country = $data['country'];
-            $this->role = Role::from($data['role']);
+            $this->role = $data['role'];
 
         }
 
@@ -35,7 +39,7 @@
         {
             return [$this->login, $this->name,
                 $this->surname, $this->password, $this->city,
-                $this->zipCode, $this->country, $this->getRole()];
+                $this->zipCode, $this->country, $this->getRole()->value];
         }
 
         /**
