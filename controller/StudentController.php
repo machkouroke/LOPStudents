@@ -5,6 +5,10 @@
     use Exception\DataBaseException;
     use model\beans\Etudiant;
 
+    /**
+     * @author Machkour Oke
+     * Contient les fonctions propres aux étudiants
+     */
     class StudentController
     {
 

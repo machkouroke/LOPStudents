@@ -1,14 +1,20 @@
 <?php
+
     namespace controller;
+
     use controller\AuthenticationController;
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'AuthenticationController.php');
 
-    Class TeacherController {
+    /**
+     * @author Machkour Oke
+     * Contient les fonctions propres aux Proffesseur
+     */
+    class TeacherController
+    {
 
-        public static function addFaculty()
+        public static function addFaculty(): void
         {
-            $addFaculty = function() {
+            $addFaculty = function () {
                 $title = 'Ajouter un proffesseur';
                 $type = 'pr';
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\addFaculty.php');

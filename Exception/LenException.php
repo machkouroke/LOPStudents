@@ -1,9 +1,11 @@
 <?php
 
-class LenException extends Exception
-{
-    public function __construct(string $message = "")
+    namespace Exception;
+
+    class LenException extends Exception
     {
-        parent::__construct($message);
+        public function __construct(string $message = "")
+        {
+            parent::__construct($message);
+        }
     }
-}

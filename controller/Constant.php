@@ -1,10 +1,14 @@
 <?php
 
+    /**
+     * @author Machkour Oke
+     * Contient toutes les constantes essentielles au bon fonctionnement du programme
+     */
 
     use model\beans\Factory;
 
     /**
-     * Constante de répertoire
+     * Constante de répertoire d'url
      */
     const BASE_URL = "/LOPStudents/";
     const CSS_URL = BASE_URL . "/view/assets/css/";
@@ -13,6 +17,10 @@
     const VIEW_URL = BASE_URL . "/view/";
     const ASSETS_URL = BASE_URL . "/view/assets/";
     const INDEX_LOCATION = "Location:index.php";
+
+    /**
+     * Constant de répertoire local
+     */
     const FACTORY = new Factory('root', 'claudine');
     define("BASE_DIR", $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR);
     const MEDIA_DIR = BASE_DIR . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR;
