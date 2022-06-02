@@ -4,6 +4,7 @@
     namespace model\beans;
 
     use Exception\DataBaseException;
+    use JetBrains\PhpStorm\Pure;
     use PDO;
     use PDOException;
 
@@ -185,7 +186,7 @@
             return $res->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function getUserTable(): array
+        #[Pure] public function getUserTable(): array
         {
             return [$this->login, $this->name,
                 $this->surname, $this->password, $this->city,
