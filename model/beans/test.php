@@ -10,6 +10,7 @@ require_once ('Factory.php');
     require_once ('Etudiant.php');
     require_once ('Professeur.php');
     require_once ('Module.php');
+
     require_once ('Classe.php');
    $fac = new Factory('root','momo');
 //    $dataP = Professeur::getByMatricule('G342',$fac);
@@ -26,3 +27,4 @@ require_once ('Factory.php');
    $etu1->add();
 
  header("Location:classe.php");
+

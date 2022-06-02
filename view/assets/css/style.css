@@ -11916,4 +11916,42 @@ footer ul li a {
   display: block;
 }
 
+.ref-email-col, .ref-adress-col, .ref-tel-col {
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .ref-student {
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+  }
+  .ref-student .ref-student-photo {
+    border-radius: 10px;
+  }
+}
+
+#form-flip {
+  position: relative;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  display: block;
+}
+#form-flip .front {
+  position: absolute;
+}
+#form-flip .back {
+  transform: rotateY(180deg);
+}
+#form-flip.flipBack {
+  transform: rotateY(180deg);
+}
+#form-flip.flipFront {
+  transform: rotateY(0deg);
+  pointer-events: none;
+}
+#form-flip .front, #form-flip .back {
+  backface-visibility: hidden;
+}
+
 /*# sourceMappingURL=style.css.map */
