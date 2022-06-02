@@ -8,8 +8,8 @@
     use PDO;
     use PDOException;
 
-    require_once('user.php');
-    require_once('..\..\Exception\DataBaseException.php');
+
+
 
     class Etudiant extends user
     {

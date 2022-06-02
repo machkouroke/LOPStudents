@@ -27,8 +27,8 @@ CREATE TABLE IF NOT EXISTS `classe`(
 CREATE TABLE IF NOT EXISTS `etudiants`(
     `id` int unique auto_increment,
     `cne` varchar(10)  primary key ,
-    `cv` varchar(30),
-    `photo` varchar(30),
+    `cv` varchar(200),
+    `photo` varchar(200),
     `email` varchar(40),
     `birthDate` date,
     `faculty` varchar(5),
