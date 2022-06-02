@@ -29,11 +29,8 @@
                     StudentController::addStudent();
                     break;
                 case 'addTeacherPage':
-                    if ($_GET['step'] == 1) {
-                        MenuController::addTeacher();
-                    } else if ($_GET['step'] == 2) {
-                        TeacherController::addFaculty();
-                    }
+                    MenuController::addTeacher();
+
 
                     break;
                 case 'listingStudents':
