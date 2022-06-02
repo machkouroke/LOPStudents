@@ -3,6 +3,7 @@
 
     namespace model\beans;
 
+    use Exception\DataBaseException;
     use PDO;
     use PDOException;
     require_once ('user.php');
@@ -82,6 +83,10 @@
         }
 
         //fonction d'ajout d'un etudiant
+
+        /**
+         * @throws DataBaseException
+         */
         public function add()
         {
             try {
@@ -101,7 +106,9 @@
                 $statementStudent->execute($studentInfo);
                 echo 'Ajouté';
             } catch (PDOException $e) {
-                echo 'erreur' . $e->getMessage();
+                if($e->getCode() == 23000){
+                    throw new DataBaseException("Le nom d'utilisateur existe déja");
+                }
             }
 
         }
