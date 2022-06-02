@@ -26,7 +26,6 @@
 							<?php endif ?>
 							<?= $firstPart ?>
 
-
 						</form>
 
 					</div>
