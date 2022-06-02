@@ -25,8 +25,15 @@
             $this->photo = $data['photo'];
             $this->faculty = $data['faculty'];
             $this->facultyYear = $data['facultyYear'];
-            $this->cne = $data['cne'];
             $this->email = $data['email'];
+            $this->setCne();
+        }
+
+        public function setCne(){
+            $con = $this->factory->get_connexion();
+            $res = $con->query('select max(id)+1 from etudiants')->fetch(PDO::FETCH_ASSOC);
+            $id = $res['max(id)+1']!=null? (string)$res['max(id)+1']:'1';
+            $this->cne = 'ENSA22000'.$id;
         }
 
         //methode pour recuperer tous les etudiants de la base de donnees
@@ -86,7 +93,7 @@
 
                 $addUser = 'insert into users values (?,?,?,?,?,?,?,?)';
                 $addStudent = "INSERT INTO etudiants  VALUES 
-                            (?,?,?,?,?,?,?,?)";
+                            (NULL,?,?,?,?,?,?,?,?)";
 
                 $statementUser = $con->prepare($addUser);
                 $statementUser->execute($userInfo);
@@ -111,10 +118,10 @@
                 $studentInfo = $studentTable;
 
                 $updateStudent = "update etudiants set cv=?, photo=?, email=?, birthDate=?
-                    ,faculty=?, facultyYear=?, login=? where cne='".$this->cne."'";
+                    ,faculty=?, facultyYear=? where login=?";
 
                 $updateUser ="update users set name=?, surname=?, password=?, city=?,
-                    zipCode=?, country=?, role=? where login in (select login from etudiants where cne='".$this->cne."')";
+                    zipCode=?, country=?, role=? where login='$this->login'";
 
                 $statementStudent = $con->prepare($updateStudent);
                 $statementStudent->execute($studentInfo);
@@ -130,8 +137,8 @@
         public function delete()
         {
             $con = $this->factory->get_connexion();
-            $deleteUser = "delete from users where login in (select login from etudiants where cne='".$this->cne."')";
-            $deleteStudent = "delete from etudiants where cne ='".$this->cne."'";
+            $deleteUser = "delete from users where login='$this->login'";
+            $deleteStudent = "delete from etudiants where login ='$this->login'";
             $con->exec($deleteUser);
             $con->exec($deleteStudent);
 

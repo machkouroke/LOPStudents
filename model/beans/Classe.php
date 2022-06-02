@@ -1,17 +1,22 @@
 <?php
     namespace model\beans;
+    use PDO;
+
+    require_once ('Factory.php');
 
 
     class Classe
     {
         public $faculty, $facultyYear;
+        public Factory $factory;
 
         /**
          * @param $filiere
          * @param $niveau
          */
-        public function __construct($faculty, $facultyYear)
+        public function __construct($faculty, $facultyYear,$factory)
         {
+            $this->factory = $factory;
             $this->faculty = $faculty;
             $this->facultyYear = $facultyYear;
         }
@@ -33,5 +38,18 @@
             return $this->facultyYear;
         }
 
+        public static function getAll(Factory $factory): array
+        {
+            $allClass = [];
+            $con = $factory->get_connexion();
+            $sql = 'select * from classe';
+            $res = $con->query($sql);
+            foreach($res->fetchAll(PDO::FETCH_NUM) as $class){
+
+                $newligne = implode('',$class);
+                $allClass[]= $newligne;
+            }
+            return $allClass;
+        }
 
     }
