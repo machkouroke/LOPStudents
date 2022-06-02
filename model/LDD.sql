@@ -5,10 +5,10 @@ USE `LOPSTUDENTS`;
 
 # la table user
 CREATE TABLE IF NOT EXISTS `users`(
-    `login` varchar(10) primary key ,
+    `login` varchar(20) primary key ,
     `name` varchar(20),
-    `surname` varchar(20),
-    `password` varchar(8),
+    `surname` varchar(100),
+    `password` varchar(20),
     `city` varchar(20),
     `zipCode` int,
     `country` varchar(20),
@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS `classe`(
 
 # la table etudiant
 CREATE TABLE IF NOT EXISTS `etudiants`(
+    `id` int unique auto_increment,
     `cne` varchar(10)  primary key ,
     `cv` varchar(30),
     `photo` varchar(30),
@@ -35,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `etudiants`(
     `login` varchar(10),
     constraint fk1_etudiant foreign key (login) references users(login),
     constraint fk2_etudiant foreign key (faculty, facultyYear) references classe(faculty, facultyYear)
-) ;
+) auto_increment=0001;
 
 #la table professeur
 CREATE TABLE IF NOT EXISTS `professeur`(
@@ -51,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `module`(
     `facultyYear` int,
     `matricule` varchar(20),
     `name` varchar(20),
+    constraint pkmodule primary key (faculty,facultyYear,matricule),
     constraint fk1_module foreign key (faculty, facultyYear) references classe(faculty, facultyYear),
     constraint fk2_module foreign key (matricule) references professeur(matricule)
 );

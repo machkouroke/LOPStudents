@@ -1,6 +1,7 @@
 <?php
 
     namespace model\beans;
+    use Exception\DataBaseException;
     use PDO;
     use PDOException;
 
@@ -50,8 +51,11 @@
                 $statementStudent = $con->prepare($addStudent);
                 $statementStudent->execute($studentInfo);
                 echo 'Ajouté';
-            }catch (\PDOException $e)
-            {echo $e->getMessage();}
+            }catch (\PDOException $e) {
+                if($e->getCode() == 23000){
+                    throw new DataBaseException("Le nom d'utilisateur existe déja");
+                }
+            }
         }
 
         public function update()
