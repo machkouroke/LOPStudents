@@ -18,7 +18,7 @@ function fetchRequest(url, selectDiv) {
 			for (let element of result) {
 
 				selectDiv.innerHTML +=
-					`<option value="${element.iso2}">
+					`<option data-iso2="${element.iso2}"  value="${element.name}">
                         ${element.name}
                     </option>
                 `
@@ -42,7 +42,7 @@ function addCity(countryIso) {
 }
 
 addCountry()
-console.log('Pays add')
+addCity('AF');
 countries.addEventListener('change', () => {
-	addCity(countries.value);
+	addCity(countries.options[countries.selectedIndex].dataset.iso2);
 })

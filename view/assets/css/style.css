@@ -11931,4 +11931,27 @@ footer ul li a {
   }
 }
 
+#form-flip {
+  position: relative;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  display: block;
+}
+#form-flip .front {
+  position: absolute;
+}
+#form-flip .back {
+  transform: rotateY(180deg);
+}
+#form-flip.flipBack {
+  transform: rotateY(180deg);
+}
+#form-flip.flipFront {
+  transform: rotateY(0deg);
+  pointer-events: none;
+}
+#form-flip .front, #form-flip .back {
+  backface-visibility: hidden;
+}
+
 /*# sourceMappingURL=style.css.map */
