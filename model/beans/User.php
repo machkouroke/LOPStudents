@@ -4,18 +4,15 @@
 
     use PDOException;
 
-    require_once('Factory.php');
 
 
-    class user
+    class User
     {
         public string $login, $name, $surname, $password, $role, $city, $country;
         public int $zipCode;
-        protected Factory $factory;
 
-        public function __construct(Factory $factory, string ...$data)
+        public function __construct(string ...$data)
         {
-            $this->factory = $factory;
             $this->login = $data['login'];
             $this->name = $data['name'];
             $this->surname = $data['surname'];
@@ -28,9 +25,9 @@
         }
 
 
-        public static function getAll(Factory $factory): bool|array
+        public static function getAll(): bool|array
         {
-            $conn = $factory->get_connexion();
+            $conn = FACTORY->get_connexion();
             $sql = "SELECT * FROM users";
             $res = $conn->prepare($sql);
             $res->execute();
@@ -40,7 +37,7 @@
         public function changePassword(string $newPassword): void
         {
             try {
-                $con = $this->factory->get_connexion();
+                $con = FACTORY->get_connexion();
                 $sql = 'update users set password=? where login=?';
                 $statement = $con->prepare($sql);
                 $statement->execute([$newPassword, $this->login]);

@@ -3,7 +3,7 @@
     namespace controller;
 
     use Exception\DataBaseException;
-    use model\beans\Etudiant;
+    use model\beans\Student;
 
     /**
      * @author Machkour Oke
@@ -46,7 +46,7 @@
             $data['photo'] = $_FILES['photo']['name'];
             $data['faculty'] = 'IID';
             $data['facultyYear'] = '1';
-            $studentToAdd = new Etudiant(FACTORY, ...$data);
+            $studentToAdd = new Student(FACTORY, ...$data);
             try {
                 $studentToAdd->add();
 

@@ -8,7 +8,7 @@
     require_once ('Factory.php');
 
 
-    class Professeur extends user
+    class Professeur extends User
     {
         public string $matricule,  $email;
 

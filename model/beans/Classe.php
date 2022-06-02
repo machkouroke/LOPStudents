@@ -38,10 +38,10 @@
             return $this->facultyYear;
         }
 
-        public static function getAll(Factory $factory): array
+        public static function getAll(): array
         {
             $allClass = [];
-            $con = $factory->get_connexion();
+            $con = FACTORY->get_connexion();
             $sql = 'select * from classe';
             $res = $con->query($sql);
             foreach($res->fetchAll(PDO::FETCH_NUM) as $class){
