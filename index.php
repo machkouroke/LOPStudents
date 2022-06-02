@@ -42,7 +42,7 @@
                     MenuController::settings();
                     break;
                 case 'sendMessage':
-                    StudentController::sendMessage();
+                    AdminController::sendMessage();
                     break;
                 case 'transferMessage':
                     AdminController::transferMessage();
@@ -63,7 +63,7 @@
         }
     } else {
         if (isset($_GET['action']) && $_GET['action'] == 'login') {
-            AuthenticationController::login(FACTORY);
+            AuthenticationController::login();
 
         } else {
             AuthenticationController::loginPage();

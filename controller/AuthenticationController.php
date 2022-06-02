@@ -41,12 +41,12 @@
             require_once(BASE_DIR . 'view\login.php');
         }
 
-        public static function login(Factory $factory): void
+        public static function login(): void
         {
 
             try {
                 echo 'authenticate';
-                $_SESSION['User'] = Authentification::authenticate($_POST['username'], $_POST['password'], $factory);
+                $_SESSION['User'] = Authentification::authenticate($_POST['username'], $_POST['password']);
                 header(INDEX_LOCATION);
             } catch (DataBaseException|UserException $e) {
                 $error = $e->getMessage();

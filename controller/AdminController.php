@@ -8,6 +8,23 @@
      */
     class AdminController
     {
+        /**
+         * Envoie un message
+         */
+        public static function sendMessage(): void
+        {
+            $sendMessage = function () {
+                $title = 'Envoyer un message';
+                $selectedUser = [];
+                foreach ($_POST['user'] as $user) {
+                    $selectedUser[] = $user;
+                }
+                $selectedUser = implode(';', $selectedUser);
+                require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\contacts.php');
+            };
+            AuthenticationController::loginRequired($sendMessage)();
+        }
+
         public static function transferMessage(): void
         {
 
