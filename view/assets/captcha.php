@@ -1,6 +1,6 @@
 <?php
 
-    session_start();
+
     $permitted_chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789';
 
     /**

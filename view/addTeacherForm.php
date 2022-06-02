@@ -2,7 +2,7 @@
 	$title = "Liste étudiant";
 	$instructions = "Veuillez saisir les informations du professeur";
 	$picture = false;
-	$image = 'menu/addTeacher.png'
+	$image = 'menu\addTeacher.png'
 ?>
 <?php ob_start(); ?>
 <!--Première Partie-->

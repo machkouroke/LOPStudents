@@ -12,7 +12,7 @@
 
     require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller\Constant.php');
     use controller\AdminController;
-    use controller\Role;
+
     use controller\AuthenticationController;
     use controller\MenuController;
     use controller\StudentController;
@@ -20,7 +20,6 @@
     use model\beans\Factory;
 
 
-    $factory = new Factory('root', 'claudine');
     if (isset($_SESSION['User'])) {
         if (isset($_GET['action'])) {
             switch ($_GET['action']) {
@@ -32,8 +31,6 @@
                     break;
                 case 'addTeacherPage':
                     MenuController::addTeacher();
-
-
                     break;
                 case 'listingStudents':
                     MenuController::listingStudents();
@@ -66,7 +63,7 @@
         }
     } else {
         if (isset($_GET['action']) && $_GET['action'] == 'login') {
-            AuthenticationController::login($factory);
+            AuthenticationController::login(FACTORY);
 
         } else {
             AuthenticationController::loginPage();
