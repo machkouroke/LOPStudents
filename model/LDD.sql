@@ -5,7 +5,7 @@ USE `LOPSTUDENTS`;
 
 # la table user
 CREATE TABLE IF NOT EXISTS `users`(
-    `login` varchar(20) primary key ,
+    `login` varchar(30) primary key ,
     `name` varchar(20),
     `surname` varchar(100),
     `password` varchar(20),
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `etudiants`(
     `birthDate` date,
     `faculty` varchar(5),
     `facultyYear` int,
-    `login` varchar(10),
+    `login` varchar(30),
     constraint fk1_etudiant foreign key (login) references users(login),
     constraint fk2_etudiant foreign key (faculty, facultyYear) references classe(faculty, facultyYear)
 ) auto_increment=0001;

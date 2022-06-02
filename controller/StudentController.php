@@ -3,7 +3,9 @@
     namespace controller;
 
     use Exception\DataBaseException;
+    use Exception\UserException;
     use model\beans\Student;
+    use model\FormValidator;
 
     /**
      * @author Machkour Oke
@@ -12,21 +14,10 @@
     class StudentController
     {
 
-        public static function sendMessage()
-        {
-            $sendMessage = function () {
-                $title = 'Envoyer un message';
-                $selectedUser = [];
-                foreach ($_POST['user'] as $user) {
-                    $selectedUser[] = $user;
-                }
-                $selectedUser = implode(';', $selectedUser);
-                require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\contacts.php');
-            };
-            AuthenticationController::loginRequired($sendMessage)();
-        }
 
-        public static function userPage()
+
+
+        public static function userPage(): void
         {
             $title = $_SESSION['User']->getSurname();
             $userPage = function () {
@@ -35,23 +26,13 @@
             AuthenticationController::loginRequired($userPage)();
         }
 
-        public static function addStudent()
+        public static function addStudent(): void
         {
-            print('<pre>');
-            print_r($_POST);
-            print("</pre>");
-            $data = $_POST;
-            $data['cne'] = '14566';
-            $data['cv'] = $_FILES['cv']['name'];
-            $data['photo'] = $_FILES['photo']['name'];
-            $data['faculty'] = 'IID';
-            $data['facultyYear'] = '1';
-            $studentToAdd = new Student(FACTORY, ...$data);
             try {
+                $studentToAdd = new Student(FACTORY, ...FormValidator::validateStudentAdd());
                 $studentToAdd->add();
-
                 header(INDEX_LOCATION . '?action=addStudentPage&sucess=' . 'Utilisateur ajoute');
-            } catch (DataBaseException $e) {
+            } catch (DataBaseException|UserException $e) {
                 header(INDEX_LOCATION . '?action=addStudentPage&error=' . $e->getMessage());
             }
 
