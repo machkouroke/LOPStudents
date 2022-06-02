@@ -12,8 +12,8 @@
             throw new SizeException('La taille des fichiers ne doit pas depasser ne doit pas depasser 2 MO');
         } else {
             $login = $_POST['login'];
-            $_POST['cv'] = CV_DIR . DIRECTORY_SEPARATOR . $login;
-            $_POST['photo'] = PIC_DIR . DIRECTORY_SEPARATOR . $login;
+            $_POST['cv'] = CV_DIR . $login;
+            $_POST['photo'] = PIC_DIR . $login;
             move_uploaded_file($_FILES['photo']['tmp_name'], $_POST['cv']);
             move_uploaded_file($_FILES['cv']['tmp_name'], $_POST['photo']);
         }
