@@ -5,6 +5,8 @@
      * Contient toutes les constantes essentielles au bon fonctionnement du programme
      */
 
+
+    use controller\Role;
     use model\beans\Factory;
 
     /**
@@ -30,12 +32,8 @@
     /**
      * Constante de role
      */
-    enum Role: String
-    {
-        case Admin = 'admin';
-        case Teacher = 'teacher';
-        case Student = 'student';
-    }
+
+
     if (isset($_SESSION['User'])) {
         define("ADMIN_ONLY", $_SESSION['User']->getRole() === Role::Admin);
         define("STUDENT_ONLY", $_SESSION['User']->getRole() === Role::Student);

@@ -8,7 +8,7 @@
     use JetBrains\PhpStorm\Pure;
     use PDO;
     use PDOException;
-    use Role;
+    use controller\Role;
 
 
     /**
@@ -25,7 +25,7 @@
         {
             $userTab = array('login' => $data['login'], 'name' => $data['name'], 'surname' => $data['surname'],
                 'password' => $data['password'], 'city' => $data['city'], 'zipCode' => $data['zipCode'],
-                'country' => $data['country'], 'role' => Role::Student);
+                'country' => $data['country'], 'role' => 'student');
 
             parent::__construct(...$userTab);
 

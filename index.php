@@ -7,10 +7,12 @@
         $path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . $path . '.php';
         require_once($path);
     });
-    session_start();
-    require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller\Constant.php');
 
+    session_start();
+
+    require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller\Constant.php');
     use controller\AdminController;
+    use controller\Role;
     use controller\AuthenticationController;
     use controller\MenuController;
     use controller\StudentController;
