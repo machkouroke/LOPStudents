@@ -1,16 +1,24 @@
 <?php
 
     namespace model\beans;
+
     use PDO;
     use PDOException;
 
+    /**
+     * @author Morel Kouhossounon
+     * Classe responsable de la connexion à la base de données. Elle assure qu'une seule connexion à la base soit
+     *     active en même temps
+     */
     class Factory
     {
 
-        public $dns, $username, $password;
+        public string $password;
+        public string $username;
+        public string $dns;
         public $connexion;
 
-        public function __construct($username, $password)
+        public function __construct(string $username, string $password)
         {
             $this->dns = 'mysql:host=localhost;dbname=lopstudents';
             $this->username = $username;
@@ -23,6 +31,10 @@
             }
         }
 
+        /**
+         * Renvoie l'objet de la connexion
+         * @return PDO L'objet de la connexion
+         */
         public function get_connexion(): PDO
         {
             return $this->connexion;

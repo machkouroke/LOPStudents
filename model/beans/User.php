@@ -2,20 +2,23 @@
 
     namespace model\beans;
 
+    use JetBrains\PhpStorm\Pure;
     use PDOException;
+    use Role;
 
-    require_once('Factory.php');
 
-
-    class user
+    /**
+     * @author Morel Kouhossounon
+     * Modèle utilisateur de base
+     */
+    class User
     {
-        public string $login, $name, $surname, $password, $role, $city, $country;
+        public string $login, $name, $surname, $password,  $city, $country;
         public int $zipCode;
-        protected Factory $factory;
+        public Role $role;
 
-        public function __construct(Factory $factory, string ...$data)
+        public function __construct(...$data)
         {
-            $this->factory = $factory;
             $this->login = $data['login'];
             $this->name = $data['name'];
             $this->surname = $data['surname'];
@@ -28,19 +31,38 @@
         }
 
 
-        public static function getAll(Factory $factory): bool|array
+        /**
+         * Renvoie toutes les informations de l'étudiant actuel (En tant qu'Utilisateur)
+         * @return array Informations de l'étudiant actuel
+         */
+        #[Pure] public function getUserTable(): array
         {
-            $conn = $factory->get_connexion();
+            return [$this->login, $this->name,
+                $this->surname, $this->password, $this->city,
+                $this->zipCode, $this->country, $this->getRole()->value];
+        }
+
+        /**
+         * Renvoie la liste de tous les utilisateurs
+         * @return bool|array Liste de tous les utilisateurs
+         */
+        public static function getAll(): bool|array
+        {
+            $conn = FACTORY->get_connexion();
             $sql = "SELECT * FROM users";
             $res = $conn->prepare($sql);
             $res->execute();
             return $res->fetchAll();
         }
 
+        /**
+         * Change le mot de passe de l'utilisateur actuelle
+         * @param string $newPassword Nouveau mot de passe
+         */
         public function changePassword(string $newPassword): void
         {
             try {
-                $con = $this->factory->get_connexion();
+                $con = FACTORY->get_connexion();
                 $sql = 'update users set password=? where login=?';
                 $statement = $con->prepare($sql);
                 $statement->execute([$newPassword, $this->login]);
@@ -50,7 +72,8 @@
         }
 
         /**
-         * @return String
+         * Renvoie le Login de l'utilisateur
+         * @return String Login de l'utilisateur
          */
         public function getLogin(): string
         {
@@ -58,7 +81,8 @@
         }
 
         /**
-         * @return String
+         * Renvoie le mot de passe de l'utilisateur
+         * @return String Mot de passe de l'utilisateur
          */
         public function getPassword(): string
         {
@@ -66,7 +90,8 @@
         }
 
         /**
-         * @return String
+         * Renvoie la ville de l'utilisateur
+         * @return String Ville de l'utilisateur
          */
         public function getCity(): string
         {
@@ -74,7 +99,8 @@
         }
 
         /**
-         * @return String
+         * Renvoie le pays de l'utilisateur
+         * @return String Pays de l'utilisateur
          */
         public function getCountry(): string
         {
@@ -82,7 +108,8 @@
         }
 
         /**
-         * @return int
+         * Renvoie le code Postale de l'utilisateur
+         * @return int Code Postale de l'utilisateur
          */
         public function getZipCode(): int
         {
@@ -90,7 +117,8 @@
         }
 
         /**
-         * @return string
+         * Renvoie le nom de l'utilisateur
+         * @return String Nom de l'utilisateur
          */
         public function getName(): string
         {
@@ -98,7 +126,8 @@
         }
 
         /**
-         * @return string
+         * Renvoie le prénom de l'utilisateur
+         * @return String Prénom de l'utilisateur
          */
         public function getSurname(): string
         {
@@ -106,9 +135,10 @@
         }
 
         /**
-         * @return string
+         * Renvoie le rôle de l'utilisateur
+         * @return Role Role de l'utilisateur
          */
-        public function getRole(): string
+        public function getRole(): Role
         {
             return $this->role;
         }

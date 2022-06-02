@@ -2,12 +2,16 @@
 
     namespace controller;
 
+    /**
+     * @author Machkour Oke
+     * Contient les fonctions propres aux administrateurs, mais aussi quelque fonction paramétrique du programme
+     */
     class AdminController
     {
-        public static function transferMessage()
+        public static function transferMessage(): void
         {
 
-            $sendMessage = function ()  {
+            $sendMessage = function () {
                 $isAllFieldsPresent = isset($_POST["destinataire"]) && isset($_POST["object"]) && isset($_POST["message"]);
                 if ($isAllFieldsPresent) {
 

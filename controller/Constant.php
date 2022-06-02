@@ -1,10 +1,14 @@
 <?php
 
+    /**
+     * @author Machkour Oke
+     * Contient toutes les constantes essentielles au bon fonctionnement du programme
+     */
 
     use model\beans\Factory;
 
     /**
-     * Constante de répertoire
+     * Constante de répertoire d'url
      */
     const BASE_URL = "/LOPStudents/";
     const CSS_URL = BASE_URL . "/view/assets/css/";
@@ -13,6 +17,10 @@
     const VIEW_URL = BASE_URL . "/view/";
     const ASSETS_URL = BASE_URL . "/view/assets/";
     const INDEX_LOCATION = "Location:index.php";
+
+    /**
+     * Constant de répertoire local
+     */
     const FACTORY = new Factory('root', 'claudine');
     define("BASE_DIR", $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR);
     const MEDIA_DIR = BASE_DIR . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR;
@@ -22,12 +30,18 @@
     /**
      * Constante de role
      */
+    enum Role: String
+    {
+        case Admin = 'admin';
+        case Teacher = 'teacher';
+        case Student = 'student';
+    }
     if (isset($_SESSION['User'])) {
-        define("ADMIN_ONLY", $_SESSION['User']->getRole() === 'admin');
-        define("STUDENT_ONLY", $_SESSION['User']->getRole() === 'student');
-        define("TEACHER_ONLY", $_SESSION['User']->getRole() === 'teacher');
-        define("ADMIN_STUDENT", $_SESSION['User']->getRole() == 'admin' || $_SESSION['User']->getRole() == 'student');
-        define("ADMIN_TEACHER", $_SESSION['User']->getRole() == 'admin' || $_SESSION['User']->getRole() == 'teacher');
+        define("ADMIN_ONLY", $_SESSION['User']->getRole() === Role::Admin);
+        define("STUDENT_ONLY", $_SESSION['User']->getRole() === Role::Student);
+        define("TEACHER_ONLY", $_SESSION['User']->getRole() === Role::Teacher);
+        define("ADMIN_STUDENT", $_SESSION['User']->getRole() == Role::Admin || $_SESSION['User']->getRole() == Role::Student);
+        define("ADMIN_TEACHER", $_SESSION['User']->getRole() == Role::Admin || $_SESSION['User']->getRole() == Role::Teacher);
         if (ADMIN_ONLY) {
             define("LIST_OF_STUDENTS", 'Liste des étudiants');
             define("LIST_OF_TEACHERS", 'Liste des proffesseur');

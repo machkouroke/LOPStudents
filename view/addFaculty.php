@@ -1,6 +1,6 @@
 <?php
 	$title = "Liste étudiant";
-	$instructions = "Fillières et modules enseigné"
+	$instructions = "Filières et modules enseigné"
 ?>
 <?php ob_start(); ?>
 

@@ -8,6 +8,10 @@
     use model\Authentification;
     use model\beans\Factory;
 
+    /**
+     * @author Machkour Oke
+     * Contient les fonctionnalités requises à l'authentification de l'utilisateur
+     */
     class AuthenticationController
     {
         /**
@@ -23,7 +27,7 @@
             }
         }
 
-        public static function roleRequired(Closure $action, bool $role)
+        public static function roleRequired(Closure $action, bool $role): void
         {
             if ($role) {
                 $action();
@@ -32,12 +36,12 @@
             }
         }
 
-        public static function loginPage()
+        public static function loginPage(): void
         {
             require_once(BASE_DIR . 'view\login.php');
         }
 
-        public static function login(Factory $factory)
+        public static function login(Factory $factory): void
         {
 
             try {
@@ -53,7 +57,7 @@
 
         }
 
-        public static function logout()
+        public static function logout(): void
         {
             unset($_SESSION['User']);
             session_destroy();

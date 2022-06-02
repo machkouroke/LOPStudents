@@ -3,9 +3,13 @@
     namespace controller;
 
 
+    /**
+     * @author Machkour Oke
+     * Contient les fonctions faisant appel aux éléments du menu
+     */
     class MenuController
     {
-        public static function menu()
+        public static function menu(): void
         {
             $menu = function () {
 
@@ -14,7 +18,7 @@
             AuthenticationController::loginRequired($menu)();
         }
 
-        public static function addStudent()
+        public static function addStudent(): void
         {
             $addStudent = function () {
                 $title = 'Ajouter un étudiants';
@@ -25,7 +29,7 @@
                 ADMIN_ONLY);
         }
 
-        public static function addTeacher()
+        public static function addTeacher(): void
         {
             $addTeacher = function () {
                 $title = 'Ajouter un proffesseur';
@@ -36,7 +40,7 @@
                 ADMIN_ONLY);
         }
 
-        public static function listingStudents()
+        public static function listingStudents(): void
         {
             $listingStudents = function () {
                 $title = LIST_OF_STUDENTS;
@@ -45,7 +49,7 @@
             AuthenticationController::loginRequired($listingStudents)();
         }
 
-        public static function listingTeachers()
+        public static function listingTeachers(): void
         {
             $listingTeachers = function () {
                 $title = LIST_OF_TEACHERS;
@@ -54,7 +58,7 @@
             AuthenticationController::loginRequired($listingTeachers)();
         }
 
-        public static function settings()
+        public static function settings(): void
         {
             $settings = function () {
 

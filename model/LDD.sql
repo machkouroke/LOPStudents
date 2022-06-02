@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `users`(
     `city` varchar(20),
     `zipCode` int,
     `country` varchar(20),
-    `role` varchar(15)
+    `role` enum('admin', 'teacher', 'student')
 ) ;
 
 #la table classe
