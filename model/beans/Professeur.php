@@ -6,7 +6,7 @@
     use Exception\UserException;
     use PDO;
     use PDOException;
-    use Role;
+    use controller\Role;
 
 
     /**
@@ -21,7 +21,7 @@
         {
             $userTab = array('login' => $data['login'], 'name' => $data['name'], 'surname' => $data['surname'],
                 'password' => $data['password'], 'city' => $data['city'], 'zipCode' => $data['zipCode'],
-                'country' => $data['country'], 'role' => Role::Teacher);
+                'country' => $data['country'], 'role' => 'teacher');
             parent::__construct($factory, ...$userTab);
             $this->matricule = $data['matricule'];
             $this->email = $data['email'];

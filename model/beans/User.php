@@ -2,9 +2,10 @@
 
     namespace model\beans;
 
+    use controller\Role;
     use JetBrains\PhpStorm\Pure;
     use PDOException;
-    use Role;
+
 
 
     /**
@@ -26,7 +27,7 @@
             $this->city = $data['city'];
             $this->zipCode = (int)$data['zipCode'];
             $this->country = $data['country'];
-            $this->role = $data['role'];
+            $this->role = Role::FROM($data['role']);
 
         }
 
