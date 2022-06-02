@@ -12,7 +12,7 @@
 	<form id="MessageSender" method="post" action="<?= BASE_URL ?>index.php?action=sendMessage" class="d-none">
 	</form>
 </div>
-<div id="moreOption" data-aos="fade-down" class="row rounded p-3">
+<div id="moreOption" data-aos="fade-down" class="row shadow rounded p-3">
 	<div class="reflow-product-list ref-cards">
 		<div class="m-3 ref-products align-items-center justify-content-around">
 			<div class="ref-product" href="add.php?title=de l'étudiant">

@@ -1,6 +1,8 @@
 <?php
 
 
+    use model\beans\Factory;
+
     const BASE_URL = "/LOPStudents/";
     const CSS_URL = BASE_URL . "/view/assets/css/";
     const IMG_URL = BASE_URL . "/view/assets/img/";
@@ -8,6 +10,7 @@
     const VIEW_URL = BASE_URL . "/view/";
     const ASSETS_URL = BASE_URL . "/view/assets/";
     const INDEX_LOCATION = "Location:index.php";
+    const FACTORY = new Factory('root', 'claudine');
 
     define("BASE_DIR", $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR);
     if (isset($_SESSION['User'])) {

@@ -2,6 +2,9 @@
 
     namespace controller;
 
+    use Exception\DataBaseException;
+    use model\beans\Etudiant;
+
     class StudentController
     {
 
@@ -18,12 +21,36 @@
             };
             AuthenticationController::loginRequired($sendMessage)();
         }
-        public static function userPage() {
+
+        public static function userPage()
+        {
             $title = $_SESSION['User']->getSurname();
-            $userPage = function() {
+            $userPage = function () {
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\userPage.php');
             };
             AuthenticationController::loginRequired($userPage)();
+        }
+
+        public static function addStudent()
+        {
+            print('<pre>');
+            print_r($_POST);
+            print("</pre>");
+            $data = $_POST;
+            $data['cne'] = '14566';
+            $data['cv'] = $_FILES['cv']['name'];
+            $data['photo'] = $_FILES['photo']['name'];
+            $data['faculty'] = 'IID';
+            $data['facultyYear'] = '1';
+            $studentToAdd = new Etudiant(FACTORY, ...$data);
+            try {
+                $studentToAdd->add();
+
+                header(INDEX_LOCATION . '?action=addStudentPage&sucess=' . 'Utilisateur ajoute');
+            } catch (DataBaseException $e) {
+                header(INDEX_LOCATION . '?action=addStudentPage&error=' . $e->getMessage());
+            }
+
         }
     }
 

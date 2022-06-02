@@ -1,6 +1,7 @@
 <?php
 
     namespace model\beans;
+
     use PDOException;
 
     require_once('Factory.php');
@@ -38,12 +39,14 @@
 
         public function changePassword(string $newPassword): void
         {
-            try{
+            try {
                 $con = $this->factory->get_connexion();
                 $sql = 'update users set password=? where login=?';
                 $statement = $con->prepare($sql);
-                $statement->execute([$newPassword,$this->login]);
-            }catch (PDOException $e){echo $e->getMessage();}
+                $statement->execute([$newPassword, $this->login]);
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
         }
 
         /**

@@ -14,7 +14,7 @@
     use controller\AuthenticationController;
     use controller\MenuController;
     use controller\StudentController;
-    use controller\TeacherController\TeacherController;
+    use controller\TeacherController;
     use model\beans\Factory;
 
 
@@ -22,10 +22,13 @@
     if (isset($_SESSION['User'])) {
         if (isset($_GET['action'])) {
             switch ($_GET['action']) {
-                case 'addStudent':
+                case 'addStudentPage':
                     MenuController::addStudent();
                     break;
-                case 'addTeacher':
+                case 'addStudent':
+                    StudentController::addStudent();
+                    break;
+                case 'addTeacherPage':
                     if ($_GET['step'] == 1) {
                         MenuController::addTeacher();
                     } else if ($_GET['step'] == 2) {

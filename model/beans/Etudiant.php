@@ -3,20 +3,27 @@
 
     namespace model\beans;
 
+    use Exception\DataBaseException;
     use PDO;
     use PDOException;
-    require_once ('user.php');
 
+    require_once('user.php');
+    require_once('..\..\Exception\DataBaseException.php');
 
     class Etudiant extends user
     {
-        public string $birthDate, $cv, $photo,$email,$cne;
-        public string $faculty,$facultyYear;
+        public string $birthDate, $cv, $photo, $email, $cne;
+        public string $faculty, $facultyYear;
 
 
         public function __construct($factory, ...$data)
         {
-            $userTab = array('login'=>$data['login'],'name'=>$data['name'],'surname'=>$data['surname'],'password'=>$data['password'],'city'=>$data['city'],'zipCode'=>$data['zipCode'],'country'=>$data['country'],'role'=>'student');
+            print('<pre>');
+            print_r($data);
+            print('</pre>');
+            $userTab = array('login' => $data['login'], 'name' => $data['name'], 'surname' => $data['surname'],
+                'password' => $data['password'], 'city' => $data['city'], 'zipCode' => $data['zipCode'],
+                'country' => $data['country'], 'role' => 'student');
 
             parent::__construct($factory, ...$userTab);
 
@@ -75,6 +82,10 @@
         }
 
         //fonction d'ajout d'un etudiant
+
+        /**
+         * @throws DataBaseException Erreur de connexion à la base de données
+         */
         public function add()
         {
             try {
@@ -94,14 +105,15 @@
                 $statementStudent->execute($studentInfo);
                 echo 'Ajouté';
             } catch (PDOException $e) {
-                echo 'erreur' . $e->getMessage();
+                throw new DataBaseException('erreur' . $e->getMessage());
+
             }
 
         }
 
         public function update()
         {
-            try{
+            try {
                 $con = $this->factory->get_connexion();
                 $userTable = $this->getUserTable();
                 array_shift($userTable);
@@ -111,17 +123,17 @@
                 $studentInfo = $studentTable;
 
                 $updateStudent = "update etudiants set cv=?, photo=?, email=?, birthDate=?
-                    ,faculty=?, facultyYear=?, login=? where cne='".$this->cne."'";
+                    ,faculty=?, facultyYear=?, login=? where cne='" . $this->cne . "'";
 
-                $updateUser ="update users set name=?, surname=?, password=?, city=?,
-                    zipCode=?, country=?, role=? where login in (select login from etudiants where cne='".$this->cne."')";
+                $updateUser = "update users set name=?, surname=?, password=?, city=?,
+                    zipCode=?, country=?, role=? where login in (select login from etudiants where cne='" . $this->cne . "')";
 
                 $statementStudent = $con->prepare($updateStudent);
                 $statementStudent->execute($studentInfo);
                 $statementUser = $con->prepare($updateUser);
                 $statementUser->execute($userInfo);
                 echo "Mofifiee";
-            }catch (PDOException $e){
+            } catch (PDOException $e) {
                 echo $e->getMessage();
             }
 
@@ -130,8 +142,8 @@
         public function delete()
         {
             $con = $this->factory->get_connexion();
-            $deleteUser = "delete from users where login in (select login from etudiants where cne='".$this->cne."')";
-            $deleteStudent = "delete from etudiants where cne ='".$this->cne."'";
+            $deleteUser = "delete from users where login in (select login from etudiants where cne='" . $this->cne . "')";
+            $deleteStudent = "delete from etudiants where cne ='" . $this->cne . "'";
             $con->exec($deleteUser);
             $con->exec($deleteStudent);
 
@@ -141,7 +153,7 @@
         {
             $con = $this->factory->get_connexion();
             $sql = "select name,surname,email from users NATURAL join etudiants 
-                    where faculty='".$this->faculty."' and facultyYear='".$this->facultyYear."' and cne<>'".$this->cne."'";
+                    where faculty='" . $this->faculty . "' and facultyYear='" . $this->facultyYear . "' and cne<>'" . $this->cne . "'";
             $res = $con->query($sql);
             return $res->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -164,7 +176,7 @@
 
         public function getStudentTable(): array
         {
-            return [$this->cne,$this->cv, $this->photo, $this->email,$this->birthDate,
+            return [$this->cne, $this->cv, $this->photo, $this->email, $this->birthDate,
                 $this->faculty, $this->facultyYear, $this->login];
         }
     }

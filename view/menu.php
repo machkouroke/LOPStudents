@@ -14,13 +14,13 @@
 					<div class="reflow-product-list ref-cards">
 						<div class="ref-products align-items-center">
 							<?php if (ADMIN_ONLY) : ?>
-								<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addStudent">
+								<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addStudentPage">
 									<img class="ref-image" src="<?= IMG_URL ?>menu/addStudent.png" alt=""/>
 									<div class="ref-product-data">
 										<h5 class="ref-name text-center w-100">Ajouter un étudiants</h5>
 									</div>
 								</a>
-								<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addTeacher&step=1">
+								<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addTeacherPage">
 									<img class="ref-image" src="<?= IMG_URL ?>menu/addTeacher.png"
 									     alt=""/>
 									<div class="ref-product-data">
