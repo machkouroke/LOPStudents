@@ -24,7 +24,7 @@
 							</div>
 						<?php endif ?>
 						<div class="mb-3"><label class="form-label" for="destinataire">Destinataires</label><input
-									class="form-control" type="email"
+									class="form-control" type="text"
 									id="destinataire" name="destinataire" value="<?= $selectedUser ?>">
 						</div>
 						<div class="mb-3"><label class="form-label" for="object">Object</label>

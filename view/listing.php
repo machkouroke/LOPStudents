@@ -6,12 +6,13 @@
 			$switchIcon = IMG_URL . "grid.png";
 			require(BASE_DIR . 'view\templates\listingHeader.php')
 		?>
+		<?php if (isset($_GET['sucess'])): ?>
+			<div class="my-2 alert alert-success" role="alert">
+				<?= $_GET['sucess'] ?>
+			</div>
+		<?php endif ?>
 		<div id="listPage">
-			<?php if (isset($_GET['sucess'])): ?>
-				<div class="alert alert-success" role="alert">
-					<?= $_GET['sucess'] ?>
-				</div>
-			<?php endif ?>
+
 			<div class="list">
 				<div class="row mx-auto" style="/*max-width: 700px;*/">
 					<div class="col">
@@ -29,80 +30,50 @@
 										<div class="ref-action-col text-end">Actions</div>
 									</div>
 									<div class="checkboxes ref-cart-table">
+										<?php foreach ($data as $row): ?>
 
-										<input form="MessageSender" name="user[]" value="imane" type="checkbox"
-										       id="imane"/>
-										<label for="imane" class="ref-student box-checkbox">
+											<input form="MessageSender" name="user[]" value="<?= $row['email'] ?>" type="checkbox"
+											       id="<?= $row['login'] ?>"/>
+											<label for="<?= $row['login'] ?>" class="ref-student box-checkbox">
 
-											<div class="ref-student-col">
-												<div class="ref-student-wrapper flex-xxl-row flex-column">
-													<img class="ref-student-photo" src="<?= IMG_URL ?>imane.jpg"
-													     alt="Imane"/>
-													<div class="ref-student-data">
-														<div class="ref-student-info">
-															<div class="ref-student-name">Imane Sidiki</div>
-															<div class="ref-student-category">IID1</div>
-															<div class="ref-student-personalization-holder"></div>
+												<div class="ref-student-col">
+													<div class="ref-student-wrapper flex-xxl-row flex-column">
+														<img class="ref-student-photo"
+														     src="<?= PIC_URL . $row['login'] . '.jpg' ?>"
+														     alt="Imane"/>
+														<div class="ref-student-data">
+															<div class="ref-student-info">
+																<div class="ref-student-name">
+																	<?= $row['surname'] . ' ' . $row['name'] ?></div>
+																<div class="ref-student-category">
+																	<?= $row['faculty'] . ' ' . $row['facultyYear'] ?>
+																</div>
+																<div class="ref-student-personalization-holder"></div>
+															</div>
 														</div>
 													</div>
+
 												</div>
-
-											</div>
-											<div class="ref-username-col">
-												sidikiimane
-											</div>
-											<div class="ref-email-col">
-												imanesidiki@gmail.com
-											</div>
-											<div class="ref-adress-col">
-												<b>Firdaws, Khouribga 25000</b>
-											</div>
-											<div class="ref-tel-col">+2126388646641</div>
-											<div class="d-flex flex-column  ref-cv-col"><a href="">
-													Télécharger le CV</a>
-											</div>
-											<div class="d-flex flex-column text-center ref-action-col">
-												<p><a href="" class="">Modifier</a></p>
-												<p><a href="" class="">Supprimer</a></p>
-											</div>
-										</label>
-										<input form="MessageSender" name="user[]" value="imane2" type="checkbox"
-										       id="imane2"/>
-										<label for="imane2" class="ref-student box-checkbox">
-
-											<div class="ref-student-col">
-												<div class="ref-student-wrapper flex-xxl-row flex-column"><img class="ref-student-photo"
-												                                      src="<?= IMG_URL ?>imane.jpg"
-												                                      alt="Bailee Jast"/>
-													<div class="ref-student-data">
-														<div class="ref-student-info">
-															<div class="ref-student-name">Imane Sidiki</div>
-															<div class="ref-student-category">IID1</div>
-															<div class="ref-student-personalization-holder"></div>
-														</div>
-														<div class="ref-student-price"></div>
-													</div>
+												<div class="ref-username-col">
+													<?= $row['login'] ?>
 												</div>
+												<div class="ref-email-col">
+													<?= $row['email'] ?>
+												</div>
+												<div class="ref-adress-col">
+													<b><?= $row['zipCode'] . ', ' . $row['city'] . ' ' . $row['country'] ?></b>
+												</div>
+												<div class="ref-tel-col">+2126388646641</div>
+												<div class="d-flex flex-column  ref-cv-col"><a href="">
+														Télécharger le CV</a>
+												</div>
+												<div class="d-flex flex-column text-center ref-action-col">
+													<p><a href="" class="">Modifier</a></p>
+													<p><a href="" class="">Supprimer</a></p>
+												</div>
+											</label>
+										<?php endforeach ?>
 
-											</div>
-											<div class="ref-username-col">
-												sidikiimane
-											</div>
-											<div class="ref-email-col ">
-												imanesidiki@gmail.com
-											</div>
-											<div class="ref-adress-col">
-												<b>Firdaws, Khouribga 25000</b>
-											</div>
-											<div class="ref-tel-col">+2126388646641</div>
-											<div class="d-flex flex-column  ref-cv-col"><a href="">Télécharger le CV</a>
-											</div>
-											<div class="d-flex flex-column text-center ref-action-col">
-												<p><a href="" class="">Modifier</a></p>
-												<p><a href="" class="">Supprimer</a></p>
-
-											</div>
-										</label>
 									</div>
 								</div>
 
@@ -114,50 +85,16 @@
 			</div>
 			<div class="grid">
 				<div class="checkboxes py-2 row row-cols-2 row-cols-md-3 mx-auto" style="max-width: 700px;">
+					<?php foreach ($data as $row): ?>
+						<label for="<?= $row['login'] ?>" class="col mb-4 box-checkbox">
+							<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
+							                              src="<?= PIC_URL . $row['login'] . '.jpg' ?>">
+								<h5 class="fw-bold mb-0"><strong><?=$row['surname'] . ' ' . $row['name']?></strong></h5>
+								<p class="text-muted mb-2"><?= $row['faculty'] . ' ' . $row['facultyYear'] ?></p>
+							</div>
+						</label>
+					<?php endforeach ?>
 
-					<label for="imane" class="col mb-4 box-checkbox">
-						<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
-						                              src="<?= IMG_URL ?>team/avatar2.png">
-							<h5 class="fw-bold mb-0"><strong>Aganon Déodat</strong></h5>
-							<p class="text-muted mb-2">IID1</p>
-						</div>
-					</label>
-					<label for="imane2" class="col mb-4 box-checkbox">
-						<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
-						                              src="<?= IMG_URL ?>team/avatar2.png">
-							<h5 class="fw-bold mb-0"><strong>Oke Machkour</strong></h5>
-							<p class="text-muted mb-2">IID1</p>
-						</div>
-					</label>
-					<div class="col mb-4">
-						<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
-						                              src="<?= IMG_URL ?>team/avatar2.png">
-							<h5 class="fw-bold mb-0"><strong>Candy Aho</strong></h5>
-							<p class="text-muted mb-2">IID1</p>
-						</div>
-					</div>
-					<div class="col mb-4">
-						<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover" width="150"
-						                              height="150"
-						                              src="<?= IMG_URL ?>team/avatar2.png">
-							<h5 class="fw-bold mb-0"><strong>Anis Ben Bacar</strong></h5>
-							<p class="text-muted mb-2">GPEE1</p>
-						</div>
-					</div>
-					<div class="col mb-4">
-						<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
-						                              src="<?= IMG_URL ?>team/avatar2.png">
-							<h5 class="fw-bold mb-0"><strong>Sangho Aminata</strong></h5>
-							<p class="text-muted mb-2">IID1</p>
-						</div>
-					</div>
-					<div class="col mb-4">
-						<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
-						                              src="<?= IMG_URL ?>team/avatar2.png">
-							<h5 class="fw-bold mb-0"><strong>Mikael Pezongo</strong></h5>
-							<p class="text-muted mb-2">IRIC1</p>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
