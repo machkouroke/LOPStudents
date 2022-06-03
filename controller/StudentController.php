@@ -29,7 +29,8 @@
 
         public static function delete(): void
         {
-
+            Student::delete($_GET['login']);
+            header(INDEX_LOCATION . '?action=listingStudents&page=1&sucess=' . 'Utilisateur supprime');
         }
 
         public static function getByCity(): void

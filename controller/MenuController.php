@@ -43,7 +43,7 @@
                 ADMIN_ONLY);
         }
 
-        public static function listingStudents(Filter $filter = FILTER::NONE, String $filterInput=''): void
+        public static function listingStudents(Filter $filter = FILTER::NONE, string $filterInput = ''): void
         {
 
             $listingStudents = function () use ($filterInput, $filter) {
@@ -53,12 +53,17 @@
                 $numberOfPage = ceil($number / $perPage);
 
                 $firstPage = ($_GET['page'] * $perPage) - $perPage;
-                $data = match ($filter) {
-                    FILTER::CITY => Student::getAll($firstPage, $perPage),
-                    FILTER::YEAR => Student::getByAge((int)$filterInput),
-                    FILTER::FACULTY => Student::getByClasse($firstPage, $perPage),
-                    default => Student::getAll($firstPage, $perPage),
-                };
+                if (STUDENT_ONLY) {
+                    $data = $_SESSION['User']->getFriends();
+                } else {
+                    $data = match ($filter) {
+                        FILTER::CITY => Student::getAll($firstPage, $perPage),
+                        FILTER::YEAR => Student::getByAge((int)$filterInput),
+                        FILTER::FACULTY => Student::getByFaculty($firstPage, $perPage),
+                        default => Student::getAll($firstPage, $perPage),
+                    };
+                }
+
 
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\listing.php');
             };

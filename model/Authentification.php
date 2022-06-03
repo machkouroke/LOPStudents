@@ -3,11 +3,13 @@
     namespace model;
 
 
+    use controller\Role;
     use Exception\UserException;
     use Exception\DataBaseException;
+    use model\beans\Student;
+    use model\beans\Teacher;
     use model\beans\User;
-    use PDO;
-    use PDOException;
+
 
 
     /**
@@ -26,14 +28,17 @@
         public static function authenticate(string $login, string $password): User
         {
 
-            $con = FACTORY->get_connexion();
-            try {
-                $result = $con->query("SELECT * FROM users where login='" . $login . "'");
-                $user = $result->fetch(PDO::FETCH_ASSOC);
 
+            try {
+
+                $user = User::getByLogin($login);
                 if (!empty($user)) {
-                    if ($user['password'] == $password) {
-                        return new User(...$user);
+                    if ($user->getPassword() == $password) {
+                        return match ($user->getRole()) {
+                            Role::Student => Student::getByLogin($login),
+                            Role::Teacher => Teacher::getByLogin($login),
+                            default => $user,
+                        };
                     } else {
 
                         throw new UserException("Mot de passe incorrect");
@@ -41,8 +46,8 @@
                 } else {
                     throw new UserException("Utilisateur introuvable");
                 }
-            } catch (PDOException $e) {
-                throw new DataBaseException("Erreur: ". $e->getMessage());
+            } catch (\PDOException $e) {
+                throw new DataBaseException("Erreur: " . $e->getMessage());
             }
         }
     }

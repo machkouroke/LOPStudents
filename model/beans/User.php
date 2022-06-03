@@ -4,8 +4,8 @@
 
     use controller\Role;
     use JetBrains\PhpStorm\Pure;
+    use PDO;
     use PDOException;
-
 
 
     /**
@@ -14,7 +14,7 @@
      */
     class User
     {
-        public string $login, $name, $surname, $password,  $city, $country;
+        public string $login, $name, $surname, $password, $city, $country;
         public int $zipCode;
         public Role $role;
 
@@ -29,6 +29,15 @@
             $this->country = $data['country'];
             $this->role = Role::FROM($data['role']);
 
+        }
+
+        public static function getByLogin(string $login): User
+        {
+            $con = FACTORY->get_connexion();
+            $sql = "select * from users where login='" . $login . "'";
+            $res = ($con->query($sql))->fetch(PDO::FETCH_ASSOC);
+
+            return new User(...$res);
         }
 
 

@@ -32,6 +32,9 @@
                 case 'addTeacherPage':
                     MenuController::addTeacher();
                     break;
+                case 'deleteStudent':
+                    StudentController::delete();
+                    break;
                 case 'listingStudents':
                     MenuController::listingStudents();
                     break;
