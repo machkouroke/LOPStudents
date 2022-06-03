@@ -20,6 +20,7 @@
     const ASSETS_URL = BASE_URL . "/view/assets/";
     const INDEX_LOCATION = "Location:index.php";
     const PIC_URL = BASE_URL . "/media/picture/";
+    const CV_URL = BASE_URL . '/media/picture/';
 
     /**
      * Constant de répertoire local

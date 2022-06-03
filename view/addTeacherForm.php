@@ -72,11 +72,6 @@
 </div>
 <?php require_once(BASE_DIR . '\view\templates\captchaBlock.php') ?>
 
-<div class="col">
-	<button id="suivant" class="btn btn-primary shadow d-block w-100 " >
-		Suivant
-	</button>
-</div>
 
 
 <?php $firstPart = ob_get_clean(); ?>

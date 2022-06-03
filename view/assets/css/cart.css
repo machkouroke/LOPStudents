@@ -225,8 +225,8 @@
     }
 
     .reflow-shopping-cart .ref-cart .ref-cart-table .ref-student-photo {
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 80px;
         border-radius: var(--ref-border-radius)
     }
 

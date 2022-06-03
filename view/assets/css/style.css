@@ -11931,19 +11931,32 @@ footer ul li a {
   }
 }
 
-body {
-  min-height: 100vh;
-  margin: 0;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-}
-body header {
-  min-height: 50px;
-  background: lightcyan;
+body .separator {
+  position: absolute;
+  bottom: 50px;
+  padding: 50px;
+  width: 100%;
+  background: rebeccapurple;
 }
 body footer {
+  position: relative;
   min-height: 50px;
   background: PapayaWhip;
+}
+body .overflow {
+  overflow-y: auto;
+  /* Track */
+  /* Handle */
+}
+body .overflow::-webkit-scrollbar {
+  width: 10px;
+  background: #1b1919;
+}
+body .overflow::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+body .overflow::-webkit-scrollbar-thumb {
+  background: #1b1919;
 }
 
 /*# sourceMappingURL=style.css.map */
