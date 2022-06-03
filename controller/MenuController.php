@@ -57,7 +57,7 @@
                     $data = $_SESSION['User']->getFriends();
                 } else {
                     $data = match ($filter) {
-                        FILTER::CITY => Student::getAll($firstPage, $perPage),
+                        FILTER::CITY => Student::getByCity($filterInput),
                         FILTER::YEAR => Student::getByAge((int)$filterInput),
                         FILTER::FACULTY => Student::getByFaculty($filterInput),
                         default => Student::getAll($firstPage, $perPage),

@@ -40,6 +40,13 @@
             return new User(...$res);
         }
 
+        public function delete(): void
+        {
+            $con = FACTORY->get_connexion();
+            $deleteUser = "delete from users where login='$this->login'";
+            $con->exec($deleteUser);
+
+        }
 
         /**
          * Renvoie toutes les informations de l'étudiant actuel (En tant qu'Utilisateur)

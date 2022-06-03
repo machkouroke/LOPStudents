@@ -11,7 +11,6 @@
     use controller\Role;
 
 
-
     /**
      * @author Morel Kouhossounon
      * Classe Représentant un étudiant
@@ -125,12 +124,14 @@
             $res = $con->query($sql);
             return self::changeToStudent($res);
         }
-        public static function getNumberOfStudents(): int {
+
+        public static function getNumberOfStudents(): int
+        {
             $con = FACTORY->get_connexion();
             $sql = 'SELECT COUNT(*) AS NB_STUDENTS FROM etudiants NATURAL JOIN users ORDER BY NAME DESC LIMIT 1';
             $res = $con->query($sql);
 
-            return (int) $res->fetch()['NB_STUDENTS'];
+            return (int)$res->fetch()['NB_STUDENTS'];
         }
 
         /**
@@ -138,7 +139,7 @@
          * @param String $cne Cne de l'étudiant à rechercher
          * @return \Student Étudiant avec le CNE données
          */
-        public static function getByCne(String $cne): Student
+        public static function getByCne(string $cne): Student
         {
             $con = FACTORY->get_connexion();
             $sql = "SELECT * FROM etudiants NATURAL JOIN users WHERE cne='" . $cne . "'";
@@ -151,7 +152,7 @@
         public static function getByLogin(string $login): Student
         {
             $con = FACTORY->get_connexion();
-            $sql = "select * from etudiants natural join users where login='".$login."'";
+            $sql = "select * from etudiants natural join users where login='" . $login . "'";
             $res = ($con->query($sql))->fetch(PDO::FETCH_ASSOC);
             $student = new Student(...$res);
             $student->setCne($res['cne']);
@@ -193,7 +194,7 @@
          * @param String $country Ville voulue
          * @return bool|array Tableau d'étudiant dans la ville donné
          */
-        public static function getByCity(String $city): bool|array
+        public static function getByCity(string $city): bool|array
         {
             $con = FACTORY->get_connexion();
             $sql = "SELECT * FROM etudiants natural join users WHERE city='" . $city . "'";
@@ -203,8 +204,8 @@
 
         public static function changeToStudent($res): array
         {
-            $all=[];
-            foreach ($res->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $all = [];
+            foreach ($res->fetchAll(PDO::FETCH_ASSOC) as $item) {
                 $student = new Student(...$item);
                 $student->setCne($item['cne']);
                 $all[] = $student;
@@ -280,12 +281,12 @@
         /**
          * Fonction de suppression de l'étudiant actuelle
          */
-        public static function delete(string $login): void
+        public function delete(): void
         {
             $con = FACTORY->get_connexion();
 
-            $deleteUser = "delete from users where login='$login'";
-            $deleteStudent = "delete from etudiants where login ='$login'";
+            $deleteUser = "delete from users where login='$this->login'";
+            $deleteStudent = "delete from etudiants where login ='$this->login'";
 
             $con->exec($deleteUser);
             $con->exec($deleteStudent);
@@ -315,13 +316,12 @@
             $sql = "select * from professeur natural join users where matricule in (select matricule from module 
                                 where faculty='$this->faculty' and facultyYear='$this->facultyYear')";
             $res = $con->query($sql);
-            foreach ($res->fetchAll(PDO::FETCH_ASSOC) as $item){
+            foreach ($res->fetchAll(PDO::FETCH_ASSOC) as $item) {
                 $teacher = new Teacher(...$item);
                 $all[] = $teacher;
             }
             return $all;
         }
-
 
 
         /**

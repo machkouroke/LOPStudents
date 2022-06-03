@@ -29,7 +29,7 @@
 
         public static function delete(): void
         {
-            Student::delete($_GET['login']);
+            Student::getByLogin($_GET['login'])->delete();
             header(INDEX_LOCATION . '?action=listingStudents&page=1&sucess=' . 'Utilisateur supprime');
         }
 
