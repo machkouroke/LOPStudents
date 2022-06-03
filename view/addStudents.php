@@ -47,11 +47,6 @@
 
 <?php require_once(BASE_DIR . '\view\templates\captchaBlock.php') ?>
 
-<div class="col">
-	<button id="suivant" class="btn btn-primary shadow d-block w-100 ">
-		Suivant
-	</button>
-</div>
 
 
 <?php $firstPart = ob_get_clean(); ?>
@@ -106,18 +101,14 @@
 			</select>
 		</div>
 	</div>
-	<div class="row d-flex justify-content-center  p-4">
-		<button form='register' id="submit" class="btn btn-primary shadow d-block w-50 " type="submit">
-			Finaliser l'ajout
-		</button>
-	</div>
+
 </div>
 <script src='<?= JS_URL ?>formFlip.js'></script>
 <script src="<?= JS_URL ?>facultyChoice.js"></script>
 
 
 <?php $secondPart = ob_get_clean(); ?>
-<?php require('templates/teacher/formTemplate.php'); ?>
+<?php require('templates/formTemplate.php'); ?>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('templates/base.php'); ?>

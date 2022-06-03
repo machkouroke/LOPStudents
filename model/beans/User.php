@@ -47,7 +47,7 @@
          * Renvoie la liste de tous les utilisateurs
          * @return bool|array Liste de tous les utilisateurs
          */
-        public static function getAll(): bool|array
+        public static function getAll(int $first, int $last): bool|array
         {
             $conn = FACTORY->get_connexion();
             $sql = "SELECT * FROM users";

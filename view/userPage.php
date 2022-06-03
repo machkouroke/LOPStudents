@@ -8,8 +8,10 @@
 			</h1>
 			<div class="reflow-product d-flex align-items-center py-5">
 				<div class="ref-media">
-					<div class="ref-preview"><img class="ref-image active" src="<?= IMG_URL ?>imane.jpg"
-					                              alt=""/></div>
+					<div class="ref-preview"><img class="ref-image active"
+					                              src="<?= PIC_URL . $_SESSION['User']->getLogin() . '.jpg' ?>"
+					                                                                                           alt=""/>
+					</div>
 				</div>
 
 				<div class="ref-product-data d-flex flex-column justify-content-between">
@@ -23,7 +25,7 @@
 						<?php endif; ?>
 						<tr>
 							<th scope="row">Nom d'utilisateur</th>
-							<td>imanesidiki@gmail.com</td>
+							<td><?= $_SESSION['User']->getLogin() ?></td>
 						</tr>
 						<?php if (TEACHER_ONLY): ?>
 							<tr>

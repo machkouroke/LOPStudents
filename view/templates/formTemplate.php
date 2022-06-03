@@ -9,9 +9,9 @@
 			</div>
 			<div class="row d-flex justify-content-start justify-content-lg-start align-items-lg-center">
 				<div class="col">
-					<div>
+					<div class="row shadow rounded">
 						<form id='register' action='<?= BASE_URL ?>index.php?action=<?= $action ?>'
-						      class='shadow rounded p-4 m-5 p-xl-4' data-aos='fade-up'
+						      class='col shadow rounded p-4 m-5 p-xl-4' data-aos='fade-up'
 						      method='post'
 						      enctype='multipart/form-data'>
 							<?php if (isset($_GET['error'])): ?>
@@ -27,37 +27,24 @@
 							<?= $firstPart ?>
 
 						</form>
-
-					</div>
-				</div>
-				<?php require(BASE_DIR . 'view\templates\addImage.php'); ?>
-
-			</div>
-		</div>
-
-		<div class="back">
-			<div class='row mb-4 mb-lg-5'>
-				<div class='col-md-8 col-xl-6 text-center mx-auto'>
-
-					<h2 class='fw-bold'><?= $instructions ?></h2>
-				</div>
-			</div>
-			<div class="row d-flex justify-content-start justify-content-lg-start align-items-lg-center">
-				<div class="col">
-					<div>
-						<div class='shadow rounded p-4 m-5 p-xl-4' data-aos='fade-up'>
+						<div class='col shadow rounded p-4 m-5 p-xl-4' data-aos='fade-up'>
 
 							<?= $secondPart ?>
 
 						</div>
+						<div class='row d-flex justify-content-center  p-4'>
+							<button form='register' id='submit' class='btn btn-primary shadow d-block w-50 '
+							        type='submit'>
+								Finaliser l'ajout
+							</button>
+						</div>
 
 					</div>
-				</div>
-				<?php if ($picture): ?>
-					<?php require(BASE_DIR . 'view\templates\addImage.php'); ?>
-				<?php endif; ?>
-			</div>
 
+				</div>
+
+
+			</div>
 		</div>
 
 

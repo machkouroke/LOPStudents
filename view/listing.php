@@ -21,18 +21,24 @@
 
 								<div class="ref-cart" style="display: block;">
 									<div class="ref-th">
-										<div class="ref-student-col">Étudiant</div>
+										<div class="ref-student-col">
+											<?= $title === LIST_OF_STUDENTS ? 'Étudiants' : 'Proffesseur' ?>
+										</div>
 										<div class="ref-username-col">Nom d'utilisateur</div>
 										<div class="ref-email-col">Email</div>
 										<div class="ref-adress-col">Adresse</div>
 										<div class="ref-tel-col">Numéro de téléphone</div>
-										<div class="ref-cv-col">CV</div>
+										<?php if ($title === LIST_OF_STUDENTS): ?>
+											<div class="ref-cv-col">CV</div>
+										<?php endif ?>
 										<div class="ref-action-col text-end">Actions</div>
+
 									</div>
 									<div class="checkboxes ref-cart-table">
 										<?php foreach ($data as $row): ?>
 
-											<input form="MessageSender" name="user[]" value="<?= $row['email'] ?>" type="checkbox"
+											<input form="MessageSender" name="user[]" value="<?= $row['email'] ?>"
+											       type="checkbox"
 											       id="<?= $row['login'] ?>"/>
 											<label for="<?= $row['login'] ?>" class="ref-student box-checkbox">
 
@@ -48,7 +54,9 @@
 																<div class="ref-student-category">
 																	<?= $row['faculty'] . ' ' . $row['facultyYear'] ?>
 																</div>
-																<div class="ref-student-personalization-holder"></div>
+																<div class="ref-student-personalization-holder">
+																	<?= $row['cne'] ?>
+																</div>
 															</div>
 														</div>
 													</div>
@@ -89,7 +97,8 @@
 						<label for="<?= $row['login'] ?>" class="col mb-4 box-checkbox">
 							<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
 							                              src="<?= PIC_URL . $row['login'] . '.jpg' ?>">
-								<h5 class="fw-bold mb-0"><strong><?=$row['surname'] . ' ' . $row['name']?></strong></h5>
+								<h5 class="fw-bold mb-0"><strong><?= $row['surname'] . ' ' . $row['name'] ?></strong>
+								</h5>
 								<p class="text-muted mb-2"><?= $row['faculty'] . ' ' . $row['facultyYear'] ?></p>
 							</div>
 						</label>
@@ -97,9 +106,11 @@
 
 				</div>
 			</div>
+
 		</div>
 
 	</div>
+
 </section>
 
 <script src="<?= JS_URL ?>divCheckable.js"></script>

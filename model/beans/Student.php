@@ -11,6 +11,7 @@
     use controller\Role;
 
 
+
     /**
      * @author Morel Kouhossounon
      * Classe Représentant un étudiant
@@ -53,12 +54,19 @@
          * Renvoie la liste de tous les étudiants en jointure avec leur utilisateur correspondant
          * @return bool|array Liste de tous les étudiants
          */
-        public static function getAll(): bool|array
+        public static function getAll(int $first, int $last): bool|array
         {
             $con = FACTORY->get_connexion();
-            $sql = 'SELECT * FROM etudiants NATURAL JOIN users';
+            $sql = 'SELECT * FROM etudiants NATURAL JOIN users ORDER BY NAME DESC LIMIT ' . $first . ',' . $last;
             $res = $con->query($sql);
             return $res->fetchAll();
+        }
+        public static function getNumberOfStudents(): int {
+            $con = FACTORY->get_connexion();
+            $sql = 'SELECT COUNT(*) AS NB_STUDENTS FROM etudiants NATURAL JOIN users ORDER BY NAME DESC LIMIT 1';
+            $res = $con->query($sql);
+
+            return (int) $res->fetch()['NB_STUDENTS'];
         }
 
         /**

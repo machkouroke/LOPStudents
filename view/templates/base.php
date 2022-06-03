@@ -11,30 +11,35 @@
 		<link rel="stylesheet" href="<?= CSS_URL ?>style.css" type="text/css"
 	</head>
 
-	<body>
-		<nav class="navbar navbar-light navbar-expand-md fixed-top text-start d-flex d-xl-flex justify-content-center align-items-xl-center navbar-shrink py-3"
-		     id="mainNav">
-			<div class="container d-flex d-xl-flex justify-content-center ">
-				<a class="navbar-brand text-center d-flex <?= !isset($_SESSION['User']) ? 'justify-content-center' : '' ?>"
-				   href="<?= BASE_URL ?>index.php" style="width: 100%;">
-					<span class="bs-icon-sm bs-icon-circle bs-icon-primary shadow d-flex justify-content-center align-items-center me-2 bs-icon">
+	<body class="container ">
+		<div class="row">
+			<nav class='navbar navbar-light navbar-expand-md fixed-top text-start d-flex d-xl-flex justify-content-center align-items-xl-center navbar-shrink py-3'
+			     id='mainNav'>
+				<div class='container d-flex d-xl-flex justify-content-center '>
+					<a class="navbar-brand text-center d-flex <?= !isset($_SESSION['User']) ? 'justify-content-center' : '' ?>"
+					   href='<?= BASE_URL ?>index.php' style='width: 100%;'>
+					<span class='bs-icon-sm bs-icon-circle bs-icon-primary shadow d-flex justify-content-center align-items-center me-2 bs-icon'>
 
-						<?php include($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "view\assets\img\lop.svg") ?>
+						<?php include($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\assets\img\lop.svg') ?>
 					</span>
-					<span>LOPStudents</span>
-				</a>
-				<?php if (isset($_SESSION['User'])): ?>
-				<div class="collapse navbar-collapse" id="navcol-1">
-					<ul class="navbar-nav mx-auto">
-						<li class="nav-item"><a href="<?= BASE_URL ?>index.php?action=logout" class="btn btn-primary">Déconnexion</a></li>
-					</ul>
+						<span>LOPStudents</span>
+					</a>
+					<?php if (isset($_SESSION['User'])): ?>
+						<div class="collapse navbar-collapse" id="navcol-1">
+							<ul class="navbar-nav mx-auto">
+								<li class="nav-item"><a href="<?= BASE_URL ?>index.php?action=logout"
+								                        class="btn btn-primary">Déconnexion</a></li>
+							</ul>
+						</div>
+					<?php endif ?>
 				</div>
-				<?php endif ?>
-			</div>
-		</nav>
+			</nav>
 
-		<?= $content ?>
-		<footer class="bg-primary-gradient" style="background: #ffffff;">
+			<?= $content ?>
+		</div>
+
+
+		<footer class="bg-primary-gradient row" style="background: #ffffff;">
 			<div class="container py-4 py-lg-5" style="background: rgba(112,44,44,0);">
 				<hr>
 				<div class="text-muted d-flex justify-content-between align-items-center pt-3">

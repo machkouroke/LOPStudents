@@ -72,6 +72,7 @@
     width: 100%;
     height: 100%;
 
+
   }
 
   &.flipBack {
@@ -122,37 +123,20 @@
   }
 }
 
-#form-flip {
-  position: relative;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-  display: block;
-  .front {
 
-    position: absolute;
+body {
+  min-height: 100vh;
+  margin: 0;
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  header{
+    min-height:50px;
+    background:lightcyan;
   }
 
-  .back {
-
-
-    transform: rotateY(180deg);
+  footer{
+    min-height:50px;
+    background:PapayaWhip;
   }
-
-  &.flipBack {
-    transform: rotateY(180deg);
-
-
-  }
-
-  &.flipFront {
-    transform: rotateY(0deg);
-    pointer-events: none;
-  }
-
-  .front, .back {
-    backface-visibility: hidden;
-  }
-}
-label {
-
 }
