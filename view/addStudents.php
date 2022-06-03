@@ -4,7 +4,10 @@
 	$picture = true;
 	$image = 'menu\addStudent.png';
 	$action = 'addStudent';
+	$faculties = ['API 1', 'API 2', 'IID 1', 'IID 2', 'IID 3', 'GI 1', 'GI 2', 'GI 3', 'GE 1', 'GE 2', 'GE 3',
+			'GPEE 1', 'GPEE 2', 'GPEE 3', 'IRIC 1', 'GRT 2', 'GRT 3'];
 ?>
+
 <?php ob_start(); ?>
 <!--Première Partie-->
 <?php ob_start(); ?>
@@ -97,7 +100,9 @@
 		<div class='col mb-3'>
 			<label for='faculty' class='form-label'>Fillière</label>
 			<select form='register' id='faculty' name='faculty' class='form-select' required>
-				<option value="IID 1">IID 1</option>
+				<?php foreach ($faculties as $faculty): ?>
+					<option value="<?= $faculty ?>"><?= $faculty ?></option>
+				<?php endforeach; ?>
 			</select>
 		</div>
 	</div>

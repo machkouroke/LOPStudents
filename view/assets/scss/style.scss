@@ -125,18 +125,34 @@
 
 
 body {
-  min-height: 100vh;
-  margin: 0;
-
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  header{
-    min-height:50px;
-    background:lightcyan;
+  .separator {
+    position: absolute;
+    bottom: 50px;
+    padding: 50px;
+    width: 100%;
+    background: rebeccapurple;
   }
-
   footer{
+    position: relative;
     min-height:50px;
     background:PapayaWhip;
+  }
+
+  .overflow {
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 10px;
+      background: $primary;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: $primary;
+    }
   }
 }

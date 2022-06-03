@@ -4,6 +4,7 @@
 
 
     use model\beans\Student;
+    use model\beans\User;
 
     /**
      * @author Machkour Oke
@@ -48,7 +49,7 @@
             $listingStudents = function () {
                 $title = LIST_OF_STUDENTS;
                 $number = Student::getNumberOfStudents();
-                $perPage = 3;
+                $perPage = 10;
                 $numberOfPage = ceil($number / $perPage);
                 $firstPage = ($_GET['page'] * $perPage) - $perPage;
                 $data = Student::getAll($firstPage, $perPage);
@@ -76,8 +77,10 @@
         }
         public static function userPage(): void
         {
-            $title = $_SESSION['User']->getSurname();
+
             $userPage = function () {
+                $user = isset($_GET['userLogin']) ? User::getByLogin($_GET['userLogin']) : $_SESSION['User'];
+                $title = $user->getSurname();
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\userPage.php');
             };
             AuthenticationController::loginRequired($userPage)();

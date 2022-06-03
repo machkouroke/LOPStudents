@@ -1,4 +1,6 @@
-<?php ob_start(); ?>
+<?php ob_start();
+	$listing = false;
+?>
 <section class="py-5 mt-5">
 	<div class="container py-5">
 		<?php
@@ -13,7 +15,7 @@
 		<?php endif ?>
 		<div id="listPage">
 
-			<div class="list">
+			<div class="list overflow">
 				<div class="row mx-auto" style="/*max-width: 700px;*/">
 					<div class="col">
 						<div data-reflow-type="shopping-cart">
@@ -44,9 +46,10 @@
 
 												<div class="ref-student-col">
 													<div class="ref-student-wrapper flex-xxl-row flex-column">
-														<img class="ref-student-photo"
-														     src="<?= PIC_URL . $row['login'] . '.jpg' ?>"
-														     alt="Imane"/>
+														<a href="<?= BASE_URL ?>index.php?action=userPage&userLogin=<?= $row['login'] ?>"><img
+																	class='ref-student-photo'
+																	src="<?= PIC_URL . $row['login'] . '.jpg' ?>"
+																	alt='Imane'/></a>
 														<div class="ref-student-data">
 															<div class="ref-student-info">
 																<div class="ref-student-name">
