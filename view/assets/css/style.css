@@ -11956,6 +11956,8 @@ body .overflow::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 body .overflow::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  height: 12px;
   background: #1b1919;
 }
 

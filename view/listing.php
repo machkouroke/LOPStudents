@@ -15,7 +15,7 @@
 		<?php endif ?>
 		<div id="listPage">
 
-			<div class="list overflow">
+-			<div class="list overflow rounded">
 				<div class="row mx-auto" style="/*max-width: 700px;*/">
 					<div class="col">
 						<div data-reflow-type="shopping-cart">
@@ -45,7 +45,7 @@
 
 											       type="checkbox"
 											       id="<?= $user->getLogin() ?>"/>
-											<label for="<?= $user->getLogin() ?>" class="ref-student box-checkbox">
+											<label for="<?= $user->getLogin() ?>" class="w-100 ref-student box-checkbox">
 
 												<div class="ref-student-col">
 													<div class="ref-student-wrapper flex-xxl-row flex-column">
@@ -68,7 +68,7 @@
 													</div>
 
 												</div>
-												<div class="ref-username-col w-100">
+												<div class="ref-username-col ">
 													<?= $user->getLogin() ?>
 												</div>
 												<div class="ref-email-col">
