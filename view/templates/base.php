@@ -34,6 +34,9 @@
 		</nav>
 
 		<?= $content ?>
+		<div class="position-relative div-separator" >
+
+		</div>
 		<footer class="bg-primary-gradient" style="background: #ffffff;">
 			<div class="container py-4 py-lg-5" style="background: rgba(112,44,44,0);">
 				<hr>

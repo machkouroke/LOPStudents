@@ -33,6 +33,14 @@
             return self::generatedStudentFields();
         }
 
+        static function validateTeacherAdd(): array
+        {
+            /**
+             * À écrire Morel
+             */
+            return [];
+        }
+
         /**
          * @return array Tableau avec tous les champs nécessaire à la création d'un étudiant
          */
@@ -40,7 +48,7 @@
         {
             $data = $_POST;
             $data['cne'] = '14566';
-            $data['cv'] = $_FILES['cv']['name'];
+            $data['cv'] = $_POST['photo'];
             $data['photo'] = $_FILES['photo']['name'];
             $data['faculty'] = 'IID';
             $data['facultyYear'] = '1';
@@ -86,10 +94,10 @@
             $cvExtension = pathinfo($_FILES['cv']['name'])['extension'];
             $photoExtension = pathinfo($_FILES['photo']['name'])['extension'];
             $login = $_POST['login'];
-            $_POST['cv'] = CV_DIR . $login;
-            $_POST['photo'] = PIC_DIR . $login;
-            move_uploaded_file($_FILES['cv']['tmp_name'], $_POST['cv'].'.' .$cvExtension);
-            move_uploaded_file($_FILES['photo']['tmp_name'], $_POST['photo']. '.' .$photoExtension);
+            $_POST['cv'] = CV_DIR . $login . '.' . $cvExtension;
+            $_POST['photo'] = PIC_DIR . $login . '.' . $photoExtension;
+            move_uploaded_file($_FILES['cv']['tmp_name'], $_POST['cv']);
+            move_uploaded_file($_FILES['photo']['tmp_name'], $_POST['photo']);
         }
     }
 

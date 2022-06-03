@@ -153,6 +153,14 @@
     backface-visibility: hidden;
   }
 }
-label {
+.div-separator {
+  height: 200px;
+  @media (max-width: 1400px) {
+    height: 450px;
+
+  }
+  @media (max-width: 768px) {
+    height: 800px;
+  }
 
 }

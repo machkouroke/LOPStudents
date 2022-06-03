@@ -6,7 +6,7 @@
      * @author Machkour Oke
      * Contient les fonctions propres aux administrateurs, mais aussi quelque fonction paramétrique du programme
      */
-    class AdminController
+    class MainController
     {
         /**
          * Envoie un message
@@ -51,6 +51,8 @@
             };
             AuthenticationController::loginRequired($sendMessage)();
         }
+
+
     }
 
 

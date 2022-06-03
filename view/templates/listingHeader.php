@@ -1,10 +1,23 @@
 <h1 class="py-5 ref-heading text-center fw-bold"><?= $title ?> </h1>
 <div class="d-flex flex-column  flex-md-row justify-content-between align-items-center">
 
+
 	<p>
 		<button id="moreButton" class="btn btn-primary">Plus d'option</button>
 	</p>
+	<nav aria-label='Page navigation example'>
+		<ul class='pagination'>
+			<?php for ($i = 1; $i < $numberOfPage + 1; $i++): ?>
 
+				<li class='page-item'><a class='page-link text-primary'
+				                         href='<?= BASE_URL ?>index.php?action=listingStudents&page=<?= $i ?>'>
+						<?= $i ?></a>
+				</li>
+
+
+			<?php endfor; ?>
+		</ul>
+	</nav>
 	<p>
 		<a id="switchIcon"><img src="<?= $switchIcon ?>" alt="" class="switch"></a>
 	</p>

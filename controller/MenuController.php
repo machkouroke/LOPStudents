@@ -44,9 +44,14 @@
 
         public static function listingStudents(): void
         {
+
             $listingStudents = function () {
                 $title = LIST_OF_STUDENTS;
-                $data = Student::getAll();
+                $number = Student::getNumberOfStudents();
+                $perPage = 3;
+                $numberOfPage = ceil($number / $perPage);
+                $firstPage = ($_GET['page'] * $perPage) - $perPage;
+                $data = Student::getAll($firstPage, $perPage);
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\listing.php');
             };
             AuthenticationController::loginRequired($listingStudents)();
@@ -68,6 +73,14 @@
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\settings.php');
             };
             AuthenticationController::loginRequired($settings)();
+        }
+        public static function userPage(): void
+        {
+            $title = $_SESSION['User']->getSurname();
+            $userPage = function () {
+                require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\userPage.php');
+            };
+            AuthenticationController::loginRequired($userPage)();
         }
     }
 

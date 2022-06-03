@@ -31,7 +31,7 @@
 								</a>
 							<?php endif ?>
 
-							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=listingStudents">
+							<a class="ref-product" href="<?= BASE_URL ?>index.php?action=listingStudents&page=1">
 								<img class="ref-image" src="<?= IMG_URL ?>menu/listStudent.png"
 								     alt=""/>
 								<div class="ref-product-data">
@@ -50,7 +50,7 @@
 								</div>
 							</a>
 							<?php if (ADMIN_STUDENT) : ?>
-								<a class="ref-product" href="<?= BASE_URL ?>index.php?action=listingTeachers">
+								<a class="ref-product" href="<?= BASE_URL ?>index.php?action=listingTeachers&page=1">
 									<img class="ref-image" src="<?= IMG_URL ?>menu/listTeacher.png"
 									     alt=""/>
 									<div class="ref-product-data">

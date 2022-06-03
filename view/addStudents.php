@@ -117,7 +117,7 @@
 
 
 <?php $secondPart = ob_get_clean(); ?>
-<?php require('templates/teacher/formTemplate.php'); ?>
+<?php require('templates/formTemplate.php'); ?>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('templates/base.php'); ?>

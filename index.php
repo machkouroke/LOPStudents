@@ -11,7 +11,7 @@
     session_start();
 
     require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller\Constant.php');
-    use controller\AdminController;
+    use controller\MainController;
 
     use controller\AuthenticationController;
     use controller\MenuController;
@@ -42,13 +42,13 @@
                     MenuController::settings();
                     break;
                 case 'sendMessage':
-                    AdminController::sendMessage();
+                    MainController::sendMessage();
                     break;
                 case 'transferMessage':
-                    AdminController::transferMessage();
+                    MainController::transferMessage();
                     break;
                 case 'userPage':
-                    StudentController::userPage();
+                    MenuController::userPage();
                     break;
 
                 case 'logout':

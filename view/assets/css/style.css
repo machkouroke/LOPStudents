@@ -11954,4 +11954,18 @@ footer ul li a {
   backface-visibility: hidden;
 }
 
+.div-separator {
+  height: 200px;
+}
+@media (max-width: 1400px) {
+  .div-separator {
+    height: 450px;
+  }
+}
+@media (max-width: 768px) {
+  .div-separator {
+    height: 800px;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
