@@ -67,7 +67,7 @@
             $con = FACTORY->get_connexion();
             $sql = 'SELECT * FROM etudiants NATURAL JOIN users ORDER BY NAME DESC LIMIT ' . $first . ',' . $last;
             $res = $con->query($sql);
-            return $res->fetchAll();
+            return self::changeToStudent($res);
         }
         public static function getNumberOfStudents(): int {
             $con = FACTORY->get_connexion();
@@ -109,16 +109,10 @@
          */
         public static function getByAge(int $age): Student|array
         {
-            $all = [];
             $con = FACTORY->get_connexion();
             $sql = "SELECT * FROM etudiants NATURAL JOIN users WHERE TIMESTAMPDIFF(year, birthDate , NOW())='" . $age . "'";
             $res = $con->query($sql);
-            foreach ($res->fetchAll(PDO::FETCH_ASSOC) as $item){
-                $student = new Student(...$item);
-                $student->setCne($item['cne']);
-                $all[] = $student;
-            }
-            return $all;
+            return self::changeToStudent($res);
         }
 
         /**
@@ -127,12 +121,14 @@
          * @param int $niv Année de la filière
          * @return bool|array
          */
-        public static function getByClasse(string $fil, int $niv): bool|array
+        public static function getByFaculty(string $fac): bool|array
         {
+            $faculty = (explode(' ',$fac))[0];
+            $facultyYear = (explode(' ',$fac))[1];
             $con = FACTORY->get_connexion();
-            $sql = "SELECT * FROM etudiants natural join users WHERE filiere='" . $fil . "' AND niveau='" . $niv . "'";
+            $sql = "SELECT * FROM etudiants natural join users WHERE faculty='" . $faculty . "' AND facultyYear='" . $facultyYear . "'";
             $res = $con->query($sql);
-            return $res->fetchAll();
+            return self::changeToStudent($res);
         }
 
         /**
@@ -140,12 +136,23 @@
          * @param String $country Ville voulue
          * @return bool|array Tableau d'étudiant dans la ville donné
          */
-        public static function getByCountry(String $country): bool|array
+        public static function getByCity(String $city): bool|array
         {
             $con = FACTORY->get_connexion();
-            $sql = "SELECT * FROM etudiants natural join users WHERE pays='" . $country . "'";
+            $sql = "SELECT * FROM etudiants natural join users WHERE city='" . $city . "'";
             $res = $con->query($sql);
-            return $res->fetchAll();
+            return self::changeToStudent($res);
+        }
+
+        public static function changeToStudent($res): array
+        {
+            $all=[];
+            foreach ($res->fetchAll(PDO::FETCH_ASSOC) as $item){
+                $student = new Student(...$item);
+                $student->setCne($item['cne']);
+                $all[] = $student;
+            }
+            return $all;
         }
 
 
@@ -236,23 +243,28 @@
         public function getFriends(): bool|array
         {
             $con = FACTORY->get_connexion();
-            $sql = "select name,surname,email from users NATURAL join etudiants 
+            $sql = "select * from users NATURAL join etudiants 
                     where faculty='" . $this->faculty . "' and facultyYear='" . $this->facultyYear . "' and cne<>'" . $this->cne . "'";
             $res = $con->query($sql);
-            return $res->fetchAll(PDO::FETCH_ASSOC);
+            return self::changeToStudent($res);
         }
 
         /**
          * Renvoie-les proffesseur de l'étudiant actuel
          * @return bool|array Tableau des proffesseur de l'étudiant actuel
          */
-        public function getProfs(): bool|array
+        public function getTeachers(): bool|array
         {
+            $all = [];
             $con = FACTORY->get_connexion();
             $sql = "select * from professeur natural join users where matricule in (select matricule from module 
                                 where faculty='$this->faculty' and facultyYear='$this->facultyYear')";
             $res = $con->query($sql);
-            return $res->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($res->fetchAll(PDO::FETCH_ASSOC) as $item){
+                $teacher = new Teacher(...$item);
+                $all[] = $teacher;
+            }
+            return $all;
         }
 
 
