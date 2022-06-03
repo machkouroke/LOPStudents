@@ -40,6 +40,62 @@
         }
 
         /**
+         * @return mixed|string
+         */
+        public function getBirthDate(): mixed
+        {
+            return $this->birthDate;
+        }
+
+        /**
+         * @return mixed|string
+         */
+        public function getCv(): mixed
+        {
+            return $this->cv;
+        }
+
+        /**
+         * @return mixed|string
+         */
+        public function getPhoto(): mixed
+        {
+            return $this->photo;
+        }
+
+        /**
+         * @return mixed|string
+         */
+        public function getEmail(): mixed
+        {
+            return $this->email;
+        }
+
+        /**
+         * @return string
+         */
+        public function getCne(): string
+        {
+            return $this->cne;
+        }
+
+        /**
+         * @return mixed|string
+         */
+        public function getFaculty(): mixed
+        {
+            return $this->faculty;
+        }
+
+        /**
+         * @return mixed|string
+         */
+        public function getFacultyYear(): mixed
+        {
+            return $this->facultyYear;
+        }
+
+        /**
          * @param string $cne
          */
         public function setCne(string $cne): void
@@ -223,12 +279,12 @@
         /**
          * Fonction de suppression de l'étudiant actuelle
          */
-        public function delete(): void
+        public static function delete(string $login): void
         {
             $con = FACTORY->get_connexion();
 
-            $deleteUser = "delete from users where login='$this->login'";
-            $deleteStudent = "delete from etudiants where login ='$this->login'";
+            $deleteUser = "delete from users where login='$login'";
+            $deleteStudent = "delete from etudiants where login ='$login'";
 
             $con->exec($deleteUser);
             $con->exec($deleteStudent);
