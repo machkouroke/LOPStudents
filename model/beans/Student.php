@@ -288,8 +288,6 @@
 
             $con->exec($deleteUser);
             $con->exec($deleteStudent);
-
-
         }
 
         /**
