@@ -44,7 +44,7 @@
 						<?php if (STUDENT_ONLY): ?>
 							<tr>
 								<th scope="row">CV</th>
-								<td><a href="">Télécharger</a></td>
+								<td><a href="<?= CV_URL . $user->getLogin() . '.pdf' ?>" download>Télécharger</a></td>
 							</tr>
 						<?php endif; ?>
 					</table>

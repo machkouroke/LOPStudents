@@ -95,7 +95,7 @@
 
 .reflow-shopping-cart .ref-cart .ref-th {
     display: none;
-    width: 100%;
+    width: 95%;
     font-size: .75em;
     text-transform: uppercase;
     border-bottom: 1px solid var(--ref-gray-300);

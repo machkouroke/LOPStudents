@@ -173,14 +173,15 @@
 
         /**
          * Recherche les étudiants selon une classe donnée
-         * @param string $fil Filière voulue
-         * @param int $niv Année de la filière
+         * @param string $fac
          * @return bool|array
          */
         public static function getByFaculty(string $fac): bool|array
         {
-            $faculty = (explode(' ',$fac))[0];
-            $facultyYear = (explode(' ',$fac))[1];
+
+            $fac = explode(' ', $fac);
+            $faculty = ($fac)[0];
+            $facultyYear = ($fac)[1];
             $con = FACTORY->get_connexion();
             $sql = "SELECT * FROM etudiants natural join users WHERE faculty='" . $faculty . "' AND facultyYear='" . $facultyYear . "'";
             $res = $con->query($sql);

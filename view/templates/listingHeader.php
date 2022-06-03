@@ -2,9 +2,9 @@
 <div class="d-flex flex-column  flex-md-row justify-content-between align-items-center">
 
 	<?php if (ADMIN_ONLY): ?>
-	<p>
-		<button id="moreButton" class="btn btn-primary">Plus d'option</button>
-	</p>
+		<p>
+			<button id="moreButton" class="btn btn-primary">Plus d'option</button>
+		</p>
 	<?php endif; ?>
 
 	<p>
@@ -50,25 +50,24 @@
 						</label>
 					</div>
 				</form>
-				<?php if (ADMIN_ONLY): ?>
-					<form class="ref-product " method='post' href="add.php?title=de l'étudiant"
-					      action='<?= BASE_URL ?>index.php?action=studentByFaculty&page=1'>
-						<div class="front">
-							<img class="ref-image" src="<?= IMG_URL ?>listingMenu/faculty.png" alt=""/>
-							<div class="ref-product-data">
-								<h5 class="ref-name text-center w-100">Sélectionner les étudiants par filière</h5>
-							</div>
+
+				<form class="ref-product " method='post' href="add.php?title=de l'étudiant"
+				      action='<?= BASE_URL ?>index.php?action=studentByFaculty&page=1'>
+					<div class="front">
+						<img class="ref-image" src="<?= IMG_URL ?>listingMenu/faculty.png" alt=""/>
+						<div class="ref-product-data">
+							<h5 class="ref-name text-center w-100">Sélectionner les étudiants par filière</h5>
 						</div>
-						<div class="back  d-flex justify-content-center align-items-center">
-							<label class="form-label ">
-								<input name="faculty" type="text" class="form-control">
-								<button class="btn btn-primary w-100 my-3" type="submit">
-									Filtrer
-								</button>
-							</label>
-						</div>
-					</form>
-				<?php endif ?>
+					</div>
+					<div class="back  d-flex justify-content-center align-items-center">
+						<label class="form-label ">
+							<input name="faculty" type="text" class="form-control">
+							<button class="btn btn-primary w-100 my-3" type="submit">
+								Filtrer
+							</button>
+						</label>
+					</div>
+				</form>
 
 
 			</div>

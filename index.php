@@ -29,6 +29,9 @@
                 case 'addStudent':
                     StudentController::addStudent();
                     break;
+                case 'addTeacher':
+                    TeacherController::addTeacher();
+                    break;
                 case 'addTeacherPage':
                     MenuController::addTeacher();
                     break;

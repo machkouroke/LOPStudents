@@ -59,7 +59,7 @@
                     $data = match ($filter) {
                         FILTER::CITY => Student::getAll($firstPage, $perPage),
                         FILTER::YEAR => Student::getByAge((int)$filterInput),
-                        FILTER::FACULTY => Student::getByFaculty($firstPage, $perPage),
+                        FILTER::FACULTY => Student::getByFaculty($filterInput),
                         default => Student::getAll($firstPage, $perPage),
                     };
                 }
