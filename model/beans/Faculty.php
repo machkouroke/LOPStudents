@@ -58,7 +58,7 @@
             $res = $con->query($sql);
             foreach ($res->fetchAll(PDO::FETCH_NUM) as $class) {
 
-                $newline = implode('', $class);
+                $newline = implode(' ', $class);
                 $allClass[] = $newline;
             }
             return $allClass;

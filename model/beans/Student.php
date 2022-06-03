@@ -36,13 +36,21 @@
             $this->faculty = $data['faculty'];
             $this->facultyYear = $data['facultyYear'];
             $this->email = $data['email'];
-            $this->setCne();
+            $this->generateCne();
+        }
+
+        /**
+         * @param string $cne
+         */
+        public function setCne(string $cne): void
+        {
+            $this->cne = $cne;
         }
 
         /**
          * Génère le CNE suivant le dernier element de la base
          */
-        public function setCne(): void
+        public function generateCne(): void
         {
             $con = FACTORY->get_connexion();
             $res = $con->query('select max(id)+1 from etudiants')->fetch(PDO::FETCH_ASSOC);
@@ -72,27 +80,45 @@
         /**
          * Recherche un étudiant en fonction de son CNE
          * @param String $cne Cne de l'étudiant à rechercher
-         * @return mixed Étudiant avec le CNE données
+         * @return \Student Étudiant avec le CNE données
          */
-        public static function getByCne(String $cne): mixed
+        public static function getByCne(String $cne): Student
         {
             $con = FACTORY->get_connexion();
             $sql = "SELECT * FROM etudiants NATURAL JOIN users WHERE cne='" . $cne . "'";
-            $res = $con->query($sql);
-            return $res->fetch(PDO::FETCH_ASSOC);
+            $res = ($con->query($sql))->fetch(PDO::FETCH_ASSOC);
+            $student = new Student(...$res);
+            $student->setCne($res['cne']);
+            return $student;
+        }
+
+        public static function getByLogin(string $login): Student
+        {
+            $con = FACTORY->get_connexion();
+            $sql = "select * from etudiants natural join users where login='".$login."'";
+            $res = ($con->query($sql))->fetch(PDO::FETCH_ASSOC);
+            $student = new Student(...$res);
+            $student->setCne($res['cne']);
+            return $student;
         }
 
         /**
          * Recherche les étudiants avec un âge donné
          * @param int $age Age voulu des étudiants
-         * @return bool|array Liste des étudiants avec l'age donné
+         * @return Student Liste des étudiants avec l'age donné
          */
-        public static function getByAge(int $age): bool|array
+        public static function getByAge(int $age): Student|array
         {
+            $all = [];
             $con = FACTORY->get_connexion();
-            $sql = "SELECT * FROM etudiants NATURAL JOIN users WHERE TIMESTAMPDIFF(year, date_nais , NOW())='" . $age . "'";
+            $sql = "SELECT * FROM etudiants NATURAL JOIN users WHERE TIMESTAMPDIFF(year, birthDate , NOW())='" . $age . "'";
             $res = $con->query($sql);
-            return $res->fetchAll();
+            foreach ($res->fetchAll(PDO::FETCH_ASSOC) as $item){
+                $student = new Student(...$item);
+                $student->setCne($item['cne']);
+                $all[] = $student;
+            }
+            return $all;
         }
 
         /**
