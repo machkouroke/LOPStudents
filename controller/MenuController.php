@@ -3,6 +3,8 @@
     namespace controller;
 
 
+    use model\beans\Student;
+
     /**
      * @author Machkour Oke
      * Contient les fonctions faisant appel aux éléments du menu
@@ -44,6 +46,7 @@
         {
             $listingStudents = function () {
                 $title = LIST_OF_STUDENTS;
+                $data = Student::getAll();
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\listing.php');
             };
             AuthenticationController::loginRequired($listingStudents)();
