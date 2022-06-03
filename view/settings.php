@@ -36,7 +36,7 @@
 								<div class='center'><input type='submit' class='btn btn-primary m-2'
 								                           value='Modifier les informations'></div>
 							</form>
-							<form action="<?= BASE_URL ?>index.php?action=deleteConnectedUser&login=<?= $_SESSION['User']->getLogin() ?>" method="post">
+							<form action="<?= BASE_URL ?>index.php?action=deleteConnectedUser" method="post">
 								<div class='center'><input type='submit' class='delete btn btn-danger m-2'
 								                           value='Supprimer le compte'></div>
 							</form>

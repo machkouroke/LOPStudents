@@ -2,7 +2,7 @@
 	$listing = false;
 ?>
 <section class="py-5 mt-5">
-	<div class="container py-5">
+	<div class="container py-5 pt-3 ">
 		<?php
 			$switchPage = VIEW_URL . "trombinoscope.php";
 			$switchIcon = IMG_URL . "grid.png";
@@ -15,7 +15,7 @@
 		<?php endif ?>
 		<div id="listPage">
 
--			<div class="list overflow rounded">
+			<div class="list overflow rounded">
 				<div class="row mx-auto" style="/*max-width: 700px;*/">
 					<div class="col">
 						<div data-reflow-type="shopping-cart">
@@ -30,12 +30,11 @@
 										<div class="ref-email-col">Email</div>
 										<div class="ref-adress-col">Adresse</div>
 										<div class="ref-tel-col">Numéro de téléphone</div>
-										<?php if ($title === LIST_OF_STUDENTS & ADMIN_TEACHER): ?>
-											<div class="ref-cv-col">CV</div>
-										<?php endif ?>
-										<?php if (ADMIN_TEACHER): ?>
-											<div class="ref-action-col text-end">Actions</div>
-										<?php endif ?>
+
+										<div class="ref-cv-col"><?= STUDENT_ONLY ? 'Filière' : 'CV' ?></div>
+
+										<div class="ref-action-col text-end"><?= STUDENT_ONLY ? 'Matricule' : 'Actions' ?></div>
+
 
 									</div>
 									<div class="checkboxes ref-cart-table ">
@@ -45,7 +44,8 @@
 
 											       type="checkbox"
 											       id="<?= $user->getLogin() ?>"/>
-											<label for="<?= $user->getLogin() ?>" class="w-100 ref-student box-checkbox">
+											<label for="<?= $user->getLogin() ?>"
+											       class="w-100 ref-student box-checkbox">
 
 												<div class="ref-student-col">
 													<div class="ref-student-wrapper flex-xxl-row flex-column">
@@ -53,18 +53,23 @@
 																	class='ref-student-photo'
 																	src="<?= PIC_URL . $user->getLogin() . '.jpg' ?>"
 																	alt='<?= $user->getLogin() ?>'/></a>
-														<div class="ref-student-data">
+
+														<div class="ref-student-data text-center">
 															<div class="ref-student-info">
-																<div class="ref-student-name">
+
+																<div class="ref-student-name ">
 																	<?= $user->getSurname() . ' ' . $user->getName() ?></div>
-																<div class="ref-student-category">
-																	<?= $user->getFaculty() . ' ' . $user->getFacultyYear() ?>
-																</div>
-																<div class="ref-student-personalization-holder">
-																	<?= $user->getCne() ?>
-																</div>
+																<?php if (!STUDENT_ONLY): ?>
+																	<div class="ref-student-category">
+																		<?= $user->getFaculty() . ' ' . $user->getFacultyYear() ?>
+																	</div>
+																	<div class="ref-student-personalization-holder">
+																		<?= $user->getCne() ?>
+																	</div>
+																<?php endif ?>
 															</div>
 														</div>
+
 													</div>
 
 												</div>
@@ -78,19 +83,26 @@
 													<b><?= $user->getZipCode() . ', ' . $user->getCity() . ' ' . $user->getCountry() ?></b>
 												</div>
 												<div class="ref-tel-col">+2126388646641</div>
-												<?php if (ADMIN_TEACHER): ?>
-													<div class="d-flex flex-column  ref-cv-col"><a href="">
-															Télécharger le CV</a>
-													</div>
-												<?php endif; ?>
-												<?php if (ADMIN_TEACHER): ?>
-													<div class="d-flex flex-column text-center ref-action-col">
-														<p><a href="" class="">Modifier</a></p>
-														<p>
-															<a href="<?= BASE_URL ?>index.php?action=deleteStudent&login=<?= $user->getLogin() ?>"
-															   class="">Supprimer</a></p>
-													</div>
-												<?php endif ?>
+
+												<div class="d-flex flex-column  ref-cv-col">
+													<?php ob_start(); ?>
+													<a href="<?= CV_URL . $user->getLogin() . '.jpg' ?>" download>Télécharger le
+													                                                      CV</a>
+													<?php $cvDownload = ob_get_clean(); ?>
+													<?= STUDENT_ONLY ? $user->getFaculty() . ' ' . $user->getFacultyYear() : $cvDownload ?>
+												</div>
+
+
+												<div class="d-flex flex-column text-center ref-action-col">
+													<?php ob_start(); ?>
+													<p><a href="" class="text-primary">Modifier</a></p>
+													<p>
+														<a href="<?= BASE_URL ?>index.php?action=deleteStudent&login=<?= $user->getLogin() ?>"
+														   class="delete text-primary">Supprimer</a></p>
+													<?php $action = ob_get_clean(); ?>
+													<?= STUDENT_ONLY ? $user->getCne() : $action ?>
+												</div>
+
 											</label>
 										<?php endforeach ?>
 
@@ -121,7 +133,7 @@
 			</div>
 
 		</div>
-		<nav class="my-5 py-5 w-100 d-flex justify-content-center">
+		<nav class="mt-4 pt-5 w-100 d-flex justify-content-center">
 			<ul class='pagination'>
 				<?php for ($i = 1; $i < $numberOfPage + 1; $i++): ?>
 

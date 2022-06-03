@@ -4,7 +4,10 @@
 
 
     use model\beans\Student;
+    use model\beans\Teacher;
     use model\beans\User;
+
+
 
     /**
      * @author Machkour Oke
@@ -49,10 +52,10 @@
             $listingStudents = function () use ($filterInput, $filter) {
                 $title = LIST_OF_STUDENTS;
                 $number = Student::getNumberOfStudents();
-                $perPage = 10;
-                $numberOfPage = ceil($number / $perPage);
 
-                $firstPage = ($_GET['page'] * $perPage) - $perPage;
+                $numberOfPage = ceil($number / ROW_PER_PAGE);
+
+                $firstPage = ($_GET['page'] * ROW_PER_PAGE) - ROW_PER_PAGE;
                 if (STUDENT_ONLY) {
                     $data = $_SESSION['User']->getFriends();
                 } else {
@@ -60,7 +63,7 @@
                         FILTER::CITY => Student::getByCity($filterInput),
                         FILTER::YEAR => Student::getByAge((int)$filterInput),
                         FILTER::FACULTY => Student::getByFaculty($filterInput),
-                        default => Student::getAll($firstPage, $perPage),
+                        default => Student::getAll($firstPage, ROW_PER_PAGE),
                     };
                 }
 
@@ -70,10 +73,21 @@
             AuthenticationController::loginRequired($listingStudents)();
         }
 
-        public static function listingTeachers(): void
+        public static function listingTeachers(Filter $filter = FILTER::NONE, string $filterInput = ''): void
         {
-            $listingTeachers = function () {
+            $listingTeachers = function () use ($filterInput, $filter) {
                 $title = LIST_OF_TEACHERS;
+                $number = Teacher::getNumberOfTeacher();
+                $numberOfPage = ceil($number / ROW_PER_PAGE);
+                $firstPage = ($_GET['page'] * ROW_PER_PAGE) - ROW_PER_PAGE;
+                if (STUDENT_ONLY) {
+                    $data = $_SESSION['User']->getTeachers();
+                } else {
+                    $data = match ($filter) {
+                        FILTER::CITY => Teacher::getByCity($filterInput),
+                        default => Teacher::getAll($firstPage, ROW_PER_PAGE),
+                    };
+                }
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\listing.php');
             };
             AuthenticationController::loginRequired($listingTeachers)();
