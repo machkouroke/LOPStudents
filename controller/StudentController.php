@@ -15,9 +15,6 @@
     {
 
 
-
-
-
         public static function addStudent(): void
         {
             try {
@@ -27,6 +24,30 @@
             } catch (DataBaseException|UserException $e) {
                 header(INDEX_LOCATION . '?action=addStudentPage&error=' . $e->getMessage());
             }
+
+        }
+
+        public static function delete(): void
+        {
+            Student::delete($_GET['login']);
+            header(INDEX_LOCATION . '?action=listingStudents&page=1&sucess=' . 'Utilisateur supprime');
+        }
+
+        public static function getByCity(): void
+        {
+            MenuController::listingStudents(Filter::CITY, $_POST['city']);
+
+        }
+
+        public static function getByFaculty(): void
+        {
+            MenuController::listingStudents(Filter::FACULTY, $_POST['faculty']);
+
+        }
+
+        public static function getByYear(): void
+        {
+            MenuController::listingStudents(Filter::YEAR, $_POST['year']);
 
         }
     }

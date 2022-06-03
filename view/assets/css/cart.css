@@ -95,7 +95,7 @@
 
 .reflow-shopping-cart .ref-cart .ref-th {
     display: none;
-    width: 95%;
+    width: 100%;
     font-size: .75em;
     text-transform: uppercase;
     border-bottom: 1px solid var(--ref-gray-300);
@@ -114,7 +114,7 @@
 }
 
 .reflow-shopping-cart .ref-cart .ref-price-col, .reflow-shopping-cart .ref-cart .ref-email-col, .reflow-shopping-cart .ref-cart .ref-adress-col {
-    display: none
+    /*display: none*/
 }
 
 .reflow-shopping-cart .ref-cart .ref-cart-table .ref-student-photo {

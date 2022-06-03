@@ -161,7 +161,7 @@
         /**
          * Recherche les étudiants avec un âge donné
          * @param int $age Age voulu des étudiants
-         * @return Student Liste des étudiants avec l'age donné
+         * @return Student|array Liste des étudiants avec l'age donné
          */
         public static function getByAge(int $age): Student|array
         {

@@ -32,6 +32,9 @@
                 case 'addTeacherPage':
                     MenuController::addTeacher();
                     break;
+                case 'deleteStudent':
+                    StudentController::delete();
+                    break;
                 case 'listingStudents':
                     MenuController::listingStudents();
                     break;
@@ -50,7 +53,15 @@
                 case 'userPage':
                     MenuController::userPage();
                     break;
-
+                case 'studentByFaculty':
+                    StudentController::getByFaculty();
+                    break;
+                case 'studentByYear':
+                    StudentController::getByYear();
+                    break;
+                case 'studentByCity':
+                    StudentController::getByCity();
+                    break;
                 case 'logout':
                     AuthenticationController::logout();
                     break;

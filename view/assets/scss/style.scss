@@ -152,7 +152,10 @@ body {
 
     /* Handle */
     &::-webkit-scrollbar-thumb {
+      border-radius: 20px;
+      height: 12px;
       background: $primary;
     }
   }
 }
+
