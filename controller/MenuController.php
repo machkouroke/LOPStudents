@@ -43,16 +43,23 @@
                 ADMIN_ONLY);
         }
 
-        public static function listingStudents(): void
+        public static function listingStudents(Filter $filter = FILTER::NONE, String $filterInput=''): void
         {
 
-            $listingStudents = function () {
+            $listingStudents = function () use ($filterInput, $filter) {
                 $title = LIST_OF_STUDENTS;
                 $number = Student::getNumberOfStudents();
                 $perPage = 10;
                 $numberOfPage = ceil($number / $perPage);
+
                 $firstPage = ($_GET['page'] * $perPage) - $perPage;
-                $data = Student::getAll($firstPage, $perPage);
+                $data = match ($filter) {
+                    FILTER::CITY => Student::getAll($firstPage, $perPage),
+                    FILTER::YEAR => Student::getByAge((int)$filterInput),
+                    FILTER::FACULTY => Student::getByClasse($firstPage, $perPage),
+                    default => Student::getAll($firstPage, $perPage),
+                };
+
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\listing.php');
             };
             AuthenticationController::loginRequired($listingStudents)();
@@ -75,11 +82,12 @@
             };
             AuthenticationController::loginRequired($settings)();
         }
+
         public static function userPage(): void
         {
 
             $userPage = function () {
-                $user = isset($_GET['userLogin']) ? User::getByLogin($_GET['userLogin']) : $_SESSION['User'];
+                $user = isset($_GET['userLogin']) ? Student::getByLogin($_GET['userLogin']) : $_SESSION['User'];
                 $title = $user->getSurname();
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\userPage.php');
             };

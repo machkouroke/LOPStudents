@@ -22,7 +22,7 @@
 					<table class="table">
 						<?php if (STUDENT_ONLY): ?>
 							<tr>
-								<th scope="row">Fillière</th>
+								<th scope="row">Filière</th>
 								<td>IID1</td>
 							</tr>
 						<?php endif; ?>

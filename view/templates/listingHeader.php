@@ -21,14 +21,14 @@
 	<p>
 		<a id="switchIcon"><img src="<?= $switchIcon ?>" alt="" class="switch"></a>
 	</p>
-	<p><input form="MessageSender" type="submit" class="btn btn-primary" value="Envoyer un mail"/> </p>
+	<p><input form="MessageSender" type="submit" class="btn btn-primary" value="Envoyer un mail"/></p>
 	<form id="MessageSender" method="post" action="<?= BASE_URL ?>index.php?action=sendMessage" class="d-none">
 	</form>
 </div>
 <div id="moreOption" data-aos="fade-down" class="row shadow rounded p-3">
 	<div class="reflow-product-list ref-cards">
 		<div class="m-3 ref-products align-items-center justify-content-around">
-			<div class="ref-product" href="add.php?title=de l'étudiant">
+			<form class="ref-product" action="<?= BASE_URL ?>index.php?action=studentByCity&page=1" method="post">
 				<div class="front">
 					<img class="ref-image" src="<?= IMG_URL ?>listingMenu/city.png" alt=""/>
 					<div class="ref-product-data">
@@ -37,14 +37,14 @@
 				</div>
 				<div class="back  d-flex justify-content-center align-items-center">
 					<label class="form-label ">
-						<input type="text" class="form-control">
+						<input name="city" type="text" class="form-control">
 						<button class="btn btn-primary w-100 my-3" type="submit">
 							Filtrer
 						</button>
 					</label>
 				</div>
-			</div>
-			<div class="ref-product " href="add.php?title=de l'étudiant">
+			</form>
+			<form class="ref-product " method="post" action='<?= BASE_URL ?>index.php?action=studentByYear&page=1'>
 				<div class="front">
 					<img class="ref-image" src="<?= IMG_URL ?>listingMenu/year.png" alt=""/>
 					<div class="ref-product-data">
@@ -53,29 +53,31 @@
 				</div>
 				<div class=" back d-flex justify-content-center align-items-center">
 					<label class="form-label ">
-						<input type="text" class="form-control">
+						<input name='year' type="text" class="form-control">
 						<button class="btn btn-primary w-100 my-3" type="submit">
 							Filtrer
 						</button>
 					</label>
 				</div>
-			</div>
-			<div class="ref-product " href="add.php?title=de l'étudiant">
-				<div class="front">
-					<img class="ref-image" src="<?= IMG_URL ?>listingMenu/faculty.png" alt=""/>
-					<div class="ref-product-data">
-						<h5 class="ref-name text-center w-100">Sélectionner les étudiants par filière</h5>
+			</form>
+			<?php if (ADMIN_ONLY): ?>
+				<form class="ref-product " method='post' href="add.php?title=de l'étudiant" action='<?= BASE_URL ?>index.php?action=studentByFaculty&page=1'>
+					<div class="front">
+						<img class="ref-image" src="<?= IMG_URL ?>listingMenu/faculty.png" alt=""/>
+						<div class="ref-product-data">
+							<h5 class="ref-name text-center w-100">Sélectionner les étudiants par filière</h5>
+						</div>
 					</div>
-				</div>
-				<div class="back  d-flex justify-content-center align-items-center">
-					<label class="form-label ">
-						<input type="text" class="form-control">
-						<button class="btn btn-primary w-100 my-3" type="submit">
-							Filtrer
-						</button>
-					</label>
-				</div>
-			</div>
+					<div class="back  d-flex justify-content-center align-items-center">
+						<label class="form-label ">
+							<input name="faculty" type="text" class="form-control">
+							<button class="btn btn-primary w-100 my-3" type="submit">
+								Filtrer
+							</button>
+						</label>
+					</div>
+				</form>
+			<?php endif ?>
 
 
 		</div>

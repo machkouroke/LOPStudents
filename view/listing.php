@@ -37,28 +37,29 @@
 
 									</div>
 									<div class="checkboxes ref-cart-table">
-										<?php foreach ($data as $row): ?>
+										<?php foreach ($data as $user): ?>
 
-											<input form="MessageSender" name="user[]" value="<?= $row['email'] ?>"
+											<input form="MessageSender" name="user[]" value="<?= $user->getEmail() ?>"
+											       type="text"
 											       type="checkbox"
-											       id="<?= $row['login'] ?>"/>
-											<label for="<?= $row['login'] ?>" class="ref-student box-checkbox">
+											       id="<?= $user->getLogin() ?>"/>
+											<label for="<?= $user->getLogin() ?>" class="ref-student box-checkbox">
 
 												<div class="ref-student-col">
 													<div class="ref-student-wrapper flex-xxl-row flex-column">
 														<a href="<?= BASE_URL ?>index.php?action=userPage&userLogin=<?= $row['login'] ?>"><img
 																	class='ref-student-photo'
-																	src="<?= PIC_URL . $row['login'] . '.jpg' ?>"
-																	alt='Imane'/></a>
+																	src="<?= PIC_URL . $user->getLogin() . '.jpg' ?>"
+																	alt='<?= $user->getLogin() ?>'/></a>
 														<div class="ref-student-data">
 															<div class="ref-student-info">
 																<div class="ref-student-name">
-																	<?= $row['surname'] . ' ' . $row['name'] ?></div>
+																	<?= $user->getSurname() . ' ' . $user->getName() ?></div>
 																<div class="ref-student-category">
-																	<?= $row['faculty'] . ' ' . $row['facultyYear'] ?>
+																	<?= $user->getFaculty() . ' ' . $user->getFacultyYear ?>
 																</div>
 																<div class="ref-student-personalization-holder">
-																	<?= $row['cne'] ?>
+																	<?= $user->getCne() ?>
 																</div>
 															</div>
 														</div>
@@ -80,7 +81,9 @@
 												</div>
 												<div class="d-flex flex-column text-center ref-action-col">
 													<p><a href="" class="">Modifier</a></p>
-													<p><a href="" class="">Supprimer</a></p>
+													<p>
+														<a href="<?= BASE_URL ?>index.php?action=deleteStudent&login=<?= $row['login'] ?>"
+														   class="">Supprimer</a></p>
 												</div>
 											</label>
 										<?php endforeach ?>

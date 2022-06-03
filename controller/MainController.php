@@ -2,6 +2,8 @@
 
     namespace controller;
 
+    use model\beans\Student;
+
     /**
      * @author Machkour Oke
      * Contient les fonctions propres aux administrateurs, mais aussi quelque fonction paramétrique du programme
@@ -44,13 +46,14 @@
                     }
                 } else {
                     $error = "Veuillez saisir tous les champs pour l'envoi";
-                    header("Location:index.php?action=sendMessage&error=" . $error);
+                    header("Location:index.php?action=sendMessage&page=1&error=" . $error);
                 }
                 $sucess = 'Le message a bien été envoyé';
-                header("Location:index.php?action=listingStudents&sucess=" . $sucess);
+                header("Location:index.php?action=listingStudents&page=1&sucess=" . $sucess);
             };
             AuthenticationController::loginRequired($sendMessage)();
         }
+
 
 
     }
