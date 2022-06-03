@@ -11931,41 +11931,19 @@ footer ul li a {
   }
 }
 
-#form-flip {
-  position: relative;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-  display: block;
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
-#form-flip .front {
-  position: absolute;
+body header {
+  min-height: 50px;
+  background: lightcyan;
 }
-#form-flip .back {
-  transform: rotateY(180deg);
-}
-#form-flip.flipBack {
-  transform: rotateY(180deg);
-}
-#form-flip.flipFront {
-  transform: rotateY(0deg);
-  pointer-events: none;
-}
-#form-flip .front, #form-flip .back {
-  backface-visibility: hidden;
-}
-
-.div-separator {
-  height: 200px;
-}
-@media (max-width: 1400px) {
-  .div-separator {
-    height: 450px;
-  }
-}
-@media (max-width: 768px) {
-  .div-separator {
-    height: 800px;
-  }
+body footer {
+  min-height: 50px;
+  background: PapayaWhip;
 }
 
 /*# sourceMappingURL=style.css.map */

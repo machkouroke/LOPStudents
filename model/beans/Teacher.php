@@ -31,7 +31,7 @@
          * Renvoie la liste de tous les proffesseur
          * @return bool|array Liste de tous les proffesseur
          */
-        public static function getAll(): bool|array
+        public static function getAll(int $first, int $last): bool|array
         {
             $con = FACTORY->get_connexion();
             $sql = "select * from professeur natural join users";
