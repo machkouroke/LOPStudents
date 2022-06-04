@@ -73,6 +73,14 @@
         }
 
         /**
+         * @return string
+         */
+        public function getPhoto(): string
+        {
+            return $this->photo;
+        }
+
+        /**
          * Renvoie le rôle de l'utilisateur
          * @return Role Role de l'utilisateur
          */
@@ -89,7 +97,7 @@
         {
             return [$this->login, $this->name,
                 $this->surname, $this->password, $this->city,
-                $this->zipCode, $this->country, $this->getRole()->value];
+                $this->zipCode, $this->country, $this->photo, $this->getRole()->value];
         }
 
         /**
