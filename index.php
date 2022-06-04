@@ -17,7 +17,7 @@
     use controller\MenuController;
     use controller\StudentController;
     use controller\TeacherController;
-    use model\beans\Factory;
+    use model\LOPStudents\Factory;
 
 
     if (isset($_SESSION['User'])) {

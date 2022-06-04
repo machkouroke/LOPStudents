@@ -1,10 +1,12 @@
 <?php
 
 
-    namespace model\beans;
+    namespace model\LOPStudents;
 
     use Exception\DataBaseException;
     use Exception\UserException;
+    use model\LOPStudents\Trait\Filter\StudentFilter;
+    use model\LOPStudents\Trait\StudentSettersAndGetters;
     use PDO;
     use PDOException;
 
@@ -17,6 +19,8 @@
     {
         public string $birthDate, $cv, $photo, $email, $cne;
         public string $faculty, $facultyYear;
+        use StudentSettersAndGetters;
+        use StudentFilter;
 
 
         public function __construct(string ...$data)
@@ -36,69 +40,6 @@
             $this->generateCne();
         }
 
-        /**
-         * @return string
-         */
-        public function getBirthDate(): string
-        {
-            return $this->birthDate;
-        }
-
-        /**
-         * @return string
-         */
-        public function getCv(): string
-        {
-            return $this->cv;
-        }
-
-        /**
-         * @return string
-         */
-        public function getPhoto(): string
-        {
-            return $this->photo;
-        }
-
-        /**
-         * @return string
-         */
-        public function getEmail(): string
-        {
-            return $this->email;
-        }
-
-        /**
-         * @return string
-         */
-        public function getCne(): string
-        {
-            return $this->cne;
-        }
-
-        /**
-         * @return string
-         */
-        public function getFaculty(): string
-        {
-            return $this->faculty;
-        }
-
-        /**
-         * @return string
-         */
-        public function getFacultyYear(): string
-        {
-            return $this->facultyYear;
-        }
-
-        /**
-         * @param string $cne
-         */
-        public function setCne(string $cne): void
-        {
-            $this->cne = $cne;
-        }
 
         /**
          * Génère le CNE suivant le dernier element de la base
@@ -132,74 +73,11 @@
             return (int)$res->fetch()['NB_STUDENTS'];
         }
 
-        /**
-         * Recherche un étudiant en fonction de son CNE
-         * @param String $cne Cne de l'étudiant à rechercher
-         * @return Student Étudiant avec le CNE données
-         */
-        public static function getByCne(string $cne): Student
-        {
-            $con = FACTORY->get_connexion();
-            $sql = "SELECT * FROM etudiants NATURAL JOIN users WHERE cne='" . $cne . "'";
-            $res = ($con->query($sql))->fetch(PDO::FETCH_ASSOC);
-            $student = new Student(...$res);
-            $student->setCne($res['cne']);
-            return $student;
-        }
-
-        public static function getByLogin(string $login): Student
-        {
-            $con = FACTORY->get_connexion();
-            $sql = "select * from etudiants natural join users where login='" . $login . "'";
-            $res = ($con->query($sql))->fetch(PDO::FETCH_ASSOC);
-            $student = new Student(...$res);
-            $student->setCne($res['cne']);
-            return $student;
-        }
 
         /**
-         * Recherche les étudiants avec un âge donné
-         * @param int $age Age voulu des étudiants
-         * @return Student|array Liste des étudiants avec l'age donné
+         * @param $res
+         * @return array
          */
-        public static function getByAge(int $age): Student|array
-        {
-            $con = FACTORY->get_connexion();
-            $sql = "SELECT * FROM etudiants NATURAL JOIN users WHERE TIMESTAMPDIFF(year, birthDate , NOW())='" . $age . "'";
-            $res = $con->query($sql);
-            return self::changeToStudent($res);
-        }
-
-        /**
-         * Recherche les étudiants selon une classe donnée
-         * @param string $fac
-         * @return bool|array
-         */
-        public static function getByFaculty(string $fac): bool|array
-        {
-
-            $fac = explode(' ', $fac);
-            $faculty = ($fac)[0];
-            $facultyYear = ($fac)[1];
-            $con = FACTORY->get_connexion();
-            $sql = "SELECT * FROM etudiants natural join users WHERE faculty='" . $faculty . "' AND facultyYear='" . $facultyYear . "'";
-            $res = $con->query($sql);
-            return self::changeToStudent($res);
-        }
-
-        /**
-         * Recherche les étudiants selon une ville donnée
-         * @param string $city
-         * @return bool|array Tableau d'étudiant dans la ville donné
-         */
-        public static function getByCity(string $city): bool|array
-        {
-            $con = FACTORY->get_connexion();
-            $sql = "SELECT * FROM etudiants natural join users WHERE city='" . $city . "'";
-            $res = $con->query($sql);
-            return self::changeToStudent($res);
-        }
-
         public static function changeToStudent($res): array
         {
             $all = [];
@@ -292,46 +170,6 @@
             $con->exec($deleteStudent);
         }
 
-        /**
-         * Renvoie les étudiants de même filière que l'étudiant actuel
-         * @return bool|array Tableau avec les camarades de classe de l'étudiant actuelle
-         */
-        public function getFriends(): bool|array
-        {
-            $con = FACTORY->get_connexion();
-            $sql = "select * from users NATURAL join etudiants 
-                    where faculty='" . $this->faculty . "' and facultyYear='" . $this->facultyYear . "' and cne<>'" . $this->cne . "'";
-            $res = $con->query($sql);
-            return self::changeToStudent($res);
-        }
 
-        /**
-         * Renvoie-les proffesseur de l'étudiant actuel
-         * @return bool|array Tableau des proffesseur de l'étudiant actuel
-         */
-        public function getTeachers(): bool|array
-        {
-            $all = [];
-            $con = FACTORY->get_connexion();
-            $sql = "select * from professeur natural join users where matricule in (select matricule from module 
-                                where faculty='$this->faculty' and facultyYear='$this->facultyYear')";
-            $res = $con->query($sql);
-            foreach ($res->fetchAll(PDO::FETCH_ASSOC) as $item) {
-                $teacher = new Teacher(...$item);
-                $all[] = $teacher;
-            }
-            return $all;
-        }
-
-
-        /**
-         * Renvoie toutes les informations de l'étudiant actuel (En tant qu'Étudiant)
-         * @return array Informations de l'étudiant actuel
-         */
-        public function getStudentTable(): array
-        {
-            return [$this->cne, $this->cv, $this->photo, $this->email, $this->birthDate,
-                $this->faculty, $this->facultyYear, $this->login];
-        }
     }
 

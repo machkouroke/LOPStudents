@@ -4,7 +4,7 @@
 
     use Exception\DataBaseException;
     use Exception\UserException;
-    use model\beans\Student;
+    use model\LOPStudents\Student;
     use model\FormValidator;
 
     /**

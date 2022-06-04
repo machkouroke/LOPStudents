@@ -7,7 +7,7 @@
 
 
     use controller\Role;
-    use model\beans\Factory;
+    use model\LOPStudents\Factory;
 
     /**
      * Constante de répertoire d'url

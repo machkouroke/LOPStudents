@@ -6,9 +6,9 @@
     use controller\Role;
     use Exception\UserException;
     use Exception\DataBaseException;
-    use model\beans\Student;
-    use model\beans\Teacher;
-    use model\beans\User;
+    use model\LOPStudents\Student;
+    use model\LOPStudents\Teacher;
+    use model\LOPStudents\User;
 
 
 

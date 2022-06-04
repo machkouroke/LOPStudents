@@ -1,6 +1,6 @@
 <?php
 
-    namespace model\beans;
+    namespace model\LOPStudents;
 
     use PDO;
 
