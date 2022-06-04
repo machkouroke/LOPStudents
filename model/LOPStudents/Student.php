@@ -132,7 +132,7 @@
             try {
                 $con = FACTORY->get_connexion();
 
-
+                print_r($newData);
                 $updateStudent = "update etudiants set cv=?, photo=?, email=?, birthDate=?
 
                     ,faculty=?, facultyYear=? where login=?";
@@ -148,6 +148,7 @@
                     $faculties[0], $faculties[1], $this->login];
                 $statementStudent->execute($studentInfo);
                 $statementUser = $con->prepare($updateUser);
+
                 $userInfo = [$newData['name'], $newData['surname'], $newData['password'], $newData['city'],
                     $newData['zipCode'], $newData['country']];
                 $statementUser->execute($userInfo);

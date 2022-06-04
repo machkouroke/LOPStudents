@@ -43,7 +43,7 @@
                     StudentController::updateStudentPage();
                     break;
                 case 'updateStudent':
-                    print('hello');
+
                     StudentController::updateStudent();
                     break;
                 case 'deleteConnectedUser':
