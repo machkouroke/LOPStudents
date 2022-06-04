@@ -8,6 +8,7 @@
         require_once($path);
     });
 
+
     session_start();
 
     require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller\Constant.php');
@@ -17,7 +18,7 @@
     use controller\MenuController;
     use controller\StudentController;
     use controller\TeacherController;
-    use model\beans\Factory;
+    use model\LOPStudents\Factory;
 
 
     if (isset($_SESSION['User'])) {
@@ -42,7 +43,7 @@
                     StudentController::updateStudentPage();
                     break;
                 case 'updateStudent':
-                    print('hello');
+
                     StudentController::updateStudent();
                     break;
                 case 'deleteConnectedUser':

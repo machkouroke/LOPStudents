@@ -51,7 +51,7 @@
 													<div class="ref-student-wrapper flex-xxl-row flex-column">
 														<a href="<?= BASE_URL ?>index.php?action=userPage&userLogin=<?= $user->getLogin() ?>"><img
 																	class='ref-student-photo'
-																	src="<?= PIC_URL . $user->getLogin() . '.jpg' ?>"
+																	src="<?= $user->getPhoto() ?>"
 																	alt='<?= $user->getLogin() ?>'/></a>
 
 														<div class="ref-student-data text-center">
@@ -87,8 +87,8 @@
 												<div class="d-flex flex-column  ref-cv-col">
 													<?php ob_start(); ?>
 													<a href="<?= $user->getCv() ?>" download>Télécharger
-													                                                              le
-													                                                              CV</a>
+													                                         le
+													                                         CV</a>
 													<?php $cvDownload = ob_get_clean(); ?>
 													<?= STUDENT_ONLY ? $user->getFaculty() . ' ' . $user->getFacultyYear() : $cvDownload ?>
 												</div>

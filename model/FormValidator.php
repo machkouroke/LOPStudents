@@ -17,19 +17,25 @@
          */
         static function validateStudentAdd(): array
         {
+
             if (self::isAllStudentFieldsPresent()) {
 
                 if (self::isAllStudentFieldsSizeCorrect()) {
+
                     throw new UserException('La taille des elements ne doit pas depasser 20 lettres');
                 }
                 if (self::isStudentFileSizeIsLessThanTwo()) {
+
                     throw new UserException('La taille des fichiers ne doit pas depasser ne doit pas depasser 2 MO');
                 } else {
+
                     self::moveFile();
                 }
             } else {
                 throw new UserException('Veuillez saisir tous les champs');
             }
+
+
             return self::generatedStudentFields();
         }
 
@@ -48,10 +54,8 @@
         {
             $data = $_POST;
             $data['cne'] = '14566';
-            $data['cv'] = $_POST['photo'];
-            $data['photo'] = $_FILES['photo']['name'];
-            $data['faculty'] = 'IID';
-            $data['facultyYear'] = '1';
+            $data['cv'] = $_POST['cv'];
+            $data['photo'] = $_POST['photo'];
             return $data;
         }
 
@@ -73,6 +77,8 @@
          */
         private static function isAllStudentFieldsSizeCorrect(): bool
         {
+
+
             return strlen($_POST['name']) > 20 ||
                 strlen($_POST['login']) > 20 || strlen($_POST['password']) > 20;
         }
@@ -88,6 +94,7 @@
 
         /**
          * @return void
+         * @throws UserException
          */
         public static function moveFile(): void
         {
@@ -96,8 +103,15 @@
             $login = $_POST['login'];
             $_POST['cv'] = CV_URL . $login . '.' . $cvExtension;
             $_POST['photo'] = PIC_URL . $login . '.' . $photoExtension;
-            move_uploaded_file($_FILES['cv']['tmp_name'], $_POST['cv']);
-            move_uploaded_file($_FILES['photo']['tmp_name'], $_POST['photo']);
+
+            $sucessMove = move_uploaded_file($_FILES['cv']['tmp_name'], CV_DIR . $login . '.' . $cvExtension)
+                && move_uploaded_file($_FILES['photo']['tmp_name'], PIC_DIR . $login . '.' . $photoExtension);
+
+
+            if (!$sucessMove) {
+
+                throw new UserException("Les fichiers n'ont pas été bien enregistré");
+            }
         }
     }
 

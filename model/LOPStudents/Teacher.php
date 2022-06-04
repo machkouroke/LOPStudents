@@ -1,13 +1,14 @@
 <?php
 
-    namespace model\beans;
+    namespace model\LOPStudents;
 
     use Exception\DataBaseException;
     use Exception\UserException;
-    use model\beans\Module;
-    use PDO;
+    use model\LOPStudents\Module;
+    use model\LOPStudents\Trait\Filter\TeacherFilter;
+    use model\LOPStudents\Trait\TeacherSettersAndGetters;
     use PDOException;
-    use controller\Role;
+
 
 
     /**
@@ -17,6 +18,8 @@
     class Teacher extends User
     {
         public string $matricule, $email;
+        use TeacherSettersAndGetters;
+        use TeacherFilter;
 
         public function __construct(...$data)
         {
@@ -40,18 +43,6 @@
             return $res->fetchAll();
         }
 
-        /**
-         * Renvoie le proffesseur avec le Matricule donné
-         * @param string $matricule Matricule dudit professeur
-         * @return mixed
-         */
-        public static function getByMatricule(string $matricule): mixed
-        {
-            $con = FACTORY->get_connexion();
-            $sql = "SELECT * FROM professeur NATURAL JOIN users WHERE matricule='" . $matricule . "'";
-            $res = $con->query($sql);
-            return $res->fetch(PDO::FETCH_ASSOC);
-        }
 
         public static function getNumberOfTeacher(): int
         {
@@ -61,9 +52,6 @@
             return (int)$res->fetch()['NB_TEACHER'];
         }
 
-        public static function getByCity(string $filterInput)
-        {
-        }
 
         /**
          * Ajoute le proffesseur de l'objet actuel
@@ -136,27 +124,7 @@
             $con->exec($deleteProf);
         }
 
-        /**
-         * Renvoie la liste des étudiants du proffesseur actuel
-         * @return bool|array Liste des étudiants du professeur actuel
-         */
-        public function getStudents(): bool|array
-        {
-            $con = FACTORY->get_connexion();
-            $sql = "select cne,name,surname,email,cv,photo,faculty,facultyYear from etudiants natural join users 
-                                                           where (faculty,facultyYear) in (select
-                        faculty,facultyYear from module where matricule='" . $this->matricule . "')";
-            $res = $con->query($sql);
-            return $res->fetchAll(PDO::FETCH_ASSOC);
-        }
 
 
-        /**
-         * Renvoie les données du proffesseur actuel
-         * @return array Données du proffesseur actuelle
-         */
-        public function getProfTable(): array
-        {
-            return [$this->matricule, $this->email, $this->login];
-        }
+
     }

@@ -2,8 +2,8 @@
 
     namespace controller;
 
-    use model\beans\Student;
-    use model\beans\User;
+    use model\LOPStudents\Student;
+    use model\LOPStudents\User;
 
     /**
      * @author Machkour Oke

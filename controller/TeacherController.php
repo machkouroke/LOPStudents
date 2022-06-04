@@ -5,8 +5,8 @@
     use controller\AuthenticationController;
     use Exception\DataBaseException;
     use Exception\UserException;
-    use model\beans\Student;
-    use model\beans\Teacher;
+    use model\LOPStudents\Student;
+    use model\LOPStudents\Teacher;
     use model\FormValidator;
 
 

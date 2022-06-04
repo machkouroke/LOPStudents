@@ -6,7 +6,7 @@
     use Exception\DataBaseException;
     use Exception\UserException;
     use model\Authentification;
-    use model\beans\Factory;
+    use model\LOPStudents\Factory;
 
     /**
      * @author Machkour Oke

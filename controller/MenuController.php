@@ -3,9 +3,10 @@
     namespace controller;
 
 
-    use model\beans\Student;
-    use model\beans\Teacher;
-    use model\beans\User;
+    use controller\enum\Filter;
+    use model\LOPStudents\Student;
+    use model\LOPStudents\Teacher;
+    use model\LOPStudents\User;
 
 
     /**

@@ -4,7 +4,7 @@
 
     use Exception\DataBaseException;
     use Exception\UserException;
-    use model\beans\Student;
+    use model\LOPStudents\Student;
     use model\FormValidator;
 
     /**
@@ -62,8 +62,10 @@
         {
 
             try {
-                $studentToUpdate = Student::getByLogin(...FormValidator::validateStudentAdd());
+
+                $studentToUpdate = Student::getByLogin(FormValidator::validateStudentAdd()['login']);
                 $studentToUpdate->update(...$_POST);
+
                 header(INDEX_LOCATION . '?action=addStudentPage&sucess=' . 'Utilisateur modifié');
             } catch (DataBaseException|UserException  $e) {
                 header(INDEX_LOCATION . '?action=addStudentPage&error=' . $e->getMessage());

@@ -1,5 +1,5 @@
 <?php
-    namespace model\beans;
+    namespace model\LOPStudents;
     use PDOException;
 
     require_once ('Factory.php');
