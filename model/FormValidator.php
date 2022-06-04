@@ -17,14 +17,15 @@
          */
         static function validateStudentAdd(String $type='add'): array
         {
+            $fields = ['post'=>['name', 'surname','login','email','country','city','zipCode',],
+                'files'=>['cv','photo']];
+            if (self::isAllFieldsPresent(...$fields)) {
 
-            if (self::isAllStudentFieldsPresent()) {
-
-                if (self::isAllStudentFieldsSizeCorrect()) {
+                if (self::isAllFieldsSizeCorrect()) {
 
                     throw new UserException('La taille des elements ne doit pas depasser 20 lettres');
                 }
-                if (self::isStudentFileSizeIsLessThanTwo()) {
+                if (self::isFileSizeIsLessThanTwo()) {
 
                     throw new UserException('La taille des fichiers ne doit pas depasser ne doit pas depasser 2 MO');
                 } else {
@@ -44,6 +45,27 @@
             /**
              * À écrire Morel
              */
+            $fields = ['post'=>['name', 'surname','login','email','country','city','zipCode',],
+                'files'=>['cv','photo']];
+            if (self::isAllFieldsPresent(...$fields)) {
+
+                if (self::isAllFieldsSizeCorrect()) {
+
+                    throw new UserException('La taille des elements ne doit pas depasser 20 lettres');
+                }
+                if (self::isFileSizeIsLessThanTwo()) {
+
+                    throw new UserException('La taille des fichiers ne doit pas depasser ne doit pas depasser 2 MO');
+                } else {
+
+                    self::moveFile();
+                }
+            } else {
+                throw new UserException('Veuillez saisir tous les champs');
+            }
+
+
+            return self::generatedStudentFields();
             return [];
         }
 
@@ -64,19 +86,26 @@
          * Vérifie si tous les champs sont présents
          * @return bool Tous les champs sont présents ou non
          */
-        private static function isAllStudentFieldsPresent(): bool
+        private static function isAllFieldsPresent(array ...$fields): bool
         {
-            return isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['login'])
-                && isset($_POST['email']) && isset($_FILES['photo'])
-                && isset($_FILES['cv']) && isset($_POST['country']) && isset($_POST['city']) && isset($_POST['zipCode'])
-                && isset($_POST['faculty']);
+            foreach ($fields['post'] as $field){
+                if(!isset($_POST[$field])){
+                    return false;
+                }
+            }
+            foreach ($fields['files'] as $file){
+                if(!isset($_FILES[$file])){
+                    return false;
+                }
+            }
+            return true;
         }
 
         /**
          * Vérifie la taille des champs saisis
          * @return bool L'un des champs n'a pas une taille correcte ou non
          */
-        private static function isAllStudentFieldsSizeCorrect(): bool
+        private static function isAllFieldsSizeCorrect(): bool
         {
 
 
@@ -88,7 +117,7 @@
          * Vérifie si la taille des fichiers envoyée est correct
          * @return bool La taille d'un des fichiers est supérieur à 2 ou non
          */
-        private static function isStudentFileSizeIsLessThanTwo(): bool
+        private static function isFileSizeIsLessThanTwo(): bool
         {
             return $_FILES['photo']['size'] > self::MAX_FILE_SIZE && $_FILES['cv']['size'] > self::MAX_FILE_SIZE;
         }

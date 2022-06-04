@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `etudiants`(
 
 #la table professeur
 CREATE TABLE IF NOT EXISTS `professeur`(
+    `id` int unique auto_increment,
     `matricule` varchar(10) primary key ,
     `email` varchar(40),
     `login` varchar(30),

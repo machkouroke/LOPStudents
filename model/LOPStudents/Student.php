@@ -48,8 +48,8 @@
         {
             $con = FACTORY->get_connexion();
             $res = $con->query('select max(id)+1 from etudiants')->fetch(PDO::FETCH_ASSOC);
-            $id = $res['max(id)+1'] != null ? (string)$res['max(id)+1'] : '1';
-            return 'ENSA22000' . $id;
+            $id = 220000+($res['max(id)+1'] != null ? $res['max(id)+1'] : 1);
+            return 'ENSA' . (string)$id;
         }
 
         /**
@@ -104,10 +104,13 @@
                 $addStudent = "INSERT INTO etudiants  VALUES 
                             (NULL,?,?,?,?,?,?,?)";
                 $statementUser = $con->prepare($addUser);
+
                 $statementUser->execute($userInfo);
+
                 $statementStudent = $con->prepare($addStudent);
+
                 $statementStudent->execute($studentInfo);
-                echo 'Ajouté';
+
             } catch (PDOException $e) {
 
                 if ($e->getCode() == 23000) {

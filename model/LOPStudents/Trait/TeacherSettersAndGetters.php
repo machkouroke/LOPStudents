@@ -2,6 +2,7 @@
 
     namespace model\LOPStudents\Trait;
 
+    use model\LOPStudents\Student;
     use PDO;
 
     trait TeacherSettersAndGetters
@@ -47,7 +48,7 @@
                                                            where (faculty,facultyYear) in (select
                         faculty,facultyYear from module where matricule='" . $this->matricule . "')";
             $res = $con->query($sql);
-            return $res->fetchAll(PDO::FETCH_ASSOC);
+            return Student::changeToStudent($res);
         }
 
 
@@ -57,7 +58,7 @@
          */
         public function getProfTable(): array
         {
-            return [$this->matricule, $this->email, $this->login];
+            return [$this->email, $this->login];
         }
 
     }

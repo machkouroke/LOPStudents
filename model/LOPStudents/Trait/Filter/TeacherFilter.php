@@ -1,29 +1,34 @@
 <?php
 
     namespace model\LOPStudents\Trait\Filter;
+    use model\LOPStudents\Teacher;
     use PDO;
 
     trait TeacherFilter
     {
         /**
-         * Renvoie le proffesseur avec le Matricule donné
-         * @param string $matricule Matricule dudit professeur
-         * @return mixed
+         * Renvoie le proffesseur avec le login donné
+         * @param string $login
+         * @return Teacher
          */
-        public static function getByMatricule(string $matricule): mixed
+        public static function getByLogin(string $login): Teacher
         {
             $con = FACTORY->get_connexion();
-            $sql = "SELECT * FROM professeur NATURAL JOIN users WHERE matricule='" . $matricule . "'";
-            $res = $con->query($sql);
-            return $res->fetch(PDO::FETCH_ASSOC);
+            $sql = "SELECT * FROM professeur NATURAL JOIN users WHERE login='" . $login . "'";
+            $res = $con->query($sql)->fetch(PDO::FETCH_ASSOC);
+            return new Teacher(...$res);
         }
 
         /**
          * @param string $filterInput
-         * @return void
+         * @return array
          */
-        public static function getByCity(string $filterInput): void
+        public static function getByCity(string $city): array
         {
+            $con = FACTORY->get_connexion();
+            $sql = "SELECT * FROM professeur natural join users WHERE city='" . $city . "'";
+            $res = $con->query($sql);
+            return self::changeToTeacher($res);
         }
 
     }
