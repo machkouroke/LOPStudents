@@ -53,9 +53,10 @@
         static private function generatedStudentFields(): array
         {
             $data = $_POST;
-            $data['cne'] = '14566';
             $data['cv'] = $_POST['cv'];
             $data['photo'] = $_POST['photo'];
+            $data['faculty'] = explode(' ',$_POST['faculty'])[0];
+            $data['facultyYear'] = explode(' ',$_POST['faculty'])[1];
             return $data;
         }
 
