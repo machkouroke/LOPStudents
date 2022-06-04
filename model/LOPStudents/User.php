@@ -29,7 +29,7 @@
             $this->city = $data['city'];
             $this->zipCode = (int)$data['zipCode'];
             $this->country = $data['country'];
-            $this->role = $data['role'];
+            $this->role = Role::FROM($data['role']);
 
         }
 

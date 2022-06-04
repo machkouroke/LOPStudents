@@ -2,7 +2,6 @@
 
     namespace model\LOPStudents;
 
-    use controller\enum\Role;
     use Exception\DataBaseException;
     use Exception\UserException;
     use model\LOPStudents\Module;
@@ -26,7 +25,7 @@
         {
             $userTab = array('login' => $data['login'], 'name' => $data['name'], 'surname' => $data['surname'],
                 'password' => $data['password'], 'city' => $data['city'], 'zipCode' => $data['zipCode'],
-                'country' => $data['country'], 'role' => Role::Teacher);
+                'country' => $data['country'], 'role' => 'teacher');
             parent::__construct(...$userTab);
             $this->matricule = $data['matricule'];
             $this->email = $data['email'];

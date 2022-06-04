@@ -96,8 +96,8 @@
             $login = $_POST['login'];
             $_POST['cv'] = CV_URL . $login . '.' . $cvExtension;
             $_POST['photo'] = PIC_URL . $login . '.' . $photoExtension;
-            move_uploaded_file($_FILES['cv']['tmp_name'], $_POST['cv']);
-            move_uploaded_file($_FILES['photo']['tmp_name'], $_POST['photo']);
+            move_uploaded_file($_FILES['cv']['tmp_name'], CV_DIR . $login . '.' . $cvExtension);
+            move_uploaded_file($_FILES['photo']['tmp_name'],PIC_DIR . $login . '.' . $photoExtension);
         }
     }
 
