@@ -4,6 +4,7 @@
 
 
     use controller\enum\Role;
+    use Exception\UserException;
     use model\LOPStudents\Trait\UserSettersAndGetters;
     use PDO;
     use PDOException;
@@ -33,13 +34,14 @@
 
         }
 
-        public static function getByLogin(string $login): User
+        public static function getByLogin(string $login): User | bool
         {
             $con = FACTORY->get_connexion();
             $sql = "select * from users where login='" . $login . "'";
-            $res = ($con->query($sql))->fetch(PDO::FETCH_ASSOC);
-
-            return new User(...$res);
+            if ($res = ($con->query($sql))->fetch(PDO::FETCH_ASSOC)){
+                return new User(...$res);
+            }
+            return false;
         }
 
         public function delete(): void
