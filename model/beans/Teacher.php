@@ -4,6 +4,7 @@
 
     use Exception\DataBaseException;
     use Exception\UserException;
+    use model\beans\Module;
     use PDO;
     use PDOException;
     use controller\Role;

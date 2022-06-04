@@ -80,14 +80,15 @@
 													<?= $user->getEmail() ?>
 												</div>
 												<div class="ref-adress-col">
-													<b><?= $user->getZipCode() . ', ' . $user->getCity() . ' ' . $user->getCountry() ?></b>
+													<?= $user->getZipCode() . ', ' . $user->getCity() . ' ' . $user->getCountry() ?>
 												</div>
 												<div class="ref-tel-col">+2126388646641</div>
 
 												<div class="d-flex flex-column  ref-cv-col">
 													<?php ob_start(); ?>
-													<a href="<?= CV_URL . $user->getLogin() . '.jpg' ?>" download>Télécharger le
-													                                                      CV</a>
+													<a href="<?= CV_URL . $user->getLogin() . '.pdf' ?>" download>Télécharger
+													                                                              le
+													                                                              CV</a>
 													<?php $cvDownload = ob_get_clean(); ?>
 													<?= STUDENT_ONLY ? $user->getFaculty() . ' ' . $user->getFacultyYear() : $cvDownload ?>
 												</div>
@@ -95,7 +96,9 @@
 
 												<div class="d-flex flex-column text-center ref-action-col">
 													<?php ob_start(); ?>
-													<p><a href="" class="text-primary">Modifier</a></p>
+													<p>
+														<a href="<?= BASE_URL ?>index.php?action=updateStudentPage&login=<?= $user->getLogin() ?>"
+														   class="text-primary">Modifier</a></p>
 													<p>
 														<a href="<?= BASE_URL ?>index.php?action=deleteStudent&login=<?= $user->getLogin() ?>"
 														   class="delete text-primary">Supprimer</a></p>

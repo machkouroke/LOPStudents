@@ -38,6 +38,9 @@
                 case 'deleteStudent':
                     StudentController::delete();
                     break;
+                case 'updateStudentPage':
+                    StudentController::updateStudentPage();
+                    break;
                 case 'deleteConnectedUser':
                     MainController::deleteConnectedUser();
                     break;

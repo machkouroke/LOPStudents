@@ -8,7 +8,6 @@
     use model\beans\User;
 
 
-
     /**
      * @author Machkour Oke
      * Contient les fonctions faisant appel aux éléments du menu
@@ -24,10 +23,13 @@
             AuthenticationController::loginRequired($menu)();
         }
 
-        public static function addStudent(): void
+        public static function addStudent(Student $userToUpdate = null): void
         {
-            $addStudent = function () {
-                $title = 'Ajouter un étudiants';
+
+
+            $addStudent = function () use ($userToUpdate) {
+
+                $title = isset($userToUpdate) ? 'Ajouter un étudiants' : "Mettre à jour l'étudiant";
                 $type = 'etd';
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\addStudents.php');
             };

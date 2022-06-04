@@ -122,7 +122,16 @@
 
   }
 }
+.ref {
+  &-student-name {
+    font-size: 10px !important;
+  }
+  &-adress-col {
+    font-weight: bold !important;
+    font-size: 15px !important;
+  }
 
+}
 
 
 body {

@@ -50,5 +50,12 @@
             MenuController::listingStudents(Filter::YEAR, $_POST['year']);
 
         }
+
+        public static function updateStudentPage(): void
+        {
+
+
+            MenuController::addStudent(Student::getByLogin($_GET['login']));
+        }
     }
 

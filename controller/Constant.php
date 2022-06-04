@@ -30,6 +30,10 @@
     const MEDIA_DIR = BASE_DIR . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR;
     const CV_DIR = MEDIA_DIR . 'cv' . DIRECTORY_SEPARATOR;
     const PIC_DIR = MEDIA_DIR . 'picture' . DIRECTORY_SEPARATOR;
+
+    /**
+     * Constante divers
+     */
     const ROW_PER_PAGE = 10;
     /**
      * Constante de role

@@ -11931,6 +11931,14 @@ footer ul li a {
   }
 }
 
+.ref-student-name {
+  font-size: 10px !important;
+}
+.ref-adress-col {
+  font-weight: bold !important;
+  font-size: 15px !important;
+}
+
 body .separator {
   position: absolute;
   bottom: 50px;

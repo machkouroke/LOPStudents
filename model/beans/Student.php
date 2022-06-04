@@ -6,6 +6,7 @@
     use Exception\DataBaseException;
     use Exception\UserException;
     use JetBrains\PhpStorm\Pure;
+    use model\beans\Teacher;
     use PDO;
     use PDOException;
     use controller\Role;
@@ -323,7 +324,9 @@
             return $all;
         }
 
-
+        public function getPicture(): string {
+            return $this->photo;
+        }
         /**
          * Renvoie toutes les informations de l'étudiant actuel (En tant qu'Étudiant)
          * @return array Informations de l'étudiant actuel
