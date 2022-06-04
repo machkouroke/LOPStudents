@@ -2,6 +2,7 @@
 
     namespace controller;
 
+    use controller\enum\Filter;
     use Exception\DataBaseException;
     use Exception\UserException;
     use model\LOPStudents\Student;
@@ -63,7 +64,7 @@
 
             try {
 
-                $studentToUpdate = Student::getByLogin(FormValidator::validateStudentAdd()['login']);
+                $studentToUpdate = Student::getByLogin(FormValidator::validateStudentAdd('update')['login']);
                 $studentToUpdate->update(...$_POST);
 
                 header(INDEX_LOCATION . '?action=addStudentPage&sucess=' . 'Utilisateur modifié');
