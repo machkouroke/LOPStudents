@@ -123,7 +123,7 @@
 					<?php foreach ($data as $user): ?>
 						<label for="<?= $user->getLogin() ?>" class="col mb-4 box-checkbox">
 							<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
-							                              src="<?= PIC_URL . $user->getLogin() . '.jpg' ?>">
+							                              src="<?= $user->getPhoto() ?>">
 								<h5 class="fw-bold mb-0">
 									<strong><?= $user->getSurname() . ' ' . $user->getName() ?></strong>
 								</h5>

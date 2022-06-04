@@ -15,7 +15,7 @@
         /**
          * @throws UserException Si un champ n'est pas conforme
          */
-        static function validateStudentAdd(): array
+        static function validateStudentAdd(String $type='add'): array
         {
 
             if (self::isAllStudentFieldsPresent()) {
