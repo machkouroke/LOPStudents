@@ -5,11 +5,8 @@
 
     use Exception\DataBaseException;
     use Exception\UserException;
-    use JetBrains\PhpStorm\Pure;
-    use model\beans\Teacher;
     use PDO;
     use PDOException;
-    use controller\Role;
 
 
     /**
@@ -22,7 +19,7 @@
         public string $faculty, $facultyYear;
 
 
-        public function __construct(...$data)
+        public function __construct(string ...$data)
         {
             $userTab = array('login' => $data['login'], 'name' => $data['name'], 'surname' => $data['surname'],
                 'password' => $data['password'], 'city' => $data['city'], 'zipCode' => $data['zipCode'],
@@ -40,33 +37,33 @@
         }
 
         /**
-         * @return mixed|string
+         * @return string
          */
-        public function getBirthDate(): mixed
+        public function getBirthDate(): string
         {
             return $this->birthDate;
         }
 
         /**
-         * @return mixed|string
+         * @return string
          */
-        public function getCv(): mixed
+        public function getCv(): string
         {
             return $this->cv;
         }
 
         /**
-         * @return mixed|string
+         * @return string
          */
-        public function getPhoto(): mixed
+        public function getPhoto(): string
         {
             return $this->photo;
         }
 
         /**
-         * @return mixed|string
+         * @return string
          */
-        public function getEmail(): mixed
+        public function getEmail(): string
         {
             return $this->email;
         }
@@ -80,17 +77,17 @@
         }
 
         /**
-         * @return mixed|string
+         * @return string
          */
-        public function getFaculty(): mixed
+        public function getFaculty(): string
         {
             return $this->faculty;
         }
 
         /**
-         * @return mixed|string
+         * @return string
          */
-        public function getFacultyYear(): mixed
+        public function getFacultyYear(): string
         {
             return $this->facultyYear;
         }
@@ -138,7 +135,7 @@
         /**
          * Recherche un étudiant en fonction de son CNE
          * @param String $cne Cne de l'étudiant à rechercher
-         * @return \Student Étudiant avec le CNE données
+         * @return Student Étudiant avec le CNE données
          */
         public static function getByCne(string $cne): Student
         {
@@ -192,7 +189,7 @@
 
         /**
          * Recherche les étudiants selon une ville donnée
-         * @param String $country Ville voulue
+         * @param string $city
          * @return bool|array Tableau d'étudiant dans la ville donné
          */
         public static function getByCity(string $city): bool|array
@@ -249,32 +246,34 @@
 
         /**
          * Fonction de mise à jour de l'étudiant en cours
+         * @throws DataBaseException
          */
-        public function update(): void
+        public function update(string ...$newData): void
         {
             try {
                 $con = FACTORY->get_connexion();
-                $userTable = $this->getUserTable();
-                array_shift($userTable);
-                $userInfo = $userTable;
-                $studentTable = $this->getStudentTable();
-                array_shift($studentTable);
-                $studentInfo = $studentTable;
+
 
                 $updateStudent = "update etudiants set cv=?, photo=?, email=?, birthDate=?
 
                     ,faculty=?, facultyYear=? where login=?";
 
                 $updateUser = "update users set name=?, surname=?, password=?, city=?,
-                    zipCode=?, country=?, role=? where login='$this->login'";
+                    zipCode=?, country=?, role='student' where login='$this->login'";
 
 
                 $statementStudent = $con->prepare($updateStudent);
+                $faculties = explode(' ', $newData['faculty']);
+
+                $studentInfo = [$newData['cv'], $newData['photo'], $newData['email'], $newData['birthDate'],
+                    $faculties[0], $faculties[1], $this->login];
                 $statementStudent->execute($studentInfo);
                 $statementUser = $con->prepare($updateUser);
+                $userInfo = [$newData['name'], $newData['surname'], $newData['password'], $newData['city'],
+                    $newData['zipCode'], $newData['country']];
                 $statementUser->execute($userInfo);
             } catch (PDOException $e) {
-                echo $e->getMessage();
+                throw new DataBaseException('Une erreur est survenue:' . $e->getMessage());
             }
 
         }
@@ -324,9 +323,7 @@
             return $all;
         }
 
-        public function getPicture(): string {
-            return $this->photo;
-        }
+
         /**
          * Renvoie toutes les informations de l'étudiant actuel (En tant qu'Étudiant)
          * @return array Informations de l'étudiant actuel

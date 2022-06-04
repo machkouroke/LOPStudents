@@ -18,7 +18,7 @@
         public static function addStudent(): void
         {
             try {
-                $studentToAdd = new Student(FACTORY, ...FormValidator::validateStudentAdd());
+                $studentToAdd = new Student(...FormValidator::validateStudentAdd());
                 $studentToAdd->add();
                 header(INDEX_LOCATION . '?action=addStudentPage&sucess=' . 'Utilisateur ajoute');
             } catch (DataBaseException|UserException $e) {
@@ -55,7 +55,19 @@
         {
 
 
-            MenuController::addStudent(Student::getByLogin($_GET['login']));
+            MenuController::addStudent(Student::getByLogin($_GET['login']), 'updateStudent&login=' . $_GET['login']);
+        }
+
+        public static function updateStudent(): void
+        {
+
+            try {
+                $studentToUpdate = Student::getByLogin(...FormValidator::validateStudentAdd());
+                $studentToUpdate->update(...$_POST);
+                header(INDEX_LOCATION . '?action=addStudentPage&sucess=' . 'Utilisateur modifié');
+            } catch (DataBaseException|UserException  $e) {
+                header(INDEX_LOCATION . '?action=addStudentPage&error=' . $e->getMessage());
+            }
         }
     }
 

@@ -86,7 +86,7 @@
 
 												<div class="d-flex flex-column  ref-cv-col">
 													<?php ob_start(); ?>
-													<a href="<?= CV_URL . $user->getLogin() . '.pdf' ?>" download>Télécharger
+													<a href="<?= $user->getCv() ?>" download>Télécharger
 													                                                              le
 													                                                              CV</a>
 													<?php $cvDownload = ob_get_clean(); ?>

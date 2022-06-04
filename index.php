@@ -41,6 +41,10 @@
                 case 'updateStudentPage':
                     StudentController::updateStudentPage();
                     break;
+                case 'updateStudent':
+                    print('hello');
+                    StudentController::updateStudent();
+                    break;
                 case 'deleteConnectedUser':
                     MainController::deleteConnectedUser();
                     break;

@@ -23,14 +23,15 @@
             AuthenticationController::loginRequired($menu)();
         }
 
-        public static function addStudent(Student $userToUpdate = null): void
+        public static function addStudent(Student $userToUpdate = null, String $action= 'addStudent'): void
         {
 
 
-            $addStudent = function () use ($userToUpdate) {
+            $addStudent = function () use ($userToUpdate, $action) {
 
                 $title = isset($userToUpdate) ? 'Ajouter un étudiants' : "Mettre à jour l'étudiant";
                 $type = 'etd';
+
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\addStudents.php');
             };
             AuthenticationController::roleRequired(AuthenticationController::loginRequired($addStudent),
