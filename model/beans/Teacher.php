@@ -4,6 +4,7 @@
 
     use Exception\DataBaseException;
     use Exception\UserException;
+    use model\beans\Module;
     use PDO;
     use PDOException;
     use controller\Role;
@@ -50,6 +51,18 @@
             $sql = "SELECT * FROM professeur NATURAL JOIN users WHERE matricule='" . $matricule . "'";
             $res = $con->query($sql);
             return $res->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public static function getNumberOfTeacher(): int
+        {
+            $con = FACTORY->get_connexion();
+            $sql = 'SELECT COUNT(*) AS NB_TEACHER FROM professeur';
+            $res = $con->query($sql);
+            return (int)$res->fetch()['NB_TEACHER'];
+        }
+
+        public static function getByCity(string $filterInput)
+        {
         }
 
         /**
@@ -113,7 +126,7 @@
         /**
          * Supprime le proffesseur actuelle
          */
-        public function delete()
+        public function delete(): void
         {
             $con = FACTORY->get_connexion();
             $deleteUser = "delete from users where login in (select login from professeur where matricule='" .

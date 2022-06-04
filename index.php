@@ -29,11 +29,24 @@
                 case 'addStudent':
                     StudentController::addStudent();
                     break;
+                case 'addTeacher':
+                    TeacherController::addTeacher();
+                    break;
                 case 'addTeacherPage':
                     MenuController::addTeacher();
                     break;
                 case 'deleteStudent':
                     StudentController::delete();
+                    break;
+                case 'updateStudentPage':
+                    StudentController::updateStudentPage();
+                    break;
+                case 'updateStudent':
+                    print('hello');
+                    StudentController::updateStudent();
+                    break;
+                case 'deleteConnectedUser':
+                    MainController::deleteConnectedUser();
                     break;
                 case 'listingStudents':
                     MenuController::listingStudents();

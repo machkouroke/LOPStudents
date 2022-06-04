@@ -1,4 +1,7 @@
 <?php
+
+	use controller\Role;
+
 	$title = "Liste étudiant";
 
 	?>
@@ -20,20 +23,28 @@
 				<div class="ref-product-data d-flex flex-column justify-content-between">
 
 					<table class="table">
-						<?php if (STUDENT_ONLY): ?>
+						<?php if ($user->getRole() == Role::Student): ?>
 							<tr>
 								<th scope="row">Filière</th>
-								<td>IID1</td>
+								<td><?= $user->getFaculty() . ' '. $user->getFacultyYear() ?> </td>
+							</tr>
+							<tr>
+								<th scope='row'>Date d'anniversaire</th>
+								<td><?= $user->getBirthDate() ?></td>
+							</tr>
+							<tr>
+								<th scope='row'>CV</th>
+								<td><a href="<?= CV_URL . $user->getLogin() . '.pdf' ?>" download>Télécharger</a></td>
 							</tr>
 						<?php endif; ?>
 						<tr>
 							<th scope="row">Nom d'utilisateur</th>
 							<td><?= $user->getLogin() ?></td>
 						</tr>
-						<?php if (TEACHER_ONLY): ?>
+						<?php if ($user->getRole() == Role::Teacher): ?>
 							<tr>
 								<th scope="row">Matricule</th>
-								<td>imanesidiki@gmail.com</td>
+								<td><?= $user->getMatricule() ?></td>
 							</tr>
 						<?php endif; ?>
 						<tr>
@@ -41,12 +52,6 @@
 							<td><?= $user->getZipCode() . ' ' . $user->getCity()
 								. ' ' . $user->getCountry() ?></td>
 						</tr>
-						<?php if (STUDENT_ONLY): ?>
-							<tr>
-								<th scope="row">CV</th>
-								<td><a href="">Télécharger</a></td>
-							</tr>
-						<?php endif; ?>
 					</table>
 				</div>
 			</div>

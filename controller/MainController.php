@@ -3,6 +3,7 @@
     namespace controller;
 
     use model\beans\Student;
+    use model\beans\User;
 
     /**
      * @author Machkour Oke
@@ -54,6 +55,12 @@
             AuthenticationController::loginRequired($sendMessage)();
         }
 
+        public static function deleteConnectedUser(): void
+        {
+            $_SESSION['User']->delete();
+            session_destroy();
+            header(INDEX_LOCATION);
+        }
 
 
     }

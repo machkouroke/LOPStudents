@@ -20,7 +20,7 @@
     const ASSETS_URL = BASE_URL . "/view/assets/";
     const INDEX_LOCATION = "Location:index.php";
     const PIC_URL = BASE_URL . "/media/picture/";
-    const CV_URL = BASE_URL . '/media/picture/';
+    const CV_URL = BASE_URL . '/media/cv/';
 
     /**
      * Constant de répertoire local
@@ -31,6 +31,10 @@
     const CV_DIR = MEDIA_DIR . 'cv' . DIRECTORY_SEPARATOR;
     const PIC_DIR = MEDIA_DIR . 'picture' . DIRECTORY_SEPARATOR;
 
+    /**
+     * Constante divers
+     */
+    const ROW_PER_PAGE = 10;
     /**
      * Constante de role
      */
@@ -51,6 +55,7 @@
             define("LIST_OF_STUDENTS", 'Liste de mes camarades');
             define("LIST_OF_TEACHERS", 'Liste de mes proffesseur');
         }
+
     }
 
 
