@@ -3,7 +3,7 @@
     namespace model;
 
 
-    use controller\Role;
+    use controller\enum\Role;
     use Exception\UserException;
     use Exception\DataBaseException;
     use model\LOPStudents\Student;

@@ -1,5 +1,5 @@
 <?php
-    namespace controller;
+    namespace controller\enum;
     enum Filter
     {
         case CITY;

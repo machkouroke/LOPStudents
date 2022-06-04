@@ -1,5 +1,5 @@
 <?php
-    namespace controller;
+    namespace controller\enum;
     enum Role: String
     {
         case Admin = 'admin';

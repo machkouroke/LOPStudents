@@ -1,10 +1,11 @@
 <?php
 
-	use controller\Role;
+	use controller\enum\Role;
+
 
 	$title = "Liste étudiant";
 
-	?>
+?>
 <?php ob_start(); ?>
 <section class="p-5 mt-5">
 	<div class="container p-5">
@@ -16,7 +17,7 @@
 				<div class="ref-media">
 					<div class="ref-preview"><img class="ref-image active"
 					                              src="<?= PIC_URL . $user->getLogin() . '.jpg' ?>"
-					                                                                                           alt=""/>
+					                              alt=""/>
 					</div>
 				</div>
 
@@ -26,7 +27,7 @@
 						<?php if ($user->getRole() == Role::Student): ?>
 							<tr>
 								<th scope="row">Filière</th>
-								<td><?= $user->getFaculty() . ' '. $user->getFacultyYear() ?> </td>
+								<td><?= $user->getFaculty() . ' ' . $user->getFacultyYear() ?> </td>
 							</tr>
 							<tr>
 								<th scope='row'>Date d'anniversaire</th>

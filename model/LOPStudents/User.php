@@ -2,8 +2,8 @@
 
     namespace model\LOPStudents;
 
-    use controller\Role;
 
+    use controller\enum\Role;
     use model\LOPStudents\Trait\UserSettersAndGetters;
     use PDO;
     use PDOException;
@@ -29,7 +29,7 @@
             $this->city = $data['city'];
             $this->zipCode = (int)$data['zipCode'];
             $this->country = $data['country'];
-            $this->role = Role::FROM($data['role']);
+            $this->role = $data['role'];
 
         }
 

@@ -6,7 +6,7 @@
      */
 
 
-    use controller\Role;
+    use controller\enum\Role;
     use model\LOPStudents\Factory;
 
     /**

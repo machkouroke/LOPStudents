@@ -2,7 +2,8 @@
 
     namespace model\LOPStudents\Trait;
 
-    use controller\Role;
+    use controller\enum\Role;
+
     use JetBrains\PhpStorm\Pure;
 
     trait UserSettersAndGetters

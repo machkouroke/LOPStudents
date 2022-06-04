@@ -3,6 +3,7 @@
     namespace controller;
 
 
+    use controller\enum\Filter;
     use model\LOPStudents\Student;
     use model\LOPStudents\Teacher;
     use model\LOPStudents\User;

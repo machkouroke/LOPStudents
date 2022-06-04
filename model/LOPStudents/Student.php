@@ -3,6 +3,7 @@
 
     namespace model\LOPStudents;
 
+    use controller\enum\Role;
     use Exception\DataBaseException;
     use Exception\UserException;
     use model\LOPStudents\Trait\Filter\StudentFilter;
@@ -27,7 +28,7 @@
         {
             $userTab = array('login' => $data['login'], 'name' => $data['name'], 'surname' => $data['surname'],
                 'password' => $data['password'], 'city' => $data['city'], 'zipCode' => $data['zipCode'],
-                'country' => $data['country'], 'role' => 'student');
+                'country' => $data['country'], 'role' => Role::Student);
 
             parent::__construct(...$userTab);
 

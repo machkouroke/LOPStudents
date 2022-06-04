@@ -2,13 +2,14 @@
 
     namespace model\LOPStudents;
 
+    use controller\enum\Role;
     use Exception\DataBaseException;
     use Exception\UserException;
     use model\LOPStudents\Module;
     use model\LOPStudents\Trait\Filter\TeacherFilter;
     use model\LOPStudents\Trait\TeacherSettersAndGetters;
     use PDOException;
-    use controller\Role;
+
 
 
     /**
