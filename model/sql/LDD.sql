@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS `users`(
     `city` varchar(20),
     `zipCode` int,
     `country` varchar(20),
+    `photo` varchar(200),
     `role` enum('admin', 'teacher', 'student')
 ) ;
 
@@ -28,7 +29,6 @@ CREATE TABLE IF NOT EXISTS `etudiants`(
     `id` int unique auto_increment,
     `cne` varchar(10)  primary key ,
     `cv` varchar(200),
-    `photo` varchar(200),
     `email` varchar(40),
     `birthDate` date,
     `faculty` varchar(5),
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `etudiants`(
 CREATE TABLE IF NOT EXISTS `professeur`(
     `matricule` varchar(10) primary key ,
     `email` varchar(40),
-    `login` varchar(10),
+    `login` varchar(30),
     constraint fk1_prof foreign key (login) references users(login)
 );
 

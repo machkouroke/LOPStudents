@@ -18,7 +18,7 @@
      */
     class Student extends User
     {
-        public string $birthDate, $cv, $photo, $email, $cne;
+        public string $birthDate, $cv, $email, $cne;
         public string $faculty, $facultyYear;
         use StudentSettersAndGetters;
         use StudentFilter;
@@ -28,29 +28,28 @@
         {
             $userTab = array('login' => $data['login'], 'name' => $data['name'], 'surname' => $data['surname'],
                 'password' => $data['password'], 'city' => $data['city'], 'zipCode' => $data['zipCode'],
-                'country' => $data['country'], 'role' => 'student');
+                'country' => $data['country'],'photo'=>$data['photo'],'role' => 'student');
 
             parent::__construct(...$userTab);
 
             $this->birthDate = $data['birthDate'];
             $this->cv = $data['cv'];
-            $this->photo = $data['photo'];
             $this->faculty = $data['faculty'];
             $this->facultyYear = $data['facultyYear'];
             $this->email = $data['email'];
-            $this->generateCne();
+            $this->cne = (isset($data['cne']))? $data['cne'] : $this->generateCne();
         }
 
 
         /**
          * Génère le CNE suivant le dernier element de la base
          */
-        public function generateCne(): void
+        public function generateCne(): string
         {
             $con = FACTORY->get_connexion();
             $res = $con->query('select max(id)+1 from etudiants')->fetch(PDO::FETCH_ASSOC);
             $id = $res['max(id)+1'] != null ? (string)$res['max(id)+1'] : '1';
-            $this->cne = 'ENSA22000' . $id;
+            return 'ENSA22000' . $id;
         }
 
         /**
@@ -84,12 +83,10 @@
             $all = [];
             foreach ($res->fetchAll(PDO::FETCH_ASSOC) as $item) {
                 $student = new Student(...$item);
-                $student->setCne($item['cne']);
                 $all[] = $student;
             }
             return $all;
         }
-
 
         /**
          * Fonction d'ajout d'un étudiant
@@ -103,9 +100,9 @@
                 $con = FACTORY->get_connexion();
                 $userInfo = $this->getUserTable();
                 $studentInfo = $this->getStudentTable();
-                $addUser = 'insert into users values (?,?,?,?,?,?,?,?)';
+                $addUser = 'insert into users values (?,?,?,?,?,?,?,?,?)';
                 $addStudent = "INSERT INTO etudiants  VALUES 
-                            (NULL,?,?,?,?,?,?,?,?)";
+                            (NULL,?,?,?,?,?,?,?)";
                 $statementUser = $con->prepare($addUser);
                 $statementUser->execute($userInfo);
                 $statementStudent = $con->prepare($addStudent);

@@ -4,7 +4,9 @@
 
 
     use controller\enum\Role;
-    use Exception\UserException;
+
+    use Exception\DataBaseException;
+
     use model\LOPStudents\Trait\UserSettersAndGetters;
     use PDO;
     use PDOException;
@@ -16,7 +18,7 @@
      */
     class User
     {
-        protected string $login, $name, $surname, $password, $city, $country;
+        protected string $login, $name, $surname, $password, $city, $country, $photo;
         protected int $zipCode;
         protected Role $role;
         use UserSettersAndGetters;
@@ -30,9 +32,11 @@
             $this->city = $data['city'];
             $this->zipCode = (int)$data['zipCode'];
             $this->country = $data['country'];
+            $this->photo = $data['photo'];
             $this->role = Role::FROM($data['role']);
 
         }
+
 
         public static function getByLogin(string $login): User | bool
         {
@@ -42,6 +46,7 @@
                 return new User(...$res);
             }
             return false;
+
         }
 
         public function delete(): void

@@ -55,6 +55,8 @@
             $data = $_POST;
             $data['cv'] = $_POST['cv'];
             $data['photo'] = $_POST['photo'];
+            $data['faculty'] = explode(' ',$_POST['faculty'])[0];
+            $data['facultyYear'] = explode(' ',$_POST['faculty'])[1];
             return $data;
         }
 

@@ -23,13 +23,6 @@
             return $this->cv;
         }
 
-        /**
-         * @return string
-         */
-        public function getPhoto(): string
-        {
-            return $this->photo;
-        }
 
         /**
          * @return string
@@ -108,7 +101,7 @@
          */
         public function getStudentTable(): array
         {
-            return [$this->cne, $this->cv, $this->photo, $this->email, $this->birthDate,
+            return [$this->cne, $this->cv, $this->email, $this->birthDate,
                 $this->faculty, $this->facultyYear, $this->login];
         }
     }
