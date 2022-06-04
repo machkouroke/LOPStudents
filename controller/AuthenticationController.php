@@ -49,8 +49,8 @@
                 $_SESSION['User'] = Authentification::authenticate($_POST['username'], $_POST['password']);
                 header(INDEX_LOCATION);
             } catch (DataBaseException|UserException $e) {
-                $error = $e->getMessage();
-                header(INDEX_LOCATION . '?error=' . $error);
+                $_SESSION['error'] = $e->getMessage();
+                header(INDEX_LOCATION . '?error');
 
             }
 
