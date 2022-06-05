@@ -9,48 +9,44 @@
 <?php ob_start(); ?>
 
 <div class="row">
-	<div class=" col mb-3">
-		<input class='form-control' type='text' name='name' id='name'>
+	<div class="input-div col mb-3">
 		<label for="name" class="form-label">Nom</label>
-
+		<input class="form-control" type="text" name="name" id="name">
 	</div>
 
-	<div class=" col mb-3">
-
+	<div class="input-div col mb-3">
+		<label for="surname" class="form-label">Prénom</label>
 		<input class="form-control" type="text" name="surname" id="surname">
-		<label for='surname' class='form-label'>Prénom</label>
 	</div>
 </div>
 
 <div class="row">
-	<div class=" col mb-3">
-
-		<input class="form-control" type="text" name="username" id="username">
-		<label for='username' class='form-label'>Nom d'utilisateur</label>
+	<div class="input-div col mb-3">
+		<label for="surname" class="form-label">Nom d'utilisateur</label>
+		<input class="form-control" type="text" name="login" id="login">
 	</div>
 
-	<div class=" col mb-3">
-		<input class='form-control' type='email' name='email' id='email'>
+	<div class="input-div col mb-3">
 		<label for="email" class="form-label">Email</label>
-
+		<input class="form-control" type="email" name="email" id="email">
 	</div>
 </div>
 <div class="row">
-	<div class=" col mb-3">
+	<div class="input-div col mb-3">
+		<label for="password" class="form-label">Votre mot de passe</label>
 		<input class="form-control" type="password" name="password" id="password">
-		<label for='password' class='form-label'>Votre mot de passe</label>
 	</div>
 
-	<div class=" col mb-3">
-		<input class='form-control' type='password' name='password2' id='password2'>
-		<label for="password2" class=" form-label">Confirmez votre mot de passe</label>
+	<div class="input-div col mb-3">
+		<label for="cv" class="form-label">Confirmez votre mot de passe</label>
+		<input class="form-control" type="password" name="password-2" id="password-2">
 	</div>
 </div>
 
 <div class="row">
 	<div class=" col mb-3">
 		<label for="photos" class="form-label">Photos</label>
-		<input class="form-control" type="file" name="photos" id="photos">
+		<input class="form-control" type="file" name="photo" id="photo">
 	</div>
 
 
@@ -70,8 +66,8 @@
 		</select>
 	</div>
 	<div class=" col mb-3">
-		<label for="postale" class="form-label">Code Postale</label>
-		<input type="number" class="form-control" id="postale" name="zipCode" maxlength="5">
+		<label for="zipCode" class="form-label">Code Postale</label>
+		<input type="number" class="form-control" id="zipCode" name="zipCode" maxlength="5">
 	</div>
 </div>
 <?php require_once(BASE_DIR . '\view\templates\captchaBlock.php') ?>
