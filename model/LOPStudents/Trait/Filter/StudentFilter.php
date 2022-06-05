@@ -27,9 +27,7 @@
             $con = FACTORY->get_connexion();
             $sql = "select * from etudiants natural join users where login='" . $login . "'";
             $res = ($con->query($sql))->fetch(PDO::FETCH_ASSOC);
-            $student = new Student(...$res);
-            $student->setCne($res['cne']);
-            return $student;
+            return new Student(...$res);
         }
 
         /**

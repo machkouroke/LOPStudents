@@ -29,11 +29,12 @@
         public static function addTeacher(): void
         {
             try {
+                print_r($_POST);
                 $teacherToAdd = new Teacher(...FormValidator::validateTeacherAdd());
                 $teacherToAdd->add();
-                header(INDEX_LOCATION . '?action=addTeacherPage&sucess=' . 'Utilisateur ajoute');
+//                header(INDEX_LOCATION . '?action=addTeacherPage&sucess=' . 'Utilisateur ajoute');
             } catch (DataBaseException|UserException $e) {
-                header(INDEX_LOCATION . '?action=addTeacherPage&error=' . $e->getMessage());
+//                header(INDEX_LOCATION . '?action=addTeacherPage&error=' . $e->getMessage());
             }
 
         }

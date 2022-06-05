@@ -15,22 +15,26 @@
         /**
          * @throws UserException Si un champ n'est pas conforme
          */
-        static function validateStudentAdd(String $type='add'): array
+        static function validateStudentAdd(string $type = 'add'): array
         {
 
-            if (self::isAllStudentFieldsPresent()) {
-                if ($_POST['captcha'] == $_COOKIE['captcha']) {
-                    if (self::isAllStudentFieldsSizeCorrect()) {
 
-                        throw new UserException('La taille des elements ne doit pas depasser 20 lettres');
-                    }
-                    if (self::isStudentFileSizeIsLessThanTwo()) {
+            $fields = ['post' => ['name', 'surname', 'login', 'email', 'country', 'city', 'zipCode',
+                'password', 'password-2'], 'files' => ['cv', 'photo']];
+            if (self::isAllFieldsPresent(...$fields)) {
 
-                        throw new UserException('La taille des fichiers ne doit pas depasser ne doit pas depasser 2 MO');
-                    } else {
+                if ($_POST['password'] != $_POST['password-2']) {
+                    throw new UserException('Les mots de passe ne sont pas conformes');
+                }
 
-                        self::moveFile();
-                    }
+                if (self::isAllFieldsSizeCorrect()) {
+
+                    throw new UserException('La taille des elements ne doit pas depasser 20 lettres');
+                }
+                if (self::isFileSizeIsLessThanTwo()) {
+
+
+                    self::moveFile();
                 } else {
                     throw new UserException($_SESSION['captcha']);
                 }
@@ -43,12 +47,39 @@
             return self::generatedStudentFields();
         }
 
+        /**
+         * @throws UserException
+         */
         static function validateTeacherAdd(): array
         {
             /**
              * À écrire Morel
              */
-            return [];
+            $fields = ['post' => ['name', 'surname', 'login', 'email', 'country', 'city', 'zipCode',
+                'password-2', 'password'], 'files' => ['photo']];
+            if (self::isAllFieldsPresent(...$fields)) {
+
+                if ($_POST['password'] != $_POST['password-2']) {
+                    throw new UserException('Les mots de passe ne sont pas conformes');
+                }
+                if (self::isAllFieldsSizeCorrect()) {
+
+                    throw new UserException('La taille des elements ne doit pas depasser 20 lettres');
+                }
+                if (self::isFileSizeIsLessThanTwo()) {
+
+                    throw new UserException('La taille des fichiers ne doit pas depasser ne doit pas depasser 2 MO');
+                } else {
+
+                    self::moveFile();
+                }
+            } else {
+                throw new UserException('Veuillez saisir tous les champs');
+            }
+
+
+            return self::generatedTeacherFields();
+
         }
 
         /**
@@ -57,10 +88,17 @@
         static private function generatedStudentFields(): array
         {
             $data = $_POST;
-            $data['cv'] = $_POST['cv'];
-            $data['photo'] = $_POST['photo'];
-            $data['faculty'] = explode(' ',$_POST['faculty'])[0];
-            $data['facultyYear'] = explode(' ',$_POST['faculty'])[1];
+            if (isset($_POST['cv'])) $data['cv'] = $_POST['cv'];
+            if (isset($_POST['photo'])) $data['photo'] = $_POST['photo'];
+            $data['faculty'] = explode(' ', $_POST['faculty'])[0];
+            $data['facultyYear'] = explode(' ', $_POST['faculty'])[1];
+            return $data;
+        }
+
+        static private function generatedTeacherFields(): array
+        {
+            $data = $_POST;
+            if (isset($_POST['photo'])) $data['photo'] = $_POST['photo'];
             return $data;
         }
 
@@ -68,19 +106,26 @@
          * Vérifie si tous les champs sont présents
          * @return bool Tous les champs sont présents ou non
          */
-        private static function isAllStudentFieldsPresent(): bool
+        private static function isAllFieldsPresent(array ...$fields): bool
         {
-            return isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['login'])
-                && isset($_POST['email']) && isset($_FILES['photo'])
-                && isset($_FILES['cv']) && isset($_POST['country']) && isset($_POST['city']) && isset($_POST['zipCode'])
-                && isset($_POST['faculty']);
+            foreach ($fields['post'] as $field) {
+                if (!isset($_POST[$field])) {
+                    return false;
+                }
+            }
+            foreach ($fields['files'] as $file) {
+                if (!isset($_FILES[$file])) {
+                    return false;
+                }
+            }
+            return true;
         }
 
         /**
          * Vérifie la taille des champs saisis
          * @return bool L'un des champs n'a pas une taille correcte ou non
          */
-        private static function isAllStudentFieldsSizeCorrect(): bool
+        private static function isAllFieldsSizeCorrect(): bool
         {
 
 
@@ -92,7 +137,7 @@
          * Vérifie si la taille des fichiers envoyée est correct
          * @return bool La taille d'un des fichiers est supérieur à 2 ou non
          */
-        private static function isStudentFileSizeIsLessThanTwo(): bool
+        private static function isFileSizeIsLessThanTwo(): bool
         {
             return $_FILES['photo']['size'] > self::MAX_FILE_SIZE && $_FILES['cv']['size'] > self::MAX_FILE_SIZE;
         }
@@ -116,6 +161,42 @@
             if (!$sucessMove) {
 
                 throw new UserException("Les fichiers n'ont pas été bien enregistré");
+            }
+        }
+
+        /**
+         * valide la modification d'un etudiant
+         * @throws UserException
+         */
+        static function valideStudentUpdate(): array
+        {
+            if ($_POST['password'] != $_POST['password-2']) {
+                throw new UserException('Les mots de passe ne sont pas conformes');
+            }
+
+            if (!empty(($_FILES['cv'])['name'])) {
+                self::moveUpdateFiles('cv');
+            }
+            if (!empty(($_FILES['photo'])['name'])) {
+                self::moveUpdateFiles('photo');
+            }
+
+            return self::generatedStudentFields();
+        }
+
+        public static function moveUpdateFiles(string $file): void
+        {
+
+            $extension = pathinfo($_FILES["$file"]['name'])['extension'];
+            echo $extension;
+            $login = $_POST['login'];
+            $url = ($file == 'cv') ? CV_URL : PIC_URL;
+            $dir = ($file == 'cv') ? CV_DIR : PIC_DIR;
+            $_POST["$file"] = $url . $login . '.' . $extension;
+            $sucessMove = move_uploaded_file($_FILES["$file"]['tmp_name'], $dir . $login . '.' . $extension);
+
+            if (!$sucessMove) {
+                throw new UserException("Les fichiers non enregistré");
             }
         }
     }

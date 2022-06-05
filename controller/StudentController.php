@@ -21,12 +21,14 @@
             try {
 
                 $studentToAdd = new Student(...FormValidator::validateStudentAdd());
+
                 $studentToAdd->add();
                 $query = ['action' => 'addStudentPage', 'sucess' => 'Utilisateur ajoute'];
                 header(INDEX_LOCATION . '?' . http_build_query($query));
             } catch (DataBaseException|UserException $e) {
                 $query = ['action' => 'addStudentPage', 'error' => $e->getMessage()];
                 header(INDEX_LOCATION . '?' . http_build_query($query));
+
             }
 
         }
@@ -68,10 +70,12 @@
 
             try {
 
+
                 $studentToUpdate = Student::getByLogin(FormValidator::validateStudentAdd('update')['login']);
                 $studentToUpdate->update(...$_POST);
                 $query = ['action' => 'addStudentPage', 'sucess' => "Utilisateur modifié"];
                 header(INDEX_LOCATION . '?' . http_build_query($query));
+
             } catch (DataBaseException|UserException  $e) {
                 $query = ['action' => 'addStudentPage', 'error' => $e->getMessage()];
                 header(INDEX_LOCATION . '?' . http_build_query($query));

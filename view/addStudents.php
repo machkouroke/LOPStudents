@@ -101,15 +101,19 @@
 	<div class='row'>
 		<div class='col mb-3'>
 			<label for='photo' class='form-label'>Photos</label>
-			<input value="<?= isset($userToUpdate) ? $userToUpdate->getPhoto() : '' ?>" form='register' type='file'
-			       class='form-control' id='photo' name='photo' maxlength='5' required>
+
+			<input  form='register' type='file'
+			       class='form-control' id='photo' name='photo' maxlength='5'>
+
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col mb-3'>
 			<label for='cv' class='form-label'>Curriculum Vitae</label>
-			<input value="<?= isset($userToUpdate) ? $userToUpdate->getCv() : '' ?>" form='register' type='file'
-			       class='form-control' id='cv' name='cv' maxlength='5' required>
+
+			<input  form='register' type='file'
+			       class='form-control' id='cv' name='cv' maxlength='5'>
+
 		</div>
 	</div>
 	<div class='row'>

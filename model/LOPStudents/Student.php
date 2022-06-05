@@ -48,8 +48,8 @@
         {
             $con = FACTORY->get_connexion();
             $res = $con->query('select max(id)+1 from etudiants')->fetch(PDO::FETCH_ASSOC);
-            $id = $res['max(id)+1'] != null ? (string)$res['max(id)+1'] : '1';
-            return 'ENSA22000' . $id;
+            $id = 220000+($res['max(id)+1'] != null ? $res['max(id)+1'] : 1);
+            return 'ENSA' . (string)$id;
         }
 
         /**
@@ -104,10 +104,13 @@
                 $addStudent = "INSERT INTO etudiants  VALUES 
                             (NULL,?,?,?,?,?,?,?)";
                 $statementUser = $con->prepare($addUser);
+
                 $statementUser->execute($userInfo);
+
                 $statementStudent = $con->prepare($addStudent);
+
                 $statementStudent->execute($studentInfo);
-                echo 'Ajouté';
+
             } catch (PDOException $e) {
 
                 if ($e->getCode() == 23000) {
@@ -126,29 +129,20 @@
          */
         public function update(string ...$newData): void
         {
+            $tableUser = ['login','name','surname','password','city','zipCode','country','photo'];
+            $tableStudent = ['cv','email','birthDate','faculty','facultyYear','login'];
             try {
                 $con = FACTORY->get_connexion();
 
-                print_r($newData);
-                $updateStudent = "update etudiants set cv=?, photo=?, email=?, birthDate=?
+                foreach ($newData as $key=>$value){
+                        if(in_array($key,$tableUser)){
+                            $con->exec("update users set $key = '$value' where login='$this->login'");
+                        }
+                        if(in_array($key,$tableStudent)){
+                            $con->exec("update etudiants set $key = '$value' where login='$this->login'");
+                        }
+                }
 
-                    ,faculty=?, facultyYear=? where login=?";
-
-                $updateUser = "update users set name=?, surname=?, password=?, city=?,
-                    zipCode=?, country=?, role='student' where login='$this->login'";
-
-
-                $statementStudent = $con->prepare($updateStudent);
-                $faculties = explode(' ', $newData['faculty']);
-
-                $studentInfo = [$newData['cv'], $newData['photo'], $newData['email'], $newData['birthDate'],
-                    $faculties[0], $faculties[1], $this->login];
-                $statementStudent->execute($studentInfo);
-                $statementUser = $con->prepare($updateUser);
-
-                $userInfo = [$newData['name'], $newData['surname'], $newData['password'], $newData['city'],
-                    $newData['zipCode'], $newData['country']];
-                $statementUser->execute($userInfo);
             } catch (PDOException $e) {
                 throw new DataBaseException('Une erreur est survenue:' . $e->getMessage());
             }
