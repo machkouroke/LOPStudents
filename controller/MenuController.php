@@ -41,7 +41,9 @@
 
         public static function addTeacher(String $action= 'addTeacher'): void
         {
-            $addTeacher = function () use ( $action){
+
+            $addTeacher = function () use ($action){
+
                 $title = 'Ajouter un proffesseur';
                 $type = 'pr';
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\addTeacherForm.php');
@@ -115,6 +117,15 @@
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\userPage.php');
             };
             AuthenticationController::loginRequired($userPage)();
+        }
+
+        public static function sendMessagePage(String $selectedUser=null): void
+        {
+            $contact = function () use ($selectedUser){
+
+                require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\contacts.php');
+            };
+            AuthenticationController::loginRequired($contact)();
         }
     }
 

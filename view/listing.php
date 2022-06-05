@@ -13,6 +13,11 @@
 				<?= $_GET['sucess'] ?>
 			</div>
 		<?php endif ?>
+		<?php if (isset($_GET['error'])): ?>
+			<div class="my-2 alert alert-success" role="alert">
+				<?= $_GET['error'] ?>
+			</div>
+		<?php endif ?>
 		<div id="listPage">
 
 			<div class="list overflow rounded">

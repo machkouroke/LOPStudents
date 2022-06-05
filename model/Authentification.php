@@ -30,9 +30,8 @@
 
 
             try {
-
                 $user = User::getByLogin($login);
-                if (!empty($user)) {
+                if ($user) {
                     if ($user->getPassword() == $password) {
                         return match ($user->getRole()) {
                             Role::Student => Student::getByLogin($login),

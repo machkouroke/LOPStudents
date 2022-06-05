@@ -61,6 +61,9 @@
                 case 'sendMessage':
                     MainController::sendMessage();
                     break;
+                case 'sendMessagePage':
+                    MenuController::sendMessagePage();
+                    break;
                 case 'transferMessage':
                     MainController::transferMessage();
                     break;

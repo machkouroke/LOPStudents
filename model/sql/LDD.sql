@@ -5,7 +5,7 @@ USE `LOPSTUDENTS`;
 
 # la table user
 CREATE TABLE IF NOT EXISTS `users`(
-    `login` varchar(30) primary key ,
+    `login` varchar(100) primary key ,
     `name` varchar(20),
     `surname` varchar(100),
     `password` varchar(20),
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `users`(
 
 #la table classe
 CREATE TABLE IF NOT EXISTS `classe`(
-    `faculty` varchar(5),
+    `faculty` varchar(10),
     `facultyYear` int,
     constraint pk_classe primary key (faculty, facultyYear)
 );
@@ -27,31 +27,31 @@ CREATE TABLE IF NOT EXISTS `classe`(
 # la table etudiant
 CREATE TABLE IF NOT EXISTS `etudiants`(
     `id` int unique auto_increment,
-    `cne` varchar(10)  primary key ,
+    `cne` varchar(20)  primary key ,
     `cv` varchar(200),
-    `email` varchar(40),
+    `email` varchar(100),
     `birthDate` date,
-    `faculty` varchar(5),
+    `faculty` varchar(10),
     `facultyYear` int,
-    `login` varchar(30),
+    `login` varchar(100),
     constraint fk1_etudiant foreign key (login) references users(login),
     constraint fk2_etudiant foreign key (faculty, facultyYear) references classe(faculty, facultyYear)
-) auto_increment=0001;
+) ;
 
 #la table professeur
 CREATE TABLE IF NOT EXISTS `professeur`(
     `id` int unique auto_increment,
     `matricule` varchar(10) primary key ,
-    `email` varchar(40),
-    `login` varchar(30),
+    `email` varchar(100),
+    `login` varchar(100),
     constraint fk1_prof foreign key (login) references users(login)
 );
 
 #la table des modules provenant de la combinaison de la table prof et la table classe
 CREATE TABLE IF NOT EXISTS `module`(
-    `faculty` varchar(5),
+    `faculty` varchar(10),
     `facultyYear` int,
-    `matricule` varchar(20),
+    `matricule` varchar(10),
     `name` varchar(20),
     constraint pkmodule primary key (faculty,facultyYear,matricule),
     constraint fk1_module foreign key (faculty, facultyYear) references classe(faculty, facultyYear),

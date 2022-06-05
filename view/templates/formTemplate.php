@@ -33,7 +33,8 @@
 
 						</div>
 						<div class='row d-flex justify-content-center  p-4'>
-							<button form='register' id='submit' class='btn btn-primary shadow d-block w-50 '
+							<button form='register' id='submit'
+							        class=' btn btn-primary shadow d-block w-50 '
 							        type='submit'>
 								Finaliser l'ajout
 							</button>
@@ -51,4 +52,5 @@
 	</div>
 </section>
 <script src="<?= JS_URL ?>villeSelect.js"></script>
+
 

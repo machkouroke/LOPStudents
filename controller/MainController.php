@@ -2,6 +2,7 @@
 
     namespace controller;
 
+
     use model\LOPStudents\Student;
     use model\LOPStudents\User;
 
@@ -19,20 +20,28 @@
             $sendMessage = function () {
                 $title = 'Envoyer un message';
                 $selectedUser = [];
-                foreach ($_POST['user'] as $user) {
-                    $selectedUser[] = $user;
+                if (isset($_POST['user'])) {
+                    foreach ($_POST['user'] as $user) {
+                        $selectedUser[] = $user;
+                    }
+                    $selectedUser = implode(';', $selectedUser);
+                    MenuController::sendMessagePage($selectedUser);
+                    return;
                 }
-                $selectedUser = implode(';', $selectedUser);
-                require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\contacts.php');
+                MenuController::sendMessagePage();
             };
-            AuthenticationController::loginRequired($sendMessage)();
+            $sendMessage();
         }
 
         public static function transferMessage(): void
         {
 
             $sendMessage = function () {
-                $isAllFieldsPresent = isset($_POST["destinataire"]) && isset($_POST["object"]) && isset($_POST["message"]);
+
+                $isAllFieldsPresent = ((isset($_POST["destinataire"]) && !empty($_POST["destinataire"]))
+                    && (isset($_POST["object"]) && !empty($_POST['object']))
+                    && (isset($_POST['message']) && !empty($_POST['message'])));
+                echo $isAllFieldsPresent;
                 if ($isAllFieldsPresent) {
 
                     $dest = explode(";", $_POST["destinataire"]);
@@ -41,16 +50,27 @@
                     $headers = "From: " . "machkour@LOPStudio.com";
                     foreach ($dest as $to) {
                         if (!mail($to, $subject, $message, $headers)) {
-                            $error = "Une erreur est survenue lors de l'envoi du message";
-                            header("Location:index.php?action=sendMessage&error=" . $error);
+                            $_SESSION['error'] = "Une erreur est survenue lors de l'envoi du message";
+                            header("Location:index.php?action=sendMessage&error");
+                            return;
+
                         }
                     }
                 } else {
-                    $error = "Veuillez saisir tous les champs pour l'envoi";
-                    header("Location:index.php?action=sendMessage&page=1&error=" . $error);
+
+                    $query = ['action' => 'sendMessage',
+                        'error' => "Veuillez saisir tous les champs pour l'envoi",
+                        'selectedUser' => $_POST['destinataire']];
+                    header("Location:index.php?" . http_build_query($query));
+                    return;
+
                 }
-                $sucess = 'Le message a bien été envoyé';
-                header("Location:index.php?action=listingStudents&page=1&sucess=" . $sucess);
+
+
+                $query = ['action' => 'listingStudents',
+                    'sucess' => 'Le message a bien été envoyé',
+                    'page' => '1'];
+                header("Location:index.php?" . http_build_query($query));
             };
             AuthenticationController::loginRequired($sendMessage)();
         }

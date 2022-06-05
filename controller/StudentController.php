@@ -19,11 +19,16 @@
         public static function addStudent(): void
         {
             try {
+
                 $studentToAdd = new Student(...FormValidator::validateStudentAdd());
-//                $studentToAdd->add();
-//                header(INDEX_LOCATION . '?action=addStudentPage&sucess=' . 'Utilisateur ajoute');
+
+                $studentToAdd->add();
+                $query = ['action' => 'addStudentPage', 'sucess' => 'Utilisateur ajoute'];
+                header(INDEX_LOCATION . '?' . http_build_query($query));
             } catch (DataBaseException|UserException $e) {
-//                header(INDEX_LOCATION . '?action=addStudentPage&error=' . $e->getMessage());
+                $query = ['action' => 'addStudentPage', 'error' => $e->getMessage()];
+                header(INDEX_LOCATION . '?' . http_build_query($query));
+
             }
 
         }
@@ -31,7 +36,8 @@
         public static function delete(): void
         {
             Student::getByLogin($_GET['login'])->delete();
-            header(INDEX_LOCATION . '?action=listingStudents&page=1&sucess=' . 'Utilisateur supprime');
+            $query = ['action' => 'listingStudents', 'page' => 1, 'sucess' => 'Utilisateur supprime'];
+            header(INDEX_LOCATION . '?' . http_build_query($query));
         }
 
         public static function getByCity(): void
@@ -64,12 +70,15 @@
 
             try {
 
-                $studentToUpdate = Student::getByLogin(FormValidator::valideStudentUpdate()['login']);
-                $studentToUpdate->update(...FormValidator::valideStudentUpdate());
 
-                header(INDEX_LOCATION . '?action=addStudentPage&sucess=' . 'Utilisateur modifié');
+                $studentToUpdate = Student::getByLogin(FormValidator::validateStudentAdd('update')['login']);
+                $studentToUpdate->update(...$_POST);
+                $query = ['action' => 'addStudentPage', 'sucess' => "Utilisateur modifié"];
+                header(INDEX_LOCATION . '?' . http_build_query($query));
+
             } catch (DataBaseException|UserException  $e) {
-                header(INDEX_LOCATION . '?action=addStudentPage&error=' . $e->getMessage());
+                $query = ['action' => 'addStudentPage', 'error' => $e->getMessage()];
+                header(INDEX_LOCATION . '?' . http_build_query($query));
             }
         }
     }
