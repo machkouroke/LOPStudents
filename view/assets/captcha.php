@@ -57,7 +57,7 @@
     $string_length = 5;
     $captcha_string = generate_string($permitted_chars, $string_length);
 
-    $_SESSION['captcha'] = $captcha_string;
+    setcookie("captcha", $captcha_string);
 
     for ($i = 0; $i < $string_length; $i++) {
         $letter_space = intval(150 / $string_length);

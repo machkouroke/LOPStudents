@@ -91,12 +91,16 @@
 				<div class=" d-flex align-items-center p-3 justify-content-between col-4 w-100">
 					<label for="<?= $faculty ?>" class="form-check-label"><?= $faculty ?></label>
 
-					<input form="register" value="<?= $faculty ?>"  class=" form-check-input" type="checkbox"
+					<input form="register" id="<?= $faculty ?>" value="<?= $faculty ?>"  class=" form-check-input" type="checkbox"
 					       name="faculty[]">
 				</div>
 				<div class="col w-100">
 					<input form='register' id="<?= $faculty ?>" class="form-control w-50 <?= $faculty ?>" type="text"
 					       name="module[]" readonly>
+					<script>
+						let module = document.getElementsByName("module[]");
+						con
+					</script>
 				</div>
 			</div>
 		<?php endforeach; ?>

@@ -30,7 +30,6 @@
 
 
             try {
-
                 $user = User::getByLogin($login);
                 if ($user) {
                     if ($user->getPassword() == $password) {

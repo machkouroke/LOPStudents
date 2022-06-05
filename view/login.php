@@ -21,7 +21,7 @@
 							<form method="post" action="index.php?action=login">
 								<?php if (isset($_GET['error'])): ?>
 									<div class="alert alert-danger" role="alert">
-										<?= $_SESSION['error'] ?>
+										<?= $_GET['error'] ?>
 									</div>
 								<?php endif ?>
 								<div class="mb-3"><label>

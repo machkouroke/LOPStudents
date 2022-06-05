@@ -16,7 +16,7 @@
 			<div class="reflow-product d-flex align-items-center py-5">
 				<div class="ref-media">
 					<div class="ref-preview"><img class="ref-image active"
-					                              src="<?= PIC_URL . $user->getLogin() . '.jpg' ?>"
+					                              src="<?= $user->getPhoto() ?>"
 					                              alt=""/>
 					</div>
 				</div>
