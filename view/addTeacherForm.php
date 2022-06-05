@@ -23,7 +23,7 @@
 <div class="row">
 	<div class="col mb-3">
 		<label for="surname" class="form-label">Nom d'utilisateur</label>
-		<input class="form-control" type="text" name="surname" id="surname">
+		<input class="form-control" type="text" name="username" id="username">
 	</div>
 
 	<div class="col mb-3">
@@ -39,7 +39,7 @@
 
 	<div class="col mb-3">
 		<label for="cv" class="form-label">Confirmez votre mot de passe</label>
-		<input class="form-control" type="password" name="password2" id="password">
+		<input class="form-control" type="password" name="password2" id="password2">
 	</div>
 </div>
 
@@ -91,23 +91,22 @@
 				<div class=" d-flex align-items-center p-3 justify-content-between col-4 w-100">
 					<label for="<?= $faculty ?>" class="form-check-label"><?= $faculty ?></label>
 
-					<input form="register" id="<?= $faculty ?>" value="<?= $faculty ?>"  class=" form-check-input" type="checkbox"
+					<input form="register" id="<?= $faculty ?>" value="<?= $faculty ?>" class=" form-check-input"
+					       type="checkbox"
 					       name="faculty[]">
 				</div>
 				<div class="col w-100">
-					<input form='register' id="<?= $faculty ?>" class="form-control w-100 <?= $faculty ?>" type="text"
-					       name="module[]" readonly>
-					<script>
-						let module = document.getElementsByName("module[]");
-
-					</script>
+					<input form='register' id="<?= $faculty . "module" ?>" class="form-control w-100 <?= $faculty ?>"
+					       type="text"
+					       readonly>
 				</div>
+
 			</div>
 		<?php endforeach; ?>
 
 </div>
 
-
+<script src='<?= JS_URL ?>facultyChoice.js'></script>
 <?php $secondPart = ob_get_clean(); ?>
 <?php require('templates/formTemplate.php'); ?>
 <?php $content = ob_get_clean(); ?>
