@@ -19,9 +19,8 @@
         public static function addStudent(): void
         {
             try {
-
+                formToCookie();
                 $studentToAdd = new Student(...FormValidator::validateStudentAdd());
-
                 $studentToAdd->add();
                 $query = ['action' => 'addStudentPage', 'sucess' => 'Utilisateur ajoute'];
                 header(INDEX_LOCATION . '?' . http_build_query($query));
@@ -69,10 +68,10 @@
         {
 
             try {
+                formToCookie();
 
-
-                $studentToUpdate = Student::getByLogin(FormValidator::validateStudentAdd('update')['login']);
-                $studentToUpdate->update(...$_POST);
+                $studentToUpdate = Student::getByLogin($_GET['login']);
+                $studentToUpdate->update(...FormValidator::validateStudentAdd('update'));
                 $query = ['action' => 'addStudentPage', 'sucess' => "Utilisateur modifié"];
                 header(INDEX_LOCATION . '?' . http_build_query($query));
 
@@ -81,5 +80,7 @@
                 header(INDEX_LOCATION . '?' . http_build_query($query));
             }
         }
+
+
     }
 

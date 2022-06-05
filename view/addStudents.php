@@ -17,13 +17,13 @@
 		<label for="name" class="form-label">Nom</label>
 
 		<input class="form-control" type="text" name="name" id="name"
-		       value="<?= isset($userToUpdate) ? $userToUpdate->getName() : '' ?>" required>
+		       value="<?= isset($userToUpdate) ? $userToUpdate->getName() : ($_COOKIE['name'] ?? '') ?>" required>
 	</div>
 
 	<div class="col mb-3">
 		<label for="surname" class="form-label">Prénom</label>
 		<input class="form-control" type="text" name="surname" id="surname"
-		       value="<?= isset($userToUpdate) ? $userToUpdate->getSurname() : '' ?>" required>
+		       value="<?= isset($userToUpdate) ? $userToUpdate->getSurname() : ($_COOKIE['surname'] ?? '') ?>" required>
 	</div>
 </div>
 
@@ -31,26 +31,28 @@
 	<div class="col mb-3">
 		<label for="login" class="form-label">Nom d'utilisateur</label>
 		<input class="form-control" type="text" name="login" id="login"
-		       value="<?= isset($userToUpdate) ? $userToUpdate->getLogin() : '' ?>" required>
+		       value="<?= isset($userToUpdate) ? $userToUpdate->getLogin() : ($_COOKIE['login'] ?? '') ?>" required>
 	</div>
 
 	<div class="col mb-3">
 		<label for="email" class="form-label">Email</label>
 		<input class="form-control" type="email" name="email" id="email"
-		       value="<?= isset($userToUpdate) ? $userToUpdate->getEmail() : '' ?>" required>
+		       value="<?= isset($userToUpdate) ? $userToUpdate->getEmail() : ($_COOKIE['email'] ?? '') ?>" required>
 	</div>
 </div>
 <div class="row">
 	<div class="col mb-3">
 		<label for="password" class="form-label">Votre mot de passe</label>
 		<input class="form-control" type="password" name="password" id="password"
-		       value="<?= isset($userToUpdate) ? $userToUpdate->getPassword() : '' ?>" required>
+		       value="<?= isset($userToUpdate) ? $userToUpdate->getPassword() : ($_COOKIE['password'] ?? '') ?>"
+		       required>
 	</div>
 
 	<div class="col mb-3">
 		<label for="password-2" class="form-label">Confirmez votre mot de passe</label>
 		<input class="form-control" type="password" name="password-2" id="password-2"
-		       value="<?= isset($userToUpdate) ? $userToUpdate->getPassword() : '' ?>" required>
+		       value="<?= isset($userToUpdate) ? $userToUpdate->getPassword() : ($_COOKIE['password-2'] ?? '') ?>"
+		       required>
 	</div>
 </div>
 
@@ -72,7 +74,8 @@
 			<select form="register" id='country' name='country' class='form-select' required>
 
 				<?php if (isset($userToUpdate)): ?>"
-					<option value="<?= $userToUpdate->getCountry() ?>"><?= $userToUpdate->getCountry() ?></option>
+					<option value="<?= $userToUpdate->getCountry() ?? ($_COOKIE['country'] ?? '') ?>">
+						<?= $userToUpdate->getCountry() ?? ($_COOKIE['country'] ?? '') ?></option>
 				<?php endif; ?>
 			</select>
 		</div>
@@ -81,20 +84,22 @@
 			<label for='city' class='form-label'>Ville</label>
 			<select form='register' id='city' name='city' class='form-select' required>
 				<?php if (isset($userToUpdate)): ?>"
-					<option value="<?= $userToUpdate->getCity() ?>" selected><?= $userToUpdate->getCity() ?></option>
+					<option value="<?= $userToUpdate->getCity() ?? ($_COOKIE['city'] ?? '') ?>" selected>
+						<?= $userToUpdate->getCity() ?? ($_COOKIE['city'] ?? '') ?></option>
 				<?php endif; ?>
 			</select>
 		</div>
 		<div class='col mb-3'>
 			<label for='zipCode' class='form-label'>Code Postale</label>
-			<input value="<?= isset($userToUpdate) ? $userToUpdate->getZipCode() : '' ?>" form='register' type='number'
+			<input value="<?= isset($userToUpdate) ? $userToUpdate->getZipCode() : ($_COOKIE['zipCode'] ?? '') ?>"
+			       form='register' type='number'
 			       class='form-control' id='zipCode' name='zipCode' maxlength='5' required>
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col mb-3'>
 			<label for='birthDate' class='form-label'>Date de naissance</label>
-			<input value="<?= isset($userToUpdate) ? $userToUpdate->getBirthDate() : '' ?>" form='register' type='date'
+			<input value="<?= isset($userToUpdate) ? $userToUpdate->getBirthDate() : ($_COOKIE['birthDate'] ?? '') ?>" form='register' type='date'
 			       class='form-control' id='birthDate' name='birthDate' maxlength='5' required>
 		</div>
 	</div>
@@ -102,7 +107,7 @@
 		<div class='col mb-3'>
 			<label for='photo' class='form-label'>Photos</label>
 
-			<input  form='register' type='file'
+			<input form='register' type='file'
 			       class='form-control' id='photo' name='photo' maxlength='5'>
 
 		</div>
@@ -111,7 +116,7 @@
 		<div class='col mb-3'>
 			<label for='cv' class='form-label'>Curriculum Vitae</label>
 
-			<input  form='register' type='file'
+			<input form='register' type='file'
 			       class='form-control' id='cv' name='cv' maxlength='5'>
 
 		</div>

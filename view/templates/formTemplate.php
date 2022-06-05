@@ -9,8 +9,8 @@
 			</div>
 			<div class="row d-flex justify-content-start justify-content-lg-start align-items-lg-center">
 				<div class="col">
-					<div class="row shadow rounded">
-						<form  action='<?= BASE_URL ?>index.php?action=<?= $action ?>'
+					<div class="row ">
+						<form id="register"  action='<?= BASE_URL ?>index.php?action=<?= $action ?>'
 						      class='col shadow rounded p-4 m-5 p-xl-4' data-aos='fade-up'
 						      method='post'
 						      enctype='multipart/form-data'>
