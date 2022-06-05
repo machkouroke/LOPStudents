@@ -7933,7 +7933,7 @@ textarea.form-control-lg {
   font-weight: 700 !important;
 }
 
-.fw-bolder {
+.fw-bolder, .alert {
   font-weight: bolder !important;
 }
 
@@ -7961,7 +7961,7 @@ textarea.form-control-lg {
   text-align: right !important;
 }
 
-.text-center {
+.text-center, .alert {
   text-align: center !important;
 }
 

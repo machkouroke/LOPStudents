@@ -45,12 +45,13 @@
         {
 
             try {
-                echo 'authenticate';
+
                 $_SESSION['User'] = Authentification::authenticate($_POST['username'], $_POST['password']);
                 header(INDEX_LOCATION);
             } catch (DataBaseException|UserException $e) {
-                $_SESSION['error'] = $e->getMessage();
-                header(INDEX_LOCATION . '?error');
+
+                $query = ['error' => $e->getMessage()];
+                header(INDEX_LOCATION . '?' .  http_build_query($query));
 
             }
 

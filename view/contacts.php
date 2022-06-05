@@ -24,15 +24,15 @@
 							</div>
 						<?php endif ?>
 						<div class="mb-3"><label class="form-label" for="destinataire">Destinataires</label><input
-									class="form-control" type="text"
-									id="destinataire" name="destinataire" value="<?= $selectedUser ?>">
+									class="form-control" type="text" id="destinataire" name="destinataire"
+
+										value="<?=$selectedUser ?? ($_GET['selectedUser'] ?? '') ?>">
 						</div>
 						<div class="mb-3"><label class="form-label" for="object">Object</label>
 							<input class="form-control" type="text" id="object" name="object"></div>
 						<div class="mb-3"><label class="form-label" for="message">Message</label><textarea
 									class="form-control" id="message"
-									name="message" rows="6"
-							></textarea>
+									name="message" rows="6"></textarea>
 						</div>
 						<div>
 							<button class="btn btn-primary shadow d-block w-100" type="submit">Envoyer</button>

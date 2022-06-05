@@ -10,12 +10,12 @@
 		?>
 		<?php if (isset($_GET['sucess'])): ?>
 			<div class="my-2 alert alert-success" role="alert">
-				<?= $_SESSION['sucess'] ?>
+				<?= $_GET['sucess'] ?>
 			</div>
 		<?php endif ?>
 		<?php if (isset($_GET['error'])): ?>
 			<div class="my-2 alert alert-success" role="alert">
-				<?= $_SESSION['error'] ?>
+				<?= $_GET['error'] ?>
 			</div>
 		<?php endif ?>
 		<div id="listPage">

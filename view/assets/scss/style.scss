@@ -168,4 +168,8 @@ body {
     }
   }
 }
+.alert {
+  @extend .text-center;
+  @extend .fw-bolder;
+}
 
