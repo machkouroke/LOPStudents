@@ -172,4 +172,20 @@ body {
   @extend .text-center;
   @extend .fw-bolder;
 }
-
+a {
+ color: $primary;
+  &:hover {
+    color: $danger;
+  }
+}
+button input[type=submit]{
+  &:hover {
+    color: $danger !important;
+  }
+}
+.ref-product {
+  transition: transform 0.8s;
+  &:hover {
+    transform: scale(1.1);
+  }
+}

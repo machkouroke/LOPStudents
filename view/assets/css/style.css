@@ -11969,4 +11969,22 @@ body .overflow::-webkit-scrollbar-thumb {
   background: #1b1919;
 }
 
+a {
+  color: #1b1919;
+}
+a:hover {
+  color: #b81e1e;
+}
+
+button input[type=submit]:hover {
+  color: #b81e1e !important;
+}
+
+.ref-product {
+  transition: transform 0.8s;
+}
+.ref-product:hover {
+  transform: scale(1.1);
+}
+
 /*# sourceMappingURL=style.css.map */
