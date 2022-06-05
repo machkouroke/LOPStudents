@@ -8,7 +8,7 @@
         require_once($path);
     });
 
-
+    session_name('Main');
     session_start();
 
     require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller\Constant.php');
