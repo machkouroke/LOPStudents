@@ -129,29 +129,20 @@
          */
         public function update(string ...$newData): void
         {
+            $tableUser = ['login','name','surname','password','city','zipCode','country','photo'];
+            $tableStudent = ['cv','email','birthDate','faculty','facultyYear','login'];
             try {
                 $con = FACTORY->get_connexion();
 
-                print_r($newData);
-                $updateStudent = "update etudiants set cv=?, photo=?, email=?, birthDate=?
+                foreach ($newData as $key=>$value){
+                        if(in_array($key,$tableUser)){
+                            $con->exec("update users set $key = '$value' where login='$this->login'");
+                        }
+                        if(in_array($key,$tableStudent)){
+                            $con->exec("update etudiants set $key = '$value' where login='$this->login'");
+                        }
+                }
 
-                    ,faculty=?, facultyYear=? where login=?";
-
-                $updateUser = "update users set name=?, surname=?, password=?, city=?,
-                    zipCode=?, country=?, role='student' where login='$this->login'";
-
-
-                $statementStudent = $con->prepare($updateStudent);
-                $faculties = explode(' ', $newData['faculty']);
-
-                $studentInfo = [$newData['cv'], $newData['photo'], $newData['email'], $newData['birthDate'],
-                    $faculties[0], $faculties[1], $this->login];
-                $statementStudent->execute($studentInfo);
-                $statementUser = $con->prepare($updateUser);
-
-                $userInfo = [$newData['name'], $newData['surname'], $newData['password'], $newData['city'],
-                    $newData['zipCode'], $newData['country']];
-                $statementUser->execute($userInfo);
             } catch (PDOException $e) {
                 throw new DataBaseException('Une erreur est survenue:' . $e->getMessage());
             }
