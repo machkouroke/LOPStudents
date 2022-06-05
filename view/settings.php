@@ -8,7 +8,7 @@
 				<div class="col-md-7 col-12 reflow-product d-flex align-items-center py-5">
 					<div class="ref-media">
 						<div class="ref-preview"><img class="ref-image active"
-						                              src="<?= $_SESSION['User']->getPicture()  ?>"
+						                              src="<?= $_SESSION['User']->getPhoto()  ?>"
 						                              alt=""/></div>
 					</div>
 

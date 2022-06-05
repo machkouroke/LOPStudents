@@ -33,13 +33,13 @@
 </div>
 <div class="row">
 	<div class="col mb-3">
-		<label for="photos" class="form-label">Votre mot de passe</label>
-		<input class="form-control" type="text" name="photos" id="photos">
+		<label for="password" class="form-label">Votre mot de passe</label>
+		<input class="form-control" type="password" name="password" id="password">
 	</div>
 
 	<div class="col mb-3">
 		<label for="cv" class="form-label">Confirmez votre mot de passe</label>
-		<input class="form-control" type="text" name="cv" id="cv">
+		<input class="form-control" type="password" name="password2" id="password">
 	</div>
 </div>
 
@@ -95,11 +95,11 @@
 					       name="faculty[]">
 				</div>
 				<div class="col w-100">
-					<input form='register' id="<?= $faculty ?>" class="form-control w-50 <?= $faculty ?>" type="text"
+					<input form='register' id="<?= $faculty ?>" class="form-control w-100 <?= $faculty ?>" type="text"
 					       name="module[]" readonly>
 					<script>
 						let module = document.getElementsByName("module[]");
-						con
+
 					</script>
 				</div>
 			</div>

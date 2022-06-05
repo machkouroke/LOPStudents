@@ -16,7 +16,7 @@
         /**
          * @throws UserException Si un champ n'est pas conforme
          */
-        static function validateStudentAdd(string $type = 'add'): array
+        static function validateStudentAdd(): array
         {
 
 
@@ -171,7 +171,7 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
         }
 
         /**
-         * valide la modification d'un etudiant
+         * valide la modification d'un étudiant
          * @throws UserException
          */
         static function valideStudentUpdate(): array
