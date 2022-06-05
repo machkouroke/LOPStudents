@@ -104,14 +104,8 @@
 				</div>
 			</div>
 		<?php endforeach; ?>
-	<div class="row d-flex justify-content-center  p-4">
-		<button form='register' id="submit" class="btn btn-primary shadow d-block w-50 " type="submit">
-			Finaliser l'ajout
-		</button>
-	</div>
+
 </div>
-<script src='<?= JS_URL ?>formFlip.js'></script>
-<script src="<?= JS_URL ?>facultyChoice.js"></script>
 
 
 <?php $secondPart = ob_get_clean(); ?>

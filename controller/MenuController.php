@@ -41,7 +41,9 @@
 
         public static function addTeacher(String $action= 'addTeacher'): void
         {
+
             $addTeacher = function () use ($action){
+
                 $title = 'Ajouter un proffesseur';
                 $type = 'pr';
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\addTeacherForm.php');

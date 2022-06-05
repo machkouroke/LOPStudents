@@ -7,6 +7,7 @@
     use model\LOPStudents\Module;
     use model\LOPStudents\Trait\Filter\TeacherFilter;
     use model\LOPStudents\Trait\TeacherSettersAndGetters;
+    use PDO;
     use PDOException;
 
 
@@ -25,10 +26,35 @@
         {
             $userTab = array('login' => $data['login'], 'name' => $data['name'], 'surname' => $data['surname'],
                 'password' => $data['password'], 'city' => $data['city'], 'zipCode' => $data['zipCode'],
-                'country' => $data['country'], 'role' => 'teacher');
+                'country' => $data['country'],'photo'=>$data['photo'], 'role' => 'teacher');
             parent::__construct(...$userTab);
-            $this->matricule = $data['matricule'];
+            $this->matricule = (isset($data['matricule']))? $data['matricule'] : $this->generateMatricule();
             $this->email = $data['email'];
+        }
+
+        /**
+         * genere le matricule du prof au cours de son ajout
+         * @return int|mixed
+         */
+        public function generateMatricule(): mixed
+        {
+            $con = FACTORY->get_connexion();
+            $res = $con->query('select max(id)+1 from professeur')->fetch(PDO::FETCH_ASSOC);
+            return 220000+($res['max(id)+1'] != null ? $res['max(id)+1'] : 1);
+        }
+
+        /**
+         * @param $res
+         * @return array
+         */
+        public static function changeToTeacher($res): array
+        {
+            $all = [];
+            foreach ($res->fetchAll(PDO::FETCH_ASSOC) as $item) {
+                $teacher = new Teacher(...$item);
+                $all[] = $teacher;
+            }
+            return $all;
         }
 
         /**
@@ -40,7 +66,7 @@
             $con = FACTORY->get_connexion();
             $sql = "select * from professeur natural join users";
             $res = $con->query($sql);
-            return $res->fetchAll();
+            return self::changeToTeacher($res);
         }
 
 
@@ -66,9 +92,9 @@
 
                 $studentInfo = $this->getProfTable();
 
-                $addUser = 'insert into users values (?,?,?,?,?,?,?,?)';
-                $addStudent = "INSERT INTO professeur VALUES 
-                            (?,?,?)";
+                $addUser = 'insert into users values (?,?,?,?,?,?,?,?,?)';
+                $addStudent = "INSERT INTO professeur (email,login) VALUES 
+                            (?,?)";
 
                 $statementUser = $con->prepare($addUser);
                 $statementUser->execute($userInfo);
@@ -85,22 +111,19 @@
         /**
          * Met à jour l'utilisateur actuel
          */
-        public function update(): void
+        public function update(string ...$newData): void
         {
             try {
                 $con = FACTORY->get_connexion();
-                $userTable = $this->getUserTable();
-                array_shift($userTable);
-                $userInfo = $userTable;
-                $profTable = $this->getProfTable();
-                array_shift($profTable);
-                $profInfo = $profTable;
 
-                $updateProf = "update professeur set email=?, login=? where matricule='" . $this->matricule . "'";
+                $userInfo = [$newData['login'],$newData['name'], $newData['surname'], $newData['password'], $newData['city'],
+                    $newData['zipCode'], $newData['country'], $newData['photo']];
+                $profInfo = [$newData['email'],$newData['login']];
 
-                $updateUser = "update users set name=?, surname=?, password=?, city=?,
-                    zipCode=?, country=?, role=? where login in (select login from professeur where matricule='" .
-                    $this->matricule . "')";
+                $updateProf = "update professeur set email=?, login=? where login='" . $this->login . "'";
+
+                $updateUser = "update users set login=?, name=?, surname=?, password=?, city=?,
+                    zipCode=?, country=?, photo=? where login='".$this->login."'";
 
                 $statementStudent = $con->prepare($updateUser);
                 $statementStudent->execute($userInfo);
@@ -117,14 +140,10 @@
         public function delete(): void
         {
             $con = FACTORY->get_connexion();
-            $deleteUser = "delete from users where login in (select login from professeur where matricule='" .
-                $this->matricule . "')";
-            $deleteProf = "delete from professeur where matricule ='" . $this->matricule . "'";
+            $deleteUser = "delete from users where login ='$this->login'";
+            $deleteProf = "delete from professeur where login='$this->login'";
             $con->exec($deleteUser);
             $con->exec($deleteProf);
         }
-
-
-
 
     }
