@@ -128,7 +128,7 @@
     font-size: 10px !important;
   }
 
-  &-student-col{
+  &-student-col {
     font-weight: bold !important;
     font-size: 15px !important;
   }
@@ -192,7 +192,7 @@ button input[type=submit] {
   }
 }
 
-.ref-product, .ref-student-wrapper{
+.ref-product, .ref-student-wrapper {
   transition: transform 0.8s;
 
   &:hover {
@@ -208,7 +208,19 @@ button input[type=submit] {
 .miniature {
   height: $miniature-size - 30;
   width: $miniature-size - 30;
+
   h5 {
-    font-size:  10px !important;
+    font-size: 10px !important;
   }
+}
+
+.btn {
+  &:hover {
+    background: $success !important;
+  }
+
+  &:active {
+    background: $success !important;
+  }
+
 }

@@ -4,14 +4,19 @@
 		<div class="container py-5">
 			<div class="row mb-4 mb-lg-5">
 				<div class="col-md-8 col-xl-6 text-center mx-auto">
-					<p class="fw-bold text-success mb-2">Connexion</p>
-					<h2 class="fw-bold">Veuillez saisir vos identifiants</h2>
+
+					<h2 class="fw-bold">Bienvenue sur LOPStudents</h2>
 				</div>
 			</div>
-			<div class="row d-flex justify-content-center">
-				<div class="col-10 col-md-6 col-xl-4">
-					<div class="card">
-						<div class="card-body text-center d-flex flex-column align-items-center">
+			<div class="row d-flex justify-content-center align-items-center">
+				<div class='col d-none d-md-block d-flex align-items-center' style='text-align: center;'>
+					<img data-aos='fade-right' data-aos-once='true'
+					     src="<?= IMG_URL . 'login.svg' ?>"
+					     style='width: 90%;height: 90%;padding: 37px;' alt=''>
+				</div>
+				<div data-aos='fade-left' class="col col-md col-xl rounded shadow">
+					<div class="card ">
+						<div class="col card-body text-center d-flex flex-column align-items-center">
 							<div class="bs-icon-xl bs-icon-circle bs-icon-primary shadow bs-icon my-4">
 								<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
 								     viewBox="0 0 16 16" class="bi bi-person">
@@ -41,6 +46,7 @@
 						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</section>

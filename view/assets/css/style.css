@@ -12000,4 +12000,11 @@ button input[type=submit]:hover {
   font-size: 10px !important;
 }
 
+.btn:hover {
+  background: #00b779 !important;
+}
+.btn:active {
+  background: #00b779 !important;
+}
+
 /*# sourceMappingURL=style.css.map */
