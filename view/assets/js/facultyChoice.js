@@ -5,8 +5,11 @@ for (let faculty of faculties) {
     checkbox.addEventListener('change', () => {
 
         let module = faculty.querySelector(`input[type=text]`)
-        console.log(module);
         module.readOnly = !checkbox.checked;
+        module.addEventListener('input', () => {
+            checkbox.value = checkbox.id + ";" + module.value;
+
+        })
 
     })
 }
