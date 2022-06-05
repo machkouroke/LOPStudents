@@ -34,7 +34,7 @@
 										<div class="ref-username-col">Nom d'utilisateur</div>
 										<div class="ref-email-col">Email</div>
 										<div class="ref-adress-col">Adresse</div>
-										<div class="ref-tel-col">Numéro de téléphone</div>
+										<div class="ref-tel-col">CNE</div>
 
 										<div class="ref-cv-col"><?= STUDENT_ONLY ? 'Filière' : 'CV' ?></div>
 
@@ -68,9 +68,7 @@
 																	<div class="ref-student-category">
 																		<?= $user->getFaculty() . ' ' . $user->getFacultyYear() ?>
 																	</div>
-																	<div class="ref-student-personalization-holder">
-																		<?= $user->getCne() ?>
-																	</div>
+
 																<?php endif ?>
 															</div>
 														</div>
@@ -87,7 +85,7 @@
 												<div class="ref-adress-col">
 													<?= $user->getZipCode() . ', ' . $user->getCity() . ' ' . $user->getCountry() ?>
 												</div>
-												<div class="ref-tel-col">+2126388646641</div>
+												<div class="ref-tel-col"><?=$user->getCne()?></div>
 
 												<div class="d-flex flex-column  ref-cv-col">
 													<?php ob_start(); ?>

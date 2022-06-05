@@ -57,13 +57,18 @@
 
         }
 
+        /**
+         * Appelle la page de mise à jour des données qui est en faite une page7
+         * d'ajout avec les données de l'utilisateur à modifier
+         */
         public static function updateStudentPage(): void
         {
-
-
             MenuController::addStudent(Student::getByLogin($_GET['login']), 'updateStudent&login=' . $_GET['login']);
         }
 
+        /**
+         * Cette méthode va se charger de communiquer avec le model pour mettre à jour les informations de l'utilisateur
+         */
         public static function updateStudent(): void
         {
 
@@ -71,12 +76,12 @@
                 formToCookie();
 
                 $studentToUpdate = Student::getByLogin($_GET['login']);
-                $studentToUpdate->update(...FormValidator::validateStudentAdd('update'));
+                $studentToUpdate->update(...FormValidator::valideStudentUpdate());
                 $query = ['action' => 'addStudentPage', 'sucess' => "Utilisateur modifié"];
                 header(INDEX_LOCATION . '?' . http_build_query($query));
 
             } catch (DataBaseException|UserException  $e) {
-                $query = ['action' => 'updateStudentPage', 'login'=> $_GET['login'], 'error' => $e->getMessage()];
+                $query = ['action' => 'updateStudentPage', 'login' => $_GET['login'], 'error' => $e->getMessage()];
                 header(INDEX_LOCATION . '?' . http_build_query($query));
             }
         }

@@ -11934,7 +11934,7 @@ footer ul li a {
 .ref-student-name {
   font-size: 10px !important;
 }
-.ref-adress-col {
+.ref-student-col {
   font-weight: bold !important;
   font-size: 15px !important;
 }
@@ -11980,11 +11980,24 @@ button input[type=submit]:hover {
   color: #b81e1e !important;
 }
 
-.ref-product {
+.ref-product, .ref-student-wrapper {
   transition: transform 0.8s;
 }
-.ref-product:hover {
+.ref-product:hover, .ref-student-wrapper:hover {
   transform: scale(1.1);
+}
+
+.miniature {
+  border-radius: 100% !important;
+  background: white !important;
+}
+
+.miniature {
+  height: 120px;
+  width: 120px;
+}
+.miniature h5 {
+  font-size: 10px !important;
 }
 
 /*# sourceMappingURL=style.css.map */

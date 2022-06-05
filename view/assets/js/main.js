@@ -5,7 +5,8 @@ for (let element of deleteAction) {
         event.preventDefault();
         let choice = confirm('Vouliez vous vraiment le supprimer ?');
         if (choice) {
-            element.submit();
+
+            location.href = element.href;
         }
     })
 }

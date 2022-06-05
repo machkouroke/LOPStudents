@@ -122,11 +122,13 @@
 
   }
 }
+
 .ref {
   &-student-name {
     font-size: 10px !important;
   }
-  &-adress-col {
+
+  &-student-col{
     font-weight: bold !important;
     font-size: 15px !important;
   }
@@ -142,14 +144,16 @@ body {
     width: 100%;
     background: rebeccapurple;
   }
-  footer{
+
+  footer {
     position: relative;
-    min-height:50px;
-    background:PapayaWhip;
+    min-height: 50px;
+    background: PapayaWhip;
   }
 
   .overflow {
     overflow-y: auto;
+
     &::-webkit-scrollbar {
       width: 10px;
       background: $primary;
@@ -168,24 +172,43 @@ body {
     }
   }
 }
+
 .alert {
   @extend .text-center;
   @extend .fw-bolder;
 }
+
 a {
- color: $primary;
+  color: $primary;
+
   &:hover {
     color: $danger;
   }
 }
-button input[type=submit]{
+
+button input[type=submit] {
   &:hover {
     color: $danger !important;
   }
 }
-.ref-product {
+
+.ref-product, .ref-student-wrapper{
   transition: transform 0.8s;
+
   &:hover {
     transform: scale(1.1);
+  }
+}
+
+.miniature {
+  border-radius: 100% !important;
+  background: white !important;
+}
+
+.miniature {
+  height: $miniature-size - 30;
+  width: $miniature-size - 30;
+  h5 {
+    font-size:  10px !important;
   }
 }

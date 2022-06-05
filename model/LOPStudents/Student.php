@@ -53,8 +53,10 @@
         }
 
         /**
-         * Renvoie la liste de tous les étudiants en jointure avec leur utilisateur correspondant
-         * @return bool|array Liste de tous les étudiants
+         * Renvoie une partie de la liste de tous les étudiants en jointure avec leur utilisateur correspondant
+         * @param int $first Premier element de la liste
+         * @param int $last Dernier de la liste
+         * @return bool|array Liste des éléments telle que x appartient à [$first, $last]
          */
         public static function getAll(int $first, int $last): bool|array
         {
@@ -124,8 +126,9 @@
         }
 
         /**
-         * Fonction de mise à jour de l'étudiant en cours
-         * @throws DataBaseException
+         * Fonction de mise à jour de l'étudiant actuelle
+         * @param string ...$newData Contient les nouvelles données pour la mise à jour de l'utilisateur
+         * @throws DataBaseException Lors d'une erreur de mise à joue
          */
         public function update(string ...$newData): void
         {

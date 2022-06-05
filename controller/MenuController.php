@@ -24,6 +24,7 @@
             AuthenticationController::loginRequired($menu)();
         }
 
+
         public static function addStudent(Student $userToUpdate = null, String $action= 'addStudent'): void
         {
 
@@ -52,15 +53,18 @@
                 ADMIN_ONLY);
         }
 
+        /**
+         * Effectue une liste des étudiants selon un filtre donné par défaut tous les étudiants sont retourné
+         * @param Filter $filter Filtre de recherche (Par ville, filière et age)
+         * @param string $filterInput Entré voulu selon le filtre donnés
+         */
         public static function listingStudents(Filter $filter = FILTER::NONE, string $filterInput = ''): void
         {
 
             $listingStudents = function () use ($filterInput, $filter) {
                 $title = LIST_OF_STUDENTS;
                 $number = Student::getNumberOfStudents();
-
                 $numberOfPage = ceil($number / ROW_PER_PAGE);
-
                 $firstPage = ($_GET['page'] * ROW_PER_PAGE) - ROW_PER_PAGE;
                 if (STUDENT_ONLY) {
                     $data = $_SESSION['User']->getFriends();
