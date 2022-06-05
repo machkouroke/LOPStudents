@@ -4,7 +4,7 @@
 			<div class='row mb-4 mb-lg-5'>
 				<div class='col-md-8 col-xl-6 text-center mx-auto'>
 
-					<h2 class='fw-bold'><?= $instructions ?></h2>
+					<h2 class='fw-bold'><a  href="<?= BASE_URL . "index.php?page=1&action=listingStudents"?>"><?= $instructions ?></a></h2>
 				</div>
 			</div>
 			<div class="row d-flex justify-content-start justify-content-lg-start align-items-lg-center">
