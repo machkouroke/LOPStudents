@@ -57,9 +57,7 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
          */
         static function validateTeacherAdd(): array
         {
-            /**
-             * À écrire Morel
-             */
+
             $fields = ['post' => ['name', 'surname', 'login', 'email', 'country', 'city', 'zipCode',
                 'password-2', 'password'], 'files' => ['photo']];
             if (self::isAllFieldsPresent(...$fields)) {
@@ -80,9 +78,10 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
                     self::moveFile();
                 }
             } else {
+                print_r($_POST);
+
                 throw new UserException('Veuillez saisir tous les champs');
             }
-
 
             return self::generatedTeacherFields();
 

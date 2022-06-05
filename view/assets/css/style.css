@@ -12000,11 +12000,17 @@ button input[type=submit]:hover {
   font-size: 10px !important;
 }
 
-.btn:hover {
-  background: #00b779 !important;
+.btn {
+  border: #1b1919 1px solid;
+}
+.btn:hover, .btn:focus {
+  background: white !important;
+  color: #1b1919;
+  border: #1b1919 1px solid;
 }
 .btn:active {
-  background: #00b779 !important;
+  background: white !important;
+  color: white;
 }
 
 /*# sourceMappingURL=style.css.map */

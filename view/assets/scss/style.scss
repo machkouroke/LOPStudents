@@ -215,12 +215,17 @@ button input[type=submit] {
 }
 
 .btn {
-  &:hover {
-    background: $success !important;
+  border: $primary 1px solid;
+  &:hover, &:focus {
+    background: white !important;
+    color: $primary;
+    border: $primary 1px solid;
   }
 
   &:active {
-    background: $success !important;
+    background: lighten($primary, 100) !important;
+    color: white;
   }
+
 
 }

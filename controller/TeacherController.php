@@ -29,7 +29,7 @@
         public static function addTeacher(): void
         {
             try {
-                print_r($_POST);
+
                 $teacherToAdd = new Teacher(...FormValidator::validateTeacherAdd());
                 $teacherToAdd->add();
 //                header(INDEX_LOCATION . '?action=addTeacherPage&sucess=' . 'Utilisateur ajoute');
