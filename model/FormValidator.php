@@ -10,7 +10,8 @@
      */
     class FormValidator
     {
-        const MAX_FILE_SIZE = 2000000000;
+        const MAX_FILE_SIZE = 2000000000000000;
+        const NOT_CONFORM_PASSWORD = 'Les mots de passe ne sont pas conformes';
 
         /**
          * @throws UserException Si un champ n'est pas conforme
@@ -21,23 +22,27 @@
 
             $fields = ['post' => ['name', 'surname', 'login', 'email', 'country', 'city', 'zipCode',
                 'password', 'password-2'], 'files' => ['cv', 'photo']];
+            define("VALID_CAPTCHA", isset($_POST['captcha']) && strtolower($_POST['captcha']) == strtolower($_SESSION['captcha']));
             if (self::isAllFieldsPresent(...$fields)) {
+                if (VALID_CAPTCHA) {
+                    if ($_POST['password'] != $_POST['password-2']) {
+                        throw new UserException(self::NOT_CONFORM_PASSWORD);
+                    }
 
-                if ($_POST['password'] != $_POST['password-2']) {
-                    throw new UserException('Les mots de passe ne sont pas conformes');
-                }
+                    if (self::isAllFieldsSizeCorrect()) {
 
-                if (self::isAllFieldsSizeCorrect()) {
-
-                    throw new UserException('La taille des elements ne doit pas depasser 20 lettres');
-                }
-                if (self::isFileSizeIsLessThanTwo()) {
-
-
-                    self::moveFile();
+                        throw new UserException('La taille des elements ne doit pas depasser 20 lettres');
+                    }
+                    if (!self::isFileSizeIsLessThanTwo()) {
+                        self::moveFile();
+                    } else {
+                        throw new UserException('La taille des fichiers ne doit pas depasser ne doit pas depasser 2 MO:' . '
+Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
+                    }
                 } else {
-                    throw new UserException($_SESSION['captcha']);
+                    throw new UserException('Captcha invalide');
                 }
+
 
             } else {
                 throw new UserException('Veuillez saisir tous les champs');
@@ -60,7 +65,7 @@
             if (self::isAllFieldsPresent(...$fields)) {
 
                 if ($_POST['password'] != $_POST['password-2']) {
-                    throw new UserException('Les mots de passe ne sont pas conformes');
+                    throw new UserException(self::NOT_CONFORM_PASSWORD);
                 }
                 if (self::isAllFieldsSizeCorrect()) {
 
@@ -68,7 +73,8 @@
                 }
                 if (self::isFileSizeIsLessThanTwo()) {
 
-                    throw new UserException('La taille des fichiers ne doit pas depasser ne doit pas depasser 2 MO');
+                    throw new UserException('La taille des fichiers ne doit pas depasser ne doit pas depasser 2 MO:' . '
+                    Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
                 } else {
 
                     self::moveFile();
@@ -171,7 +177,7 @@
         static function valideStudentUpdate(): array
         {
             if ($_POST['password'] != $_POST['password-2']) {
-                throw new UserException('Les mots de passe ne sont pas conformes');
+                throw new UserException(self::NOT_CONFORM_PASSWORD);
             }
 
             if (!empty(($_FILES['cv'])['name'])) {

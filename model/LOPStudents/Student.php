@@ -28,7 +28,7 @@
         {
             $userTab = array('login' => $data['login'], 'name' => $data['name'], 'surname' => $data['surname'],
                 'password' => $data['password'], 'city' => $data['city'], 'zipCode' => $data['zipCode'],
-                'country' => $data['country'],'photo'=>$data['photo'],'role' => 'student');
+                'country' => $data['country'], 'photo' => $data['photo'], 'role' => 'student');
 
             parent::__construct(...$userTab);
 
@@ -37,7 +37,7 @@
             $this->faculty = $data['faculty'];
             $this->facultyYear = $data['facultyYear'];
             $this->email = $data['email'];
-            $this->cne = (isset($data['cne']))? $data['cne'] : $this->generateCne();
+            $this->cne = (isset($data['cne'])) ? $data['cne'] : $this->generateCne();
         }
 
 
@@ -48,7 +48,7 @@
         {
             $con = FACTORY->get_connexion();
             $res = $con->query('select max(id)+1 from etudiants')->fetch(PDO::FETCH_ASSOC);
-            $id = 220000+($res['max(id)+1'] != null ? $res['max(id)+1'] : 1);
+            $id = 220000 + ($res['max(id)+1'] != null ? $res['max(id)+1'] : 1);
             return 'ENSA' . (string)$id;
         }
 
@@ -129,18 +129,18 @@
          */
         public function update(string ...$newData): void
         {
-            $tableUser = ['login','name','surname','password','city','zipCode','country','photo'];
-            $tableStudent = ['cv','email','birthDate','faculty','facultyYear','login'];
+            $tableUser = ['login', 'name', 'surname', 'password', 'city', 'zipCode', 'country', 'photo'];
+            $tableStudent = ['cv', 'email', 'birthDate', 'faculty', 'facultyYear', 'login'];
             try {
                 $con = FACTORY->get_connexion();
 
-                foreach ($newData as $key=>$value){
-                        if(in_array($key,$tableUser)){
-                            $con->exec("update users set $key = '$value' where login='$this->login'");
-                        }
-                        if(in_array($key,$tableStudent)){
-                            $con->exec("update etudiants set $key = '$value' where login='$this->login'");
-                        }
+                foreach ($newData as $key => $value) {
+                    if (in_array($key, $tableUser)) {
+                        $con->exec("update users set $key = '$value' where login='$this->login'");
+                    }
+                    if (in_array($key, $tableStudent)) {
+                        $con->exec("update etudiants set $key = '$value' where login='$this->login'");
+                    }
                 }
 
             } catch (PDOException $e) {

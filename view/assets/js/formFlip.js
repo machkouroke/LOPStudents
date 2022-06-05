@@ -3,7 +3,7 @@ let formFlip = document.getElementById("form-flip");
 let suivant = document.getElementById("suivant");
 
 suivant.addEventListener('click', (e) => {
-    e.preventDefault();
+
     if (!formFlip.classList.contains('flipBack') && !formFlip.classList.contains('flipFront')) {
 
         formFlip.classList.add('flipBack')
