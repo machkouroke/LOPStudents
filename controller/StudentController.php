@@ -76,7 +76,7 @@
                 header(INDEX_LOCATION . '?' . http_build_query($query));
 
             } catch (DataBaseException|UserException  $e) {
-                $query = ['action' => 'addStudentPage', 'error' => $e->getMessage()];
+                $query = ['action' => 'updateStudentPage', 'login'=> $_GET['login'], 'error' => $e->getMessage()];
                 header(INDEX_LOCATION . '?' . http_build_query($query));
             }
         }
