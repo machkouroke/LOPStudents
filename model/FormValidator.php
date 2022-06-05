@@ -19,18 +19,22 @@
         {
 
             if (self::isAllStudentFieldsPresent()) {
+                if ($_POST['captcha'] == $_COOKIE['captcha']) {
+                    if (self::isAllStudentFieldsSizeCorrect()) {
 
-                if (self::isAllStudentFieldsSizeCorrect()) {
+                        throw new UserException('La taille des elements ne doit pas depasser 20 lettres');
+                    }
+                    if (self::isStudentFileSizeIsLessThanTwo()) {
 
-                    throw new UserException('La taille des elements ne doit pas depasser 20 lettres');
-                }
-                if (self::isStudentFileSizeIsLessThanTwo()) {
+                        throw new UserException('La taille des fichiers ne doit pas depasser ne doit pas depasser 2 MO');
+                    } else {
 
-                    throw new UserException('La taille des fichiers ne doit pas depasser ne doit pas depasser 2 MO');
+                        self::moveFile();
+                    }
                 } else {
-
-                    self::moveFile();
+                    throw new UserException($_SESSION['captcha']);
                 }
+
             } else {
                 throw new UserException('Veuillez saisir tous les champs');
             }
