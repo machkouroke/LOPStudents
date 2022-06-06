@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `classe`(
 );
 
 
-# la table etudiant
+# la table étudiant
 CREATE TABLE IF NOT EXISTS `etudiants`(
     `id` int unique auto_increment,
     `cne` varchar(20)  primary key ,

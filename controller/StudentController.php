@@ -77,7 +77,7 @@
 
                 $studentToUpdate = Student::getByLogin($_GET['login']);
                 $studentToUpdate->update(...FormValidator::valideStudentUpdate());
-                $query = ['action' => 'addStudentPage', 'sucess' => "Utilisateur modifié"];
+                $query = ['action' => 'updateStudentPage', 'login' => $_GET['login'], 'sucess' => "Utilisateur modifié"];
                 header(INDEX_LOCATION . '?' . http_build_query($query));
 
             } catch (DataBaseException|UserException  $e) {
