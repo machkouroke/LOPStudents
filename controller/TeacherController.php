@@ -31,10 +31,15 @@
         {
             try {
 
-                //$f = (FormValidator::validateTeacherAdd())['faculty'];
-                $teacherToAdd = new Teacher(...FormValidator::validateTeacherAdd());
-                echo $teacherToAdd->getMatricule();
+                $f = (FormValidator::validateTeacherAdd());
+                $teacherToAdd = new Teacher(...$f);
                 $teacherToAdd->add();
+                foreach ($f['faculty'] as $module){
+
+                    $module['matricule'] =$teacherToAdd->getMatricule();
+                    $moduleToAdd = new Module(...$module);
+                    $moduleToAdd->add();
+                }
 
                 header(INDEX_LOCATION . '?action=addTeacherPage&sucess=' . 'Utilisateur ajoute');
             } catch (DataBaseException|UserException $e) {
