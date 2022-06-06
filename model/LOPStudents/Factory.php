@@ -20,7 +20,7 @@
 
         public function __construct(string $username, string $password)
         {
-            $this->dns = 'mysql:host=localhost;dbname=lopstudents';
+            $this->dns = 'mysql:host=MYSQL8001.site4now.net;dbname=db_a88093_lopstd';
             $this->username = $username;
             $this->password = $password;
             try {

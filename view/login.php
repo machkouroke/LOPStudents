@@ -5,7 +5,7 @@
 			<div class="row mb-4 mb-lg-5">
 				<div class="col-md-8 col-xl-6 text-center mx-auto">
 
-					<h2 class="fw-bold">Bienvenue sur LOPStudents</h2>
+					<h2 data-aos='fade-down' class="fw-bold">Bienvenue sur LOPStudents</h2>
 				</div>
 			</div>
 			<div class="row d-flex justify-content-center align-items-center">

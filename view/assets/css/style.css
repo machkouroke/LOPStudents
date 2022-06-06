@@ -12010,7 +12010,7 @@ button input[type=submit]:hover {
 }
 .btn:active {
   background: white !important;
-  color: white;
+  color: #1b1919;
 }
 
 /*# sourceMappingURL=style.css.map */
