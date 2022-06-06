@@ -68,7 +68,10 @@
                 $firstPage = ($_GET['page'] * ROW_PER_PAGE) - ROW_PER_PAGE;
                 if (STUDENT_ONLY) {
                     $data = $_SESSION['User']->getFriends();
-                } else {
+                } else if (TEACHER_ONLY) {
+                    $data = $_SESSION['User']->getStudents();
+                }
+                else {
                     $data = match ($filter) {
                         FILTER::CITY => Student::getByCity($filterInput),
                         FILTER::YEAR => Student::getByAge((int)$filterInput),

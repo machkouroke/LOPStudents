@@ -51,7 +51,8 @@
             return Student::changeToStudent($res);
         }
 
-        public function getFaculties(){
+        public function getFaculties(): String
+        {
             $allFac = [];
             $con = FACTORY->get_connexion();
             $sql = "select faculty,facultyYear from module where matricule='$this->matricule'";
@@ -60,7 +61,7 @@
                 $faculty = $line['faculty'].' '.(string)$line['facultyYear'];
                 $allFac[] = $faculty;
             }
-            return $allFac;
+            return implode('✨',$allFac);
         }
 
         /**
