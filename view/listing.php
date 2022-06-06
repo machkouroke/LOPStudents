@@ -34,9 +34,10 @@
 										<div class="ref-username-col">Nom d'utilisateur</div>
 										<div class="ref-email-col">Email</div>
 										<div class="ref-adress-col">Adresse</div>
-										<div class="ref-tel-col">CNE</div>
-
-										<div class="ref-cv-col"><?= STUDENT_ONLY ? 'Filière' : 'CV' ?></div>
+										<div class="ref-tel-col"><?= $title === LIST_OF_STUDENTS ? 'CNE' : 'Matricule' ?></div>
+										<?php $studentLastField = (STUDENT_ONLY ? 'Filière' : 'CV') ?>
+										<div class="ref-cv-col"><?= $title === LIST_OF_STUDENTS ?
+													$studentLastField : "Classes enseigné" ?></div>
 
 										<div class="ref-action-col text-end"><?= STUDENT_ONLY ? 'Matricule' : 'Actions' ?></div>
 
@@ -66,7 +67,8 @@
 																	<?= $user->getSurname() . ' ' . $user->getName() ?></div>
 																<?php if (!STUDENT_ONLY): ?>
 																	<div class="ref-student-category">
-																		<?= $user->getFaculty() . ' ' . $user->getFacultyYear() ?>
+																		<?= $title === LIST_OF_STUDENTS ?
+																				$user->getFaculty() . ' ' . $user->getFacultyYear() : "" ?>
 																	</div>
 
 																<?php endif ?>
@@ -85,28 +87,36 @@
 												<div class="ref-adress-col">
 													<?= $user->getZipCode() . ', ' . $user->getCity() . ' ' . $user->getCountry() ?>
 												</div>
-												<div class="ref-tel-col"><?=$user->getCne()?></div>
+												<div class="ref-tel-col"><?= $title === LIST_OF_STUDENTS ? $user->getCne() : $user->getMatricule() ?></div>
 
 												<div class="d-flex flex-column  ref-cv-col">
-													<?php ob_start(); ?>
-													<a href="<?= $user->getCv() ?>" download>Télécharger
-													                                         le
-													                                         CV</a>
-													<?php $cvDownload = ob_get_clean(); ?>
-													<?= STUDENT_ONLY ? $user->getFaculty() . ' ' . $user->getFacultyYear() : $cvDownload ?>
+													<?php if ($title === LIST_OF_STUDENTS): ?>
+														<?php ob_start(); ?>
+														<a href="<?= $user->getCv() ?>" download>Télécharger
+														                                         le
+														                                         CV</a>
+														<?php $cvDownload = ob_get_clean(); ?>
+														<?= STUDENT_ONLY ? $user->getFaculty() . ' ' . $user->getFacultyYear() : $cvDownload ?>
+													<?php else: ?>
+														<p><?= $user->getFaculties() ?></p>
+													<?php endif; ?>
 												</div>
 
 
 												<div class="d-flex flex-column text-center ref-action-col">
+													<?php
+														$userToListType = $title === LIST_OF_STUDENTS ? "Student" : "Teacher";
+														$id = $title === LIST_OF_STUDENTS ? $user->getCne() : $user->getMatricule();
+													?>
 													<?php ob_start(); ?>
 													<p>
-														<a href="<?= BASE_URL ?>index.php?action=updateStudentPage&login=<?= $user->getLogin() ?>"
+														<a href="<?= BASE_URL ?>index.php?action=update<?= $userToListType ?>Page&login=<?= $user->getLogin() ?>"
 														   class="text-primary">Modifier</a></p>
 													<p>
-														<a href="<?= BASE_URL ?>index.php?action=deleteStudent&login=<?= $user->getLogin() ?>"
+														<a href="<?= BASE_URL ?>index.php?action=delete<?= $userToListType ?>&login=<?= $user->getLogin() ?>"
 														   class="delete text-primary">Supprimer</a></p>
 													<?php $action = ob_get_clean(); ?>
-													<?= STUDENT_ONLY ? $user->getCne() : $action ?>
+													<?= STUDENT_ONLY ? $id : $action ?>
 												</div>
 
 											</label>
@@ -130,7 +140,13 @@
 								<h5 class="fw-bold mb-0">
 									<strong><?= $user->getSurname() . ' ' . $user->getName() ?></strong>
 								</h5>
-								<p class="text-muted mb-2"><?= $user->getFaculty() . ' ' . $user->getFacultyYear() ?></p>
+								<p class="text-muted mb-2">
+									<?php if ($title === LIST_OF_STUDENTS): ?>
+										<?= $user->getFaculty() . ' ' . $user->getFacultyYear() ?>
+									<?php else: ?>
+										<?= $user->getMatricule() ?>
+									<?php endif; ?>
+								</p>
 							</div>
 						</label>
 					<?php endforeach ?>
