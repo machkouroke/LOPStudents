@@ -51,6 +51,17 @@
             return Student::changeToStudent($res);
         }
 
+        public function getFaculties(){
+            $allFac = [];
+            $con = FACTORY->get_connexion();
+            $sql = "select faculty,facultyYear from module where matricule='$this->matricule'";
+            $res = ($con->query($sql))->fetchAll(PDO::FETCH_ASSOC);
+            while ($line = $res){
+                $faculty = $line['faculty'].' '.(string)$line['facultyYear'];
+                $allFac[] = $faculty;
+            }
+            return $allFac;
+        }
 
         /**
          * Renvoie les données du proffesseur actuel
@@ -58,7 +69,7 @@
          */
         public function getProfTable(): array
         {
-            return [$this->email, $this->login];
+            return [$this->getMatricule(),$this->email, $this->login];
         }
 
     }

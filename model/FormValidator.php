@@ -34,7 +34,8 @@
                         throw new UserException('La taille des elements ne doit pas depasser 20 lettres');
                     }
                     if (!self::isFileSizeIsLessThanTwo()) {
-                        self::moveFile();
+                        self::moveUpdateFiles('cv');
+                        self::moveUpdateFiles('photo');
                     } else {
                         throw new UserException('La taille des fichiers ne doit pas depasser ne doit pas depasser 2 MO:' . '
 Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
@@ -74,11 +75,9 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
                     throw new UserException('La taille des fichiers ne doit pas depasser ne doit pas depasser 2 MO:' . '
                     Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
                 } else {
-
-                    self::moveFile();
+                    self::moveUpdateFiles('photo');
                 }
             } else {
-                print_r($_POST);
 
                 throw new UserException('Veuillez saisir tous les champs');
             }
@@ -102,8 +101,19 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
 
         static private function generatedTeacherFields(): array
         {
+            $module = [];
+            $faculties = [];
             $data = $_POST;
             if (isset($_POST['photo'])) $data['photo'] = $_POST['photo'];
+
+            foreach($_POST['faculty'] as $faculty){
+                $module['faculty']=explode(' ',(explode(';',$faculty))[0])[0];
+                $module['facultyYear']=explode(' ',(explode(';',$faculty))[0])[1];
+                $module['name'] = (explode(';',$faculty))[1];
+                $faculties[] = $module;
+            }
+
+            $data['faculty'] = $faculties;
             return $data;
         }
 
@@ -193,7 +203,6 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
         {
 
             $extension = pathinfo($_FILES["$file"]['name'])['extension'];
-            echo $extension;
             $login = $_POST['login'];
             $url = ($file == 'cv') ? CV_URL : PIC_URL;
             $dir = ($file == 'cv') ? CV_DIR : PIC_DIR;

@@ -5,6 +5,7 @@
     use controller\AuthenticationController;
     use Exception\DataBaseException;
     use Exception\UserException;
+    use model\LOPStudents\Module;
     use model\LOPStudents\Student;
     use model\LOPStudents\Teacher;
     use model\FormValidator;
@@ -30,11 +31,14 @@
         {
             try {
 
+                //$f = (FormValidator::validateTeacherAdd())['faculty'];
                 $teacherToAdd = new Teacher(...FormValidator::validateTeacherAdd());
+                echo $teacherToAdd->getMatricule();
                 $teacherToAdd->add();
-//                header(INDEX_LOCATION . '?action=addTeacherPage&sucess=' . 'Utilisateur ajoute');
+
+                header(INDEX_LOCATION . '?action=addTeacherPage&sucess=' . 'Utilisateur ajoute');
             } catch (DataBaseException|UserException $e) {
-//                header(INDEX_LOCATION . '?action=addTeacherPage&error=' . $e->getMessage());
+                header(INDEX_LOCATION . '?action=addTeacherPage&error=' . $e->getMessage());
             }
 
         }

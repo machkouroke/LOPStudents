@@ -93,8 +93,8 @@
                 $studentInfo = $this->getProfTable();
 
                 $addUser = 'insert into users values (?,?,?,?,?,?,?,?,?)';
-                $addStudent = "INSERT INTO professeur (email,login) VALUES 
-                            (?,?)";
+                $addStudent = "INSERT INTO professeur (matricule,email,login) VALUES 
+                            (?,?,?)";
 
                 $statementUser = $con->prepare($addUser);
                 $statementUser->execute($userInfo);
