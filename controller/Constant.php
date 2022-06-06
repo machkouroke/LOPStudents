@@ -34,7 +34,7 @@
     /**
      * Constante divers
      */
-    const ROW_PER_PAGE = 10;
+    const ROW_PER_PAGE = 9;
     /**
      * @return void
      */

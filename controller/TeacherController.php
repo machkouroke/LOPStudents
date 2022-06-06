@@ -18,15 +18,7 @@
     class TeacherController
     {
 
-        public static function addFaculty(): void
-        {
-            $addFaculty = function () {
-                $title = 'Ajouter un proffesseur';
-                $type = 'pr';
-                require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\addFaculty.php');
-            };
-            AuthenticationController::loginRequired($addFaculty)();
-        }
+
         public static function addTeacher(): void
         {
             try {
