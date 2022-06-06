@@ -23,7 +23,7 @@
         {
             try {
 
-                //$f = (FormValidator::validateTeacherAdd())['faculty'];
+
                 $teacherToAdd = new Teacher(...FormValidator::validateTeacherAdd());
                 echo $teacherToAdd->getMatricule();
                 $teacherToAdd->add();

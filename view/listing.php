@@ -87,7 +87,7 @@
 												<div class="ref-adress-col">
 													<?= $user->getZipCode() . ', ' . $user->getCity() . ' ' . $user->getCountry() ?>
 												</div>
-												<div class="ref-tel-col"><?= $user->getCne() ?? $user->getMatricule() ?></div>
+												<div class="ref-tel-col"><?= $title === LIST_OF_STUDENTS ? $user->getCne() : $user->getMatricule() ?></div>
 
 												<div class="d-flex flex-column  ref-cv-col">
 													<?php if ($title === LIST_OF_STUDENTS): ?>
@@ -98,7 +98,7 @@
 														<?php $cvDownload = ob_get_clean(); ?>
 														<?= STUDENT_ONLY ? $user->getFaculty() . ' ' . $user->getFacultyYear() : $cvDownload ?>
 													<?php else: ?>
-														<p><?= $user->getFaculty() ?></p>
+														<p><?= $user->getFaculties() ?></p>
 													<?php endif; ?>
 												</div>
 
