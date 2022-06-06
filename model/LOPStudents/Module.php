@@ -31,7 +31,6 @@
                 $con = FACTORY->get_connexion();
                 $sql = "insert into module values ('$this->faculty','$this->facultyYear','$this->matricule','$this->name')";
                 $statement = $con->exec($sql);
-                $statement->execute([$this->faculty,$this->facultyYear,$this->matricule,$this->name]);
             }catch (PDOException $e) {echo $e->getMessage();}
         }
 
