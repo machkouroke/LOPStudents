@@ -22,6 +22,7 @@
         {
             $this->email = $email;
         }
+
         /**
          * @return mixed|string
          */
@@ -37,6 +38,7 @@
         {
             $this->matricule = $matricule;
         }
+
         /**
          * Renvoie la liste des étudiants du proffesseur actuel
          * @return bool|array Liste des étudiants du professeur actuel
@@ -44,24 +46,27 @@
         public function getStudents(): bool|array
         {
             $con = FACTORY->get_connexion();
-            $sql = "select cne,name,surname,email,cv,photo,faculty,facultyYear from etudiants natural join users 
+            $sql = "select login, password, city, zipCode, country, birthDate, cne,name,surname,email,cv,photo,faculty,facultyYear from etudiants natural join users 
                                                            where (faculty,facultyYear) in (select
                         faculty,facultyYear from module where matricule='" . $this->matricule . "')";
             $res = $con->query($sql);
             return Student::changeToStudent($res);
         }
 
-        public function getFaculties(): String
+        public function getFaculties(): string
         {
             $allFac = [];
             $con = FACTORY->get_connexion();
             $sql = "select faculty,facultyYear from module where matricule='$this->matricule'";
             $res = ($con->query($sql))->fetchAll(PDO::FETCH_ASSOC);
-            while ($line = $res){
-                $faculty = $line['faculty'].' '.(string)$line['facultyYear'];
+
+            foreach ($res as $line) {
+                $faculty = $line['faculty'] . ' ' . $line['facultyYear'];
                 $allFac[] = $faculty;
             }
-            return implode('✨',$allFac);
+
+            return implode('✨', $allFac);
+
         }
 
         /**
@@ -70,7 +75,7 @@
          */
         public function getProfTable(): array
         {
-            return [$this->getMatricule(),$this->email, $this->login];
+            return [$this->getMatricule(), $this->email, $this->login];
         }
 
     }

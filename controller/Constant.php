@@ -25,7 +25,7 @@
     /**
      * Constant de répertoire local
      */
-    const FACTORY = new Factory('root', 'claudine');
+    const FACTORY = new Factory('a88093_lopstd', '7gYRp85nit!sspK5');
     define("BASE_DIR", $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR);
     const MEDIA_DIR = BASE_DIR . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR;
     const CV_DIR = MEDIA_DIR . 'cv' . DIRECTORY_SEPARATOR;

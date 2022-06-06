@@ -8,11 +8,11 @@
 			</div>
 		</div>
 		<div class="row d-flex justify-content-center">
-			<div class="col-md-6 col-xl-6">
-				<div>
+			<div class="col">
+				<div class="d-flex align-items-center">
 
 
-					<form action="index.php?action=transferMessage" class="p-3 p-xl-4" method="post">
+					<form data-aos='fade-right'   action="index.php?action=transferMessage" class="col p-3 m-5 p-xl-4 rounded shadow" method="post">
 						<?php if (isset($_GET['error'])): ?>
 							<div class="alert alert-danger" role="alert">
 								<?= $_GET['error'] ?>
@@ -38,7 +38,14 @@
 							<button class="btn btn-primary shadow d-block w-100" type="submit">Envoyer</button>
 						</div>
 					</form>
+
 				</div>
+
+			</div>
+			<div class='col d-none d-md-block d-flex align-items-center' style='text-align: center;'>
+				<img data-aos='fade-left' data-aos-once='true'
+				     src="<?= IMG_URL . 'message.svg' ?>"
+				     style='width: 90%;height: 90%;padding: 37px;' alt=''>
 			</div>
 		</div>
 	</div>
