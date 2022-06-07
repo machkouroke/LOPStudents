@@ -54,11 +54,11 @@
                 formToCookie();
                 $studentToUpdate = Teacher::getByLogin($_GET['login']);
                 $studentToUpdate->update(...FormValidator::valideTeacherUpdate());
-                $query = ['action' => 'updateStudentPage', 'login' => $_GET['login'], 'sucess' => 'Utilisateur modifié'];
+                $query = ['action' => 'updateTeachertPage', 'login' => $_GET['login'], 'sucess' => 'Utilisateur modifié'];
                 header(INDEX_LOCATION . '?' . http_build_query($query));
 
             } catch (DataBaseException|UserException  $e) {
-                $query = ['action' => 'updateStudentPage', 'login' => $_GET['login'], 'error' => $e->getMessage()];
+                $query = ['action' => 'updateTeacherPage', 'login' => $_GET['login'], 'error' => $e->getMessage()];
                 header(INDEX_LOCATION . '?' . http_build_query($query));
             }
         }

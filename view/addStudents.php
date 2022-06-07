@@ -1,4 +1,3 @@
-
 <?php ob_start(); ?>
 <!--Première Partie-->
 <?php ob_start(); ?>
@@ -62,22 +61,17 @@
 	<div class='row'>
 		<div class='col mb-3'>
 			<label for='country' class='form-label '>Pays</label>
-			<select form="register" id='country' name='country' class='form-select' required>
+			<select form="register" id='country' name='country' class='form-select' required >
 
-				<?php if (isset($userToUpdate)): ?>"
-					<option value="<?= $userToUpdate->getCountry() ?? ($_COOKIE['country'] ?? '') ?>">
-						<?= $userToUpdate->getCountry() ?? ($_COOKIE['country'] ?? '') ?></option>
-				<?php endif; ?>
 			</select>
 		</div>
 
 		<div class='col mb-3'>
 			<label for='city' class='form-label'>Ville</label>
-			<select form='register' id='city' name='city' class='form-select' required>
-				<?php if (isset($userToUpdate)): ?>"
-					<option value="<?= $userToUpdate->getCity() ?? ($_COOKIE['city'] ?? '') ?>" selected>
-						<?= $userToUpdate->getCity() ?? ($_COOKIE['city'] ?? '') ?></option>
-				<?php endif; ?>
+			<select form='register' id='city' name='city' class='form-select'
+			        value="<?= $userToUpdate->getCity() ?? ($_COOKIE['city'] ?? '') ?>"
+			        data-selected="<?= isset($userToUpdate) ? $userToUpdate->getCity() : ($_COOKIE['city'] ?? '') ?>" required>
+
 			</select>
 		</div>
 		<div class='col mb-3'>
@@ -90,7 +84,8 @@
 	<div class='row'>
 		<div class='col mb-3'>
 			<label for='birthDate' class='form-label'>Date de naissance</label>
-			<input value="<?= isset($userToUpdate) ? $userToUpdate->getBirthDate() : ($_COOKIE['birthDate'] ?? '') ?>" form='register' type='date'
+			<input value="<?= isset($userToUpdate) ? $userToUpdate->getBirthDate() : ($_COOKIE['birthDate'] ?? '') ?>"
+			       form='register' type='date'
 			       class='form-control' id='birthDate' name='birthDate' maxlength='5' required>
 		</div>
 	</div>
