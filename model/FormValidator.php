@@ -75,7 +75,7 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
                     throw new UserException('La taille des fichiers ne doit pas depasser ne doit pas depasser 2 MO:' . '
                     Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
                 } else {
-                    self::moveUpdateFiles('photo');
+                    self::moveFiles('photo');
                 }
             } else {
 
@@ -158,28 +158,6 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
         }
 
         /**
-         * @return void
-         * @throws UserException
-         */
-        public static function moveFile(): void
-        {
-            $cvExtension = pathinfo($_FILES['cv']['name'])['extension'];
-            $photoExtension = pathinfo($_FILES['photo']['name'])['extension'];
-            $login = $_POST['login'];
-            $_POST['cv'] = CV_URL . $login . '.' . $cvExtension;
-            $_POST['photo'] = PIC_URL . $login . '.' . $photoExtension;
-
-            $sucessMove = move_uploaded_file($_FILES['cv']['tmp_name'], CV_DIR . $login . '.' . $cvExtension)
-                && move_uploaded_file($_FILES['photo']['tmp_name'], PIC_DIR . $login . '.' . $photoExtension);
-
-
-            if (!$sucessMove) {
-
-                throw new UserException("Les fichiers n'ont pas été bien enregistré");
-            }
-        }
-
-        /**
          * valide la modification d'un étudiant
          * @throws UserException
          */
@@ -190,16 +168,16 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
             }
 
             if (!empty(($_FILES['cv'])['name'])) {
-                self::moveUpdateFiles('cv');
+                self::moveFiles('cv');
             }
             if (!empty(($_FILES['photo'])['name'])) {
-                self::moveUpdateFiles('photo');
+                self::moveFiles('photo');
             }
 
             return self::generatedStudentFields();
         }
 
-        public static function moveUpdateFiles(string $file): void
+        public static function moveFiles(string $file): void
         {
 
             $extension = pathinfo($_FILES["$file"]['name'])['extension'];
