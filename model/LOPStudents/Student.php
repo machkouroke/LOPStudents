@@ -66,6 +66,10 @@
             return self::changeToStudent($res);
         }
 
+        /**
+         * permet d'avoir le nombre actuel d'etudiants
+         * @return int
+         */
         public static function getNumberOfStudents(): int
         {
             $con = FACTORY->get_connexion();
@@ -153,7 +157,7 @@
         }
 
         /**
-         * Fonction de suppression de l'étudiant actuelle
+         * Fonction de suppression de l'étudiant actuel
          */
         public function delete(): void
         {

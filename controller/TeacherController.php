@@ -18,7 +18,10 @@
     class TeacherController
     {
 
-
+        /**
+         * ajout de l'etudiant créé avec les informations entrés par l'administrateur
+         * elle communiquera avec le Model
+         */
         public static function addTeacher(): void
         {
             try {
@@ -41,6 +44,9 @@
             MenuController::addTeacher(Teacher::getByLogin($_GET['login']), 'updateTeacher&login=' . $_GET['login']);
         }
 
+        /**
+         * Cette méthode va se charger de communiquer avec le model pour mettre à jour les informations de l'utilisateur
+         */
         public static function updateTeacher(): void
         {
 
