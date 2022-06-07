@@ -19,6 +19,7 @@
     class Teacher extends User
     {
         public string $matricule, $email;
+        public array $faculty;
         use TeacherSettersAndGetters;
         use TeacherFilter;
 
@@ -30,6 +31,7 @@
             parent::__construct(...$userTab);
             $this->matricule = (isset($data['matricule']))? $data['matricule'] : $this->generateMatricule();
             $this->email = $data['email'];
+            $this->faculty = (isset($data['faculty']))? $data['faculty'] : [];
         }
 
         /**
@@ -100,6 +102,9 @@
                 $statementUser->execute($userInfo);
                 $statementStudent = $con->prepare($addStudent);
                 $statementStudent->execute($studentInfo);
+                if(!empty($this->faculty)){
+                    $this->addModule(...$this->faculty);
+                }
             } catch (PDOException $e) {
                 if ($e->getCode() == 23000) {
                     throw new UserException("Le nom d'utilisateur existe déja");
@@ -108,27 +113,32 @@
             }
         }
 
+        public function addModule(...$data){
+            foreach ($data as $module){
+                $module['matricule'] =$this->getMatricule();
+                $moduleToAdd = new Module(...$module);
+                $moduleToAdd->add();
+            }
+        }
+
         /**
          * Met à jour l'utilisateur actuel
          */
         public function update(string ...$newData): void
         {
+            $tableUser = ['login', 'name', 'surname', 'password', 'city', 'zipCode', 'country', 'photo'];
+            $tableProf = ['matricule', 'login'];
             try {
                 $con = FACTORY->get_connexion();
 
-                $userInfo = [$newData['login'],$newData['name'], $newData['surname'], $newData['password'], $newData['city'],
-                    $newData['zipCode'], $newData['country'], $newData['photo']];
-                $profInfo = [$newData['email'],$newData['login']];
-
-                $updateProf = "update professeur set email=?, login=? where login='" . $this->login . "'";
-
-                $updateUser = "update users set login=?, name=?, surname=?, password=?, city=?,
-                    zipCode=?, country=?, photo=? where login='".$this->login."'";
-
-                $statementStudent = $con->prepare($updateUser);
-                $statementStudent->execute($userInfo);
-                $statementUser = $con->prepare($updateProf);
-                $statementUser->execute($profInfo);
+                foreach ($newData as $key => $value) {
+                    if (in_array($key, $tableUser)) {
+                        $con->exec("update users set $key = '$value' where login='$this->login'");
+                    }
+                    if (in_array($key, $tableProf)) {
+                        $con->exec("update professeur set $key = '$value' where login='$this->login'");
+                    }
+                }
             } catch (PDOException $e) {
                 echo $e->getMessage();
             }
