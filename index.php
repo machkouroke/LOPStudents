@@ -55,6 +55,9 @@
                 case 'deleteConnectedUser':
                     MainController::deleteConnectedUser();
                     break;
+                case 'updateConnectedUser':
+                    MainController::updateUserInformation();
+                    break;
                 case 'listingStudents':
                     MenuController::listingStudents();
                     break;

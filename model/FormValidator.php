@@ -62,7 +62,7 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
             $fields = ['post' => ['name', 'surname', 'login', 'email', 'country', 'city', 'zipCode',
                 'password-2', 'password'], 'files' => ['photo']];
             if (self::isAllFieldsPresent(...$fields)) {
-                if(self::validCaptha()){
+                if (self::validCaptcha()) {
                     if ($_POST['password'] != $_POST['password-2']) {
                         throw new UserException(self::NOT_CONFORM_PASSWORD);
                     }
@@ -77,7 +77,7 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
                     } else {
                         self::moveFiles('photo');
                     }
-                }else{
+                } else {
                     throw new UserException('Captcha invalide');
                 }
             } else {
@@ -109,11 +109,11 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
             $data = $_POST;
             if (isset($_POST['photo'])) $data['photo'] = $_POST['photo'];
 
-            if(isset($_POST['faculty'])){
-                foreach($_POST['faculty'] as $faculty){
-                    $module['faculty']=explode(' ',(explode(';',$faculty))[0])[0];
-                    $module['facultyYear']=explode(' ',(explode(';',$faculty))[0])[1];
-                    $module['name'] = (explode(';',$faculty))[1];
+            if (isset($_POST['faculty'])) {
+                foreach ($_POST['faculty'] as $faculty) {
+                    $module['faculty'] = explode(' ', (explode(';', $faculty))[0])[0];
+                    $module['facultyYear'] = explode(' ', (explode(';', $faculty))[0])[1];
+                    $module['name'] = (explode(';', $faculty))[1];
                     $faculties[] = $module;
                 }
                 $data['faculty'] = $faculties;
@@ -167,7 +167,7 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
          */
         static function valideStudentUpdate(): array
         {
-            if(self::validCaptha()){
+            if (self::validCaptcha()) {
                 if ($_POST['password'] != $_POST['password-2']) {
                     throw new UserException(self::NOT_CONFORM_PASSWORD);
                 }
@@ -179,7 +179,7 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
                     self::moveFiles('photo');
                 }
                 return self::generatedStudentFields();
-            }else{
+            } else {
                 throw new UserException('Captcha invalide');
             }
 
@@ -205,19 +205,31 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
          */
         public static function valideTeacherUpdate(): array
         {
-            if(self::validCaptha()){
+            if (self::validCaptcha()) {
                 if (!empty(($_FILES['photo'])['name'])) {
                     self::moveFiles('photo');
                 }
                 return self::generatedTeacherFields();
-            }else{
+            } else {
                 throw new UserException('Captcha invalide');
             }
         }
 
-        private static function validCaptha(): bool
+        private static function validCaptcha(): bool
         {
             return isset($_POST['captcha']) && strtolower($_POST['captcha']) == strtolower($_SESSION['captcha']);
+        }
+
+        /**
+         * @throws UserException
+         */
+        public static function validateUpdateUserInformation(): array
+        {
+
+            if (empty($_POST['password']) || empty($_POST['login'])) {
+                throw new UserException('Veuillez saisir des informations non vide');
+            }
+            return [$_POST['password'], $_POST['login']];
         }
     }
 
