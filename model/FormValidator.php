@@ -192,5 +192,12 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
                 throw new UserException("Les fichiers non enregistré");
             }
         }
+
+        public static function valideTeacherUpdate(): array
+        {
+            /**
+             * A écrire Morel
+             */
+        }
     }
 
