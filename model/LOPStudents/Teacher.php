@@ -19,6 +19,7 @@
     class Teacher extends User
     {
         public string $matricule, $email;
+        public array $faculty;
         use TeacherSettersAndGetters;
         use TeacherFilter;
 
@@ -30,6 +31,7 @@
             parent::__construct(...$userTab);
             $this->matricule = (isset($data['matricule']))? $data['matricule'] : $this->generateMatricule();
             $this->email = $data['email'];
+            $this->faculty = (isset($data['faculty']))? $data['faculty'] : [];
         }
 
         /**
@@ -100,11 +102,22 @@
                 $statementUser->execute($userInfo);
                 $statementStudent = $con->prepare($addStudent);
                 $statementStudent->execute($studentInfo);
+                if(!empty($this->faculty)){
+                    $this->addModule(...$this->faculty);
+                }
             } catch (PDOException $e) {
                 if ($e->getCode() == 23000) {
                     throw new UserException("Le nom d'utilisateur existe déja");
                 }
                 throw new DataBaseException('Erreur :' . $e->getMessage());
+            }
+        }
+
+        public function addModule(...$data){
+            foreach ($data as $module){
+                $module['matricule'] =$this->getMatricule();
+                $moduleToAdd = new Module(...$module);
+                $moduleToAdd->add();
             }
         }
 

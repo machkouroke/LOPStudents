@@ -24,16 +24,10 @@
             try {
 
 
-                $f = (FormValidator::validateTeacherAdd());
-                $teacherToAdd = new Teacher(...$f);
+                $data = (FormValidator::validateTeacherAdd());
+                $teacherToAdd = new Teacher(...$data);
 
                 $teacherToAdd->add();
-                foreach ($f['faculty'] as $module){
-
-                    $module['matricule'] =$teacherToAdd->getMatricule();
-                    $moduleToAdd = new Module(...$module);
-                    $moduleToAdd->add();
-                }
 
                 header(INDEX_LOCATION . '?action=addTeacherPage&sucess=' . 'Utilisateur ajoute');
             } catch (DataBaseException|UserException $e) {

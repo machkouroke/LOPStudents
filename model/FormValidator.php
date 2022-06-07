@@ -106,14 +106,15 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
             $data = $_POST;
             if (isset($_POST['photo'])) $data['photo'] = $_POST['photo'];
 
-            foreach($_POST['faculty'] as $faculty){
-                $module['faculty']=explode(' ',(explode(';',$faculty))[0])[0];
-                $module['facultyYear']=explode(' ',(explode(';',$faculty))[0])[1];
-                $module['name'] = (explode(';',$faculty))[1];
-                $faculties[] = $module;
+            if(isset($_POST['faculty'])){
+                foreach($_POST['faculty'] as $faculty){
+                    $module['faculty']=explode(' ',(explode(';',$faculty))[0])[0];
+                    $module['facultyYear']=explode(' ',(explode(';',$faculty))[0])[1];
+                    $module['name'] = (explode(';',$faculty))[1];
+                    $faculties[] = $module;
+                }
+                $data['faculty'] = $faculties;
             }
-
-            $data['faculty'] = $faculties;
             return $data;
         }
 
