@@ -18,9 +18,9 @@
         public string $dns;
         public $connexion;
 
-        public function __construct(string $username, string $password)
+        public function __construct(string $dns, string $username, string $password)
         {
-            $this->dns = 'mysql:host=MYSQL8001.site4now.net;dbname=db_a88093_lopstd';
+            $this->dns = $dns;
             $this->username = $username;
             $this->password = $password;
             try {

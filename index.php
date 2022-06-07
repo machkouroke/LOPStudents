@@ -19,6 +19,7 @@
     use controller\StudentController;
     use controller\TeacherController;
     use model\LOPStudents\Factory;
+    use model\LOPStudents\Teacher;
 
 
     if (isset($_SESSION['User'])) {
@@ -36,6 +37,12 @@
                 case 'addTeacherPage':
                     MenuController::addTeacher();
                     break;
+                case 'updateTeacherPage':
+                    TeacherController::updateTeacherPage();
+                    break;
+                case 'updateTeacher':
+                    TeacherController::updateTeacher();
+                    break;
                 case 'deleteStudent':
                     StudentController::delete();
                     break;
@@ -43,7 +50,6 @@
                     StudentController::updateStudentPage();
                     break;
                 case 'updateStudent':
-
                     StudentController::updateStudent();
                     break;
                 case 'deleteConnectedUser':

@@ -12,7 +12,7 @@
     /**
      * Constante de répertoire d'url
      */
-    const BASE_URL = "/LOPStudents/";
+    const BASE_URL = "";
     const CSS_URL = BASE_URL . "/view/assets/css/";
     const IMG_URL = BASE_URL . "/view/assets/img/";
     const JS_URL = BASE_URL . "/view/assets/js/";
@@ -25,7 +25,7 @@
     /**
      * Constant de répertoire local
      */
-    const FACTORY = new Factory('a88093_lopstd', '7gYRp85nit!sspK5');
+    const FACTORY = new Factory('mysql:host=MYSQL8001.site4now.net;dbname=db_a88093_lopstd', 'a88093_lopstd', '7gYRp85nit!sspK5');
     define("BASE_DIR", $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR);
     const MEDIA_DIR = BASE_DIR . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR;
     const CV_DIR = MEDIA_DIR . 'cv' . DIRECTORY_SEPARATOR;
@@ -42,8 +42,17 @@
     function formToCookie(): void
     {
         foreach ($_POST as $key => $input) {
-            print($key . '=>' . $input."<br>");
+            print($key . '=>' . $input . "<br>");
             setcookie($key, $input);
+        }
+    }
+
+    function logging($message): void
+    {
+        if (gettype($message) == 'array' || gettype($message) == 'object') {
+            echo "<script>console.log('" . json_encode($message) . "')</script>";
+        } else {
+            echo "<script>console.log('" . $message . "')</script>";
         }
     }
 
