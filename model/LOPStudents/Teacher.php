@@ -126,22 +126,19 @@
          */
         public function update(string ...$newData): void
         {
+            $tableUser = ['login', 'name', 'surname', 'password', 'city', 'zipCode', 'country', 'photo'];
+            $tableProf = ['matricule', 'login'];
             try {
                 $con = FACTORY->get_connexion();
 
-                $userInfo = [$newData['login'],$newData['name'], $newData['surname'], $newData['password'], $newData['city'],
-                    $newData['zipCode'], $newData['country'], $newData['photo']];
-                $profInfo = [$newData['email'],$newData['login']];
-
-                $updateProf = "update professeur set email=?, login=? where login='" . $this->login . "'";
-
-                $updateUser = "update users set login=?, name=?, surname=?, password=?, city=?,
-                    zipCode=?, country=?, photo=? where login='".$this->login."'";
-
-                $statementStudent = $con->prepare($updateUser);
-                $statementStudent->execute($userInfo);
-                $statementUser = $con->prepare($updateProf);
-                $statementUser->execute($profInfo);
+                foreach ($newData as $key => $value) {
+                    if (in_array($key, $tableUser)) {
+                        $con->exec("update users set $key = '$value' where login='$this->login'");
+                    }
+                    if (in_array($key, $tableProf)) {
+                        $con->exec("update professeur set $key = '$value' where login='$this->login'");
+                    }
+                }
             } catch (PDOException $e) {
                 echo $e->getMessage();
             }

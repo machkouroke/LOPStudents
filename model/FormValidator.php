@@ -62,20 +62,23 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
             $fields = ['post' => ['name', 'surname', 'login', 'email', 'country', 'city', 'zipCode',
                 'password-2', 'password'], 'files' => ['photo']];
             if (self::isAllFieldsPresent(...$fields)) {
+                if(self::validCaptha()){
+                    if ($_POST['password'] != $_POST['password-2']) {
+                        throw new UserException(self::NOT_CONFORM_PASSWORD);
+                    }
+                    if (self::isAllFieldsSizeCorrect()) {
 
-                if ($_POST['password'] != $_POST['password-2']) {
-                    throw new UserException(self::NOT_CONFORM_PASSWORD);
-                }
-                if (self::isAllFieldsSizeCorrect()) {
+                        throw new UserException('La taille des elements ne doit pas depasser 20 lettres');
+                    }
+                    if (self::isFileSizeIsLessThanTwo()) {
 
-                    throw new UserException('La taille des elements ne doit pas depasser 20 lettres');
-                }
-                if (self::isFileSizeIsLessThanTwo()) {
-
-                    throw new UserException('La taille des fichiers ne doit pas depasser ne doit pas depasser 2 MO:' . '
+                        throw new UserException('La taille des fichiers ne doit pas depasser ne doit pas depasser 2 MO:' . '
                     Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
-                } else {
-                    self::moveFiles('photo');
+                    } else {
+                        self::moveFiles('photo');
+                    }
+                }else{
+                    throw new UserException('Captcha invalide');
                 }
             } else {
 
@@ -164,18 +167,22 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
          */
         static function valideStudentUpdate(): array
         {
-            if ($_POST['password'] != $_POST['password-2']) {
-                throw new UserException(self::NOT_CONFORM_PASSWORD);
+            if(self::validCaptha()){
+                if ($_POST['password'] != $_POST['password-2']) {
+                    throw new UserException(self::NOT_CONFORM_PASSWORD);
+                }
+
+                if (!empty(($_FILES['cv'])['name'])) {
+                    self::moveFiles('cv');
+                }
+                if (!empty(($_FILES['photo'])['name'])) {
+                    self::moveFiles('photo');
+                }
+                return self::generatedStudentFields();
+            }else{
+                throw new UserException('Captcha invalide');
             }
 
-            if (!empty(($_FILES['cv'])['name'])) {
-                self::moveFiles('cv');
-            }
-            if (!empty(($_FILES['photo'])['name'])) {
-                self::moveFiles('photo');
-            }
-
-            return self::generatedStudentFields();
         }
 
         public static function moveFiles(string $file): void
@@ -193,11 +200,24 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
             }
         }
 
+        /**
+         * @throws UserException
+         */
         public static function valideTeacherUpdate(): array
         {
-            /**
-             * A écrire Morel
-             */
+            if(self::validCaptha()){
+                if (!empty(($_FILES['photo'])['name'])) {
+                    self::moveFiles('photo');
+                }
+                return self::generatedTeacherFields();
+            }else{
+                throw new UserException('Captcha invalide');
+            }
+        }
+
+        private static function validCaptha(): bool
+        {
+            return isset($_POST['captcha']) && strtolower($_POST['captcha']) == strtolower($_SESSION['captcha']);
         }
     }
 
