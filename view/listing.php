@@ -160,7 +160,7 @@
 				<?php for ($i = 1; $i < $numberOfPage + 1; $i++): ?>
 
 					<li class='page-item'><a class='page-link text-primary'
-					                         href='<?= BASE_URL ?>index.php?action=listingStudents&page=<?= $i ?>'>
+					                         href='<?= BASE_URL ?>index.php?action=listing<?= $title === LIST_OF_STUDENTS ? 'Students' : 'Teachers' ?>&page=<?= $i ?>'>
 							<?= $i ?></a>
 					</li>
 
