@@ -4,6 +4,7 @@
 
 
     use controller\enum\Filter;
+    use model\LOPStudents\Country;
     use model\LOPStudents\Factory;
     use model\LOPStudents\Faculty;
     use model\LOPStudents\Student;
@@ -39,7 +40,7 @@
                 $picture = true;
                 $image = 'menu\addStudent.png';
                 $faculties = Faculty::getAll();
-
+                $countries = Country::getAllCountry();
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\addStudents.php');
             };
             AuthenticationController::roleRequired(AuthenticationController::loginRequired($addStudent),

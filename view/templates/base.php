@@ -77,6 +77,7 @@
 		<script src="<?= JS_URL ?>toggle.js"></script>
 		<script src="<?= JS_URL ?>listingFlip.js"></script>
 		<script src='<?= JS_URL ?>main.js'></script>
+
 	</body>
 
 </html>

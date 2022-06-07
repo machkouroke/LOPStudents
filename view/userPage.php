@@ -1,17 +1,16 @@
 <?php
-
 	use controller\enum\Role;
-
-
+	use model\LOPStudents\User;
 	$title = "Liste étudiant";
-
 ?>
 <?php ob_start(); ?>
 <section class="p-5 mt-5">
 	<div class="container p-5">
 		<div>
 			<h1 class="ref-name text-center fw-bold">
-				<?= $user->getName() . ' ' . $user->getSurname() ?>
+
+				<?= /** @var User $user */
+					$user->getName() . ' ' . $user->getSurname() ?>
 			</h1>
 			<div class="reflow-product d-flex align-items-center py-5">
 				<div class="ref-media">
@@ -46,6 +45,10 @@
 							<tr>
 								<th scope="row">Matricule</th>
 								<td><?= $user->getMatricule() ?></td>
+							</tr>
+							<tr>
+								<th scope='row'>Matricule</th>
+								<td><?= $user->getFaculties() ?></td>
 							</tr>
 						<?php endif; ?>
 						<tr>

@@ -37,26 +37,18 @@
 
         }
 
-        /**
-         * Fonction assez importante
-         * Elle permet de recuperer l'utilisateur par son login
-         * @param string $login
-         * @return User|bool
-         */
-        public static function getByLogin(string $login): User | bool
+
+        public static function getByLogin(string $login): User|bool
         {
             $con = FACTORY->get_connexion();
             $sql = "select * from users where login='" . $login . "'";
-            if ($res = ($con->query($sql))->fetch(PDO::FETCH_ASSOC)){
+            if ($res = ($con->query($sql))->fetch(PDO::FETCH_ASSOC)) {
                 return new User(...$res);
             }
             return false;
 
         }
 
-        /**
-         * supprime un utilisateur
-         */
         public function delete(): void
         {
             $con = FACTORY->get_connexion();
@@ -69,16 +61,21 @@
         /**
          * Change le mot de passe de l'utilisateur actuelle
          * @param string $newPassword Nouveau mot de passe
+         * @throws DataBaseException
          */
-        public function changePassword(string $newPassword): void
+        public function changePassword(string $newPassword, string $newLogin): void
         {
             try {
                 $con = FACTORY->get_connexion();
-                $sql = 'update users set password=? where login=?';
+                $sql = 'update users set 
+                 password=?, login=?  where login=?';
                 $statement = $con->prepare($sql);
-                $statement->execute([$newPassword, $this->login]);
+                $statement->execute([$newPassword, $newLogin, $this->login]);
             } catch (PDOException $e) {
-                echo $e->getMessage();
+                if ($e->getCode() == 23000) {
+                    throw new DataBaseException("Ce nom d'utilisateur existe déja dans la base de données");
+                }
+                throw new DataBaseException("Une erreur est survenue de notre part");
             }
         }
 

@@ -1,3 +1,0 @@
-vi ~/.bash_profile
-
-export var3="Ingenierie de donnees"

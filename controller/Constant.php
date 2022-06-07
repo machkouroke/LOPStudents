@@ -21,11 +21,12 @@
     const INDEX_LOCATION = "Location:index.php";
     const PIC_URL = BASE_URL . "/media/picture/";
     const CV_URL = BASE_URL . '/media/cv/';
+    const MODEL_URL = BASE_URL . "/model/LOPStudents/";
 
     /**
      * Constant de répertoire local
      */
-    const FACTORY = new Factory('mysql:host=MYSQL8001.site4now.net;dbname=db_a88093_lopstd', 'a88093_lopstd', '7gYRp85nit!sspK5');
+    const FACTORY = new Factory('mysql:host=localhost;dbname=lopstudents', 'root', 'claudine');
     define("BASE_DIR", $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR);
     const MEDIA_DIR = BASE_DIR . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR;
     const CV_DIR = MEDIA_DIR . 'cv' . DIRECTORY_SEPARATOR;

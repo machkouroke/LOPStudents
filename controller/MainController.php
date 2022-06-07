@@ -3,7 +3,11 @@
     namespace controller;
 
 
+    use Exception\DataBaseException;
+    use Exception\UserException;
+    use model\FormValidator;
     use model\LOPStudents\Student;
+    use model\LOPStudents\Teacher;
     use model\LOPStudents\User;
 
     /**
@@ -86,6 +90,21 @@
             $_SESSION['User']->delete();
             session_destroy();
             header(INDEX_LOCATION);
+        }
+        public static function updateUserInformation(): void {
+            try {
+
+                $userToUpdate = User::getByLogin($_SESSION['User']->getLogin());
+                $userToUpdate->changePassword(...FormValidator::validateUpdateUserInformation());
+                $_SESSION['User']  = $userToUpdate;
+                $query = ['action' => 'settings', 'sucess' => 'Utilisateur modifié'];
+                header(INDEX_LOCATION . '?' . http_build_query($query));
+            } catch (DataBaseException | UserException $e) {
+                $query = ['action' => 'settings',  'error' => $e->getMessage()];
+
+                header(INDEX_LOCATION . '?' . http_build_query($query));
+            }
+
         }
 
 

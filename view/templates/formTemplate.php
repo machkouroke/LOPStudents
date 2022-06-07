@@ -1,4 +1,6 @@
-<?php $hideFacultyIfUpdate = $type == 'etd' || ($type == 'pr' && !isset($userToUpdate)); ?>
+<?php
+	/** @var string $type */
+	$hideFacultyIfUpdate = $type == 'etd' || ($type == 'pr' && !isset($userToUpdate)); ?>
 <section class="pb-5 py-5 mt-5">
 	<div id="form-flip" class="container ">
 		<div class="front">
@@ -6,14 +8,23 @@
 				<div class='col-md-8 col-xl-6 text-center mx-auto'>
 
 					<h2 class='fw-bold'><a
-								href="<?= BASE_URL . "index.php?page=1&action=listingStudents" ?>"><?= $instructions ?></a>
+								<?php if (isset($userToUpdate) && $type == 'etd'): ?>
+									href=" <?= BASE_URL . "index.php?page=1&action=listingStudents" ?>"
+								<?php endif ?>
+								<?php if (isset($userToUpdate) && $type == 'pr'): ?>
+									href=' <?= BASE_URL . 'index.php?page=1&action=listingTeacher' ?>'
+								<?php endif ?>><?=
+								/** @var string $instructions */
+								$instructions ?></a>
 					</h2>
 				</div>
 			</div>
 			<div class="row d-flex justify-content-start justify-content-lg-start align-items-lg-center">
 				<div class="col">
 					<div class="row ">
-						<form id="register" action='<?= BASE_URL ?>index.php?action=<?= $action ?>'
+						<form id="register" action='<?= BASE_URL ?>index.php?action=<?=
+							/** @var string $action */
+							$action ?>'
 						      class='col shadow rounded p-4 m-5 p-xl-4' data-aos='fade-up'
 						      method='post'
 						      enctype='multipart/form-data'>
@@ -62,6 +73,6 @@
 
 	</div>
 </section>
-<script src="<?= JS_URL ?>villeSelect.js"></script>
+
 
 
