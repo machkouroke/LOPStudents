@@ -48,7 +48,9 @@
                 formToCookie();
                 $studentToUpdate = Teacher::getByLogin($_GET['login']);
                 $studentToUpdate->update(...FormValidator::valideTeacherUpdate());
+
                 $query = ['action' => 'updateTeacherPage', 'login' => $_GET['login'], 'sucess' => 'Utilisateur modifié'];
+
                 header(INDEX_LOCATION . '?' . http_build_query($query));
 
             } catch (DataBaseException|UserException  $e) {
