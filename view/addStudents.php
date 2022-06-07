@@ -61,16 +61,48 @@
 	<div class='row'>
 		<div class='col mb-3'>
 			<label for='country' class='form-label '>Pays</label>
-			<select form="register" id='country' name='country' class='form-select' required >
+			<select form="register" id='country' name='country' class='form-select' required>
+				<?php foreach ($countries as $country): ?>
 
+					<option value="<?= $country['name'] ?>" <?php if (isset($userToUpdate) && ($country['name']) == $userToUpdate->getCountry()) : ?>
+						selected <?php endif ?>>
+
+						<?= $country['name'] ?>
+					</option>
+				<?php endforeach; ?>
 			</select>
+			<script>
+				const countries = document.getElementById('country');
+
+				function addCity(index) {
+					fetch("http://<?=$_SERVER['HTTP_HOST'] . MODEL_URL . '/country.php' ?>", {
+						method: 'POST',
+						body: JSON.stringify({'country_id': index}),
+						headers: {
+							'Content-Type': 'application/json'
+						}
+					}).then((response) => {
+						return response.json()
+					}).then((response) => {
+						const city = document.getElementById('city')
+						city.innerHTML = ''
+						for (let element of response) {
+							city.innerHTML +=
+									`<option data-iso2="${element}"  value="${element}" > ${element}  </option>`
+						}
+					})
+							.catch((error) => console.log(error))
+				}
+				addCity(countries.selectedIndex + 1);
+				countries.addEventListener('change', function () {
+					addCity(countries.selectedIndex + 1)
+				})
+			</script>
 		</div>
 
 		<div class='col mb-3'>
 			<label for='city' class='form-label'>Ville</label>
-			<select form='register' id='city' name='city' class='form-select'
-			        value="<?= $userToUpdate->getCity() ?? ($_COOKIE['city'] ?? '') ?>"
-			        data-selected="<?= isset($userToUpdate) ? $userToUpdate->getCity() : ($_COOKIE['city'] ?? '') ?>" required>
+			<select form='register' id='city' name='city' class='form-select'>
 
 			</select>
 		</div>
