@@ -67,7 +67,9 @@
 	</div>
 	<div class=" col mb-3">
 		<label for="zipCode" class="form-label">Code Postale</label>
-		<input type="number" class="form-control" id="zipCode" name="zipCode" maxlength="5">
+		<input type="number" class="form-control" id="zipCode" name="zipCode" maxlength="5"
+		       value="<?= isset($userToUpdate) ? $userToUpdate->getZipCode() : ($_COOKIE['zipCode'] ?? '') ?>"
+		>
 	</div>
 </div>
 <?php require_once(BASE_DIR . '\view\templates\captchaBlock.php') ?>
