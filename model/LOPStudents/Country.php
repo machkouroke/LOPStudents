@@ -2,6 +2,24 @@
 
 namespace model\LOPStudents;
 
+spl_autoload_register(static function (string $path) {
+    $path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . $path . '.php';
+    require_once($path);
+});
+
+session_name('Main');
+session_start();
+
+require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller\Constant.php');
+use controller\MainController;
+
+use controller\AuthenticationController;
+use controller\MenuController;
+use controller\StudentController;
+use controller\TeacherController;
+use model\LOPStudents\Factory;
+use model\LOPStudents\Teacher;
+
 class Country
 {
     public static function getAllCountry(): bool|array
@@ -19,3 +37,5 @@ class Country
         return $res->fetchAll(\PDO::FETCH_NUM);
     }
 }
+
+var_dump(Country::getAllCountry());
