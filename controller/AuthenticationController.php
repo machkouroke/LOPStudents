@@ -27,6 +27,12 @@
             }
         }
 
+        /**
+         * Fonction permettant de verifier si un utilisateur a un role defini afin d'en avoir les fonctionnalites specifiques
+         * @param Closure $action
+         * @param bool $role
+         * @return void
+         */
         public static function roleRequired(Closure $action, bool $role): void
         {
             if ($role) {
@@ -36,11 +42,17 @@
             }
         }
 
+        /**
+         * redirige l'utilisateur vers la page d'accueil
+         */
         public static function loginPage(): void
         {
             require_once(BASE_DIR . 'view\login.php');
         }
 
+        /**
+         * fonction permettant de se connecter
+         */
         public static function login(): void
         {
 
@@ -58,6 +70,9 @@
 
         }
 
+        /**
+         * fonction permettant de se deconnecter
+         */
         public static function logout(): void
         {
             unset($_SESSION['User']);

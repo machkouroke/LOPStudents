@@ -15,7 +15,10 @@
     class StudentController
     {
 
-
+        /**
+         * ajout de l'etudiant créé avec les informations entrés par l'administrateur
+         * elle communiquera avec le Model
+         */
         public static function addStudent(): void
         {
             try {
@@ -32,6 +35,9 @@
 
         }
 
+        /**
+         * suppression d'un etudiant
+         */
         public static function delete(): void
         {
             Student::getByLogin($_GET['login'])->delete();
@@ -39,18 +45,27 @@
             header(INDEX_LOCATION . '?' . http_build_query($query));
         }
 
+        /**
+         * liste des etudiants par villes
+         */
         public static function getByCity(): void
         {
             MenuController::listingStudents(Filter::CITY, $_POST['city']);
 
         }
 
+        /**
+         * liste des etudiants par classes
+         */
         public static function getByFaculty(): void
         {
             MenuController::listingStudents(Filter::FACULTY, $_POST['faculty']);
 
         }
 
+        /**
+         * liste des etudiants par ages
+         */
         public static function getByYear(): void
         {
             MenuController::listingStudents(Filter::YEAR, $_POST['year']);

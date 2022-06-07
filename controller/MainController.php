@@ -13,7 +13,7 @@
     class MainController
     {
         /**
-         * Envoie un message
+         * ouvre la page d'envoi d'un message
          */
         public static function sendMessage(): void
         {
@@ -33,6 +33,9 @@
             $sendMessage();
         }
 
+        /**
+         * transfert le message
+         */
         public static function transferMessage(): void
         {
 
@@ -75,6 +78,9 @@
             AuthenticationController::loginRequired($sendMessage)();
         }
 
+        /**
+         * Supprime le compte de l'utilisateur connecté
+         */
         public static function deleteConnectedUser(): void
         {
             $_SESSION['User']->delete();

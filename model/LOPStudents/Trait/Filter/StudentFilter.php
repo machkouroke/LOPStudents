@@ -21,6 +21,11 @@
             return $student;
         }
 
+        /**
+         * Elle permet de recuperer l'utilisateur par son login
+         * @param string $login
+         * @return User|bool
+         */
         public static function getByLogin(string $login): Student
         {
 

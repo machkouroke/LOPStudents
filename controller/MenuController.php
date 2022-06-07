@@ -93,6 +93,12 @@
             AuthenticationController::loginRequired($listingStudents)();
         }
 
+        /**
+         * effectue le listing des professeurs
+         * @param Filter $filter
+         * @param string $filterInput
+         * @return void
+         */
         public static function listingTeachers(Filter $filter = FILTER::NONE, string $filterInput = ''): void
         {
             $listingTeachers = function () use ($filterInput, $filter) {
@@ -113,6 +119,9 @@
             AuthenticationController::loginRequired($listingTeachers)();
         }
 
+        /**
+         * page de parametres
+         */
         public static function settings(): void
         {
             $settings = function () {
@@ -122,6 +131,9 @@
             AuthenticationController::loginRequired($settings)();
         }
 
+        /**
+         * ouvre la page de l'utilisateur
+         */
         public static function userPage(): void
         {
 
@@ -133,6 +145,10 @@
             AuthenticationController::loginRequired($userPage)();
         }
 
+        /**
+         * @param string|null $selectedUser
+         * ouvre la page d'envoi des messages
+         */
         public static function sendMessagePage(string $selectedUser = null): void
         {
             $contact = function () use ($selectedUser) {

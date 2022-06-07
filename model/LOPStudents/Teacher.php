@@ -71,7 +71,10 @@
             return self::changeToTeacher($res);
         }
 
-
+        /**
+         * permet d'avoir le nombre actuel de profs
+         * @return int
+         */
         public static function getNumberOfTeacher(): int
         {
             $con = FACTORY->get_connexion();

@@ -47,6 +47,11 @@
         }
     }
 
+/**
+ * fonction permettant d'afficher des logs sur la console
+ * @param $message
+ * @return void
+ */
     function logging($message): void
     {
         if (gettype($message) == 'array' || gettype($message) == 'object') {

@@ -37,7 +37,12 @@
 
         }
 
-
+        /**
+         * Fonction assez importante
+         * Elle permet de recuperer l'utilisateur par son login
+         * @param string $login
+         * @return User|bool
+         */
         public static function getByLogin(string $login): User | bool
         {
             $con = FACTORY->get_connexion();
@@ -49,6 +54,9 @@
 
         }
 
+        /**
+         * supprime un utilisateur
+         */
         public function delete(): void
         {
             $con = FACTORY->get_connexion();
