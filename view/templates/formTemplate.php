@@ -1,16 +1,19 @@
+<?php $hideFacultyIfUpdate = $type == 'etd' || ($type == 'pr' && !isset($userToUpdate)); ?>
 <section class="pb-5 py-5 mt-5">
 	<div id="form-flip" class="container ">
 		<div class="front">
 			<div class='row mb-4 mb-lg-5'>
 				<div class='col-md-8 col-xl-6 text-center mx-auto'>
 
-					<h2 class='fw-bold'><a  href="<?= BASE_URL . "index.php?page=1&action=listingStudents"?>"><?= $instructions ?></a></h2>
+					<h2 class='fw-bold'><a
+								href="<?= BASE_URL . "index.php?page=1&action=listingStudents" ?>"><?= $instructions ?></a>
+					</h2>
 				</div>
 			</div>
 			<div class="row d-flex justify-content-start justify-content-lg-start align-items-lg-center">
 				<div class="col">
 					<div class="row ">
-						<form id="register"  action='<?= BASE_URL ?>index.php?action=<?= $action ?>'
+						<form id="register" action='<?= BASE_URL ?>index.php?action=<?= $action ?>'
 						      class='col shadow rounded p-4 m-5 p-xl-4' data-aos='fade-up'
 						      method='post'
 						      enctype='multipart/form-data'>
@@ -27,16 +30,24 @@
 							<?= $firstPart ?>
 
 						</form>
-						<div class='col shadow rounded p-4 m-5 p-xl-4' data-aos='fade-up'>
+						<?php if ($hideFacultyIfUpdate): ?>
+							<div class='col shadow rounded p-4 m-5 p-xl-4' data-aos='fade-up'>
 
-							<?= $secondPart ?>
+								<?= $secondPart ?>
 
-						</div>
+							</div>
+						<?php else: ?>
+							<div class='col d-none d-md-block d-flex align-items-center' style='text-align: center;'>
+								<img data-aos='fade-right' data-aos-once='true'
+								     src="<?= IMG_URL . 'update.svg' ?>"
+								     style='width: 90%;height: 90%;padding: 37px;' alt=''>
+							</div>
+						<?php endif ?>
 						<div class='row d-flex justify-content-center  p-4'>
 							<button form='register' id='submit'
 							        class=' btn btn-primary shadow d-block w-50 '
 							        type='submit'>
-								Finaliser l'ajout
+								Soumettre
 							</button>
 						</div>
 

@@ -1,12 +1,3 @@
-<?php
-	$title = 'Liste étudiant';
-	$instructions = "Veuillez saisir les informations de l'étudiants";
-	$picture = true;
-	$image = 'menu\addStudent.png';
-
-	$faculties = ['API 1', 'API 2', 'IID 1', 'IID 2', 'IID 3', 'GI 1', 'GI 2', 'GI 3', 'GE 1', 'GE 2', 'GE 3',
-			'GPEE 1', 'GPEE 2', 'GPEE 3', 'IRIC 1', 'GRT 2', 'GRT 3'];
-?>
 
 <?php ob_start(); ?>
 <!--Première Partie-->

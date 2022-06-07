@@ -41,4 +41,25 @@
             }
 
         }
+
+        public static function updateTeacherPage(): void
+        {
+            MenuController::addTeacher(Teacher::getByLogin($_GET['login']), 'updateTeacher&login=' . $_GET['login']);
+        }
+
+        public static function updateTeacher(): void
+        {
+
+            try {
+                formToCookie();
+                $studentToUpdate = Teacher::getByLogin($_GET['login']);
+                $studentToUpdate->update(...FormValidator::valideTeacherUpdate());
+                $query = ['action' => 'updateStudentPage', 'login' => $_GET['login'], 'sucess' => 'Utilisateur modifié'];
+                header(INDEX_LOCATION . '?' . http_build_query($query));
+
+            } catch (DataBaseException|UserException  $e) {
+                $query = ['action' => 'updateStudentPage', 'login' => $_GET['login'], 'error' => $e->getMessage()];
+                header(INDEX_LOCATION . '?' . http_build_query($query));
+            }
+        }
     }
