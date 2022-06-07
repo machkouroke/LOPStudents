@@ -4,6 +4,8 @@
 
 
     use controller\enum\Filter;
+    use model\LOPStudents\Factory;
+    use model\LOPStudents\Faculty;
     use model\LOPStudents\Student;
     use model\LOPStudents\Teacher;
     use model\LOPStudents\User;
@@ -25,14 +27,18 @@
         }
 
 
-        public static function addStudent(Student $userToUpdate = null, String $action= 'addStudent'): void
+        public static function addStudent(Student $userToUpdate = null, string $action = 'addStudent'): void
         {
 
 
             $addStudent = function () use ($userToUpdate, $action) {
 
-                $title = isset($userToUpdate) ? 'Ajouter un étudiants' : "Mettre à jour l'étudiant";
+                $title = !isset($userToUpdate) ? 'Ajouter un étudiants' : "Mettre à jour l'étudiant";
                 $type = 'etd';
+                $instructions = "Veuillez saisir les informations de l'étudiants";
+                $picture = true;
+                $image = 'menu\addStudent.png';
+                $faculties = Faculty::getAll();
 
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\addStudents.php');
             };
@@ -40,13 +46,15 @@
                 ADMIN_ONLY);
         }
 
-        public static function addTeacher(String $action= 'addTeacher'): void
+        public static function addTeacher(Teacher $userToUpdate = null, string $action = 'addTeacher'): void
         {
 
-            $addTeacher = function () use ($action){
+            $addTeacher = function () use ($action, $userToUpdate) {
 
-                $title = 'Ajouter un proffesseur';
+                $title = !isset($userToUpdate) ? 'Ajouter un proffesseur' : "Mettre à jour le proffesseur";
                 $type = 'pr';
+                $instructions = "Veuillez saisir les informations du proffesseur";
+                $faculties = Faculty::getAll();
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\addTeacherForm.php');
             };
             AuthenticationController::roleRequired(AuthenticationController::loginRequired($addTeacher),
@@ -70,8 +78,7 @@
                     $data = $_SESSION['User']->getFriends();
                 } else if (TEACHER_ONLY) {
                     $data = $_SESSION['User']->getStudents();
-                }
-                else {
+                } else {
                     $data = match ($filter) {
                         FILTER::CITY => Student::getByCity($filterInput),
                         FILTER::YEAR => Student::getByAge((int)$filterInput),
@@ -126,9 +133,9 @@
             AuthenticationController::loginRequired($userPage)();
         }
 
-        public static function sendMessagePage(String $selectedUser=null): void
+        public static function sendMessagePage(string $selectedUser = null): void
         {
-            $contact = function () use ($selectedUser){
+            $contact = function () use ($selectedUser) {
 
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\contacts.php');
             };

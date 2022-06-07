@@ -1,9 +1,3 @@
-<?php
-	$title = "Liste étudiant";
-	$instructions = "Veuillez saisir les informations du professeur";
-	$picture = false;
-	$image = 'menu\addTeacher.png'
-?>
 <?php ob_start(); ?>
 <!--Première Partie-->
 <?php ob_start(); ?>
@@ -11,35 +5,41 @@
 <div class="row">
 	<div class="input-div col mb-3">
 		<label for="name" class="form-label">Nom</label>
-		<input class="form-control" type="text" name="name" id="name">
+		<input class="form-control" type="text" name="name" id="name"
+		       value="<?= isset($userToUpdate) ? $userToUpdate->getName() : ($_COOKIE['name'] ?? '') ?>">
 	</div>
 
 	<div class="input-div col mb-3">
 		<label for="surname" class="form-label">Prénom</label>
-		<input class="form-control" type="text" name="surname" id="surname">
+		<input class="form-control" type="text" name="surname" id="surname"
+		       value="<?= isset($userToUpdate) ? $userToUpdate->getSurname() : ($_COOKIE['surname'] ?? '') ?>">
 	</div>
 </div>
 
 <div class="row">
 	<div class="input-div col mb-3">
-		<label for="surname" class="form-label">Nom d'utilisateur</label>
-		<input class="form-control" type="text" name="login" id="login">
+		<label for="login" class="form-label">Nom d'utilisateur</label>
+		<input class="form-control" type="text" name="login" id="login"
+		       value="<?= isset($userToUpdate) ? $userToUpdate->getLogin() : ($_COOKIE['login'] ?? '') ?>">
 	</div>
 
 	<div class="input-div col mb-3">
 		<label for="email" class="form-label">Email</label>
-		<input class="form-control" type="email" name="email" id="email">
+		<input class="form-control" type="email" name="email" id="email"
+		       value="<?= isset($userToUpdate) ? $userToUpdate->getEmail() : ($_COOKIE['email'] ?? '') ?>">
 	</div>
 </div>
 <div class="row">
 	<div class="input-div col mb-3">
-		<label for="password" class="form-label">Votre mot de passe</label>
-		<input class="form-control" type="password" name="password" id="password">
+		<label for="password" class="form-label">Mot de passe</label>
+		<input class="form-control" type="password" name="password" id="password"
+		       value="<?= isset($userToUpdate) ? $userToUpdate->getPassword() : ($_COOKIE['password'] ?? '') ?>">
 	</div>
 
 	<div class="input-div col mb-3">
-		<label for="cv" class="form-label">Confirmez votre mot de passe</label>
-		<input class="form-control" type="password" name="password-2" id="password-2">
+		<label for="password-2" class="form-label">Confirmation du mot de passe</label>
+		<input class="form-control" type="password" name="password-2" id="password-2"
+		       value="<?= isset($userToUpdate) ? $userToUpdate->getPassword() : ($_COOKIE['password-2'] ?? '') ?>">
 	</div>
 </div>
 
@@ -77,11 +77,9 @@
 <?php $firstPart = ob_get_clean(); ?>
 
 <!--Seconde Partie -->
+
 <?php ob_start(); ?>
-<?php
-	$faculties = ['API 1', 'API 2', 'IID 1', 'IID 2', 'IID 3', 'GI 1', 'GI 2', 'GI 3', 'GE 1', 'GE 2', 'GE 3',
-			'GPEE 1', 'GPEE 2', 'GPEE 3', 'IRIC 1', 'GRT 2', 'GRT 3'];
-?>
+
 
 <div class="row">
 	<?php
@@ -91,7 +89,7 @@
 				<div class=" d-flex align-items-center p-3 justify-content-between col-4 w-100">
 					<label for="<?= $faculty ?>" class="form-check-label"><?= $faculty ?></label>
 
-					<input form="register"  value="<?= $faculty ?>" class=" form-check-input"
+					<input form="register" value="<?= $faculty ?>" class=" form-check-input"
 					       type="checkbox"
 					       name="faculty[]">
 				</div>
@@ -108,6 +106,7 @@
 
 <script src='<?= JS_URL ?>facultyChoice.js'></script>
 <?php $secondPart = ob_get_clean(); ?>
+
 <?php require('templates/formTemplate.php'); ?>
 <?php $content = ob_get_clean(); ?>
 
