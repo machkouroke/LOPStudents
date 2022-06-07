@@ -24,16 +24,10 @@
             try {
 
 
-                $f = (FormValidator::validateTeacherAdd());
-                $teacherToAdd = new Teacher(...$f);
+                $data = (FormValidator::validateTeacherAdd());
+                $teacherToAdd = new Teacher(...$data);
 
                 $teacherToAdd->add();
-                foreach ($f['faculty'] as $module){
-
-                    $module['matricule'] =$teacherToAdd->getMatricule();
-                    $moduleToAdd = new Module(...$module);
-                    $moduleToAdd->add();
-                }
 
                 header(INDEX_LOCATION . '?action=addTeacherPage&sucess=' . 'Utilisateur ajoute');
             } catch (DataBaseException|UserException $e) {
@@ -54,7 +48,9 @@
                 formToCookie();
                 $studentToUpdate = Teacher::getByLogin($_GET['login']);
                 $studentToUpdate->update(...FormValidator::valideTeacherUpdate());
-                $query = ['action' => 'updateTeachertPage', 'login' => $_GET['login'], 'sucess' => 'Utilisateur modifié'];
+
+                $query = ['action' => 'updateTeacherPage', 'login' => $_GET['login'], 'sucess' => 'Utilisateur modifié'];
+
                 header(INDEX_LOCATION . '?' . http_build_query($query));
 
             } catch (DataBaseException|UserException  $e) {
