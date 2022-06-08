@@ -19,7 +19,7 @@
 			</div>
 		<?php endif ?>
 		<div id="listPage">
-
+			<?php if (!empty($data)): ?>
 			<div class="list overflow rounded">
 				<div class="row mx-auto" style="/*max-width: 700px;*/">
 					<div class="col">
@@ -133,26 +133,33 @@
 			</div>
 			<div class="grid">
 				<div class="checkboxes py-2 row row-cols-2 row-cols-md-3 mx-auto" style="max-width: 700px;">
-					<?php foreach ($data as $user): ?>
-						<label for="<?= $user->getLogin() ?>" class="col mb-4 box-checkbox">
-							<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
-							                              src="<?= $user->getPhoto() ?>">
-								<h5 class="fw-bold mb-0">
-									<strong><?= $user->getSurname() . ' ' . $user->getName() ?></strong>
-								</h5>
-								<p class="text-muted mb-2">
-									<?php if ($title === LIST_OF_STUDENTS): ?>
-										<?= $user->getFaculty() . ' ' . $user->getFacultyYear() ?>
-									<?php else: ?>
-										<?= $user->getMatricule() ?>
-									<?php endif; ?>
-								</p>
-							</div>
-						</label>
-					<?php endforeach ?>
+
+						<?php foreach ($data as $user): ?>
+							<label for="<?= $user->getLogin() ?>" class="col mb-4 box-checkbox">
+								<div class="text-center"><img alt="" class="miniature rounded mb-3 fit-cover"
+								                              src="<?= $user->getPhoto() ?>">
+									<h5 class="fw-bold mb-0">
+										<strong><?= $user->getSurname() . ' ' . $user->getName() ?></strong>
+									</h5>
+									<p class="text-muted mb-2">
+										<?php if ($title === LIST_OF_STUDENTS): ?>
+											<?= $user->getFaculty() . ' ' . $user->getFacultyYear() ?>
+										<?php else: ?>
+											<?= $user->getMatricule() ?>
+										<?php endif; ?>
+									</p>
+								</div>
+							</label>
+						<?php endforeach ?>
+
 
 				</div>
 			</div>
+			<?php else: ?>
+				<div class='alert alert-warning' role='alert'>
+					<?= "Vide" ?>
+				</div>
+			<?php endif; ?>
 
 		</div>
 		<nav class="mt-4 pt-5 w-100 d-flex justify-content-center">

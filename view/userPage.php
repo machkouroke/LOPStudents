@@ -1,7 +1,9 @@
 <?php
 	use controller\enum\Role;
+	use model\LOPStudents\Student;
+	use model\LOPStudents\Teacher;
 	use model\LOPStudents\User;
-	$title = "Liste étudiant";
+	$title = $_SESSION['User']->getLogin();
 ?>
 <?php ob_start(); ?>
 <section class="p-5 mt-5">
@@ -9,7 +11,7 @@
 		<div>
 			<h1 class="ref-name text-center fw-bold">
 
-				<?= /** @var User $user */
+				<?= /** @var User|Student|Teacher $user */
 					$user->getName() . ' ' . $user->getSurname() ?>
 			</h1>
 			<div class="reflow-product d-flex align-items-center py-5">

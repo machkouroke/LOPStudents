@@ -1,7 +1,7 @@
 <h1 class="py-5 ref-heading text-center fw-bold"><?= $title ?> </h1>
 <div class="d-flex flex-column  flex-md-row justify-content-between align-items-center">
 
-	<?php if (ADMIN_ONLY): ?>
+	<?php if (ADMIN_ONLY && $title==LIST_OF_STUDENTS): ?>
 		<p>
 			<button id="moreButton" class="btn btn-primary">Plus d'option</button>
 		</p>
@@ -14,7 +14,7 @@
 	<form id="MessageSender" method="post" action="<?= BASE_URL ?>index.php?action=sendMessage" class="d-none">
 	</form>
 </div>
-<?php if (ADMIN_ONLY): ?>
+<?php if (ADMIN_ONLY && $title==LIST_OF_STUDENTS): ?>
 	<div id="moreOption" data-aos="fade-down" class="row shadow rounded p-3">
 		<div class="reflow-product-list ref-cards">
 			<div class="m-3 ref-products align-items-center justify-content-around">
@@ -61,7 +61,21 @@
 					</div>
 					<div class="back  d-flex justify-content-center align-items-center">
 						<label class="form-label ">
-							<input name="faculty" type="text" class="form-control">
+							<select  id='faculty' name='faculty' class='form-select' required>
+
+								<?php /** @var Array $faculties */
+									foreach ($faculties as $faculty): ?>
+
+									<?php
+									if (isset($userToUpdate)) {
+										$facultyOfUser = $userToUpdate->getFaculty() . ' ' .
+												$userToUpdate->getFacultyYear();
+									} ?>
+
+									<option value="<?= $faculty ?>"
+											<?= isset($userToUpdate) && $facultyOfUser === $faculty ? 'selected="' . $facultyOfUser . '"' : '' ?>><?= $faculty ?></option>
+								<?php endforeach; ?>
+							</select>
 							<button class="btn btn-primary w-100 my-3" type="submit">
 								Filtrer
 							</button>
