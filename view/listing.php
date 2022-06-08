@@ -156,7 +156,7 @@
 				</div>
 			</div>
 			<?php else: ?>
-				<div class='alert alert-info' role='alert'>
+				<div class='alert alert-warning' role='alert'>
 					<?= "Vide" ?>
 				</div>
 			<?php endif; ?>

@@ -1,7 +1,7 @@
 <h1 class="py-5 ref-heading text-center fw-bold"><?= $title ?> </h1>
 <div class="d-flex flex-column  flex-md-row justify-content-between align-items-center">
 
-	<?php if (ADMIN_ONLY): ?>
+	<?php if (ADMIN_ONLY && $title==LIST_OF_STUDENTS): ?>
 		<p>
 			<button id="moreButton" class="btn btn-primary">Plus d'option</button>
 		</p>
@@ -14,7 +14,7 @@
 	<form id="MessageSender" method="post" action="<?= BASE_URL ?>index.php?action=sendMessage" class="d-none">
 	</form>
 </div>
-<?php if (ADMIN_ONLY): ?>
+<?php if (ADMIN_ONLY && $title==LIST_OF_STUDENTS): ?>
 	<div id="moreOption" data-aos="fade-down" class="row shadow rounded p-3">
 		<div class="reflow-product-list ref-cards">
 			<div class="m-3 ref-products align-items-center justify-content-around">
