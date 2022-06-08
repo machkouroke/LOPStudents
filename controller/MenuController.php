@@ -73,6 +73,7 @@
             $listingStudents = function () use ($filterInput, $filter) {
                 $title = LIST_OF_STUDENTS;
                 $number = Student::getNumberOfStudents();
+                $faculties = Faculty::getAll();
                 $numberOfPage = ceil($number / ROW_PER_PAGE);
                 $firstPage = ($_GET['page'] * ROW_PER_PAGE) - ROW_PER_PAGE;
                 if (STUDENT_ONLY) {

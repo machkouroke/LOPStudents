@@ -61,7 +61,21 @@
 					</div>
 					<div class="back  d-flex justify-content-center align-items-center">
 						<label class="form-label ">
-							<input name="faculty" type="text" class="form-control">
+							<select  id='faculty' name='faculty' class='form-select' required>
+
+								<?php /** @var Array $faculties */
+									foreach ($faculties as $faculty): ?>
+
+									<?php
+									if (isset($userToUpdate)) {
+										$facultyOfUser = $userToUpdate->getFaculty() . ' ' .
+												$userToUpdate->getFacultyYear();
+									} ?>
+
+									<option value="<?= $faculty ?>"
+											<?= isset($userToUpdate) && $facultyOfUser === $faculty ? 'selected="' . $facultyOfUser . '"' : '' ?>><?= $faculty ?></option>
+								<?php endforeach; ?>
+							</select>
 							<button class="btn btn-primary w-100 my-3" type="submit">
 								Filtrer
 							</button>
