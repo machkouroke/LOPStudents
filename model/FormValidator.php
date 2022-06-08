@@ -34,8 +34,8 @@
                         throw new UserException('La taille des elements ne doit pas depasser 20 lettres');
                     }
                     if (!self::isFileSizeIsLessThanTwo()) {
-                        self::moveUpdateFiles('cv');
-                        self::moveUpdateFiles('photo');
+                        self::moveFiles('cv');
+                        self::moveFiles('photo');
                     } else {
                         throw new UserException('La taille des fichiers ne doit pas depasser ne doit pas depasser 2 MO:' . '
 Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
