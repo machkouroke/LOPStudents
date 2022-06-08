@@ -199,7 +199,9 @@ button input[type=submit] {
     transform: scale(1.1);
   }
 }
-
+label {
+  transition: transform 0.8s;
+}
 .miniature {
   border-radius: 100% !important;
   background: white !important;
@@ -227,6 +229,4 @@ button input[type=submit] {
     background: lighten($primary, 100) !important;
     color: $primary;
   }
-
-
 }
