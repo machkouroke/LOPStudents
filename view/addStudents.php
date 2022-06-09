@@ -74,8 +74,8 @@
 			<script>
 				const countries = document.getElementById('country');
 
-				function addCity(index) {
-					fetch("http://<?=$_SERVER['HTTP_HOST'] . MODEL_URL . '/country.php' ?>", {
+				async function addCity(index) {
+					await fetch("http://<?=$_SERVER['HTTP_HOST'] . MODEL_URL . '/country.php' ?>", {
 						method: 'POST',
 						body: JSON.stringify({'country_id': index}),
 						headers: {

@@ -17,7 +17,7 @@
 								<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addStudentPage">
 									<img class="ref-image" src="<?= IMG_URL ?>menu/addStudent.png" alt=""/>
 									<div class="ref-product-data">
-										<h5 class="ref-name text-center w-100">Ajouter un étudiants</h5>
+										<h5 class="ref-name text-center w-100">Ajouter un étudiant</h5>
 									</div>
 								</a>
 								<a class="ref-product" href="<?= BASE_URL ?>index.php?action=addTeacherPage">
@@ -25,7 +25,7 @@
 									     alt=""/>
 									<div class="ref-product-data">
 										<div class="ref-product-data">
-											<h5 class="ref-name text-center w-100">Ajouter un proffesseur</h5>
+											<h5 class="ref-name text-center w-100">Ajouter un professeur</h5>
 										</div>
 									</div>
 								</a>
