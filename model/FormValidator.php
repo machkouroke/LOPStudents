@@ -23,6 +23,7 @@
             $fields = ['post' => ['name', 'surname', 'login', 'email', 'country', 'city', 'zipCode',
                 'password', 'password-2'], 'files' => ['cv', 'photo']];
             define("VALID_CAPTCHA", isset($_POST['captcha']) && strtolower($_POST['captcha']) == strtolower($_SESSION['captcha']));
+            print($_SESSION['captcha']);
             if (self::isAllFieldsPresent(...$fields)) {
                 if (VALID_CAPTCHA) {
                     if ($_POST['password'] != $_POST['password-2']) {
@@ -78,7 +79,7 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
                         self::moveFiles('photo');
                     }
                 } else {
-                    throw new UserException('Captcha invalide');
+                    throw new UserException($_SESSION['captcha']);
                 }
             } else {
 

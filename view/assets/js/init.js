@@ -15,7 +15,7 @@ function checkIfImageExists(url, callback) {
     }
 }
 
-let profilPicture = document.getElementsByTagName("img");
+let profilPicture = document.querySelectorAll("img.ref-student-photo, img.miniature");
 for (let image of profilPicture) {
     checkIfImageExists(image.src, (exists) => {
         console.log(image.src);

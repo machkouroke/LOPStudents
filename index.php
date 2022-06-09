@@ -21,7 +21,6 @@
     use model\LOPStudents\Factory;
     use model\LOPStudents\Teacher;
 
-
     if (isset($_SESSION['User'])) {
         if (isset($_GET['action'])) {
             switch ($_GET['action']) {

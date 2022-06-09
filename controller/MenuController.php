@@ -56,6 +56,7 @@
                 $type = 'pr';
                 $instructions = "Veuillez saisir les informations du proffesseur";
                 $faculties = Faculty::getAll();
+                $countries = Country::getAllCountry();
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\addTeacherForm.php');
             };
             AuthenticationController::roleRequired(AuthenticationController::loginRequired($addTeacher),

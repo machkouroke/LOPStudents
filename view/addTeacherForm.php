@@ -55,7 +55,15 @@
 	<div class=" col mb-3">
 		<label for="country" class="form-label">Pays</label>
 		<select id="country" name="country" class="form-select" required>
+			<?php /** @var Array $countries */
+				foreach ($countries as $country): ?>
 
+				<option value="<?= $country['name'] ?>" <?php if (isset($userToUpdate) && ($country['name']) == $userToUpdate->getCountry()) : ?>
+					selected <?php endif ?>>
+
+					<?= $country['name'] ?>
+				</option>
+			<?php endforeach; ?>
 		</select>
 	</div>
 
@@ -65,6 +73,33 @@
 
 		</select>
 	</div>
+	<script>
+		const countries = document.getElementById('country');
+
+		async function addCity(index) {
+			await fetch("http://<?=$_SERVER['HTTP_HOST'] . MODEL_URL . '/country.php' ?>", {
+				method: 'POST',
+				body: JSON.stringify({'country_id': index}),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			}).then((response) => {
+				return response.json()
+			}).then((response) => {
+				const city = document.getElementById('city')
+				city.innerHTML = ''
+				for (let element of response) {
+					city.innerHTML +=
+							`<option data-iso2="${element}"  value="${element}" > ${element}  </option>`
+				}
+			})
+					.catch((error) => console.log(error))
+		}
+		addCity(countries.selectedIndex + 1);
+		countries.addEventListener('change', function () {
+			addCity(countries.selectedIndex + 1)
+		})
+	</script>
 	<div class=" col mb-3">
 		<label for="zipCode" class="form-label">Code Postale</label>
 		<input type="number" class="form-control" id="zipCode" name="zipCode" maxlength="5"
