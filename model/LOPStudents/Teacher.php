@@ -11,7 +11,6 @@
     use PDOException;
 
 
-
     /**
      * @author Morel Kouhossounon
      * Représente un proffesseur
@@ -27,11 +26,11 @@
         {
             $userTab = array('login' => $data['login'], 'name' => $data['name'], 'surname' => $data['surname'],
                 'password' => $data['password'], 'city' => $data['city'], 'zipCode' => $data['zipCode'],
-                'country' => $data['country'],'photo'=>$data['photo'], 'role' => 'teacher');
+                'country' => $data['country'], 'photo' => $data['photo'], 'role' => 'teacher');
             parent::__construct(...$userTab);
-            $this->matricule = (isset($data['matricule']))? $data['matricule'] : $this->generateMatricule();
+            $this->matricule = (isset($data['matricule'])) ? $data['matricule'] : $this->generateMatricule();
             $this->email = $data['email'];
-            $this->faculty = (isset($data['faculty']))? $data['faculty'] : [];
+            $this->faculty = (isset($data['faculty'])) ? $data['faculty'] : [];
         }
 
         /**
@@ -42,7 +41,7 @@
         {
             $con = FACTORY->get_connexion();
             $res = $con->query('select max(id)+1 from professeur')->fetch(PDO::FETCH_ASSOC);
-            return 220000+($res['max(id)+1'] != null ? $res['max(id)+1'] : 1);
+            return 220000 + ($res['max(id)+1'] != null ? $res['max(id)+1'] : 1);
         }
 
         /**
@@ -66,13 +65,13 @@
         public static function getAll(int $first, int $last): bool|array
         {
             $con = FACTORY->get_connexion();
-            $sql = 'select * from professeur natural join users ORDER BY NAME  LIMIT ' . $first . ','. $last;
+            $sql = 'select * from professeur natural join users ORDER BY NAME  LIMIT ' . $first . ',' . $last;
             $res = $con->query($sql);
             return self::changeToTeacher($res);
         }
 
         /**
-         * permet d'avoir le nombre actuel de profs
+         * Permet d'avoir le nombre actuel de profs
          * @return int
          */
         public static function getNumberOfTeacher(): int
@@ -105,7 +104,7 @@
                 $statementUser->execute($userInfo);
                 $statementStudent = $con->prepare($addStudent);
                 $statementStudent->execute($studentInfo);
-                if(!empty($this->faculty)){
+                if (!empty($this->faculty)) {
                     $this->addModule(...$this->faculty);
                 }
             } catch (PDOException $e) {
@@ -116,9 +115,10 @@
             }
         }
 
-        public function addModule(...$data){
-            foreach ($data as $module){
-                $module['matricule'] =$this->getMatricule();
+        public function addModule(...$data)
+        {
+            foreach ($data as $module) {
+                $module['matricule'] = $this->getMatricule();
                 $moduleToAdd = new Module(...$module);
                 $moduleToAdd->add();
             }

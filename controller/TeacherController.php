@@ -45,6 +45,16 @@
         }
 
         /**
+         * Suppression d'un étudiant
+         */
+        public static function delete(): void
+        {
+            Teacher::getByLogin($_GET['login'])->delete();
+            $query = ['action' => 'listingTeachers', 'page' => 1, 'sucess' => 'Utilisateur supprime'];
+            header(INDEX_LOCATION . '?' . http_build_query($query));
+        }
+
+        /**
          * Cette méthode va se charger de communiquer avec le model pour mettre à jour les informations de l'utilisateur
          */
         public static function updateTeacher(): void

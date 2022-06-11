@@ -49,7 +49,7 @@
 								<td><?= $user->getMatricule() ?></td>
 							</tr>
 							<tr>
-								<th scope='row'>Matricule</th>
+								<th scope='row'>Fillières enseigné</th>
 								<td><?= $user->getFaculties() ?></td>
 							</tr>
 						<?php endif; ?>
