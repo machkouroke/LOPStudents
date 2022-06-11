@@ -142,13 +142,18 @@
         {
 
             $userPage = function () {
-                $user = isset($_GET['userLogin']) ? User::getByLogin($_GET['userLogin']) : $_SESSION['User'];
 
-                if ($user->getRole() == Role::Student) {
-                    $user = Student::getByLogin($_GET['userLogin']);
-                } else if ($user->getRole() == Role::Teacher) {
-                    $user = Teacher::getByLogin($_GET['userLogin']);
+                if (isset($_GET['userLogin'])) {
+                    $user = User::getByLogin($_GET['userLogin']);
+                    if ($user->getRole() == Role::Student) {
+                        $user = Student::getByLogin($_GET['userLogin']);
+                    } else if ($user->getRole() == Role::Teacher) {
+                        $user = Teacher::getByLogin($_GET['userLogin']);
+                    }
+                } else  {
+                    $user = $_SESSION['User'];
                 }
+
                 $title = $user->getSurname();
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\userPage.php');
             };
