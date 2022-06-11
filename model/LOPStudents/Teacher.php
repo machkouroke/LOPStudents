@@ -70,6 +70,23 @@
             return self::changeToTeacher($res);
         }
 
+        public function changePassword(string $newPassword, string $newLogin): void {
+            try {
+
+                $con = FACTORY->get_connexion();
+                $sql = 'update professeur set 
+                 login=?  where login=?';
+                $statement = $con->prepare($sql);
+                $statement->execute([$newLogin, $this->login]);
+                Parent::changePassword($newPassword, $newLogin);
+            } catch (PDOException $e) {
+                if ($e->getCode() == 23000) {
+                    throw new DataBaseException("Ce nom d'utilisateur existe déja dans la base de données");
+                }
+                throw new DataBaseException('Une erreur est survenue de notre part');
+            }
+        }
+
         /**
          * Permet d'avoir le nombre actuel de profs
          * @return int

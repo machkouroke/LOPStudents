@@ -71,6 +71,8 @@
                  password=?, login=?  where login=?';
                 $statement = $con->prepare($sql);
                 $statement->execute([$newPassword, $newLogin, $this->login]);
+                $this->login = $newLogin;
+                $this->password = $newPassword;
             } catch (PDOException $e) {
                 if ($e->getCode() == 23000) {
                     throw new DataBaseException("Ce nom d'utilisateur existe déja dans la base de données");

@@ -51,7 +51,22 @@
             $id = 220000 + ($res['max(id)+1'] != null ? $res['max(id)+1'] : 1);
             return 'ENSA' . (string)$id;
         }
+        public function changePassword(string $newPassword, string $newLogin): void {
+            try {
 
+                $con = FACTORY->get_connexion();
+                $sql = 'update etudiants set 
+                 login=?  where login=?';
+                $statement = $con->prepare($sql);
+                $statement->execute([$newLogin, $this->login]);
+                Parent::changePassword($newPassword, $newLogin);
+            } catch (PDOException $e) {
+                if ($e->getCode() == 23000) {
+                    throw new DataBaseException("Ce nom d'utilisateur existe déja dans la base de données");
+                }
+                throw new DataBaseException($e->getMessage());
+            }
+        }
         /**
          * Renvoie une partie de la liste de tous les étudiants en jointure avec leur utilisateur correspondant
          * @param int $first Premier element de la liste
