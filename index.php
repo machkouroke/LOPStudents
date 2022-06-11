@@ -12,6 +12,7 @@
     session_start();
 
     require_once($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'controller\Constant.php');
+
     use controller\MainController;
 
     use controller\AuthenticationController;
@@ -41,6 +42,9 @@
                     break;
                 case 'updateTeacher':
                     TeacherController::updateTeacher();
+                    break;
+                case 'deleteTeacher':
+                    TeacherController::delete();
                     break;
                 case 'deleteStudent':
                     StudentController::delete();

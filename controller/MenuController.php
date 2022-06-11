@@ -4,6 +4,7 @@
 
 
     use controller\enum\Filter;
+    use controller\enum\Role;
     use model\LOPStudents\Country;
     use model\LOPStudents\Factory;
     use model\LOPStudents\Faculty;
@@ -141,7 +142,13 @@
         {
 
             $userPage = function () {
-                $user = isset($_GET['userLogin']) ? Student::getByLogin($_GET['userLogin']) : $_SESSION['User'];
+                $user = isset($_GET['userLogin']) ? User::getByLogin($_GET['userLogin']) : $_SESSION['User'];
+
+                if ($user->getRole() == Role::Student) {
+                    $user = Student::getByLogin($_GET['userLogin']);
+                } else if ($user->getRole() == Role::Teacher) {
+                    $user = Teacher::getByLogin($_GET['userLogin']);
+                }
                 $title = $user->getSurname();
                 require($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'view\userPage.php');
             };

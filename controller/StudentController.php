@@ -36,7 +36,7 @@
         }
 
         /**
-         * suppression d'un etudiant
+         * Suppression d'un étudiant
          */
         public static function delete(): void
         {
