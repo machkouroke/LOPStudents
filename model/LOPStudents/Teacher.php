@@ -160,7 +160,7 @@
                     }
                 }
             } catch (PDOException $e) {
-                echo $e->getMessage();
+                throw new DataBaseException($e->getMessage());
             }
         }
 
