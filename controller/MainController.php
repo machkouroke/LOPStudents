@@ -48,7 +48,6 @@
                 $isAllFieldsPresent = ((isset($_POST["destinataire"]) && !empty($_POST["destinataire"]))
                     && (isset($_POST["object"]) && !empty($_POST['object']))
                     && (isset($_POST['message']) && !empty($_POST['message'])));
-                echo $isAllFieldsPresent;
                 if ($isAllFieldsPresent) {
 
                     $dest = explode(";", $_POST["destinataire"]);

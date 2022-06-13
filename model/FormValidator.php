@@ -79,7 +79,7 @@ Photo:' . $_FILES['photo']['size'] . 'CV:' . $_FILES['cv']['size']);
                         self::moveFiles('photo');
                     }
                 } else {
-                    throw new UserException($_SESSION['captcha']);
+                    throw new UserException('Captcha Invalide');
                 }
             } else {
 

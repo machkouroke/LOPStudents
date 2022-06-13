@@ -16,7 +16,6 @@
             $con = FACTORY->get_connexion();
             $sql = "SELECT * FROM professeur NATURAL JOIN users WHERE login='" . $login . "'";
             $res = $con->query($sql)->fetch(PDO::FETCH_ASSOC);
-            print(gettype($res));
             return new Teacher(...$res);
         }
 
