@@ -76,7 +76,7 @@
         public static function getAll(int $first, int $last): bool|array
         {
             $con = FACTORY->get_connexion();
-            $sql = 'SELECT * FROM etudiants NATURAL JOIN users ORDER BY NAME  LIMIT ' . $first . ',' . $last;
+            $sql = 'SELECT * FROM etudiants NATURAL JOIN users ORDER BY ID  desc LIMIT ' . $first . ',' . $last;
             $res = $con->query($sql);
             return self::changeToStudent($res);
         }
