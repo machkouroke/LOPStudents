@@ -65,7 +65,7 @@
         public static function getAll(int $first, int $last): bool|array
         {
             $con = FACTORY->get_connexion();
-            $sql = 'select * from professeur natural join users ORDER BY NAME  LIMIT ' . $first . ',' . $last;
+            $sql = 'select * from professeur natural join users ORDER BY ID DESC  LIMIT ' . $first . ',' . $last;
             $res = $con->query($sql);
             return self::changeToTeacher($res);
         }
