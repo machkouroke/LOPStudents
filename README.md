@@ -29,7 +29,10 @@ Simple plateforme permettant la gestion des étudiants et professeur d'une écol
 - Executer le script de création des tables utilisateurs dans model/sql/LDD.sql
 - Créer un utilisateur admin pour se connecter à la base de données (dans la table user crée précedemment et avec le rôle **admin**
 - Changer les informations de la base de données avec vos informations dans le fichier **controller/constant.php**
-- Lancer le fichier index et connectez vous. S'il y un problème avec des ressources non trouvé vous pouviez changer la constante **BASE_URL** avec votre url de base pour les ressources(Celle qui suit directement le nom de domaine)
+- Lancez un server php comme et accéder à l'adresse crée
+```shell
+php -S localhost:8000
+```
 
 
 
