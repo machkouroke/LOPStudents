@@ -27,7 +27,7 @@
     /**
      * Constant de répertoire local
      */
-    const FACTORY = new Factory('mysql:host=localhost;dbname=lopstudents', 'root', 'claudine');
+    const FACTORY = new Factory('mysql:host=localhost;dbname=lopstudents', 'root', '');
     define("BASE_DIR", $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR);
     const MEDIA_DIR = BASE_DIR . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR;
     const CV_DIR = MEDIA_DIR . 'cv' . DIRECTORY_SEPARATOR;
