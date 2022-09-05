@@ -19,7 +19,7 @@ Simple plateforme permettant la gestion des étudiants et professeur d'une écol
 #### Il existe 3 niveau d'utilisateurs:
 - **admin:** Peut ajouter, supprimer ,voir et envoyer des messages à tout étudiants ou proffesseur.
 - **teacher:** Peut voir et envoyer des messages à touts étudiants qu'il enseigne
-- **Administrator:** Peut voir et envoyer des messages à tous ses camrades et proffesseur
+- **student:** Peut voir et envoyer des messages à tous ses camrades et proffesseur
 
 ---
 
